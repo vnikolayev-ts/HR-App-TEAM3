@@ -1,4 +1,5 @@
-import data from '../data/hr-data.json'; 
+
+import {getHRData} from './ClientApi'
 
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -6,6 +7,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { getBarLevelsForScore, getColorForLevel, renderStars } from './Utils';
 
 const EmployeeDetails = () => {
+  const  data = getHRData();
+
   const { id } = useParams();
   const navigate = useNavigate();
   const employeeIndex = data.employees.findIndex(emp => emp.pers_id === id);

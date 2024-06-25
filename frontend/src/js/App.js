@@ -4,6 +4,8 @@ import EmployeeList from './EmployeeList';
 //import EmployeeList from './EmployeeList copy 2';
 import EmployeeDetails from './EmployeeDetails';
 
+import ClientApi from './ClientApi';
+
 
 const App = () => {
   return (
