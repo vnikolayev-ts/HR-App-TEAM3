@@ -37,26 +37,32 @@ const EmployeeDetails = () => {
 
   return (
     
-    <div >
+    <div class="extended">
             <div class="action header">
-        <button onClick={handleBackClick}>Zurück</button>
-        <button onClick={handlePreviousClick} disabled={employeeIndex === 0}>Vorheriger</button>
-        <button onClick={handleNextClick} disabled={employeeIndex === data.employees.length - 1}>Nächster</button>
+        <button class= "home" onClick={handleBackClick} >Home</button>
+        <button class= "zurueck" onClick={handlePreviousClick} disabled={employeeIndex === 0}>Zurück</button>
+        <button class= "naechster" onClick={handleNextClick}  disabled={employeeIndex === data.employees.length - 1}>Nächster</button>
       </div>
-      <div class ="content" style={{ border: '1px solid #ccc', padding: 20, marginTop: 20,  marginBottom: 20 }}>
+      <div class ="content">
 
-      <h3>Details for {employee.first_name} {employee.last_name}</h3>
-      <img class="pimage" src={`../images/personal/${employee.image}`} alt={`${employee.first_name} ${employee.last_name}`} 
-      style={{ height: '250px', marginBottom: 10 }} />
+      <h2 style={{textShadow: '2px 2px 7px'}}>Details for {employee.first_name} {employee.last_name}</h2>
+      <img class="pimage"  
+        style={{
+          height: '300px',
+          boxShadow: '5px 5px 9px',
+          borderRadius: '35px',
+          margin: '10px'}} 
+          src={`../images/personal/${employee.image}`} alt={`${employee.first_name} ${employee.last_name}`} 
+       />
             <p><strong>MA-Score:</strong> {employee.ma_score}</p>
-      <div style={{ display: 'flex', height: 20, width: '50%', marginBottom: 5, border: '1px solid gray' }}>
+      <div style={{ display: 'flex', height: 20, width: '350px', marginBottom: 5, border: 'none' }}>
         {getBarLevelsForScore(employee.ma_score).map((level, index) => (
           <div
             key={index}
-            style={{
+            style={{ borderRadius: '5px',
               flex: `${level}%`,
               backgroundColor: getColorForLevel(employee.ma_score, index),
-              borderRight: getColorForLevel(employee.ma_score, index) !== 'white' ? '1px solid gray' : 'none'
+              borderRight: getColorForLevel(employee.ma_score, index) !== 'white' ? 'none' : 'none', boxShadow: '2px 2px 5px', marginRight: 2,
             }}
           ></div>
         ))}
@@ -93,9 +99,9 @@ const EmployeeDetails = () => {
     </div>
 
     <div class="action footer">
-        <button onClick={handleBackClick}>Zurück</button>
-        <button onClick={handlePreviousClick} disabled={employeeIndex === 0}>Vorheriger</button>
-        <button onClick={handleNextClick} disabled={employeeIndex === data.employees.length - 1}>Nächster</button>
+        <button class="home" onClick={handleBackClick}>Home</button>
+        <button class="zurueck" onClick={handlePreviousClick} disabled={employeeIndex === 0}>Zurück</button>
+        <button class="naechster" onClick={handleNextClick} disabled={employeeIndex === data.employees.length - 1}>Nächster</button>
       </div>
     </div>
   );

@@ -9,12 +9,12 @@ import { Link } from 'react-router-dom';
 
 const EmployeeList = () => {
   return (
-    <div>
-       <img src='./images/logo/apple-touch-icon.png'/>
-      <h2>Mitarbeiterliste von {data.company}</h2>
+    <div class="extended">
+       <img src='./images/logo/apple-touch-icon.png' alt=""/>
+      <h2 style={{textShadow:'2px 2px 7px'}}>Mitarbeiterliste von {data.company}</h2>
       <ul style={{ listStyleType: 'none', padding: 0 }}>
         {data.employees.map(employee => (
-          <li key={employee.pers_id} style={{ marginBottom: 20, border: '1px solid #ccc', padding: 10 }}>
+          <li key={employee.pers_id} style={{ marginBottom: 20, backgroundColor: 'rgb(204, 204, 204)', border: 'none', borderRadius: '5px', boxShadow: '3px 3px 7px', padding: 10 }}>
             <div class="persdate" style={{ marginBottom: 10 }}>
             
               <div class="fname">{employee.first_name}</div>
@@ -23,14 +23,14 @@ const EmployeeList = () => {
               <div class="edate">{employee.entry_date}</div>
               <div class="bdate">{employee.birthdate}</div>
              
-              <div style={{ display: 'flex', height: 20, width: '150px', marginBottom: 5, border: '1px solid gray' }}>
+              <div style={{ display: 'flex', height: 15, width: '350px', marginBottom: 5, border: 'none' }}>
                 {getBarLevelsForScore(employee.ma_score).map((level, index) => (
                   <div
                     key={index}
-                    style={{
+                    style={{ border: 'none', borderRadius: '5px', boxShadow: '2px 2px 7px', marginRight: '2px',
                       flex: `${level}%`,
                       backgroundColor: getColorForLevel(employee.ma_score, index),
-                      borderRight: getColorForLevel(employee.ma_score, index) !== 'white' ? '1px solid gray' : 'none'
+                      borderRight: getColorForLevel(employee.ma_score, index) !== 'white' ? 'none' : 'none'
                     }}
                   ></div>
                 ))}
@@ -39,7 +39,9 @@ const EmployeeList = () => {
             </div>
             <div>
               <Link to={`/employee/${employee.pers_id}`}>
-                <button>Details</button>
+              
+                <button style={{ borderRadius: '3px', border: 'none', boxShadow: '2px 2px 7px',}} >Details</button>
+                
               </Link>
             </div>
           </li>

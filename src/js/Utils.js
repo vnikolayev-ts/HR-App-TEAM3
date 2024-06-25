@@ -37,9 +37,9 @@ export const getBarLevelsForScore = (score) => {
       const stars = [];
       for (let i = 1; i <= 10; i++) {
         if (i <= value) {
-          stars.push(<span class="star_full" key={i} style={{ color: 'gold', fontSize: 45 }}  onmouseover="this.style.backgroundColor='red';">★</span>);
+          stars.push(<span class="star_full" key={i} style={{ color: 'gold', fontSize: 45, textShadow: '2px 2px 2px rgb(0,0,0,0.4)'  }}  onmouseover="this.style.backgroundColor='red';">★</span>);
         } else {
-          stars.push(<span class="star_empty" key={i} style={{ color: '#ccc', fontSize: 45 }}>★</span>);
+          stars.push(<span class="star_empty" key={i} style={{ color: 'silver', fontSize: 45 }}>★</span>);
         }
       }
       return stars;
