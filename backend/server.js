@@ -16,7 +16,7 @@ function getHR() {
 }
 
 // GET all endpoint für HTTP-Requests
-app.get('/', (req, res) => {
+app.get('/employee', (req, res) => {
     const list = getHR();
     res.status(200).json(list);
 })
