@@ -1,4 +1,4 @@
-import hrData from './data/hr-data.json'; 
+import hrData from '../data/hr-data.json'; 
 
 const apiServerPort = 3001;
 const apiServerUrl = "http://localhost";

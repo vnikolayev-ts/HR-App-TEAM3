@@ -11,7 +11,7 @@ app.use(express.json());
 
 // Funktion, um die HR-Daten auszulesen
 function getHR() {
-    const data = fs.readFileSync("../src/data/hr-data.json") // Muss später durch Std. bzw. Extende-Daten ersetzt werden. Wie, noch unklar.
+    const data = fs.readFileSync("./data/hr-data.json") // Muss später durch Std. bzw. Extende-Daten ersetzt werden. Wie, noch unklar.
     return JSON.parse(data)
 }
 
