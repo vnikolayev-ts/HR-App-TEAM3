@@ -14,8 +14,11 @@ const EmployeeList = () => {
 
  return (
   <div class="extended">
+     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '20px' }}>
      <img src='./images/logo/apple-touch-icon.png' alt=""/>
-    <h2 style={{textShadow:'2px 2px 7px'}}>Mitarbeiterliste von {data.company}</h2>
+     </div>
+    <h2 style={{ marginBottom: '20px', textShadow:'2px 2px 7px'}}>Mitarbeiterliste von {data.company}</h2>
+    
     <ul style={{ listStyleType: 'none', padding: 0 }}>
       {data.employees.map(employee => (
         <li key={employee.pers_id} style={{ marginBottom: 20, backgroundColor: 'rgb(204, 204, 204)', border: 'none', borderRadius: '5px', boxShadow: '3px 3px 7px', padding: 10 }}>
