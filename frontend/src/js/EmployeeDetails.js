@@ -1,33 +1,59 @@
-
+import { getBarLevelsForScore, getColorForLevel, renderStars } from './Utils';
 import {getHRData} from './ClientApi'
 
 import React from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import { getBarLevelsForScore, getColorForLevel, renderStars } from './Utils';
+
 
 const EmployeeDetails = () => {
-  const  data = getHRData();
-
+  const [hrData, setHRData] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
-  const employeeIndex = data.employees.findIndex(emp => emp.pers_id === id);
-  const employee = data.employees[employeeIndex];
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const isDataFromLocal = true;
+        const data = await getHRData(isDataFromLocal); // Aufruf der async Funktion getHRData
+        setHRData(data); // Setzen der empfangenen Daten in den State
+
+
+      } catch (error) {
+        console.error('Error fetching HR data:', error);
+        // Hier könntest du zusätzliche Fehlerbehandlung durchführen, z.B. eine Fehlermeldung anzeigen
+        return <p>Loading... Error </p>; // Anzeige während des Ladens der Daten
+      }
+    };
+
+    fetchData(); // Aufruf der fetchData Funktion, die getHRData aufruft
+
+  }, []); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
+
+  if (!hrData) {
+    return <p>Loading...</p>; // Anzeige während des Ladens der Daten
+  }
+
+
+  const employeeIndex = hrData.employees.findIndex(emp => emp.pers_id === id);
+  const employee = hrData.employees[employeeIndex];
 
   const handleBackClick = () => {
     navigate('/');
   };
 
   const handleNextClick = () => {
-    if (employeeIndex < data.employees.length - 1) {
-      const nextEmployeeId = data.employees[employeeIndex + 1].pers_id;
+    if (employeeIndex < hrData.employees.length - 1) {
+      const nextEmployeeId = hrData.employees[employeeIndex + 1].pers_id;
       navigate(`/employee/${nextEmployeeId}`);
     }
   };
 
   const handlePreviousClick = () => {
     if (employeeIndex > 0) {
-      const previousEmployeeId = data.employees[employeeIndex - 1].pers_id;
+      const previousEmployeeId = hrData.employees[employeeIndex - 1].pers_id;
       navigate(`/employee/${previousEmployeeId}`);
     }
   };
@@ -44,7 +70,7 @@ const EmployeeDetails = () => {
             <div class="action header">
         <button class= "home" onClick={handleBackClick} >Home</button>
         <button class= "zurueck" onClick={handlePreviousClick} disabled={employeeIndex === 0}>Zurück</button>
-        <button class= "naechster" onClick={handleNextClick}  disabled={employeeIndex === data.employees.length - 1}>Nächster</button>
+        <button class= "naechster" onClick={handleNextClick}  disabled={employeeIndex === hrData.employees.length - 1}>Nächster</button>
       </div>
       <div class ="content">
 
@@ -55,7 +81,7 @@ const EmployeeDetails = () => {
           boxShadow: '5px 5px 9px',
           borderRadius: '35px',
           margin: '10px'}} 
-          src={`../images/personal/${employee.image}`} alt={`${employee.first_name} ${employee.last_name}`} 
+          src={`${hrData.public_image_path}${employee.image}`} alt={`${employee.first_name} ${employee.last_name}`} 
        />
             <p><strong>MA-Score:</strong> {employee.ma_score}</p>
       <div style={{ display: 'flex', height: 20, width: '350px', marginBottom: 5, border: 'none' }}>
@@ -104,7 +130,7 @@ const EmployeeDetails = () => {
     <div class="action footer">
         <button class="home" onClick={handleBackClick}>Home</button>
         <button class="zurueck" onClick={handlePreviousClick} disabled={employeeIndex === 0}>Zurück</button>
-        <button class="naechster" onClick={handleNextClick} disabled={employeeIndex === data.employees.length - 1}>Nächster</button>
+        <button class="naechster" onClick={handleNextClick} disabled={employeeIndex === hrData.employees.length - 1}>Nächster</button>
       </div>
     </div>
   );

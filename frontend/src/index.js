@@ -4,7 +4,12 @@ import './style/home.css';
 import App from './js/App';
 import reportWebVitals from './js/reportWebVitals';
 
+import dotenv from 'dotenv';
+
+dotenv.config(); // Lade die Umgebungsvariablen aus .env
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
     <App />

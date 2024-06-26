@@ -3,21 +3,44 @@ import { getBarLevelsForScore, getColorForLevel } from './Utils';
 import {getHRData} from './ClientApi'
 
 import React from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
 
 
-const EmployeeList = () => {
+  const EmployeeList = () => {
+    
+    const [hrData, setHRData] = useState(null);
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const isDataFromLocal = true;
+          const data = await getHRData(isDataFromLocal); // Aufruf der async Funktion getHRData
+          setHRData(data); // Setzen der empfangenen Daten in den State
 
- const  data = getHRData();
-
+  
+        } catch (error) {
+          console.error('Error fetching HR data:', error);
+          // Hier könntest du zusätzliche Fehlerbehandlung durchführen, z.B. eine Fehlermeldung anzeigen
+          return <p>Loading... Error </p>; // Anzeige während des Ladens der Daten
+        }
+      };
+  
+      fetchData(); // Aufruf der fetchData Funktion, die getHRData aufruft
+  
+    }, [hrData]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
+  
+    if (!hrData) {
+      return <p>Loading...</p>; // Anzeige während des Ladens der Daten
+    }
   return (
     <div class="extended">
        <img src='./images/logo/apple-touch-icon.png' alt=""/>
-      <h2 style={{textShadow:'2px 2px 7px'}}>Mitarbeiterliste von {data.company}</h2>
+      <h2 style={{textShadow:'2px 2px 7px'}}>Mitarbeiterliste von {hrData.company}</h2>
       <ul style={{ listStyleType: 'none', padding: 0 }}>
-        {data.employees.map(employee => (
+        {hrData.employees.map(employee => (
           <li key={employee.pers_id} style={{ marginBottom: 20, backgroundColor: 'rgb(204, 204, 204)', border: 'none', borderRadius: '5px', boxShadow: '3px 3px 7px', padding: 10 }}>
             <div class="persdate" style={{ marginBottom: 10 }}>
             

@@ -7,20 +7,20 @@ const apiServerUrl = "http://localhost";
 //fetch(`localhost:${apiport}`), {method:'POST', headers: {'Content-Type': 'application/json'}},
 //body: 
 
- export  const  getHRData = () => {
-
-    return getFileHrData(); //Todo wartrn bis back da ist
+ export  const  getHRData = async  (json=true) => {
+if (json === true)   return getFileHrData(); //Todo warten bis backend da ist
   try {
-    const apiUrl = apiServerUrl+ ":" + apiServerPort;
+    const apiUrl = `${apiServerUrl}:${apiServerPort}`;
    // const response = await fetch(apiUrl);
    // const data = await response.json();
 
-    const response =  fetch(apiUrl);
-    const data =  response.json();
+    const response = await  fetch(apiUrl);
+    const data =  await response.json();
 
     return data;
   } catch (error) {
     console.error('Error fetching data:', error);
+    throw error
     return null;
   }
 }

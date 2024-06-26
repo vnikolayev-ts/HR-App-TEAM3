@@ -1,5 +1,6 @@
 {
     "company": "ABC Ltd.",
+    "public_image_path":"../images/personal/",
     "employees": [
         {
             "pers_id": "1001",
