@@ -48,7 +48,7 @@ app.get('/employee', (req, res) => {
 app.get('/employee/:id', (req, res) => {
     const details = getHR();
     const persID = req.params.id;
-    const detail = details.find(t => t.id == persID);
+    const detail = details.employees.find(t => t.pers_id == persID);
 
     if(!detail){
         res.status(404).send("Person nicht gefunden!")
