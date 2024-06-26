@@ -19,9 +19,9 @@ const EmployeeList = () => {
      </div>
     <h2 style={{ marginBottom: '20px', textShadow:'2px 2px 7px'}}>Mitarbeiterliste von {data.company}</h2>
     
-    <ul style={{ listStyleType: 'none', padding: 0 }}>
+    <ul style={{ listStyleType: 'none', padding: 0, minWidth: 400 }}>
       {data.employees.map(employee => (
-        <li key={employee.pers_id} style={{ marginBottom: 20, backgroundColor: 'rgb(204, 204, 204)', border: 'none', borderRadius: '5px', boxShadow: '3px 3px 7px', padding: 10 }}>
+        <li key={employee.pers_id} style={{ marginBottom: 20, backgroundColor: 'rgb(204, 204, 204)', border: 'none', borderRadius: '5px', boxShadow: '3px 3px 7px', padding: 10, minWidth: 400 }}>
           <div class="persdate" style={{ marginBottom: 10, display: 'flex', alignItems: 'center'}}>
           
             <div class="fname">{employee.first_name}</div>
