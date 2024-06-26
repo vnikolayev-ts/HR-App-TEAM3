@@ -61,7 +61,7 @@ const EmployeeDetails = () => {
        />
          <div className="person-details" style={{ marginLeft: '20px' }}>
        <h2 style={{textShadow: '2px 2px 7px'}}>Details for {employee.first_name} {employee.last_name}</h2>
-            <p><strong>MA-Score:</strong> {employee.ma_score}</p>
+            
       <div style={{ display: 'flex', height: 20, width: '350px', marginBottom: 5, border: 'none' }}>
         {getBarLevelsForScore(employee.ma_score).map((level, index) => (
           <div
@@ -74,6 +74,7 @@ const EmployeeDetails = () => {
           ></div>
         ))}
       </div>
+      <p><strong>MA-Score:</strong> {employee.ma_score}</p>
       <p><strong>Pers-ID:</strong> {employee.pers_id}</p>
       <p><strong>First Name:</strong> {employee.first_name}</p>
       <p><strong>Last Name:</strong> {employee.last_name}</p>
