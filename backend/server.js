@@ -8,18 +8,24 @@ const SERVER_URL_PUBLIC = "http://127.0.0.1";
 const PORT = 3001;
 const IMAGE_PATH_PUBLIC = "/images/personal/";
 
+const public_image_path = `${SERVER_URL_PUBLIC}:${PORT}${IMAGE_PATH_PUBLIC}`;
+
+
+
+
+
 //Frontend-Verbindung ermöglichen
 app.use(cors());
 //Aufruf für JSON u. API (body)
 app.use(express.json());
-
+app.use(express.static('public')); // Public ordenr einbinden
 
 // Funktion, um die HR-IMAGE path  anzupassen
 const updateImagePaths = (data) => {
     if (data && Array.isArray(data.employees)) {
       data.employees = data.employees.map(employee => {
         if (employee.image) {
-          employee.public_image_path = `${SERVER_URL_PUBLIC}${IMAGE_PATH_PUBLIC}${employee.image}`;
+         
         }
         return employee;
       });
@@ -30,10 +36,9 @@ const updateImagePaths = (data) => {
 // Funktion, um die HR-Daten auszulesen
 function getHR() {
     const jsonData = fs.readFileSync("./data/hr-data.json") // Muss später durch Std. bzw. Extende-Daten ersetzt werden. Wie, noch unklar.
-    const public_image_path = `${SERVER_URL_PUBLIC}:${PORT}${IMAGE_PATH_PUBLIC}`;
+   
 
     const retJson = JSON.parse(jsonData);
-    retJson['public_image_path'] = public_image_path;
 
     return retJson;
 }
@@ -49,9 +54,11 @@ app.get('/employee/:id', (req, res) => {
     const details = getHR();
     const persID = req.params.id;
     const detail = details.employees.find(t => t.pers_id == persID);
-
+    
+    const fullImagePath = public_image_path + detail.image;
+    detail.public_image_path = fullImagePath;
     if(!detail){
-        res.status(404).send("Person nicht gefunden!")
+        res.status(404).send("Employee not found!")
     } else {
         res.status(200).json(detail);
     }
