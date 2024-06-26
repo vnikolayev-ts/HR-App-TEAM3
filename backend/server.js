@@ -4,11 +4,12 @@ const cors = require ('cors');
 
 const fs = require('fs')
 
-const SERVER_URL_PUBLIC = "http://127.0.0.1";
+var SERVER_URL_PUBLIC = "http://127.0.0.1";
+
 const PORT = 3001;
 const IMAGE_PATH_PUBLIC = "/images/personal/";
 
-const public_image_path = `${SERVER_URL_PUBLIC}:${PORT}${IMAGE_PATH_PUBLIC}`;
+var public_image_path = `${SERVER_URL_PUBLIC}:${PORT}${IMAGE_PATH_PUBLIC}`;
 
 
 
@@ -34,11 +35,17 @@ const updateImagePaths = (data) => {
   };
 
 // Funktion, um die HR-Daten auszulesen
-function getHR() {
+function getHR(req) {
     const jsonData = fs.readFileSync("./data/hr-data.json") // Muss später durch Std. bzw. Extende-Daten ersetzt werden. Wie, noch unklar.
    
 
     const retJson = JSON.parse(jsonData);
+
+    //update public url
+    var userIP = req.headers['x-forwarded-for'] || req.socket.remoteAddress ||  null;
+    SERVER_URL_PUBLIC = req.protocol + "://"+  req.get('host');
+    public_image_path = `${SERVER_URL_PUBLIC}${IMAGE_PATH_PUBLIC}`;
+    console.log( `Request from [${userIP}] on [${SERVER_URL_PUBLIC}]`);
 
     return retJson;
 }
@@ -51,7 +58,7 @@ app.get('/employee', (req, res) => {
 
 // GET by ID endpoint für HTTP-Requests
 app.get('/employee/:id', (req, res) => {
-    const details = getHR();
+    const details = getHR(req);
     const persID = req.params.id;
     const detail = details.employees.find(t => t.pers_id == persID);
     
@@ -60,11 +67,14 @@ app.get('/employee/:id', (req, res) => {
     if(!detail){
         res.status(404).send("Employee not found!")
     } else {
+      
+     
+     
         res.status(200).json(detail);
     }
 })
 
 // Server starten
 app.listen(PORT, () => {
-    console.log(`Der Server läuft auf http://127.0.0.1:${PORT}`) // `` -> backticks
+    console.log(`Der Server läuft auf ${SERVER_URL_PUBLIC}:${PORT}`) // `` -> backticks
 })
