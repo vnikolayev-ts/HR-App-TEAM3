@@ -46,17 +46,21 @@ const EmployeeDetails = () => {
         <button class= "zurueck" onClick={handlePreviousClick} disabled={employeeIndex === 0}>Zurück</button>
         <button class= "naechster" onClick={handleNextClick}  disabled={employeeIndex === data.employees.length - 1}>Nächster</button>
       </div>
-      <div class ="content">
+      <div class ="content" style={{ display: 'flex', flexDirection: 'row' }}>
 
-      <h2 style={{textShadow: '2px 2px 7px'}}>Details for {employee.first_name} {employee.last_name}</h2>
+
+
+      
       <img class="pimage"  
         style={{
-          height: '300px',
+          height: '500px',
           boxShadow: '5px 5px 9px',
           borderRadius: '35px',
           margin: '10px'}} 
           src={`../images/personal/${employee.image}`} alt={`${employee.first_name} ${employee.last_name}`} 
        />
+         <div className="person-details" style={{ marginLeft: '20px' }}>
+       <h2 style={{textShadow: '2px 2px 7px'}}>Details for {employee.first_name} {employee.last_name}</h2>
             <p><strong>MA-Score:</strong> {employee.ma_score}</p>
       <div style={{ display: 'flex', height: 20, width: '350px', marginBottom: 5, border: 'none' }}>
         {getBarLevelsForScore(employee.ma_score).map((level, index) => (
@@ -83,6 +87,9 @@ const EmployeeDetails = () => {
 
       <p><strong>Sick Days:</strong> {employee.sick_days} Tage</p>
       <p><strong>Salary / Year :</strong> {employee.salary} €</p>
+      </div>
+      </div>
+      <div className="skills" style={{ marginTop: '20px' }}>
       <p><strong>Skills:</strong></p>
       <ul>
         <li><strong>Teamwork:</strong> {renderStars(employee.skills.soft_skills.teamwork)}</li>
@@ -107,6 +114,7 @@ const EmployeeDetails = () => {
         <button class="naechster" onClick={handleNextClick} disabled={employeeIndex === data.employees.length - 1}>Nächster</button>
       </div>
     </div>
+    
   );
 }
 
