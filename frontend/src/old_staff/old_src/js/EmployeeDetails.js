@@ -1,5 +1,5 @@
 import { getBarLevelsForScore, getColorForLevel, renderStars } from './Utils';
-import {getEmployees} from './ClientApi'
+import {getHRData} from './ClientApi'
 
 import React from 'react';
 import { useEffect, useState } from 'react';
@@ -8,7 +8,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 
 const EmployeeDetails = () => {
-  const [employeeData, setHRData] = useState(null);
+  const [hrData, setHRData] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ const EmployeeDetails = () => {
     const fetchData = async () => {
       try {
         const isDataFromLocal = true;
-        const data = await getEmployees(isDataFromLocal); // Aufruf der async Funktion getHRData
+        const data = await getHRData(isDataFromLocal); // Aufruf der async Funktion getHRData
         setHRData(data); // Setzen der empfangenen Daten in den State
 
 
@@ -32,28 +32,28 @@ const EmployeeDetails = () => {
 
   }, []); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
 
-  if (!employeeData) {
+  if (!hrData) {
     return <p>Loading...</p>; // Anzeige während des Ladens der Daten
   }
 
 
-  const employeeIndex = employeeData.employees.findIndex(emp => emp.pers_id === id);
-  const employee = employeeData.employees[employeeIndex];
+  const employeeIndex = hrData.employees.findIndex(emp => emp.pers_id === id);
+  const employee = hrData.employees[employeeIndex];
 
   const handleBackClick = () => {
     navigate('/');
   };
 
   const handleNextClick = () => {
-    if (employeeIndex < employeeData.employees.length - 1) {
-      const nextEmployeeId = employeeData.employees[employeeIndex + 1].pers_id;
+    if (employeeIndex < hrData.employees.length - 1) {
+      const nextEmployeeId = hrData.employees[employeeIndex + 1].pers_id;
       navigate(`/employee/${nextEmployeeId}`);
     }
   };
 
   const handlePreviousClick = () => {
     if (employeeIndex > 0) {
-      const previousEmployeeId = employeeData.employees[employeeIndex - 1].pers_id;
+      const previousEmployeeId = hrData.employees[employeeIndex - 1].pers_id;
       navigate(`/employee/${previousEmployeeId}`);
     }
   };
@@ -70,24 +70,20 @@ const EmployeeDetails = () => {
             <div class="action header">
         <button class= "home" onClick={handleBackClick} >Home</button>
         <button class= "zurueck" onClick={handlePreviousClick} disabled={employeeIndex === 0}>Zurück</button>
-        <button class= "naechster" onClick={handleNextClick}  disabled={employeeIndex === employeeData.employees.length - 1}>Nächster</button>
+        <button class= "naechster" onClick={handleNextClick}  disabled={employeeIndex === hrData.employees.length - 1}>Nächster</button>
       </div>
-      <div class ="content" style={{ display: 'flex', flexDirection: 'row' }}>
+      <div class ="content">
 
-
-
-      
+      <h2 style={{textShadow: '2px 2px 7px'}}>Details for {employee.first_name} {employee.last_name}</h2>
       <img class="pimage"  
         style={{
-          height: '500px',
+          height: '300px',
           boxShadow: '5px 5px 9px',
           borderRadius: '35px',
           margin: '10px'}} 
-          src={`${employeeData.public_image_path}${employee.image}`} alt={`${employee.first_name} ${employee.last_name}`} 
+          src={`${hrData.public_image_path}${employee.image}`} alt={`${employee.first_name} ${employee.last_name}`} 
        />
-         <div className="person-details" style={{ marginLeft: '20px' }}>
-       <h2 style={{textShadow: '2px 2px 7px'}}>Details for {employee.first_name} {employee.last_name}</h2>
-            
+            <p><strong>MA-Score:</strong> {employee.ma_score}</p>
       <div style={{ display: 'flex', height: 20, width: '350px', marginBottom: 5, border: 'none' }}>
         {getBarLevelsForScore(employee.ma_score).map((level, index) => (
           <div
@@ -100,7 +96,6 @@ const EmployeeDetails = () => {
           ></div>
         ))}
       </div>
-      <p><strong>MA-Score:</strong> {employee.ma_score}</p>
       <p><strong>Pers-ID:</strong> {employee.pers_id}</p>
       <p><strong>First Name:</strong> {employee.first_name}</p>
       <p><strong>Last Name:</strong> {employee.last_name}</p>
@@ -114,9 +109,6 @@ const EmployeeDetails = () => {
 
       <p><strong>Sick Days:</strong> {employee.sick_days} Tage</p>
       <p><strong>Salary / Year :</strong> {employee.salary} €</p>
-      </div>
-      </div>
-      <div className="skills" style={{ marginTop: '20px' }}>
       <p><strong>Skills:</strong></p>
       <ul>
         <li><strong>Teamwork:</strong> {renderStars(employee.skills.soft_skills.teamwork)}</li>
@@ -138,10 +130,9 @@ const EmployeeDetails = () => {
     <div class="action footer">
         <button class="home" onClick={handleBackClick}>Home</button>
         <button class="zurueck" onClick={handlePreviousClick} disabled={employeeIndex === 0}>Zurück</button>
-        <button class="naechster" onClick={handleNextClick} disabled={employeeIndex === employeeData.employees.length - 1}>Nächster</button>
+        <button class="naechster" onClick={handleNextClick} disabled={employeeIndex === hrData.employees.length - 1}>Nächster</button>
       </div>
     </div>
-    
   );
 }
 

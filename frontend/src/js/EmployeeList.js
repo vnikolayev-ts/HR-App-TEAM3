@@ -1,6 +1,6 @@
 
 import { getBarLevelsForScore, getColorForLevel } from './Utils'; 
-import {getHRData} from './ClientApi'
+import {getEmployees} from './ClientApi'
 
 import React from 'react';
 import { useEffect, useState } from 'react';
@@ -11,13 +11,13 @@ import { Link } from 'react-router-dom';
 
 const EmployeeList = () => {
     
-  const [hrData, setHRData] = useState(null);
+  const [employeeData, setHRData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const isDataFromLocal = true;
-        const data = await getHRData(isDataFromLocal); // Aufruf der async Funktion getHRData
+        const data = await getEmployees(isDataFromLocal); // Aufruf der async Funktion getHRData
         setHRData(data); // Setzen der empfangenen Daten in den State
 
 
@@ -30,9 +30,9 @@ const EmployeeList = () => {
 
     fetchData(); // Aufruf der fetchData Funktion, die getHRData aufruft
 
-  }, [hrData]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
+  }, [employeeData]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
 
-  if (!hrData) {
+  if (!employeeData) {
     return <p>Loading...</p>; // Anzeige während des Ladens der Daten
   }
 return (
@@ -40,10 +40,10 @@ return (
      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '20px' }}>
      <img src='./images/logo/apple-touch-icon.png' alt=""/>
      </div>
-    <h2 style={{ marginBottom: '20px', textShadow:'2px 2px 7px'}}>Mitarbeiterliste von {hrData.company}</h2>
+    <h2 style={{ marginBottom: '20px', textShadow:'2px 2px 7px'}}>Mitarbeiterliste von {employeeData.company}</h2>
     
     <ul style={{ listStyleType: 'none', padding: 0, minWidth: 400 }}>
-      {hrData.employees.map(employee => (
+      {employeeData.employees.map(employee => (
         <li key={employee.pers_id} style={{ marginBottom: 20, backgroundColor: 'rgb(204, 204, 204)', border: 'none', borderRadius: '5px', boxShadow: '3px 3px 7px', padding: 10, minWidth: 400 }}>
           <div class="persdate" style={{ marginBottom: 10, display: 'flex', alignItems: 'center'}}>
           
