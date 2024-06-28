@@ -1,6 +1,6 @@
 import employeeData from '../data/employees.json'; 
 import userData from '../data/tenants.json'; 
-import tenantData from '../data/users.jsonon'; 
+import tenantData from '../data/users.json'; 
 
 const apiServerPort = 3001;
 const apiServerUrl = "http://localhost";
