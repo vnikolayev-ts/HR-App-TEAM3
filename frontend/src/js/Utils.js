@@ -20,7 +20,7 @@ export const getBarLevelsForScore = (score) => {
   // Funktion zur Berechnung der Hintergrundfarbe der Balkenstufen mit Farbverlauf von Rot nach Grün basierend auf dem Index
   export const getColorForLevel = (score, index) => {
     const maxLevel = 10; // Maximal 10 Balkenstufen für den Verlauf
-    const gradientStop = Math.min(Math.floor(score / 10), maxLevel - 1); // Stopp des Farbverlaufs basierend auf dem Score
+    const gradientStop = Math.min(Math.floor(score / 10.1), maxLevel - 1); // Stopp des Farbverlaufs basierend auf dem Score
   
     if (index <= gradientStop) {
       // Farbverlauf von Rot nach Grün basierend auf dem Index
@@ -43,4 +43,23 @@ export const getBarLevelsForScore = (score) => {
         }
       }
       return stars;
+    };
+
+
+    export const checkUrlExists = async (url) => {
+      try {
+        const response = await fetch(url, { method: 'HEAD' });
+        return response.ok;
+      } catch (error) {
+        return false;
+      }
+    };
+
+    export const getCurrentDomain = () => {
+      try {
+        const { hostname } = window.location;
+        return hostname;
+      } catch (error) {
+        return null; // Return null if something goes wrong
+      }
     };

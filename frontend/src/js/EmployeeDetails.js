@@ -1,4 +1,4 @@
-import { getBarLevelsForScore, getColorForLevel, renderStars } from './Utils';
+import { checkUrlExists, getBarLevelsForScore, getColorForLevel, renderStars, getCurrentDomain } from './Utils';
 import {getEmployees} from './ClientApi'
 
 import React from 'react';
@@ -7,19 +7,26 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 
 
+
 const EmployeeDetails = () => {
-  const [employeeData, setHRData] = useState(null);
+
   const { id } = useParams();
   const navigate = useNavigate();
 
+
+  const [employeeData, setEmployeeData] = useState(null);
+  const [layout, setLayout] = useState("simple");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const isDataFromLocal = true;
-        const data = await getEmployees(isDataFromLocal); // Aufruf der async Funktion getHRData
-        setHRData(data); // Setzen der empfangenen Daten in den State
-
+        const data = await getEmployees(isDataFromLocal); // Aufruf der async Funktion getEmployees -API
+        const apiLayout = data.layout;
+        //setHRData(data); // Setzen der empfangenen Daten in den State
+        
+        setEmployeeData(data);
+        setLayout(apiLayout); 
 
       } catch (error) {
         console.error('Error fetching HR data:', error);
@@ -30,17 +37,19 @@ const EmployeeDetails = () => {
 
     fetchData(); // Aufruf der fetchData Funktion, die getHRData aufruft
 
-  }, []); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
+  }, [employeeData, layout]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
 
   if (!employeeData) {
     return <p>Loading...</p>; // Anzeige während des Ladens der Daten
   }
 
 
+  const domain = getCurrentDomain();
   const employeeIndex = employeeData.employees.findIndex(emp => emp.pers_id === id);
   const employee = employeeData.employees[employeeIndex];
+  const imgUrl = checkUrlExists(employeeData.public_image_path) == true ? employeeData.public_image_path : "." + employeeData.noimage_url;
 
-  const handleBackClick = () => {
+  const handleBackClick = () => { 
     navigate('/');
   };
 
@@ -66,7 +75,7 @@ const EmployeeDetails = () => {
 
   return (
     
-    <div class="extended">
+    <div class={layout}>
             <div class="action header">
         <button class= "home" onClick={handleBackClick} >Home</button>
         <button class= "zurueck" onClick={handlePreviousClick} disabled={employeeIndex === 0}>Zurück</button>
@@ -83,10 +92,11 @@ const EmployeeDetails = () => {
           boxShadow: '5px 5px 9px',
           borderRadius: '35px',
           margin: '10px'}} 
-          src={`${employeeData.public_image_path}${employee.image}`} alt={`${employee.first_name} ${employee.last_name}`} 
+        
+          src={`${imgUrl}`} alt={`${employee.first_name} ${employee.last_name}`} 
        />
          <div className="person-details" style={{ marginLeft: '20px' }}>
-       <h2 style={{textShadow: '2px 2px 7px'}}>Details for {employee.first_name} {employee.last_name}</h2>
+       <h2 class="pageTitle">Details for {employee.first_name} {employee.last_name}</h2>
             
       <div style={{ display: 'flex', height: 20, width: '350px', marginBottom: 5, border: 'none' }}>
         {getBarLevelsForScore(employee.ma_score).map((level, index) => (
