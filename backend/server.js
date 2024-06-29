@@ -3,6 +3,10 @@ const app = express();
 const cors = require ('cors');
 
 const fs = require('fs')
+const connection = require('./mysql'); // Pfad zu mysql-connect.js
+const bodyParser = require('body-parser');
+const { authenticateUser } = require('./auth'); // Passe den Pfad zu auth.js an
+
 
 var SERVER_URL_PUBLIC = "http://127.0.0.1";
 
@@ -73,6 +77,30 @@ app.get('/employee/:id', (req, res) => {
         res.status(200).json(detail);
     }
 })
+
+
+// Middleware für JSON-Parser
+app.use(bodyParser.json());
+
+// Login-Endpunkt für die Benutzerauthentifizierung
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+  
+    try {
+      const { token } = await authenticateUser(username, password);
+      res.json({ token });
+    } catch (error) {
+      console.error('Fehler bei der Benutzerauthentifizierung:', error.message);
+      res.status(401).json({ error: error.message });
+    }
+  });
+
+
+  // Geschützter Endpunkt für Benutzerdaten
+app.get('/user', (req, res) => {
+    // Mittelware für JWT-Überprüfung hier hinzufügen, um sicherzustellen, dass der Token gültig ist
+    res.json({ message: 'Geschützter Inhalt nur für angemeldete Benutzer zugänglich' });
+  });
 
 // Server starten
 app.listen(PORT, () => {
