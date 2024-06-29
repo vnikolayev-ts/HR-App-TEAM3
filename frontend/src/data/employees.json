@@ -1,6 +1,9 @@
 {
     "company": "ABC Ltd.",
     "public_image_path":"../images/personal/",
+    "layout":"extended",
+    "logo_url":"./images/logo/apple-touch-icon.png",
+    "noimage_url":"./images/noimage.jpg",
     "employees": [
         {
             "tenantId":"1", 
