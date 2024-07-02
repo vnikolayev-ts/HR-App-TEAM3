@@ -6,7 +6,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-
+import Navbar from './NavBar';
  
 
 
@@ -42,9 +42,8 @@ const EmployeeList = () => {
   }
 return (
   <div class={layout}>
-     <div class="logo" >
-        <img src={employeeData.logo_url}  alt={employeeData.company}/>
-     </div>
+     <Navbar />
+    
     <h2 class="pageTitle" >Mitarbeiterliste von {employeeData.company}</h2>
     
     <ul class="list" >

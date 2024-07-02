@@ -5,7 +5,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-
+import Navbar from './NavBar';
 
 
 const EmployeeDetails = () => {
@@ -76,6 +76,7 @@ const EmployeeDetails = () => {
   return (
     
     <div class={layout}>
+        <Navbar />
             <div class="action header">
         <button class= "home" onClick={handleBackClick} >Home</button>
         <button class= "zurueck" onClick={handlePreviousClick} disabled={employeeIndex === 0}>Zurück</button>
@@ -151,7 +152,7 @@ const EmployeeDetails = () => {
         <button class="naechster" onClick={handleNextClick} disabled={employeeIndex === employeeData.employees.length - 1}>Nächster</button>
       </div>
     </div>
-    
+
   );
 }
 
