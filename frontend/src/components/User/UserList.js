@@ -63,7 +63,7 @@ if (!userData) {
                 <Link to={`/user/${user.userId}`}>
                   <button class="viewButton">Details</button>
                 </Link>
-                <Link to={`/user/${user.userId}?view=edit`}>
+                <Link to={`/user-edit/${user.userId}`}>
                   <button class="viewButton">Edit</button>
                 </Link>
               </div>

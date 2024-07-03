@@ -22,7 +22,7 @@ import TenantEdit from './components/Tenant/TenantEdit';
 
 import UsertList from './components/User/UserList';
 import UsertDetail from './components/User/UserDetail';
-import UserEdit from './components/User/UserEdit';
+
 
 
 
@@ -36,20 +36,27 @@ const App = () => {
 
         <Route path="/employee"  element={ <PrivateRoute><EmployeeList /></PrivateRoute> }  />
         <Route path="/employee/:id"  element={ <PrivateRoute><EmployeeDetail /></PrivateRoute> }  />
-        <Route path="/employee-edit/:id"  element={ <PrivateRoute><EmployeeEdit /></PrivateRoute> }  />
-        <Route path="/employee-create"  element={ <PrivateRoute><EmployeeEdit /></PrivateRoute> }  />
+
 
         <Route path="/tenant"  element={ <PrivateRoute><TenantList /></PrivateRoute> }  />
         <Route path="/tenant/:id"  element={ <PrivateRoute><TenantDetail /></PrivateRoute> }  />
-        <Route path="/tenant-edit/:id"  element={ <PrivateRoute><TenantEdit /></PrivateRoute> }  />
-        <Route path="/tenant-create"  element={ <PrivateRoute><TenantEdit /></PrivateRoute> }  />
-
+ 
         <Route path="/user"  element={ <PrivateRoute><UsertList /></PrivateRoute> }  />
         <Route path="/user/:id"  element={ <PrivateRoute><UsertDetail /></PrivateRoute> }  />
       
-        <Route path="/user-edit/:id"  element={ <PrivateRoute><UserEdit /></PrivateRoute> }  />
-        <Route path="/user-create"  element={ <PrivateRoute><UserEdit /></PrivateRoute> }  />
-        <Route path="/user-profile"  element={ <PrivateRoute><UsertDetail /></PrivateRoute> }  />
+        <Route path="/user-edit/:id"  element={ <PrivateRoute><UsertDetail isView={false} /></PrivateRoute> }  />
+
+        
+        /*TODO*/
+        <Route path="/user-create"  element={ <PrivateRoute><UsertDetail /></PrivateRoute> }  />
+        <Route path="/user-profile"  element={ <PrivateRoute><UsertList /></PrivateRoute> }  />
+
+        <Route path="/tenant-edit/:id"  element={ <PrivateRoute><TenantEdit /></PrivateRoute> }  />
+        <Route path="/tenant-create"  element={ <PrivateRoute><TenantEdit /></PrivateRoute> }  />
+
+        <Route path="/employee-edit/:id"  element={ <PrivateRoute><EmployeeEdit /></PrivateRoute> }  />
+        <Route path="/employee-create"  element={ <PrivateRoute><EmployeeEdit /></PrivateRoute> }  />
+
       </Routes>
      
     </Router>
