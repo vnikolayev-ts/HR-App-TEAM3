@@ -6,7 +6,7 @@ import EmployeeDetails from './EmployeeDetails';
 import TenantNew from './TenantNew';
 import TenantList from './TenantList';
 
-import UserDetails from './UserDetails';
+import UserEdit from './EditUser';
 import UserList from './UserList'; 
 
 import Dashboard  from './Dashboard';
@@ -31,7 +31,8 @@ const App = () => {
         <Route path="/tenant"  element={ <PrivateRoute><TenantList /></PrivateRoute> }  />
         <Route path="/tenant/new"  element={ <PrivateRoute><TenantNew /></PrivateRoute> }  />
         <Route path="/user"  element={ <PrivateRoute><UserList /></PrivateRoute> }  />
-        <Route path="/user/:id"  element={ <PrivateRoute><UserDetails /></PrivateRoute> }  />
+        <Route path="/user/:id"  element={ <PrivateRoute><UserEdit /></PrivateRoute> }  />
+        <Route path="/user-edit/:id"  element={ <PrivateRoute><UserEdit /></PrivateRoute> }  />
       </Routes>
      
     </Router>
