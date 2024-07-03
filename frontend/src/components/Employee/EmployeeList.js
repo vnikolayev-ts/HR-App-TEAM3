@@ -79,6 +79,7 @@ return (
                           
               <div class="action-list-item">
                   <Link to={`/employee/${employee.pers_id}`} > <button class="viewButton"  >Details</button> </Link>
+                  <Link to={`/employee-edit/${employee.pers_id}`} > <button class="EditButton"  >Edit</button> </Link>
               </div>
           </div>
         </li>

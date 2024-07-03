@@ -4,7 +4,6 @@ import userData from "../../data/users.json";
 import Layout from '../Layout/Layout';
 import { getUsers } from "../../api/ClientApi";
 
-const readOnlyText = "readOnly";
 
 function EditUser({ isView = true }) {
   // const isView = true;
