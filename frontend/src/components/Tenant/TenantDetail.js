@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import tenantData from "../data/tenants.json";
+import tenantData from "../../data/tenants.json";
 
 // funktion um die Nächste ID aus der JSON zu finden
 function getNextId(tenants) {

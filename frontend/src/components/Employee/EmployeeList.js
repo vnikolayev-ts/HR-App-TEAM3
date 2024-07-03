@@ -1,12 +1,12 @@
 
-import { getBarLevelsForScore, getColorForLevel } from './Utils'; 
-import {getEmployees} from './ClientApi'
+import { getBarLevelsForScore, getColorForLevel } from '../Utils/Utils'; 
+import {getEmployees} from '../../api/ClientApi'
 
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import Navbar from './NavBar';
+import Layout from '../Layout/Layout';
  
 
 
@@ -41,9 +41,9 @@ const EmployeeList = () => {
     return <p>Loading...</p>; // Anzeige während des Ladens der Daten
   }
 return (
-  <div class={layout}>
-     <Navbar />
-    
+  
+    <Layout>
+ 
     <h2 class="pageTitle" >Mitarbeiterliste von {employeeData.company}</h2>
     
     <ul class="list" >
@@ -84,7 +84,8 @@ return (
         </li>
       ))}
     </ul>
-  </div>
+
+  </Layout>
 );
 }
 

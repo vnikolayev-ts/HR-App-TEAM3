@@ -1,11 +1,11 @@
-import { checkUrlExists, getBarLevelsForScore, getColorForLevel, renderStars, getCurrentDomain } from './Utils';
-import {getEmployees} from './ClientApi'
+import { checkUrlExists, getBarLevelsForScore, getColorForLevel, renderStars, getCurrentDomain } from '../Utils/Utils';
+import {getEmployees} from '../../api/ClientApi'
 
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import Navbar from './NavBar';
+import Navbar from '../Layout/NavBar';
 
 
 const EmployeeDetails = () => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import userData from "../data/users.json";
-import Navbar from './NavBar';
+import userData from "../../data/users.json";
+import Navbar from '../Layout/NavBar';
 
 const readOnlyText = "readOnly";
 

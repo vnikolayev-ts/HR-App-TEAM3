@@ -3,14 +3,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { logout } from './auth';
-import '../style/navbar.css';
+import { logout } from '../Login/auth';
+
 
 
 
 
 const Navbar =()  => {
-    const loggedInUser = localStorage.getItem('loggedInUser');
+   
     const isAdmin = localStorage.getItem('loggedInUserIsAdmin');
  
 
@@ -20,7 +20,7 @@ const Navbar =()  => {
 
  
 
-  const userTypeString = isAdmin === "false" ?  "user" : "admin";
+
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -29,15 +29,14 @@ const Navbar =()  => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.setItem('loggedInUser', null);
-    localStorage.setItem('loggedInUserIsAdmin', null);
+   
     logout();
     navigate('/');
   };
 
 
  
-
+  console.log("admin:" + isAdmin);
   return (
 
 
@@ -45,13 +44,13 @@ const Navbar =()  => {
         
         <Link to="/dashboard" >Home</Link>
         <Link to="/employee" >Employee</Link>
-        <div class="logInfo"> {loggedInUser && (<span>Angemeldet als: {loggedInUser} ({userTypeString}) </span> )}  </div>
+      
 
       <div className="dropdown">
         <button onClick={toggleDropdown}>Configuration <span className="arrow">▼</span>  </button>
         {dropdownOpen && (
           <div className="dropdownContent">
-
+            
              { isAdmin === "true" && (
                 <>
                  <Link to="/user">User</Link>
@@ -60,7 +59,7 @@ const Navbar =()  => {
 
                 )}
            
-            <Link to="/profile">Profile</Link>
+            <Link to="/user-profile">Profile</Link>
             <button class="logout" onClick={handleLogout}>Logout</button>
 
            

@@ -7,6 +7,8 @@ export const isAuthenticated = () => {
   };
   
   export const logout = () => {
+    localStorage.removeItem('loggedInUser');
+    localStorage.removeItem('loggedInUserIsAdmin');
     localStorage.removeItem('auth');
   };
   
