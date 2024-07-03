@@ -45,7 +45,7 @@ const Navbar =()  => {
         
         <Link to="/dashboard" >Home</Link>
         <Link to="/employee" >Employee</Link>
-        <div class="logInfo"> {loggedInUser && (<span>Angemeldet als: {loggedInUser} </span> )}  </div>
+        <div class="logInfo"> {loggedInUser && (<span>Angemeldet als: {loggedInUser} ({userTypeString}) </span> )}  </div>
 
       <div className="dropdown">
         <button onClick={toggleDropdown}>Configuration <span className="arrow">▼</span>  </button>
