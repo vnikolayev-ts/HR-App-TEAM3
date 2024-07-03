@@ -1,4 +1,4 @@
-import { checkUrlExists, getBarLevelsForScore, getColorForLevel, renderStars, getCurrentDomain } from '../Utils/Utils';
+import { checkUrlExists, getBarLevelsForScore, getColorForLevel, renderStars, getCurrentDomain, setPageTitle } from '../Utils/Utils';
 import {getEmployees} from '../../api/ClientApi'
 
 import React from 'react';
@@ -13,6 +13,7 @@ const EmployeeDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const title ="Employee Detail Page"
 
   const [employeeData, setEmployeeData] = useState(null);
   const [layout, setLayout] = useState("simple");
@@ -27,6 +28,7 @@ const EmployeeDetails = () => {
         
         setEmployeeData(data);
         setLayout(apiLayout); 
+        setPageTitle(title);
 
       } catch (error) {
         console.error('Error fetching HR data:', error);
@@ -43,6 +45,7 @@ const EmployeeDetails = () => {
     return <p>Loading...</p>; // Anzeige während des Ladens der Daten
   }
 
+ 
 
   const domain = getCurrentDomain();
   const employeeIndex = employeeData.employees.findIndex(emp => emp.pers_id === id);

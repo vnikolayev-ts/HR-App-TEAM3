@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import { getUsers } from "../../api/ClientApi";
 import Layout from '../Layout/Layout';
 import { Link } from 'react-router-dom';
+import { setPageTitle} from '../Utils/Utils'; 
+
 
 
 const UserList = () => {
@@ -16,6 +18,8 @@ useEffect(() => {
       const isDataFromLocal = true;
       const data = await getUsers(isDataFromLocal); // Aufruf der async Funktion getEmployees -API
       setUserData(data);
+      const title = "User List";
+      setPageTitle(title);
   
 
     } catch (error) {
@@ -55,8 +59,16 @@ if (!userData) {
                   <div class="pw">{user.password}</div>
                   <div class="separator">|</div>
                   <div class="mail">{user.email}</div>
-                  <div class="separator">|</div>
-                  <div class="admin">{user.admin ? "true" : "false"}</div>
+
+                  {user.admin && (
+                      <>
+                      <div class="separator">|</div>
+                       <div class="admin"> Administrator </div>
+                       
+                       </>
+                  )
+                  }
+                 
                 </div>
               </div>
               <div class="action-list-item">

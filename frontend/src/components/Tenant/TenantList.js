@@ -9,6 +9,8 @@ import { useEffect, useState } from 'react';
 
 import {  getTenats } from "../../api/ClientApi";
 
+import { setPageTitle} from '../Utils/Utils'; 
+
 
 
 const TenantList = () => {
@@ -20,6 +22,8 @@ useEffect(() => {
       const isDataFromLocal = true;
       const data = await getTenats(isDataFromLocal); // Aufruf der async Funktion getEmployees -API
       setTenatData(data);
+     const title ="Tenant List ";
+     setPageTitle(title);
   
 
     } catch (error) {

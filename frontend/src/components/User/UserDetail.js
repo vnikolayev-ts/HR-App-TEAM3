@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import userData from "../../data/users.json";
+import { setPageTitle} from '../Utils/Utils'; 
+
 import Layout from '../Layout/Layout';
 import { getUsers } from "../../api/ClientApi";
 
@@ -35,6 +36,9 @@ function EditUser({ isView = true }) {
           setAdmin(foundUser.admin);
           setIsReadOnly(isView);
         }
+
+        const title = isView ? "Detail Page" : "Edit Page";
+        setPageTitle(title);
     
   
       } catch (error) {
@@ -92,7 +96,7 @@ function EditUser({ isView = true }) {
     <div className="container">
     
       <div className="header">
-        <h1>{isView ? "Detail Page" : "Edit Page"}</h1>
+        
       </div>
       <form>
         <div className="form-group">

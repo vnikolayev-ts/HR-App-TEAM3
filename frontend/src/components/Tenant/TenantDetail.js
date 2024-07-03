@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import tenantData from "../../data/tenants.json";
+import Layout from '../Layout/Layout';
+
 
 // funktion um die Nächste ID aus der JSON zu finden
 function getNextId(tenants) {
@@ -39,6 +41,7 @@ function TenantNew() {
 
 
     return (
+      <Layout>
         <form onSubmit={handleSubmit}>
             <label>
                 Companyname:
@@ -47,6 +50,7 @@ function TenantNew() {
             <input type='submit' value='Send' />
             <button class= "home" onClick={handleBackClick} >Home</button>
         </form>
+        </Layout>
     );
 };
 

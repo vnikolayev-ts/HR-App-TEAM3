@@ -81,3 +81,11 @@ export const getBarLevelsForScore = (score) => {
         
         return `${year}`
         };
+
+
+        export const setPageTitle = (title='')=> {
+          const titleElement = document.getElementById('pTitle');
+          if (titleElement) {
+            titleElement.textContent = title;
+          } 
+        };

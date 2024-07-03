@@ -1,5 +1,5 @@
 
-import { getBarLevelsForScore, getColorForLevel } from '../Utils/Utils'; 
+import { getBarLevelsForScore, getColorForLevel , setPageTitle} from '../Utils/Utils'; 
 import {getEmployees} from '../../api/ClientApi'
 
 import React from 'react';
@@ -25,8 +25,12 @@ const EmployeeList = () => {
         
         setEmployeeData(data);
         setLayout(apiLayout); 
+       
+        
+        const title = `Employee List ${employeeData.company}`;
+        setPageTitle(title);
 
-      } catch (error) {
+      } catch (error) { 
         console.error('Error fetching HR data:', error);
         // Hier könntest du zusätzliche Fehlerbehandlung durchführen, z.B. eine Fehlermeldung anzeigen
         return <p>Loading... Error </p>; // Anzeige während des Ladens der Daten
@@ -44,7 +48,7 @@ return (
   
     <Layout>
  
-    <h2 class="pageTitle" >Mitarbeiterliste von {employeeData.company}</h2>
+  
     
     <ul class="list" >
       {employeeData.employees.map(employee => (
