@@ -55,7 +55,7 @@ const Navbar =()  => {
              { isAdmin === "true" && (
                 <>
                  <Link to="/user">User</Link>
-                 <Link to="/tenat">Tenats</Link>
+                 <Link to="/tenant">Tenats</Link>
                 </>
 
                 )}
