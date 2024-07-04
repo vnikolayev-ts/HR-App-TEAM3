@@ -1,4 +1,4 @@
-import { getTenats } from "./ClientApi";
+import { getTenants } from "./ClientApi";
 
 import React from "react";
 import { useEffect, useState } from "react";

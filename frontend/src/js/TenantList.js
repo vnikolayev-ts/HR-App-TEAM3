@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 
 import Navbar from './NavBar';
 
+import Layout from './Layout';
+
 const TenantList = () => {
   
   const [tenantData, setTenantData] = useState(null);
