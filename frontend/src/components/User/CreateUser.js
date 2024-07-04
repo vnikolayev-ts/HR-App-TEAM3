@@ -40,12 +40,36 @@ function CreateUser() {
     }
   };
 
+    /* Back Button navigation zurück zum /dashboard */
+
+
+    const handleBackClick = () => {
+      navigate("/dashboard");
+  };
+
+  /* Cancel Button Funktion */
+  const handleReset = (e) => {
+    e.preventDefault();
+    if (window.confirm("All data will be resetted. Are you sure?")) {
+      window.location.reload(true);
+      alert("All data have been resetted.");
+    } else {
+      alert("Nothing has been changed.");
+    }
+  };
+
 
   setPageTitle("Create User");
 
   return (
     <Layout>
       <form onSubmit={handleSave}>
+      <button onClick={handleBackClick} className="viewButton">
+        Back
+      </button>
+      <button className="save" onClick={handleSave}>
+                Save
+              </button>
         <div className="form-group">
           <label>Name</label>
           <input
@@ -90,6 +114,9 @@ function CreateUser() {
           <button className="save" type="submit">
             Create User
           </button>
+          <button className="reset" onClick={handleReset}>
+                Reset
+              </button>
         </div>
       </form>
     </Layout>
