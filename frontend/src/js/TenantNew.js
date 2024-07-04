@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import tenantData from "../data/tenants.json";
+//import {getTenats} from './ClientApi'; --> UNKLAR, WIE HIER UMZUSETZEN???
+
+import Navbar from './NavBar';
 
 // funktion um die Nächste ID aus der JSON zu finden
 function getNextId(tenants) {
@@ -28,7 +31,8 @@ function TenantNew() {
       //alert(`The Companyname was send: ${name}`);
       console.log(tenantData)
       // Die Ergänzung neuer Kunden muss später im Backend mit fs vorgenommen werden, da
-      // diese Funktionalität im Frontend nicht abzubilden geht. (Fs geht nicht im Frontend!)
+      // diese Funktionalität im Frontend nicht abzubilden geht, (Fs geht nicht im Frontend!)
+      // Bzw. per API ans Backend gesendet werden.
      
       setName('')  
     };
@@ -38,15 +42,20 @@ function TenantNew() {
     };
 
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Companyname:
-                <input type='text' name='name' value={name} onChange={handleChange}/>
-            </label>
-            <input type='submit' value='Send' />
-            <button class= "home" onClick={handleBackClick} >Home</button>
-        </form>
+  return (
+    <div class={layout}>  //Neu eingefügt!
+        <Navbar />        //Neu eingefügt!
+        <div class="action header">  //Neu eingefügt!
+          <form onSubmit={handleSubmit}>
+              <label>
+                  Companyname:
+                  <input type='text' name='name' value={name} onChange={handleChange}/>
+              </label>
+              <input type='submit' value='Send' />
+              <button class= "home" onClick={handleBackClick} >Home</button>
+          </form>
+        </div>
+    </div>    
     );
 };
 
