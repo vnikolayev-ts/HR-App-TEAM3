@@ -78,7 +78,7 @@ const EmployeeDetails = () => {
 
   return (
     <Layout>
-    <div class={layout}>
+    
       
       <div class ="content" style={{ display: 'flex', flexDirection: 'row' }}>
 
@@ -149,7 +149,7 @@ const EmployeeDetails = () => {
         <button class="zurueck" onClick={handlePreviousClick} disabled={employeeIndex === 0}>Zurück</button>
         <button class="naechster" onClick={handleNextClick} disabled={employeeIndex === employeeData.employees.length - 1}>Nächster</button>
       </div>
-    </div>
+    
     </Layout>
   );
 }
