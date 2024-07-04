@@ -1,12 +1,12 @@
 
-import { getBarLevelsForScore, getColorForLevel } from './Utils'; 
-import {getEmployees} from './ClientApi'
+import { getBarLevelsForScore, getColorForLevel , setPageTitle} from '../Utils/Utils'; 
+import {getEmployees} from '../../api/ClientApi'
 
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-
+import Layout from '../Layout/Layout';
  
 
 
@@ -25,8 +25,12 @@ const EmployeeList = () => {
         
         setEmployeeData(data);
         setLayout(apiLayout); 
+       
+        
+        const title = `Employee List ${employeeData.company}`;
+        setPageTitle(title);
 
-      } catch (error) {
+      } catch (error) { 
         console.error('Error fetching HR data:', error);
         // Hier könntest du zusätzliche Fehlerbehandlung durchführen, z.B. eine Fehlermeldung anzeigen
         return <p>Loading... Error </p>; // Anzeige während des Ladens der Daten
@@ -41,11 +45,10 @@ const EmployeeList = () => {
     return <p>Loading...</p>; // Anzeige während des Ladens der Daten
   }
 return (
-  <div class={layout}>
-     <div class="logo" >
-        <img src={employeeData.logo_url}  alt={employeeData.company}/>
-     </div>
-    <h2 class="pageTitle" >Mitarbeiterliste von {employeeData.company}</h2>
+  
+    <Layout>
+ 
+  
     
     <ul class="list" >
       {employeeData.employees.map(employee => (
@@ -80,12 +83,14 @@ return (
                           
               <div class="action-list-item">
                   <Link to={`/employee/${employee.pers_id}`} > <button class="viewButton"  >Details</button> </Link>
+                  <Link to={`/employee-edit/${employee.pers_id}`} > <button class="EditButton"  >Edit</button> </Link>
               </div>
           </div>
         </li>
       ))}
     </ul>
-  </div>
+
+  </Layout>
 );
 }
 

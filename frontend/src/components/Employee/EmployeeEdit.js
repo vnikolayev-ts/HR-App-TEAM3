@@ -1,15 +1,17 @@
-import { checkUrlExists, getBarLevelsForScore, getColorForLevel, renderStars, getCurrentDomain } from './Utils';
-import {getEmployees} from './ClientApi'
+import { checkUrlExists, getBarLevelsForScore, getColorForLevel, renderStars, getCurrentDomain, setPageTitle } from '../Utils/Utils';
+import {getEmployees} from '../../api/ClientApi'
 
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-
+import Layout from '../Layout/Layout';
 
 
 const EmployeeDetails = () => {
 
+  
+  const title ="Employee Edit Page";
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -27,6 +29,7 @@ const EmployeeDetails = () => {
         
         setEmployeeData(data);
         setLayout(apiLayout); 
+        setPageTitle(title);
 
       } catch (error) {
         console.error('Error fetching HR data:', error);
@@ -74,13 +77,9 @@ const EmployeeDetails = () => {
 
 
   return (
+    <Layout>
     
-    <div class={layout}>
-            <div class="action header">
-        <button class= "home" onClick={handleBackClick} >Home</button>
-        <button class= "zurueck" onClick={handlePreviousClick} disabled={employeeIndex === 0}>Zurück</button>
-        <button class= "naechster" onClick={handleNextClick}  disabled={employeeIndex === employeeData.employees.length - 1}>Nächster</button>
-      </div>
+      
       <div class ="content" style={{ display: 'flex', flexDirection: 'row' }}>
 
 
@@ -96,7 +95,7 @@ const EmployeeDetails = () => {
           src={`${imgUrl}`} alt={`${employee.first_name} ${employee.last_name}`} 
        />
          <div className="person-details" style={{ marginLeft: '20px' }}>
-       <h2 class="pageTitle">Details for {employee.first_name} {employee.last_name}</h2>
+       <h2 class="pageTitle">Editpage for {employee.first_name} {employee.last_name}</h2>
             
       <div style={{ display: 'flex', height: 20, width: '350px', marginBottom: 5, border: 'none' }}>
         {getBarLevelsForScore(employee.ma_score).map((level, index) => (
@@ -146,12 +145,12 @@ const EmployeeDetails = () => {
     </div>
 
     <div class="action footer">
-        <button class="home" onClick={handleBackClick}>Home</button>
+      
         <button class="zurueck" onClick={handlePreviousClick} disabled={employeeIndex === 0}>Zurück</button>
         <button class="naechster" onClick={handleNextClick} disabled={employeeIndex === employeeData.employees.length - 1}>Nächster</button>
       </div>
-    </div>
     
+    </Layout>
   );
 }
 

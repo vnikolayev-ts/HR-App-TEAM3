@@ -63,3 +63,29 @@ export const getBarLevelsForScore = (score) => {
         return null; // Return null if something goes wrong
       }
     };
+
+    export const getCurrentDate = (separator='')=> {
+
+      let newDate = new Date()
+      let date = newDate.getDate();
+      let month = newDate.getMonth() + 1;
+      let year = newDate.getFullYear();
+      
+      return `${year}${separator}${month<10?`0${month}`:`${month}`}${separator}${date}`
+      };
+
+      export const getCurrentYear = ()=> {
+
+        let newDate = new Date()
+        let year = newDate.getFullYear();
+        
+        return `${year}`
+        };
+
+
+        export const setPageTitle = (title='')=> {
+          const titleElement = document.getElementById('pTitle');
+          if (titleElement) {
+            titleElement.textContent = title;
+          } 
+        };

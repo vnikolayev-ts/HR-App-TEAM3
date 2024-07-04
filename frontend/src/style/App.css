@@ -5,3 +5,70 @@ body {
   margin: 0;
   padding: 20px;
 }
+
+/* Farben */
+.primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.secondary {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.success {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.warning {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.info {
+  background-color: #17a2b8;
+  color: #fff;
+}
+
+.light {
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+.dark {
+  background-color: #343a40;
+  color: #fff;
+}
+
+/* Schriftarten */
+.font-small {
+  font-size: 12px;
+}
+
+.font-medium {
+  font-size: 16px;
+}
+
+.font-large {
+  font-size: 20px;
+}
+
+/* Andere allgemeine Stile */
+.rounded {
+  border-radius: 4px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-bold {
+  font-weight: bold;
+}
