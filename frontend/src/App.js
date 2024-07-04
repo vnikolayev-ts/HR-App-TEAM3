@@ -20,16 +20,17 @@ import TenantList from './components/Tenant/TenantList';
 import TenantDetail from './components/Tenant/TenantDetail';
 import TenantEdit from './components/Tenant/TenantEdit';
 
-import UsertList from './components/User/UserList';
-import UsertDetail from './components/User/UserDetail';
+import UserList from './components/User/UserList';
+import UserDetail from './components/User/UserDetail';
 
-
+import CreateUser from "./components/User/CreateUser";
+import EditUser from './components/User/EditUser';
 
 
 const App = () => {
   return (
     <Router>
-     
+    
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/dashboard"  element={ <PrivateRoute><Dashboard /></PrivateRoute> }  />
@@ -41,15 +42,15 @@ const App = () => {
         <Route path="/tenant"  element={ <PrivateRoute><TenantList /></PrivateRoute> }  />
         <Route path="/tenant/:id"  element={ <PrivateRoute><TenantDetail /></PrivateRoute> }  />
  
-        <Route path="/user"  element={ <PrivateRoute><UsertList /></PrivateRoute> }  />
-        <Route path="/user/:id"  element={ <PrivateRoute><UsertDetail /></PrivateRoute> }  />
+        <Route path="/user"  element={ <PrivateRoute><UserList /></PrivateRoute> }  />
+        <Route path="/user/:id"  element={ <PrivateRoute><UserDetail /></PrivateRoute> }  />
       
-        <Route path="/user-edit/:id"  element={ <PrivateRoute><UsertDetail isView={false} /></PrivateRoute> }  />
+        <Route path="/user-edit/:id"  element={ <PrivateRoute><EditUser isView={false} /></PrivateRoute> }  />
+        <Route path="/user-create"  element={ <PrivateRoute><CreateUser /></PrivateRoute> }  />
 
         
         /*TODO*/
-        <Route path="/user-create"  element={ <PrivateRoute><UsertDetail /></PrivateRoute> }  />
-        <Route path="/user-profile"  element={ <PrivateRoute><UsertList /></PrivateRoute> }  />
+        <Route path="/user-profile"  element={ <PrivateRoute><UserList /></PrivateRoute> }  />
 
         <Route path="/tenant-edit/:id"  element={ <PrivateRoute><TenantEdit /></PrivateRoute> }  />
         <Route path="/tenant-create"  element={ <PrivateRoute><TenantEdit /></PrivateRoute> }  />

@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import { setPageTitle } from "../Utils/Utils";
+
 // import { createUser } from "../../api/ClientApi";
+
+
+ 
 
 function CreateUser() {
   const navigate = useNavigate();
@@ -35,6 +39,9 @@ function CreateUser() {
       alert("Failed to create user. Please try again later.");
     }
   };
+
+
+  setPageTitle("Create User");
 
   return (
     <Layout>
