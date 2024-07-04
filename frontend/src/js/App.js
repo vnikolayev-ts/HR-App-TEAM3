@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import EmployeeList from './EmployeeList';
 import EmployeeDetails from './EmployeeDetails';
+import EditEmployee from './EditEmployee';
 
 import TenantNew from './TenantNew';
 import TenantList from './TenantList';
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/dashboard"  element={ <PrivateRoute><Dashboard /></PrivateRoute> }  />
         <Route path="/employee"  element={ <PrivateRoute><EmployeeList /></PrivateRoute> }  />
         <Route path="/employee/:id"  element={ <PrivateRoute><EmployeeDetails /></PrivateRoute> }  />
+        <Route path="employee/employee-edit:id"  element={ <PrivateRoute><EditEmployee /></PrivateRoute> }  />
         <Route path="/tenant"  element={ <PrivateRoute><TenantList /></PrivateRoute> }  />
         <Route path="/tenant/new"  element={ <PrivateRoute><TenantNew /></PrivateRoute> }  />
         <Route path="/user"  element={ <PrivateRoute><UserList /></PrivateRoute> }  />
