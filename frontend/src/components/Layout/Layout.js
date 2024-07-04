@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from './NavBar';
 import Footer from './Footer';
 
-
+import '../../style/App.css';
 
 /*
 import '../../style/App.css';
