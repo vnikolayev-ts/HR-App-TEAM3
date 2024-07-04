@@ -70,6 +70,10 @@ const EmployeeDetails = () => {
     }
   };
 
+  const handleEditClick = () => {
+    navigate(`/employee-edit/${employee.pers_id}`);
+  };
+
   if (!employee) {
     return <div>Item not Found</div>;
   }
@@ -77,27 +81,25 @@ const EmployeeDetails = () => {
 
 
   return (
-    <Layout>
     
-      
-      <div class ="content" style={{ display: 'flex', flexDirection: 'row' }}>
+    <Layout>
+     <button onClick={handleEditClick} >Edit</button>
+   
+    
 
 
 
       
       <img class="pimage"  
-        style={{
-          height: '500px',
-          boxShadow: '5px 5px 9px',
-          borderRadius: '35px',
-          margin: '10px'}} 
+        
         
           src={`${imgUrl}`} alt={`${employee.first_name} ${employee.last_name}`} 
        />
-         <div className="person-details" style={{ marginLeft: '20px' }}>
+         <div className="person-details" >
        <h2 class="pageTitle">Details for {employee.first_name} {employee.last_name}</h2>
+      
             
-      <div style={{ display: 'flex', height: 20, width: '350px', marginBottom: 5, border: 'none' }}>
+      <div className='score'>
         {getBarLevelsForScore(employee.ma_score).map((level, index) => (
           <div
             key={index}
@@ -109,35 +111,36 @@ const EmployeeDetails = () => {
           ></div>
         ))}
       </div>
-      <p><strong>MA-Score:</strong> {employee.ma_score}</p>
-      <p><strong>Pers-ID:</strong> {employee.pers_id}</p>
-      <p><strong>First Name:</strong> {employee.first_name}</p>
-      <p><strong>Last Name:</strong> {employee.last_name}</p>
-      <p><strong>Date of Birth:</strong> {employee.birthdate}</p>
-      <p><strong>Entry:</strong> {employee.entry_date}</p>
-      <p><strong>Position:</strong> {employee.position}</p>
-      <p><strong>Department:</strong> {employee.department}</p>
-      <p><strong>Email:</strong> {employee.email}</p>
-      <p><strong>Phone:</strong> {employee.phone}</p>
-      <p><strong>Address:</strong> {employee.address}</p>
+      <p><label>MA-Score:</label> {employee.ma_score}</p>
+      <p><label>Pers-ID:</label> {employee.pers_id}</p>
+      <p><label>First Name:</label> {employee.first_name}</p>
+      <p><label>Last Name:</label> {employee.last_name}</p>
+      <p><label>Date of Birth:</label> {employee.birthdate}</p>
+      <p><label>Entry:</label> {employee.entry_date}</p>
+      <p><label>Position:</label> {employee.position}</p>
+      <p><label>Department:</label> {employee.department}</p>
+      <p><label>Email:</label> {employee.email}</p>
+      <p><label>Phone:</label> {employee.phone}</p>
+      <p><label>Address:</label> {employee.address}</p>
 
-      <p><strong>Sick Days:</strong> {employee.sick_days} Tage</p>
-      <p><strong>Salary / Year :</strong> {employee.salary} €</p>
+      <p><label>Sick Days:</label> {employee.sick_days} Tage</p>
+      <p><label>Salary / Year :</label> {employee.salary} €</p>
       </div>
-      </div>
-      <div className="skills" style={{ marginTop: '20px' }}>
-      <p><strong>Skills:</strong></p>
+      
+      
+      <div className="skills" >
+      <h3>Skills:</h3>
       <ul>
-        <li><strong>Teamwork:</strong> {renderStars(employee.skills.soft_skills.teamwork)}</li>
-        <li><strong>Communication:</strong> {renderStars(employee.skills.soft_skills.communication)}</li>
-        <li><strong>Leadership:</strong> {renderStars(employee.skills.soft_skills.leadership)}</li>
-        <li><strong>Problem Solving:</strong> {renderStars(employee.skills.soft_skills.problem_solving)}</li>
-        <li><strong>Adaptability:</strong> {renderStars(employee.skills.soft_skills.adaptability)}</li>
-        <li><strong>Punctuality:</strong> {renderStars(employee.skills.personal_skills.punctuality)}</li>
-        <li><strong>Friendliness:</strong> {renderStars(employee.skills.personal_skills.friendliness)}</li>
-        <li><strong>Creativity:</strong> {renderStars(employee.skills.personal_skills.creativity)}</li>
-        <li><strong>Reliability:</strong> {renderStars(employee.skills.personal_skills.reliability)}</li>
-        <li><strong>Initiative:</strong> {renderStars(employee.skills.personal_skills.initiative)}</li>
+        <li><label>Teamwork:</label> {renderStars(employee.skills.soft_skills.teamwork)}</li>
+        <li><label>Communication:</label> {renderStars(employee.skills.soft_skills.communication)}</li>
+        <li><label>Leadership:</label> {renderStars(employee.skills.soft_skills.leadership)}</li>
+        <li><label>Problem Solving:</label> {renderStars(employee.skills.soft_skills.problem_solving)}</li>
+        <li><label>Adaptability:</label> {renderStars(employee.skills.soft_skills.adaptability)}</li>
+        <li><label>Punctuality:</label> {renderStars(employee.skills.personal_skills.punctuality)}</li>
+        <li><label>Friendliness:</label> {renderStars(employee.skills.personal_skills.friendliness)}</li>
+        <li><label>Creativity:</label> {renderStars(employee.skills.personal_skills.creativity)}</li>
+        <li><label>Reliability:</label> {renderStars(employee.skills.personal_skills.reliability)}</li>
+        <li><label>Initiative:</label> {renderStars(employee.skills.personal_skills.initiative)}</li>
       </ul>
 
 
@@ -154,4 +157,4 @@ const EmployeeDetails = () => {
   );
 }
 
-export default EmployeeDetails;
+export default EmployeeDetails; 
