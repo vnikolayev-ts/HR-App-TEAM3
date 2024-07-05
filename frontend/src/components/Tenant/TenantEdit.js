@@ -20,7 +20,7 @@ function TenantEdit({ isView = false }) {
   const navigate = useNavigate();
 
   const handleBackClick = () => {
-    navigate("/dashboard");
+    navigate("/tenant/"+ tenantId);
   };
 
   /* Cancel Button Funktion */
@@ -98,9 +98,7 @@ function TenantEdit({ isView = false }) {
       <button onClick={handleBackClick} className="backButton">
         Back
       </button>
-      <Link to={`/tenant-edit/${tenant.tenantId}`}>
-        <button className="editButton">Edit</button>
-      </Link>
+  
 
       <div className="container">
         <div className="header"></div>

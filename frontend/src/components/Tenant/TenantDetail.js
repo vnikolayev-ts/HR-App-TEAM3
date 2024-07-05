@@ -20,7 +20,7 @@ function TenantDetail({ isView = true }) {
   const navigate = useNavigate();
 
   const handleBackClick = () => {
-    navigate("/dashboard");
+    navigate("/tenant");
   };
 
   /* Cancel Button Funktion */
