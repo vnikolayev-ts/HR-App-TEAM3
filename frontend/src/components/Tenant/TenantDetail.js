@@ -102,8 +102,7 @@ function TenantDetail({ isView = true }) {
         <button className="editButton">Edit</button>
       </Link>
 
-      <div className="container">
-        <div className="header"></div>
+      
         <form>
           <div className="form-group">
             <label>Name</label>
@@ -121,19 +120,19 @@ function TenantDetail({ isView = true }) {
           </div>
           {!isView && (
             <div className="button-container">
-              <button className="save" onClick={handleSave}>
+              <button className="saveButton" onClick={handleSave}>
                 Save
               </button>
-              <button className="delete" onClick={handleDelete}>
+              <button className="deleteButton" onClick={handleDelete}>
                 Delete
               </button>
-              <button className="reset" onClick={handleReset}>
+              <button className="resetButton" onClick={handleReset}>
                 Reset
               </button>
             </div>
           )}
         </form>
-      </div>
+      
     </Layout>
   );
 }

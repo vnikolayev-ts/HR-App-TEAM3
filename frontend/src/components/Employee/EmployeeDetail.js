@@ -135,10 +135,7 @@ const EmployeeDetails = () => {
 
     </div>
 
-    <div class="action footer">
-      
-       
-      </div>
+    
       <button onClick={handleEditClick} >Edit</button>
     
     </Layout>

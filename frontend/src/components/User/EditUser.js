@@ -110,13 +110,11 @@ function EditUser({ isView = true }) {
       <button onClick={handleBackClick} className="viewButton">
         Back
       </button>
-      <button className="save" onClick={handleSave}>
+      <button className="saveButton" onClick={handleSave}>
                 Save
               </button>
       
 
-      <div className="container">
-        <div className="header"></div>
         <form>
           <div className="form-group">
             <label>Name</label> 
@@ -125,7 +123,7 @@ function EditUser({ isView = true }) {
               value={name}
               readOnly={isReadOnly}
               onChange={(e) => setName(e.target.value)}
-              j
+              
             />
           </div>
           <div className="form-group">
@@ -166,13 +164,13 @@ function EditUser({ isView = true }) {
           </div>
           {!isView && (
             <div className="button-container">
-              <button className="reset" onClick={handleReset}>
+              <button className="resetButton" onClick={handleReset}>
                 Reset
               </button>
             </div>
           )}
         </form>
-      </div>
+      
     </Layout>
   );
 }

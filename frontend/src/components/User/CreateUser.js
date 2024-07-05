@@ -63,10 +63,10 @@ function CreateUser() {
 
   return (
     <Layout>
-      <form onSubmit={handleSave}>
-      <button onClick={handleBackClick} className="viewButton">
+      <button onClick={handleBackClick} className="backButton">
         Back
       </button>
+      <form onSubmit={handleSave}>
       <div className="form-group">
           <label>Name</label>
           <input
@@ -108,10 +108,10 @@ function CreateUser() {
           />
         </div>
         <div className="button-container">
-          <button className="save" type="submit">
+          <button className="saveButton" type="submit">
             Create User
           </button>
-          <button className="reset" onClick={handleReset}>
+          <button className="resetButton" onClick={handleReset}>
                 Reset
               </button>
         </div>

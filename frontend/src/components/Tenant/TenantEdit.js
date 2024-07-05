@@ -100,8 +100,8 @@ function TenantEdit({ isView = false }) {
       </button>
   
 
-      <div className="container">
-        <div className="header"></div>
+      
+        
         <form>
           <div className="form-group">
             <label>Name</label>
@@ -110,7 +110,7 @@ function TenantEdit({ isView = false }) {
               value={name}
               readOnly={false}
               onChange={(e) => setName(e.target.value)}
-              j
+              
             />
           </div>
           <div className="form-group">
@@ -119,19 +119,19 @@ function TenantEdit({ isView = false }) {
           </div>
           {!isView && (
             <div className="button-container">
-              <button className="save" onClick={handleSave}>
+              <button className="saveButton" onClick={handleSave}>
                 Save
               </button>
-              <button className="delete" onClick={handleDelete}>
+              <button className="deleteButton" onClick={handleDelete}>
                 Delete
               </button>
-              <button className="reset" onClick={handleReset}>
+              <button className="resetButton" onClick={handleReset}>
                 Reset
               </button>
             </div>
           )}
         </form>
-      </div>
+      
     </Layout>
   );
 }

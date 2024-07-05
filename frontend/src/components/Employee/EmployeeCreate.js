@@ -172,17 +172,14 @@ const EmployeeCreate = ({ addEmployee}) => {
             Sick Days:
             <input type="number" name="sick_days" value={newEmployee.sick_days} onChange={handleInputChange} />
           </label>
-          <label>
-            Salary:
-            <input type="number" name="salary" value={newEmployee.salary} onChange={handleInputChange} />
-          </label>
+          <label>Salary:</label><input type="number" name="salary" value={newEmployee.salary} onChange={handleInputChange} />
           <div className="form-buttons">
             
           </div>
         </div>
       </div>
       <div className="skills">
-        <p><label>Skills:</label></p>
+        <h3>Skills:</h3>
         <ul>
         
 

@@ -166,7 +166,7 @@ const EmployeeEdit = () => {
 
       
       <div className="skills" >
-      <p><label>Skills:</label></p>
+      <h3>Skills:</h3>
       <ul>
       <li><label> Teamwork: <input type="number" name="teamwork" min="1" max="10" value={editEmployee.teamwork || employee.skills.soft_skills.teamwork} onChange={handleInputChange}/> </label></li>
       <li><label> Communication: <input type="number" name="communication" min="1" max="10" value={editEmployee.communication || employee.skills.soft_skills.communication} onChange={handleInputChange}/> </label></li>
