@@ -25,6 +25,7 @@ import UserDetail from './components/User/UserDetail';
 
 import CreateUser from "./components/User/CreateUser";
 import EditUser from './components/User/EditUser';
+import TenantCreate from './components/Tenant/TenantCreate';
 
 
 const App = () => {
@@ -41,6 +42,8 @@ const App = () => {
 
         <Route path="/tenant"  element={ <PrivateRoute><TenantList /></PrivateRoute> }  />
         <Route path="/tenant/:id"  element={ <PrivateRoute><TenantDetail /></PrivateRoute> }  />
+        <Route path="/tenant-edit/:id"  element={ <PrivateRoute><TenantEdit /></PrivateRoute> }  />
+        <Route path="/tenant-create"  element={ <PrivateRoute><TenantCreate /></PrivateRoute> }  />
  
         <Route path="/user"  element={ <PrivateRoute><UserList /></PrivateRoute> }  />
         <Route path="/user/:id"  element={ <PrivateRoute><UserDetail /></PrivateRoute> }  />
@@ -52,8 +55,6 @@ const App = () => {
         /*TODO*/
         <Route path="/user-profile"  element={ <PrivateRoute><UserList /></PrivateRoute> }  />
 
-        <Route path="/tenant-edit/:id"  element={ <PrivateRoute><TenantEdit /></PrivateRoute> }  />
-        <Route path="/tenant-create"  element={ <PrivateRoute><TenantEdit /></PrivateRoute> }  />
 
         <Route path="/employee-edit/:id"  element={ <PrivateRoute><EmployeeEdit /></PrivateRoute> }  />
         <Route path="/employee-create"  element={ <PrivateRoute><EmployeeEdit /></PrivateRoute> }  />
