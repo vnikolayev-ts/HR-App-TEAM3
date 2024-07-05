@@ -1,5 +1,5 @@
   // Funktion zur Berechnung der Balkenstufen basierend auf dem MA-Score mit 5 Farbstufen
-export const getBarLevelsForScore = (score) => {
+  export const getBarLevelsForScore = (score) => {
     const levels = [];
     const maxLevel = 10; // Maximal 10 Balkenstufen für den Verlauf
     const step = 5; 
@@ -88,4 +88,22 @@ export const getBarLevelsForScore = (score) => {
           if (titleElement) {
             titleElement.textContent = title;
           } 
+        };
+
+        export const renderStar = (rating, onStarClick) => {
+          const stars = [];
+        
+          for (let i = 1; i <= 5; i++) {
+            stars.push(
+              <span
+                key={i}
+                style={{ cursor: 'pointer', color: i <= rating ? 'gold' : 'gray' }}
+                onClick={() => onStarClick(i)}
+              >
+                ★
+              </span>
+            );
+          }
+        
+          return <div>{stars}</div>;
         };

@@ -1,5 +1,5 @@
 import { checkUrlExists, getBarLevelsForScore, getColorForLevel, renderStars, getCurrentDomain, setPageTitle } from '../Utils/Utils';
-//import {getEmployees} from '../../api/ClientApi'
+import {getEmployees} from '../../api/ClientApi'
 
 import React from 'react';
 import { useEffect, useState } from 'react';
@@ -25,12 +25,12 @@ const EmployeeEdit = () => {
     const fetchData = async () => {
       try {
         const isDataFromLocal = true;
-        /*const data = await getEmployees(isDataFromLocal); // Aufruf der async Funktion getEmployees -API
-        const apiLayout = data.layout;*/
+        const data = await getEmployees(isDataFromLocal); // Aufruf der async Funktion getEmployees -API
+        const apiLayout = data.layout;
         //setHRData(data); // Setzen der empfangenen Daten in den State
         
-       // setEmployeeData(data);
-       // setLayout(apiLayout); 
+        setEmployeeData(data);
+        setLayout(apiLayout); 
         setPageTitle(title);
 
       } catch (error) {
@@ -52,7 +52,7 @@ const EmployeeEdit = () => {
  
   const employeeIndex = employeeData.employees.findIndex(emp => emp.pers_id === id);
   const employee = employeeData.employees[employeeIndex];
- // const imgUrl = checkUrlExists(employeeData.public_image_path) == true ? employeeData.public_image_path : "." + employeeData.noimage_url;
+ const imgUrl = checkUrlExists(employeeData.public_image_path) == true ? employeeData.public_image_path : "." + employeeData.noimage_url;
 
   
 
@@ -71,9 +71,9 @@ const EmployeeEdit = () => {
     console.log('Save employee data', editEmployee);
   };
 
-  //const handleCancel = () => {
-  //  setEditEmployee(originalEmployee);
-  //};
+  const handleCancel = () => {
+    setEditEmployee(originalEmployee);
+  };
 
   const handleReset = (e) => {
     e.preventDefault();
