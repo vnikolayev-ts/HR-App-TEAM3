@@ -113,9 +113,9 @@
         export const saveEmployee = (newEmployee)=> {
           var ausgabe = "Employee added.";
            if (newEmployee.first_name)  ausgabe += "\nVorname: " + newEmployee.first_name; else return false;
-           if (newEmployee.last_name)  ausgabe += "\nName: " + newEmployee.last_name;
-           if (newEmployee.birthdate)  ausgabe += "\nBirthdate: " + newEmployee.birthdate;
-           if (newEmployee.entry_date)  ausgabe += "\nEntrydate: " + newEmployee.entry_date;
+           if (newEmployee.last_name)  ausgabe += "\nName: " + newEmployee.last_name; else return false;
+           if (newEmployee.birthdate)  ausgabe += "\nBirthdate: " + newEmployee.birthdate; else return false;
+           if (newEmployee.entry_date)  ausgabe += "\nEntrydate: " + newEmployee.entry_date; else return false;
            if (newEmployee.position)  ausgabe += "\nPosition: " + newEmployee.position;
            if (newEmployee.department)  ausgabe += "\nDepartment: " + newEmployee.department;
            if (newEmployee.email)  ausgabe += "\nEmail: " + newEmployee.email;
