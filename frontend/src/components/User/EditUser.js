@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 import { useNavigate } from "react-router-dom";
 
-function UserDetail({ isView = true }) {
+function EditUser({ isView = true }) {
   // const isView = true;
   const { id } = useParams();
   const [user, setUser] = useState(null);
@@ -38,6 +38,9 @@ function UserDetail({ isView = true }) {
       alert("Nothing has been changed.");
     }
   };
+
+  const title = isView ? "Detail Page" : "Edit Page";
+  setPageTitle(title);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -107,15 +110,16 @@ function UserDetail({ isView = true }) {
       <button onClick={handleBackClick} className="viewButton">
         Back
       </button>
-      <Link to={`/user-edit/${user.userId}`}>
-        <button className="viewButton">Edit</button>
-      </Link>
+      <button className="save" onClick={handleSave}>
+                Save
+              </button>
+      
 
       <div className="container">
         <div className="header"></div>
         <form>
           <div className="form-group">
-            <label>Name</label>
+            <label>Name</label> 
             <input
               type="text"
               value={name}
@@ -162,12 +166,6 @@ function UserDetail({ isView = true }) {
           </div>
           {!isView && (
             <div className="button-container">
-              <button className="save" onClick={handleSave}>
-                Save
-              </button>
-              <button className="delete" onClick={handleDelete}>
-                Delete
-              </button>
               <button className="reset" onClick={handleReset}>
                 Reset
               </button>
@@ -179,4 +177,4 @@ function UserDetail({ isView = true }) {
   );
 }
 
-export default UserDetail;
+export default EditUser;
