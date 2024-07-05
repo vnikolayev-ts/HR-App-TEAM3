@@ -1,12 +1,13 @@
-import { renderStar, setPageTitle } from '../Utils/Utils';
+//import { renderStar } from '../Utils/Utils';
+import { setPageTitle,saveEmployee } from "../Utils/Utils";
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../Layout/Layout';
 
 const EmployeeCreate = ({ addEmployee}) => {
-  const title = "Employee Create Page";
+  const title ="Employee Create Page";
   const navigate = useNavigate();
-
+  
   const [newEmployee, setNewEmployee] = useState({
     first_name: '',
     last_name: '',
@@ -37,6 +38,23 @@ const EmployeeCreate = ({ addEmployee}) => {
     },
   });
 
+
+  const handleBackClick = () => {
+    navigate("/employee");
+  };
+
+  
+  const handleResetButton = (e) => {
+    e.preventDefault();
+    if (window.confirm("All data will be resetted. Are you sure?")) {
+      window.location.reload(true);
+      alert("All data have been resetted.");
+    } else {
+      alert("Nothing has been changed.");
+    }
+  };
+
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewEmployee((prev) => ({
@@ -45,6 +63,8 @@ const EmployeeCreate = ({ addEmployee}) => {
     }));
   };
 
+  
+  
   const handleStarClick = (category, skill, value) => {
     setNewEmployee((prev) => ({
       ...prev,
@@ -59,19 +79,16 @@ const EmployeeCreate = ({ addEmployee}) => {
   };
 
   const handleCreate = () => {
-    var ausgabe = "Employee added.";
-    ausgabe += "\nVor Name: " + newEmployee.first_name;
-    ausgabe += "\nName: " + newEmployee.last_name;
-    ausgabe += "\nBirthdate: " + newEmployee.birthdate;
-    ausgabe += "\nEntrydate: " + newEmployee.entry_date;
-    ausgabe += "\nPosition: " + newEmployee.position;
-    ausgabe += "\nDepartment: " + newEmployee.department;
-    ausgabe += "\nEmail: " + newEmployee.email;
-    ausgabe += "\nPhone: " + newEmployee.phone;
-    ausgabe += "\nAddress: " + newEmployee.address;
-    ausgabe += "\nSickdays: " + newEmployee.sick_days;
-    ausgabe += "\nSalary: " + newEmployee.salary;
-    alert(ausgabe );
+   
+    
+  saveEmployee (newEmployee);
+
+  
+
+   // addEmployee(newEmployee);
+    alert('Employee added successfully!');
+    navigate("/employee");
+
     console.log('Create new employee');
     // navigate to employee list or details page after creation
   };
@@ -107,11 +124,13 @@ const EmployeeCreate = ({ addEmployee}) => {
       },
     });
   };
-
+  
+  setPageTitle(title); 
   return (
     <Layout>
       <div className="create-form">
-        <h2 className="pageTitle">Create New Employee</h2>
+        
+        <button onClick={handleBackClick}>Back</button>
         <div>
           <label>
             First Name:
@@ -158,56 +177,30 @@ const EmployeeCreate = ({ addEmployee}) => {
             <input type="number" name="salary" value={newEmployee.salary} onChange={handleInputChange} />
           </label>
           <div className="form-buttons">
-            <button onClick={handleCreate}>Create</button>
-            <button onClick={handleReset}>Reset</button>
+            
           </div>
         </div>
       </div>
       <div className="skills">
         <p><label>Skills:</label></p>
         <ul>
-          <li>
-            <label>Teamwork:</label>
-            {renderStar(newEmployee.skills.soft_skills.teamwork, (value) => handleStarClick('soft_skills', 'teamwork', value))}
-          </li>
-          <li>
-            <label>Communication:</label>
-            {renderStar(newEmployee.skills.soft_skills.communication, (value) => handleStarClick('soft_skills', 'communication', value))}
-          </li>
-          <li>
-            <label>Leadership:</label>
-            {renderStar(newEmployee.skills.soft_skills.leadership, (value) => handleStarClick('soft_skills', 'leadership', value))}
-          </li>
-          <li>
-            <label>Problem Solving:</label>
-            {renderStar(newEmployee.skills.soft_skills.problem_solving, (value) => handleStarClick('soft_skills', 'problem_solving', value))}
-          </li>
-          <li>
-            <label>Adaptability:</label>
-            {renderStar(newEmployee.skills.soft_skills.adaptability, (value) => handleStarClick('soft_skills', 'adaptability', value))}
-          </li>
-          <li>
-            <label>Punctuality:</label>
-            {renderStar(newEmployee.skills.personal_skills.punctuality, (value) => handleStarClick('personal_skills', 'punctuality', value))}
-          </li>
-          <li>
-            <label>Friendliness:</label>
-            {renderStar(newEmployee.skills.personal_skills.friendliness, (value) => handleStarClick('personal_skills', 'friendliness', value))}
-          </li>
-          <li>
-            <label>Creativity:</label>
-            {renderStar(newEmployee.skills.personal_skills.creativity, (value) => handleStarClick('personal_skills', 'creativity', value))}
-          </li>
-          <li>
-            <label>Reliability:</label>
-            {renderStar(newEmployee.skills.personal_skills.reliability, (value) => handleStarClick('personal_skills', 'reliability', value))}
-          </li>
-          <li>
-            <label>Initiative:</label>
-            {renderStar(newEmployee.skills.personal_skills.initiative, (value) => handleStarClick('personal_skills', 'initiative', value))}
-          </li>
+        
+
+      <li><label> Teamwork: <input type="number" name="teamwork" min="1" max="10" value={newEmployee.teamwork || newEmployee.skills.soft_skills.teamwork} onChange={handleInputChange}/> </label></li>
+      <li><label> Communication: <input type="number" name="communication" min="1" max="10" value={newEmployee.communication || newEmployee.skills.soft_skills.communication} onChange={handleInputChange}/> </label></li>
+      <li><label> Leadership: <input type="number" name="leadership" min="1" max="10" value={newEmployee.leadership || newEmployee.skills.soft_skills.leadership} onChange={handleInputChange}/> </label></li>
+      <li><label> Problem Solving: <input type="number" name="problem_solving" min="1" max="10" value={newEmployee.problem_solving || newEmployee.skills.soft_skills.problem_solving} onChange={handleInputChange}/> </label></li>
+      <li><label> Adaptability: <input type="number" name="adaptability" min="1" max="10" value={newEmployee.adaptability || newEmployee.skills.soft_skills.adaptability} onChange={handleInputChange}/> </label></li>
+      <li><label> Punctuality: <input type="number" name="punktuality" min="1" max="10" value={newEmployee.punctuality || newEmployee.skills.soft_skills.punctuality} onChange={handleInputChange}/> </label></li>
+      <li><label> Friendliness: <input type="number" name="friendliness" min="1" max="10" value={newEmployee.friendliness || newEmployee.skills.soft_skills.friendliness} onChange={handleInputChange}/> </label></li>
+      <li><label> Creativity: <input type="number" name="creativity" min="1" max="10" value={newEmployee.creativity || newEmployee.skills.soft_skills.creativity} onChange={handleInputChange}/> </label></li>
+      <li><label> Reliability: <input type="number" name="reliability" min="1" max="10" value={newEmployee.reliability || newEmployee.skills.soft_skills.reliability} onChange={handleInputChange}/> </label></li>
+      <li><label> Initiative: <input type="number" name="initiative" min="1" max="10" value={newEmployee.initiative || newEmployee.skills.soft_skills.initiative} onChange={handleInputChange}/> </label></li>
+        
         </ul>
       </div>
+            <button onClick={handleCreate}>Create</button>
+            <button onClick={handleResetButton}>Reset</button>
     </Layout>
   );
 };

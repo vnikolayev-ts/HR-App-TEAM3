@@ -14,6 +14,7 @@ import Dashboard  from './components/Dashboard/Dashboard';
 import EmployeeList from './components/Employee/EmployeeList';
 import EmployeeDetail from './components/Employee/EmployeeDetail';
 import EmployeeEdit from './components/Employee/EmployeeEdit';
+import EmployeeCreate from './components/Employee/EmployeeCreate';
 
 
 import TenantList from './components/Tenant/TenantList';
@@ -37,6 +38,8 @@ const App = () => {
 
         <Route path="/employee"  element={ <PrivateRoute><EmployeeList /></PrivateRoute> }  />
         <Route path="/employee/:id"  element={ <PrivateRoute><EmployeeDetail /></PrivateRoute> }  />
+        <Route path="/employee-edit/:id"  element={ <PrivateRoute><EmployeeEdit /></PrivateRoute> }  />
+        <Route path="/employee-create"  element={ <PrivateRoute><EmployeeCreate /></PrivateRoute> }  />
 
 
         <Route path="/tenant"  element={ <PrivateRoute><TenantList /></PrivateRoute> }  />
@@ -55,8 +58,6 @@ const App = () => {
         <Route path="/tenant-edit/:id"  element={ <PrivateRoute><TenantEdit /></PrivateRoute> }  />
         <Route path="/tenant-create"  element={ <PrivateRoute><TenantEdit /></PrivateRoute> }  />
 
-        <Route path="/employee-edit/:id"  element={ <PrivateRoute><EmployeeEdit /></PrivateRoute> }  />
-        <Route path="/employee-create"  element={ <PrivateRoute><EmployeeEdit /></PrivateRoute> }  />
 
       </Routes>
      

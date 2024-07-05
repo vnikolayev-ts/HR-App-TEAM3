@@ -53,23 +53,12 @@ const EmployeeDetails = () => {
   const imgUrl = checkUrlExists(employeeData.public_image_path) == true ? employeeData.public_image_path : "." + employeeData.noimage_url;
 
   const handleBackClick = () => { 
-    navigate('/');
+    navigate('/employee');
   };
 
-  const handleNextClick = () => {
-    if (employeeIndex < employeeData.employees.length - 1) {
-      const nextEmployeeId = employeeData.employees[employeeIndex + 1].pers_id;
-      navigate(`/employee/${nextEmployeeId}`);
-    }
-  };
+ 
 
-  const handlePreviousClick = () => {
-    if (employeeIndex > 0) {
-      const previousEmployeeId = employeeData.employees[employeeIndex - 1].pers_id;
-      navigate(`/employee/${previousEmployeeId}`);
-    }
-  };
-
+ 
   const handleEditClick = () => {
     navigate(`/employee-edit/${employee.pers_id}`);
   };
@@ -83,8 +72,7 @@ const EmployeeDetails = () => {
   return (
     
     <Layout>
-     <button onClick={handleEditClick} >Edit</button>
-   
+    <button onClick={handleBackClick} >Back</button>
     
 
 
@@ -96,7 +84,7 @@ const EmployeeDetails = () => {
           src={`${imgUrl}`} alt={`${employee.first_name} ${employee.last_name}`} 
        />
          <div className="person-details" >
-       <h2 class="pageTitle">Details for {employee.first_name} {employee.last_name}</h2>
+     
       
             
       <div className='score'>
@@ -149,9 +137,9 @@ const EmployeeDetails = () => {
 
     <div class="action footer">
       
-        <button class="zurueck" onClick={handlePreviousClick} disabled={employeeIndex === 0}>Zurück</button>
-        <button class="naechster" onClick={handleNextClick} disabled={employeeIndex === employeeData.employees.length - 1}>Nächster</button>
+       
       </div>
+      <button onClick={handleEditClick} >Edit</button>
     
     </Layout>
   );
