@@ -10,16 +10,16 @@ import Layout from '../Layout/Layout';
 
 const EmployeeEdit = () => {
 
-  
-  const title ="Employee Edit Page";
+   
+ 
   const { id } = useParams();
   const navigate = useNavigate();
 
 
   const [employeeData, setEmployeeData] = useState(null);
-  const [layout, setLayout] = useState("simple");
-  const [editEmployee, setEditEmployee] = useState({});
+   const [editEmployee, setEditEmployee] = useState({});
   const [originalEmployee, setOriginalEmployee] = useState({});
+  const [title, setTitle] = useState("Employee Edit Page");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,8 +30,8 @@ const EmployeeEdit = () => {
         //setHRData(data); // Setzen der empfangenen Daten in den State
         
         setEmployeeData(data);
-        setLayout(apiLayout); 
-        setPageTitle(title);
+    
+     
 
         const employeeIndex = data.employees.findIndex(emp => emp.pers_id === id);
         const employee = data.employees[employeeIndex];
@@ -105,7 +105,7 @@ const EmployeeEdit = () => {
 
 
   return (
-    <Layout>
+    <Layout  pTitle={title}>
     
       <button onClick={handleBackClick}>Back</button>
       
@@ -114,77 +114,35 @@ const EmployeeEdit = () => {
       
       
 
-      <div className="edit-form" >
-          
-          <div>
-            <label>
-              First Name:
-              <input type="text" name="first_name" value={editEmployee.first_name || employee.first_name} onChange={handleInputChange} />
-            </label>
-            <label>
-              Last Name:
-              <input type="text" name="last_name" value={editEmployee.last_name || employee.last_name} onChange={handleInputChange} />
-            </label>
-            <label>
-              Date of Birth:
-              <input type="date" name="birthdate" value={editEmployee.birthdate || employee.birthdate} onChange={handleInputChange} />
-            </label>
-            <label>
-              Entry Date:
-              <input type="date" name="entry_date" value={editEmployee.entry_date || employee.entry_date} onChange={handleInputChange} />
-            </label>
-            <label>
-              Position:
-              <input type="text" name="position" value={editEmployee.position || employee.position} onChange={handleInputChange} />
-            </label>
-            <label>
-              Department:
-              <input type="text" name="department" value={editEmployee.department || employee.department} onChange={handleInputChange} />
-            </label>
-            <label>
-              Email:
-              <input type="email" name="email" value={editEmployee.email || employee.email} onChange={handleInputChange} />
-            </label>
-            <label>
-              Phone:
-              <input type="text" name="phone" value={editEmployee.phone || employee.phone} onChange={handleInputChange} />
-            </label>
-            <label>
-              Address:
-              <input type="text" name="address" value={editEmployee.address || employee.address} onChange={handleInputChange} />
-            </label>
-            <label>
-              Sick Days:
-              <input type="number" name="sick_days" value={editEmployee.sick_days || employee.sick_days} onChange={handleInputChange} />
-            </label>
-            <label>
-              Salary:
-              <input type="number" name="salary" value={editEmployee.salary || employee.salary} onChange={handleInputChange} />
-            </label>
-          </div>
-        </div>
-
-      
-      <div className="skills" >
-      <h3>Skills:</h3>
-      <ul>
-      <li><label> Teamwork: <input type="number" name="teamwork" min="1" max="10" value={editEmployee.teamwork || employee.skills.soft_skills.teamwork} onChange={handleInputChange}/> </label></li>
-      <li><label> Communication: <input type="number" name="communication" min="1" max="10" value={editEmployee.communication || employee.skills.soft_skills.communication} onChange={handleInputChange}/> </label></li>
-      <li><label> Leadership: <input type="number" name="leadership" min="1" max="10" value={editEmployee.leadership || employee.skills.soft_skills.leadership} onChange={handleInputChange}/> </label></li>
-      <li><label> Problem Solving: <input type="number" name="problem_solving" min="1" max="10" value={editEmployee.problem_solving || employee.skills.soft_skills.problem_solving} onChange={handleInputChange}/> </label></li>
-      <li><label> Adaptability: <input type="number" name="adaptability" min="1" max="10" value={editEmployee.adaptability || employee.skills.soft_skills.adaptability} onChange={handleInputChange}/> </label></li>
-      <li><label> Punctuality: <input type="number" name="punktuality" min="1" max="10" value={editEmployee.punctuality || employee.skills.personal_skills.punctuality} onChange={handleInputChange}/> </label></li>
-      <li><label> Friendliness: <input type="number" name="friendliness" min="1" max="10" value={editEmployee.friendliness || employee.skills.personal_skills.friendliness} onChange={handleInputChange}/> </label></li>
-      <li><label> Creativity: <input type="number" name="creativity" min="1" max="10" value={editEmployee.creativity || employee.skills.personal_skills.creativity} onChange={handleInputChange}/> </label></li>
-      <li><label> Reliability: <input type="number" name="reliability" min="1" max="10" value={editEmployee.reliability || employee.skills.personal_skills.reliability} onChange={handleInputChange}/> </label></li>
-      <li><label> Initiative: <input type="number" name="initiative" min="1" max="10" value={editEmployee.initiative || employee.skills.personal_skills.initiative} onChange={handleInputChange}/> </label></li>
+      <div className="create-form">
         
-      
-      </ul>
-
-
-
-    </div>
+        <button onClick={handleBackClick}>Back</button>
+       
+        <label>First Name:</label> <input type="text" name="first_name" value={employee.first_name} onChange={handleInputChange} />
+        <label>Last Name:</label> <input type="text" name="last_name" value={employee.last_name} onChange={handleInputChange} />
+        <label>Date of Birth:</label> <input type="date" name="birthdate" value={employee.birthdate} onChange={handleInputChange} />
+        <label>Entry Date:</label> <input type="date" name="entry_date" value={employee.entry_date} onChange={handleInputChange} />
+        <label>Position:</label> <input type="text" name="position" value={employee.position} onChange={handleInputChange} />
+        <label>Department:</label> <input type="text" name="department" value={employee.department} onChange={handleInputChange} />
+        <label>Email:</label>  <input type="email" name="email" value={employee.email} onChange={handleInputChange} />
+        <label>Phone:</label> <input type="text" name="phone" value={employee.phone} onChange={handleInputChange} />
+        <label>Address:</label>  <input type="text" name="address" value={employee.address} onChange={handleInputChange} />
+        <label>Sick Days:</label> <input type="number" name="sick_days" value={employee.sick_days} onChange={handleInputChange} />  
+        <label>Salary:</label><input type="number" name="salary" value={employee.salary} onChange={handleInputChange} />
+         
+        <h3>Skills:</h3>
+        <label>Teamwork:</label><input type="number" name="teamwork" min="1" max="10" value={employee.skills.soft_skills.teamwork} onChange={handleInputChange} />
+        <label>Communication:</label><input type="number" name="communication" min="1" max="10" value={employee.communication || employee.skills.soft_skills.communication} onChange={handleInputChange} />
+        <label>Leadership:</label><input type="number" name="leadership" min="1" max="10" value={employee.leadership || employee.skills.soft_skills.leadership} onChange={handleInputChange} />
+        <label>Problem Solving:</label><input type="number" name="problem_solving" min="1" max="10" value={employee.problem_solving || employee.skills.soft_skills.problem_solving} onChange={handleInputChange} />
+        <label>Adaptability:</label><input type="number" name="adaptability" min="1" max="10" value={employee.adaptability || employee.skills.soft_skills.adaptability} onChange={handleInputChange} />
+        <label>Punctuality:</label><input type="number" name="punctuality" min="1" max="10" value={employee.skills.soft_skills.punctuality} onChange={handleInputChange} />
+        <label>Friendliness:</label><input type="number" name="friendliness" min="1" max="10" value={employee.friendliness || employee.skills.soft_skills.friendliness} onChange={handleInputChange} />
+        <label>Creativity:</label><input type="number" name="creativity" min="1" max="10" value={employee.creativity || employee.skills.soft_skills.creativity} onChange={handleInputChange} />
+        <label>Reliability:</label><input type="number" name="reliability" min="1" max="10" value={employee.reliability || employee.skills.soft_skills.reliability} onChange={handleInputChange} />
+        <label>Initiative:</label><input type="number" name="initiative" min="1" max="10" value={employee.initiative || employee.skills.soft_skills.initiative} onChange={handleInputChange} />
+  
+        </div>
 
    
     <button onClick={handleSave}>Save</button>

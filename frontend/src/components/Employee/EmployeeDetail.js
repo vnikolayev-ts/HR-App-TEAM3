@@ -1,4 +1,4 @@
-import { checkUrlExists, getBarLevelsForScore, getColorForLevel, renderStars, getCurrentDomain, setPageTitle } from '../Utils/Utils';
+import { checkUrlExists, getBarLevelsForScore, getColorForLevel, renderStars, getCurrentDomain } from '../Utils/Utils';
 import {getEmployees} from '../../api/ClientApi'
 
 import React from 'react';
@@ -13,10 +13,11 @@ const EmployeeDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const title ="Employee Detail Page"
+
 
   const [employeeData, setEmployeeData] = useState(null);
   const [layout, setLayout] = useState("simple");
+  const [title, setTitle] = useState("Employee Detail Page");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +29,7 @@ const EmployeeDetails = () => {
         
         setEmployeeData(data);
         setLayout(apiLayout); 
-        setPageTitle(title);
+        setTitle(title);
 
       } catch (error) {
         console.error('Error fetching HR data:', error);
@@ -71,7 +72,7 @@ const EmployeeDetails = () => {
 
   return (
     
-    <Layout>
+    <Layout  pTitle={title}>
     <button onClick={handleBackClick} >Back</button>
     
 

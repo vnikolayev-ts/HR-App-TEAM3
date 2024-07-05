@@ -9,10 +9,10 @@ import { Link } from 'react-router-dom';
 import Layout from '../Layout/Layout';
  
 
-
 const EmployeeList = () => {
     
   const [employeeData, setEmployeeData] = useState(null);
+  const [title, setTitle] = useState("Employee List");
   const [layout, setLayout] = useState("simple");
 
   useEffect(() => {
@@ -25,10 +25,9 @@ const EmployeeList = () => {
         
         setEmployeeData(data);
         setLayout(apiLayout); 
-       
+        setTitle(`Employee List ${employeeData.company}`);
         
-        const title = `Employee List ${employeeData.company}`;
-        setPageTitle(title);
+       
 
       } catch (error) { 
         console.error('Error fetching HR data:', error);
@@ -46,7 +45,7 @@ const EmployeeList = () => {
   }
 return (
   
-    <Layout>
+  <Layout pTitle={title}>
  
  
         <Link to="/employee-create">

@@ -8,12 +8,12 @@ import Footer from "./Footer";
 // import '../../style/login.css';
 // import '../../style/navbar.css';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, pTitle }) => {
   return (
     <div id="application" class="extended">
       <Navbar />
       <h2 id="pTitle" className="pageTitle">
-        ..TITLE...
+        {pTitle}
       </h2>
       <main>{children}</main>
       <Footer />
