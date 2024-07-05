@@ -104,11 +104,11 @@ function UserDetail({ isView = true }) {
 
   return (
     <Layout>
-      <button onClick={handleBackClick} className="viewButton">
+      <button onClick={handleBackClick} className="backButton">
         Back
       </button>
       <Link to={`/user-edit/${user.userId}`}>
-        <button className="viewButton">Edit</button>
+        <button className="editButton">Edit</button>
       </Link>
 
       <div className="container">

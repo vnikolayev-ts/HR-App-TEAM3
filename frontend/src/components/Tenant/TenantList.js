@@ -7,7 +7,7 @@ import Layout from '../Layout/Layout';
 
 import { useEffect, useState } from 'react';
 
-import {  getTenats } from "../../api/ClientApi";
+import {  getTenants } from "../../api/ClientApi";
 
 import { setPageTitle} from '../Utils/Utils'; 
 
@@ -20,7 +20,7 @@ useEffect(() => {
   const fetchData = async () => {
     try {
       const isDataFromLocal = true;
-      const data = await getTenats(isDataFromLocal); // Aufruf der async Funktion getEmployees -API
+      const data = await getTenants(isDataFromLocal); // Aufruf der async Funktion getEmployees -API
       setTenatData(data);
      const title ="Tenant List ";
      setPageTitle(title);
@@ -45,6 +45,7 @@ if (!tenantData) {
 
     return (
         <Layout>
+            <Link to={'/tenant-create'} > <button class="createButton"  >Create Tenant</button> </Link>
           <div>
             {tenantData.tenants.map((tenant) => (
             <div key={(tenant.tenantId)}>
@@ -57,7 +58,6 @@ if (!tenantData) {
             ))}
           </div>
           <div class="tenant-action-list-item">
-          <Link to={'/tenant-create'} > <button class="viewButton"  >New</button> </Link>
           </div>
       </Layout>
   );   
