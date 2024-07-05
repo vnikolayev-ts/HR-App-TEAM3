@@ -48,7 +48,11 @@ return (
   
     <Layout>
  
-  
+ <div className="header">
+        <Link to="/employee-create">
+          <button className="createButton">Create Employee</button>
+        </Link>
+      </div>
     
     <ul class="list" >
       {employeeData.employees.map(employee => (
