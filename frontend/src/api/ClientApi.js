@@ -31,10 +31,10 @@ if (json === true)   return getFileHrData(); //Todo warten bis backend da ist
 function getFileHrData () {
   
     return employeeData;
-}
+} 
 
 
-export  const  getTenats = async  (json=true) => {
+export  const  getTenants = async  (json=true) => {
 
   return tenantData;
 }

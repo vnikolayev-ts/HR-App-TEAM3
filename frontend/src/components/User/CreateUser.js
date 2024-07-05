@@ -67,10 +67,7 @@ function CreateUser() {
       <button onClick={handleBackClick} className="viewButton">
         Back
       </button>
-      <button className="save" onClick={handleSave}>
-                Save
-              </button>
-        <div className="form-group">
+      <div className="form-group">
           <label>Name</label>
           <input
             type="text"
