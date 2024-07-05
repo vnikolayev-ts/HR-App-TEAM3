@@ -16,35 +16,43 @@ function CreateUser() {
   const [password, setPassword] = useState("");
   const [admin, setAdmin] = useState(false);
 
-  const handleSave = async (e) => {
-    e.preventDefault();
+   const handleSave = async (e) => {
+     e.preventDefault();
 
     try {
-      const newUser = {
-        name,
-        username,
-        email,
-        password,
-        admin,
-      };
+       const newUser = {
+         name,
+         username,
+         email,
+         password,
+         admin,
+       };
 
-      // Aufruf der Funktion createUser aus der API, um den Benutzer zu erstellen
-      // await createUser(newUser);
+       // Aufruf der Funktion createUser aus der API, um den Benutzer zu erstellen
+       // await createUser(newUser);
 
-      alert("User created successfully!");
-      navigate("/user");
-    } catch (error) {
-      console.error("Error creating user:", error);
-      // Fehlermeldung falls der User nicht erstellt werden kann
-      alert("Failed to create user. Please try again later.");
-    }
-  };
+       alert("User created successfully!");
+       navigate("/user");
+     } catch (error) {
+       console.error("Error creating user:", error);
+       // Fehlermeldung falls der User nicht erstellt werden kann
+       alert("Failed to create user. Please try again later.");
+     }
+   };
+  //  const handleCreate = () => {
+  //    saveUser (newUser);
+
+  //     alert('User added successfully!');
+  //    navigate("/user");
+
+  // };
+
 
     /* Back Button navigation zurück zum /dashboard */
 
 
     const handleBackClick = () => {
-      navigate("/dashboard");
+      navigate("/user");
   };
 
   /* Cancel Button Funktion */
@@ -108,7 +116,7 @@ function CreateUser() {
           />
         </div>
         <div className="button-container">
-          <button className="saveButton" type="submit">
+          <button className="createButton" onClick={handleSave}>
             Create User
           </button>
           <button className="resetButton" onClick={handleReset}>

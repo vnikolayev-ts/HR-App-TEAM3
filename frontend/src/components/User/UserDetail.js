@@ -25,7 +25,7 @@ function UserDetail({ isView = true }) {
   const navigate = useNavigate();
 
   const handleBackClick = () => {
-    navigate("/dashboard");
+    navigate("/user");
   };
 
   /* Cancel Button Funktion */
@@ -93,9 +93,6 @@ function UserDetail({ isView = true }) {
       <button onClick={handleBackClick} className="backButton">
         Back
       </button>
-      <Link to={`/user-edit/${user.userId}`}>
-        <button className="editButton">Edit</button>
-      </Link>
 
         <form>
           <div className="form-group">
@@ -158,6 +155,9 @@ function UserDetail({ isView = true }) {
             </div>
           )}
         </form>
+        <Link to={`/user-edit/${user.userId}`}>
+                <button className="editButton">Edit</button>
+              </Link>
       
     </Layout>
   );

@@ -19,13 +19,13 @@ function EditUser({ isView = true }) {
   const [password, setPassword] = useState("");
   const [admin, setAdmin] = useState(false);
   const [isReadOnly, setIsReadOnly] = useState(isView);
-  const [tenantId, setTenantId] = useState(null);
+  const [userId, setUserId] = useState(null);
 
   /* Back Button navigation zurück zum /dashboard */
   const navigate = useNavigate();
 
   const handleBackClick = () => {
-    navigate("/dashboard");
+    navigate("/user/"+ userId);
   };
 
   /* Cancel Button Funktion */
@@ -56,6 +56,7 @@ function EditUser({ isView = true }) {
           setEmail(foundUser.email);
           setPassword(foundUser.password);
           setAdmin(foundUser.admin);
+          setUserId(foundUser.userId)
           setIsReadOnly(isView);
         }
 
@@ -80,6 +81,7 @@ function EditUser({ isView = true }) {
     e.preventDefault();
     // Logik zum Speichern der Daten
     alert("User data saved!");
+    navigate("/user/"+ userId);
   };
 
   const handleDelete = (e) => {
@@ -97,9 +99,7 @@ function EditUser({ isView = true }) {
       <button onClick={handleBackClick} className="viewButton">
         Back
       </button>
-      <button className="saveButton" onClick={handleSave}>
-                Save
-              </button>
+      
       
 
         <form>
@@ -151,13 +151,17 @@ function EditUser({ isView = true }) {
           </div>
           {!isView && (
             <div className="button-container">
-              <button className="resetButton" onClick={handleReset}>
-                Reset
-              </button>
+
+
             </div>
           )}
         </form>
-      
+        <button className="resetButton" onClick={handleReset}>
+          Reset
+        </button>
+        <button className="saveButton" onClick={handleSave}>
+          Save
+        </button>
     </Layout>
   );
 }
