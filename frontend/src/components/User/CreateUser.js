@@ -32,7 +32,7 @@ function CreateUser() {
       // await createUser(newUser);
 
       alert("User created successfully!");
-      navigate("/user"); // Beispiel für Weiterleitung zur Benutzerliste oder einer anderen relevanten Seite
+      navigate("/user");
     } catch (error) {
       console.error("Error creating user:", error);
       // Fehlermeldung falls der User nicht erstellt werden kann

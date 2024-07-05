@@ -75,19 +75,6 @@ function EditUser({ isView = true }) {
     return <p>Loading...</p>; // Anzeige während des Ladens der Daten
   }
 
-  /*useEffect(() => {
-    const foundUser = userData.users.find(
-      (user) => user.userId === parseInt(userId)
-    );
-    if (foundUser) {
-      setUser(foundUser);
-      setName(foundUser.name);
-      setUsername(foundUser.username);
-      setEmail(foundUser.email);
-      setPassword(foundUser.password);
-      setAdmin(foundUser.admin);
-    }
-  }, [userId]);*/
 
   const handleSave = (e) => {
     e.preventDefault();
