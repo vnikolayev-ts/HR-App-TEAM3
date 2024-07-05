@@ -1,4 +1,4 @@
-import { checkUrlExists, getBarLevelsForScore, getColorForLevel, renderStars, getCurrentDomain, setPageTitle } from '../Utils/Utils';
+import { checkUrlExists, getBarLevelsForScore, getColorForLevel, renderStars, getCurrentDomain, setPageTitle, saveEmployee } from '../Utils/Utils';
 import {getEmployees} from '../../api/ClientApi'
 
 import React from 'react';
@@ -33,6 +33,11 @@ const EmployeeEdit = () => {
         setLayout(apiLayout); 
         setPageTitle(title);
 
+        const employeeIndex = data.employees.findIndex(emp => emp.pers_id === id);
+        const employee = data.employees[employeeIndex];
+        setOriginalEmployee(employee);
+        setEditEmployee(employee);
+
       } catch (error) {
         console.error('Error fetching HR data:', error);
         // Hier könntest du zusätzliche Fehlerbehandlung durchführen, z.B. eine Fehlermeldung anzeigen
@@ -42,7 +47,7 @@ const EmployeeEdit = () => {
 
     fetchData(); // Aufruf der fetchData Funktion, die getHRData aufruft
 
-  }, [employeeData, layout]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
+  }, [id, title]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
 
   if (!employeeData) {
     return <p>Loading...</p>; // Anzeige während des Ladens der Daten
@@ -52,7 +57,7 @@ const EmployeeEdit = () => {
  
   const employeeIndex = employeeData.employees.findIndex(emp => emp.pers_id === id);
   const employee = employeeData.employees[employeeIndex];
- const imgUrl = checkUrlExists(employeeData.public_image_path) == true ? employeeData.public_image_path : "." + employeeData.noimage_url;
+ //const imgUrl = checkUrlExists(employeeData.public_image_path) == true ? employeeData.public_image_path : "." + employeeData.noimage_url;
 
   
 
@@ -66,26 +71,28 @@ const EmployeeEdit = () => {
     }));
   };
 
-  const handleSave = () => {
-    // Save logic here
-    console.log('Save employee data', editEmployee);
+  const handleSave = (e) => {
+    e.preventDefault();
+    if (window.confirm("All data will be saved. Are you sure?")) {
+      saveEmployee (editEmployee);
+      alert("All data have been saved.");
+      navigate(`/employee/${employee.pers_id}`);
+     
+    }
   };
 
-  const handleCancel = () => {
-    setEditEmployee(originalEmployee);
-  };
 
   const handleReset = (e) => {
     e.preventDefault();
     if (window.confirm("All data will be resetted. Are you sure?")) {
-      window.location.reload(true);
+      setEditEmployee(originalEmployee);
       alert("All data have been resetted.");
     } else {
-      alert("Nothing has been changed.")
+      alert("Nothing has been changed.") 
     }
   };
 
-  const handleDetailClick = () => {
+  const handleBackClick = () => {
     navigate(`/employee/${employee.pers_id}`);
   };
 
@@ -100,6 +107,7 @@ const EmployeeEdit = () => {
   return (
     <Layout>
     
+      <button onClick={handleBackClick}>Back</button>
       
      
 
@@ -153,26 +161,25 @@ const EmployeeEdit = () => {
               Salary:
               <input type="number" name="salary" value={editEmployee.salary || employee.salary} onChange={handleInputChange} />
             </label>
-            <button onClick={handleSave}>Save</button>
-            <button onClick={handleReset}>Reset</button>
-            <button onClick={handleDetailClick}>Detail</button>
           </div>
         </div>
 
       
       <div className="skills" >
-      <p><label>Skills:</label></p>
+      <h3>Skills:</h3>
       <ul>
-        <li><label>Teamwork:</label> {renderStars(employee.skills.soft_skills.teamwork)}</li>
-        <li><label>Communication:</label> {renderStars(employee.skills.soft_skills.communication)}</li>
-        <li><label>Leadership:</label> {renderStars(employee.skills.soft_skills.leadership)}</li>
-        <li><label>Problem Solving:</label> {renderStars(employee.skills.soft_skills.problem_solving)}</li>
-        <li><label>Adaptability:</label> {renderStars(employee.skills.soft_skills.adaptability)}</li>
-        <li><label>Punctuality:</label> {renderStars(employee.skills.personal_skills.punctuality)}</li>
-        <li><label>Friendliness:</label> {renderStars(employee.skills.personal_skills.friendliness)}</li>
-        <li><label>Creativity:</label> {renderStars(employee.skills.personal_skills.creativity)}</li>
-        <li><label>Reliability:</label> {renderStars(employee.skills.personal_skills.reliability)}</li>
-        <li><label>Initiative:</label> {renderStars(employee.skills.personal_skills.initiative)}</li>
+      <li><label> Teamwork: <input type="number" name="teamwork" min="1" max="10" value={editEmployee.teamwork || employee.skills.soft_skills.teamwork} onChange={handleInputChange}/> </label></li>
+      <li><label> Communication: <input type="number" name="communication" min="1" max="10" value={editEmployee.communication || employee.skills.soft_skills.communication} onChange={handleInputChange}/> </label></li>
+      <li><label> Leadership: <input type="number" name="leadership" min="1" max="10" value={editEmployee.leadership || employee.skills.soft_skills.leadership} onChange={handleInputChange}/> </label></li>
+      <li><label> Problem Solving: <input type="number" name="problem_solving" min="1" max="10" value={editEmployee.problem_solving || employee.skills.soft_skills.problem_solving} onChange={handleInputChange}/> </label></li>
+      <li><label> Adaptability: <input type="number" name="adaptability" min="1" max="10" value={editEmployee.adaptability || employee.skills.soft_skills.adaptability} onChange={handleInputChange}/> </label></li>
+      <li><label> Punctuality: <input type="number" name="punktuality" min="1" max="10" value={editEmployee.punctuality || employee.skills.personal_skills.punctuality} onChange={handleInputChange}/> </label></li>
+      <li><label> Friendliness: <input type="number" name="friendliness" min="1" max="10" value={editEmployee.friendliness || employee.skills.personal_skills.friendliness} onChange={handleInputChange}/> </label></li>
+      <li><label> Creativity: <input type="number" name="creativity" min="1" max="10" value={editEmployee.creativity || employee.skills.personal_skills.creativity} onChange={handleInputChange}/> </label></li>
+      <li><label> Reliability: <input type="number" name="reliability" min="1" max="10" value={editEmployee.reliability || employee.skills.personal_skills.reliability} onChange={handleInputChange}/> </label></li>
+      <li><label> Initiative: <input type="number" name="initiative" min="1" max="10" value={editEmployee.initiative || employee.skills.personal_skills.initiative} onChange={handleInputChange}/> </label></li>
+        
+      
       </ul>
 
 
@@ -180,6 +187,8 @@ const EmployeeEdit = () => {
     </div>
 
    
+    <button onClick={handleSave}>Save</button>
+    <button onClick={handleReset}>Reset</button>
     </Layout>
   );
 }

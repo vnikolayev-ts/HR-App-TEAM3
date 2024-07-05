@@ -93,7 +93,7 @@
         export const renderStar = (rating, onStarClick) => {
           const stars = [];
         
-          for (let i = 1; i <= 5; i++) {
+          for (let i = 1; i <= 10; i++) {
             stars.push(
               <span
                 key={i}
@@ -107,3 +107,35 @@
         
           return <div>{stars}</div>;
         };
+
+        export const saveEmployee = (newEmployee)=> {
+          var ausgabe = "Employee added.";
+          ausgabe += "\nVorname: " + newEmployee.first_name;
+          ausgabe += "\nName: " + newEmployee.last_name;
+          ausgabe += "\nBirthdate: " + newEmployee.birthdate;
+          ausgabe += "\nEntrydate: " + newEmployee.entry_date;
+          ausgabe += "\nPosition: " + newEmployee.position;
+          ausgabe += "\nDepartment: " + newEmployee.department;
+          ausgabe += "\nEmail: " + newEmployee.email;
+          ausgabe += "\nPhone: " + newEmployee.phone;
+          ausgabe += "\nAddress: " + newEmployee.address;
+          ausgabe += "\nSickdays: " + newEmployee.sick_days;
+          ausgabe += "\nSalary: " + newEmployee.salary;
+          ausgabe += "\nSkills: " ;
+          ausgabe += "\nSoft Skills: " ;
+          ausgabe += "\nTeamwork: " + newEmployee.teamwork ;
+          ausgabe += "\nCommunikation: " + newEmployee.communication ;
+          ausgabe += "\nLeadership: " + newEmployee.leadership ;
+          ausgabe += "\nProblem solving: " + newEmployee.problem_solving ;
+          ausgabe += "\nAdaptability: " + newEmployee.adaptability ;
+          ausgabe += "\nPunktuality: " + newEmployee.punctuality ;
+          ausgabe += "\nPersonal Skills: "  ;
+          ausgabe += "\nFriendliness: " + newEmployee.friendliness ;
+          ausgabe += "\nCreativity: " + newEmployee.creativity ;
+          ausgabe += "\nReliability: " + newEmployee.reliability ;
+          ausgabe += "\nInitiative: " + newEmployee.initiative ;
+          
+      
+      
+          alert(ausgabe );
+        }

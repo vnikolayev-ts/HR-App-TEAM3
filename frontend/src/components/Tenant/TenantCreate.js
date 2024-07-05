@@ -19,8 +19,8 @@ function TenantCreate({ isView = false }) {
   /* Back Button navigation zurück zum /dashboard */
   const navigate = useNavigate();
 
-  const handleBackClick = () => {
-    navigate("/dashboard");
+  const handleBackClick = () => { 
+    navigate("/tenant");
   };
 
   /* Cancel Button Funktion */
@@ -67,13 +67,14 @@ function TenantCreate({ isView = false }) {
               onChange={(e) => setName(e.target.value)}
               j
             />
-              <button className="save" onClick={handleSave}>
+              
+        </form>
+        <button className="saveButton" onClick={handleSave}>
                 Save
               </button>
-              <button className="reset" onClick={handleReset}>
+              <button className="resetButton" onClick={handleReset}>
                 Reset
               </button>
-        </form>
     </Layout>
   );
 }
