@@ -1,6 +1,7 @@
 
-import { getBarLevelsForScore, getColorForLevel , setPageTitle} from '../Utils/Utils'; 
 import {getEmployees} from '../../api/ClientApi'
+import ScoreComponent from '../Utils/ScoreComponent';
+
 
 import React from 'react';
 import { useEffect, useState } from 'react';
@@ -56,38 +57,20 @@ return (
     <ul class="list" >
       {employeeData.employees.map(employee => (
         <li class="listItem" key={employee.pers_id} >
-            <div class="persdate" >
-            
-              <div class="fname">{employee.first_name}</div>
-              <div class="separator" >|</div>
-              <div class="lname">{employee.last_name}</div>
-              <div class="separator">|</div>
-              <div class="persid">{employee.pers_id}</div>
-              <div class="separator">|</div>
-              <div class="edate">{employee.entry_date}</div>
-              <div class="separator">|</div>
-              <div class="bdate">{employee.position}</div>
-              <div class="separator">|</div>
-            
-              <div class="score">
-                {getBarLevelsForScore(employee.ma_score).map((level, index) => (
-                  <div class="scoreItem"
-                    key={index}
-                    style={{ 
-                      flex: `${level}%`, 
-                      backgroundColor: getColorForLevel(employee.ma_score, index),
-                      borderRight: getColorForLevel(employee.ma_score, index) !== 'white' ? 'none' : 'none'
-                      }}
-                  ></div>
-                ))}
-              </div>
+    
+              <div class="fname">{employee.first_name}</div>             
+              <div class="lname">{employee.last_name}</div>            
+              <div class="persid">{employee.pers_id}</div>          
+              <div class="edate">{employee.entry_date}</div>       
+              <div class="bdate">{employee.position}</div>        
+              <ScoreComponent score={employee.ma_score} />
               
               
                           
               
                   <Link to={`/employee/${employee.pers_id}`} > <button className="viewButton"  >Details</button> </Link>
                  
-              </div>
+       
           
         </li>
       ))}

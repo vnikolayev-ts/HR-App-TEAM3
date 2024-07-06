@@ -32,6 +32,7 @@ const LoginForm = () => {
 
         localStorage.setItem('loggedInUser', username);
         localStorage.setItem('loggedInUserIsAdmin', isAdmin);
+        localStorage.setItem('styleName', "extended");
        
 
         setAccessGranted(true); 
@@ -51,8 +52,8 @@ const LoginForm = () => {
 
     }
     
-    console.log('Email:', username);
-    console.log('Password:', password);
+   
+   
 
   };
 

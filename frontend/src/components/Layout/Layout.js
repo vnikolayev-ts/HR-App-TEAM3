@@ -2,15 +2,25 @@ import React from "react";
 import Navbar from "./NavBar";
 import Footer from "./Footer";
 
+
 // import '../../style/App.css';
 // import '../../style/simple.css';
 // import '../../style/extendet.css';
-// import '../../style/login.css';
-// import '../../style/navbar.css';
 
-const Layout = ({ children, pTitle }) => {
+// import '../../style/navbar.css';
+import '../../style/score.css';
+import '../../style/login.css';
+
+
+       
+
+const Layout = ({ children, pTitle, styleName="default" }) => {
+
+
+  const loginStyleName = localStorage.getItem('styleName');
+       
   return (
-    <div id="application" class="extended">
+    <div id="application" className={loginStyleName?loginStyleName:styleName}>
       <Navbar />
       <h2 id="pTitle" className="pageTitle">
         {pTitle}

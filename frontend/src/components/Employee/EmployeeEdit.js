@@ -1,6 +1,6 @@
 import { checkUrlExists, getBarLevelsForScore, getColorForLevel, renderStars, getCurrentDomain, setPageTitle, saveEmployee } from '../Utils/Utils';
 import {getEmployees} from '../../api/ClientApi'
-
+import LabelInputComponent from '../Utils/LabelInputComponent';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -20,6 +20,7 @@ const EmployeeEdit = () => {
    const [editEmployee, setEditEmployee] = useState({});
   const [originalEmployee, setOriginalEmployee] = useState({});
   const [title, setTitle] = useState("Employee Edit Page");
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -107,7 +108,7 @@ const EmployeeEdit = () => {
   return (
     <Layout  pTitle={title}>
     
-      <button onClick={handleBackClick}>Back</button>
+      <button className="backButton" onClick={handleBackClick}>Back</button>
       
      
 
@@ -116,19 +117,30 @@ const EmployeeEdit = () => {
 
       <div className="create-form">
         
-        <button onClick={handleBackClick}>Back</button>
        
-        <label>First Name:</label> <input type="text" name="first_name" value={employee.first_name} onChange={handleInputChange} />
-        <label>Last Name:</label> <input type="text" name="last_name" value={employee.last_name} onChange={handleInputChange} />
-        <label>Date of Birth:</label> <input type="date" name="birthdate" value={employee.birthdate} onChange={handleInputChange} />
-        <label>Entry Date:</label> <input type="date" name="entry_date" value={employee.entry_date} onChange={handleInputChange} />
-        <label>Position:</label> <input type="text" name="position" value={employee.position} onChange={handleInputChange} />
-        <label>Department:</label> <input type="text" name="department" value={employee.department} onChange={handleInputChange} />
-        <label>Email:</label>  <input type="email" name="email" value={employee.email} onChange={handleInputChange} />
-        <label>Phone:</label> <input type="text" name="phone" value={employee.phone} onChange={handleInputChange} />
-        <label>Address:</label>  <input type="text" name="address" value={employee.address} onChange={handleInputChange} />
-        <label>Sick Days:</label> <input type="number" name="sick_days" value={employee.sick_days} onChange={handleInputChange} />  
-        <label>Salary:</label><input type="number" name="salary" value={employee.salary} onChange={handleInputChange} />
+
+        <LabelInputComponent lab={"First Name"} name="first_name" val={employee.first_name} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Last Name"} name="last_name" val={employee.last_name} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Date of Birth"} name="birthdate" val={employee.birthdate} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Date of Entry"} name="entry_date" val={employee.entry_date} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Position"} name="position" val={employee.position} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Department"} name="department" val={employee.department} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Email"} name="email" val={employee.email} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Phone"} name="phone" val={employee.phone} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Address"} name="address" val={employee.address} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Sick Days"} name="sick_days" val={employee.sick_days} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Salary"} name="salary" val={employee.salary} onChange={handleInputChange}/>
+
+        <LabelInputComponent lab={"Position"} name="position" val={employee.position} onChange={handleInputChange}/>
+    
+        <LabelInputComponent
+        lab={"Number (1-10)"}
+        name="numberInput"
+
+        type="number"
+        min={1}
+        max={10}
+      />
          
         <h3>Skills:</h3>
         <label>Teamwork:</label><input type="number" name="teamwork" min="1" max="10" value={employee.skills.soft_skills.teamwork} onChange={handleInputChange} />

@@ -1,5 +1,8 @@
 import { checkUrlExists, getBarLevelsForScore, getColorForLevel, renderStars, getCurrentDomain } from '../Utils/Utils';
 import {getEmployees} from '../../api/ClientApi'
+import ScoreComponent from '../Utils/ScoreComponent';
+import StarsComponent from '../Utils/StarsComponent';
+import LabelValueComponent from './../Utils/LabelValueComponent';
 
 import React from 'react';
 import { useEffect, useState } from 'react';
@@ -29,7 +32,7 @@ const EmployeeDetails = () => {
         
         setEmployeeData(data);
         setLayout(apiLayout); 
-        setTitle(title);
+        setTitle(title); 
 
       } catch (error) {
         console.error('Error fetching HR data:', error);
@@ -87,50 +90,40 @@ const EmployeeDetails = () => {
          <div className="person-details" >
      
       
-            
-      <div className='score'>
-        {getBarLevelsForScore(employee.ma_score).map((level, index) => (
-          <div
-            key={index}
-            style={{ borderRadius: '5px',
-              flex: `${level}%`,
-              backgroundColor: getColorForLevel(employee.ma_score, index),
-              borderRight: getColorForLevel(employee.ma_score, index) !== 'white' ? 'none' : 'none', boxShadow: '2px 2px 5px', marginRight: 2,
-            }}
-          ></div>
-        ))}
-      </div>
-      <p><label>MA-Score:</label> {employee.ma_score}</p>
-      <p><label>Pers-ID:</label> {employee.pers_id}</p>
-      <p><label>First Name:</label> {employee.first_name}</p>
-      <p><label>Last Name:</label> {employee.last_name}</p>
-      <p><label>Date of Birth:</label> {employee.birthdate}</p>
-      <p><label>Entry:</label> {employee.entry_date}</p>
-      <p><label>Position:</label> {employee.position}</p>
-      <p><label>Department:</label> {employee.department}</p>
-      <p><label>Email:</label> {employee.email}</p>
-      <p><label>Phone:</label> {employee.phone}</p>
-      <p><label>Address:</label> {employee.address}</p>
+        
+   
 
-      <p><label>Sick Days:</label> {employee.sick_days} Tage</p>
-      <p><label>Salary / Year :</label> {employee.salary} €</p>
+      <LabelValueComponent value={<ScoreComponent score={employee.ma_score} />} className={"ma-score"} />
+      <LabelValueComponent label={"MA-Score"} value={employee.ma_score } />
+      <LabelValueComponent label={"Pers-ID"} value={employee.pers_id}  />
+      <LabelValueComponent label={"First Name"} value={employee.first_name}  />
+      <LabelValueComponent label={"Last Name"} value={employee.last_name}  />
+      <LabelValueComponent label={"Date of Birth"} value={employee.birthdate}  />
+      <LabelValueComponent label={"Entry"} value={employee.entry_date}  />
+      <LabelValueComponent label={"Position"} value={employee.position}  />
+      <LabelValueComponent label={"Department"} value={employee.department}  />
+      <LabelValueComponent label={"Email"} value={employee.email}  />
+      <LabelValueComponent label={"Phone"} value={employee.phone}  />
+      <LabelValueComponent label={"Address"} value={employee.address}  />
+      <LabelValueComponent label={"Sick Days"} value={employee.sick_days}  />
+      <LabelValueComponent label={"Salary / Year (€)"} value={employee.salary}  />
+
       </div>
       
       
       <div className="skills" >
       <h3>Skills:</h3>
-      <ul>
-        <li><label>Teamwork:</label> {renderStars(employee.skills.soft_skills.teamwork)}</li>
-        <li><label>Communication:</label> {renderStars(employee.skills.soft_skills.communication)}</li>
-        <li><label>Leadership:</label> {renderStars(employee.skills.soft_skills.leadership)}</li>
-        <li><label>Problem Solving:</label> {renderStars(employee.skills.soft_skills.problem_solving)}</li>
-        <li><label>Adaptability:</label> {renderStars(employee.skills.soft_skills.adaptability)}</li>
-        <li><label>Punctuality:</label> {renderStars(employee.skills.personal_skills.punctuality)}</li>
-        <li><label>Friendliness:</label> {renderStars(employee.skills.personal_skills.friendliness)}</li>
-        <li><label>Creativity:</label> {renderStars(employee.skills.personal_skills.creativity)}</li>
-        <li><label>Reliability:</label> {renderStars(employee.skills.personal_skills.reliability)}</li>
-        <li><label>Initiative:</label> {renderStars(employee.skills.personal_skills.initiative)}</li>
-      </ul>
+      <LabelValueComponent label={"Teamwork"} value={<StarsComponent value={employee.skills.soft_skills.teamwork} /> } />
+      <LabelValueComponent label={"Communication"} value={<StarsComponent value={employee.skills.soft_skills.communication} /> } />
+      <LabelValueComponent label={"Leadership"} value={<StarsComponent value={employee.skills.soft_skills.leadership} /> } />
+      <LabelValueComponent label={"Problem Solving"} value={<StarsComponent value={employee.skills.soft_skills.problem_solving} /> } />
+      <LabelValueComponent label={"Adaptability"} value={<StarsComponent value={employee.skills.soft_skills.adaptability} /> } />
+      <LabelValueComponent label={"Punctuality"} value={<StarsComponent value={employee.skills.personal_skills.punctuality} /> } />
+      <LabelValueComponent label={"Friendliness"} value={<StarsComponent value={employee.skills.personal_skills.friendliness} /> } />
+      <LabelValueComponent label={"Creativity"} value={<StarsComponent value={employee.skills.personal_skills.creativity} /> } />
+      <LabelValueComponent label={"Reliability"} value={<StarsComponent value={employee.skills.personal_skills.reliability} /> } />
+      <LabelValueComponent label={"Initiative"} value={<StarsComponent value={employee.skills.personal_skills.initiative} /> } />
+  
 
 
 

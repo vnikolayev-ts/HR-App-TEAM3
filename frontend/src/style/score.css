@@ -1,0 +1,16 @@
+ .score{
+    /*style={{ display: 'flex', height: 15, width: '350px', marginBottom: 5, border: 'none' }}*/
+     display: flex;
+     height: 15px;
+     width: 350px;
+     margin-bottom: 5px;
+     border: none ;
+  }
+  
+   .scoreItem{
+   /* border: 'none', borderRadius: '5px', boxShadow: '2px 2px 7px', marginRight: '2px',*/
+    border: none;
+    border-radius:5px; 
+    box-shadow: 2px 2px 7px; 
+    margin-right: 2px;
+  }
