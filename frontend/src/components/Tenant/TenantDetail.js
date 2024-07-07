@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { json, useParams } from "react-router-dom";
 import { setPageTitle } from "../Utils/Utils";
+import LabelValueComponent from './../Utils/LabelValueComponent';
 
 import Layout from "../Layout/Layout";
 import { getTenant } from "../../api/ClientApi";
 
-import { Link } from "react-router-dom";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
-function TenantDetail({ isView = true }) {
+function TenantDetail() {
   // const isView = true;
   const { id } = useParams();
   const [name, setName] = useState("");
@@ -21,17 +20,6 @@ function TenantDetail({ isView = true }) {
 
   const handleBackClick = () => {
     navigate("/tenant");
-  };
-
-  /* Cancel Button Funktion */
-  const handleReset = (e) => {
-    e.preventDefault();
-    if (window.confirm("All data will be resetted. Are you sure?")) {
-      window.location.reload(true);
-      alert("All data have been resetted.");
-    } else {
-      alert("Nothing has been changed.");
-    }
   };
 
   useEffect(() => {
@@ -64,17 +52,6 @@ function TenantDetail({ isView = true }) {
   }
 
 
-  const handleSave = (e) => {
-    e.preventDefault();
-    // Logik zum Speichern der Daten
-    alert("Tenant data saved!");
-  };
-
-  const handleDelete = (e) => {
-    e.preventDefault();
-    // Logik zum Löschen der Daten
-    alert("Tenant data deleted!");
-  };
 
   if (!tenant) {
     return <div>Tenant not found {id}</div>;
@@ -82,43 +59,14 @@ function TenantDetail({ isView = true }) {
 
   return (
     <Layout>
-      <button onClick={handleBackClick} className="backButton">
-        Back
-      </button>
-      <Link to={`/tenant-edit/${tenant.tenantId}`}>
-        <button className="editButton">Edit</button>
-      </Link>
+      <button onClick={handleBackClick} className="backButton">Back</button>
 
+
+      <LabelValueComponent label={"Tenant-ID"} value={tenantId } />
+      <LabelValueComponent label={"Name"} value={name } />
+      <Link to={`/tenant-edit/${tenant.tenantId}`}><button className="editButton">Edit</button></Link>
       
-        <form>
-          <div className="form-group">
-            <label>Name</label>
-            <input
-              type="text"
-              value={name}
-              readOnly={true}
-              onChange={(e) => setName(e.target.value)}
-              
-            />
-          </div>
-          <div className="form-group">
-            <label>Tenant-ID</label>
-            {tenantId}
-          </div>
-          {!isView && (
-            <div className="button-container">
-              <button className="saveButton" onClick={handleSave}>
-                Save
-              </button>
-              <button className="deleteButton" onClick={handleDelete}>
-                Delete
-              </button>
-              <button className="resetButton" onClick={handleReset}>
-                Reset
-              </button>
-            </div>
-          )}
-        </form>
+       
       
     </Layout>
   );

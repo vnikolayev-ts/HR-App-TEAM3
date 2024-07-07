@@ -4,6 +4,7 @@ import { setPageTitle } from "../Utils/Utils";
 
 import Layout from "../Layout/Layout";
 import { getUserById } from "../../api/ClientApi";
+import LabelValueComponent from './../Utils/LabelValueComponent';
 
 import { Link } from "react-router-dom";
 
@@ -93,75 +94,16 @@ function UserDetail({ isView = true }) {
 
   return (
     <Layout>
-      <button onClick={handleBackClick} className="backButton">
-        Back
-      </button>
-
-        <form>
-          <div className="form-group">
-            <label>TID</label>{tenantId}
-            <label>Name</label>
-            <input
-              type="text"
-              value={name}
-              readOnly={isReadOnly}
-              onChange={(e) => setName(e.target.value)}
-              
-            />
-          </div>
-          <div className="form-group">
-            <label>Username</label>
-            <input
-              type="text"
-              value={username}
-              readOnly={isReadOnly}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label>Email</label>
-            <input
-              type="email"
-              value={email}
-              readOnly={isReadOnly}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label>Password</label>
-            <input
-              type="password"
-              value={password}
-              readOnly={isReadOnly}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label>Admin</label>
-            <input
-              type="checkbox"
-              checked={admin}
-              readOnly={isReadOnly}
-              onChange={(e) => setAdmin(e.target.checked)}
-            />
-          </div>
-          {!isView && (
-            <div className="button-container">
-              <button className="saveButton" onClick={handleSave}>
-                Save
-              </button>
-              <button className="deleteButton" onClick={handleDelete}>
-                Delete
-              </button>
-              <button className="resetButton" onClick={handleReset}>
-                Reset
-              </button>
-            </div>
-          )}
-        </form>
-        <Link to={`/user-edit/${id}`}>
-                <button className="editButton">Edit</button>
-              </Link>
+      <button onClick={handleBackClick} className="backButton"> Back </button>
+            <LabelValueComponent label={"ID"} value={id } />
+            <LabelValueComponent label={"Tenant-ID"} value={tenantId } />
+            <LabelValueComponent label={"Name"} value={name} />
+            <LabelValueComponent label={"Username"} value={username} />
+            <LabelValueComponent label={"Password"} value={"******"} />
+            <LabelValueComponent label={"Admin"} value={admin} />
+            <LabelValueComponent label={"Name"} value={name} />
+       
+        <Link to={`/user-edit/${id}`}><button className="editButton">Edit</button>  </Link>
       
     </Layout>
   );

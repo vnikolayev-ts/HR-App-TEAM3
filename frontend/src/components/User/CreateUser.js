@@ -6,6 +6,9 @@ import { setPageTitle } from "../Utils/Utils";
 // import { createUser } from "../../api/ClientApi";
 
 
+import LabelValueComponent from './../Utils/LabelValueComponent';
+import LabelInputComponent from './../Utils/LabelInputComponent';
+
  
 
 function CreateUser() {
@@ -75,54 +78,16 @@ function CreateUser() {
         Back
       </button>
       <form onSubmit={handleSave}>
-      <div className="form-group">
-          <label>Name</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label>Username</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label>Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label>Admin</label>
-          <input
-            type="checkbox"
-            checked={admin}
-            onChange={(e) => setAdmin(e.target.checked)}
-          />
-        </div>
-        <div className="button-container">
-          <button className="createButton" onClick={handleSave}>
-            Create User
-          </button>
-          <button className="resetButton" onClick={handleReset}>
-                Reset
-              </button>
-        </div>
+
+     
+        <LabelInputComponent lab={"Name"} name="name" val={name} onChange={(e) => setName(e.target.value)}/>
+        <LabelInputComponent lab={"Username"} name="username" val={name} onChange={(e) => setName(e.target.value)}/>
+        <LabelInputComponent lab={"Email"} name="name" val={email} onChange={(e) => setName(e.target.value)}/>
+        <LabelInputComponent lab={"Password"} name="name" val={password} type={'password'} onChange={(e) => setName(e.target.value)}/>
+        <LabelInputComponent lab={"Admin"} name="name" val={admin} checked={admin} type={'checkbox'} onChange={(e) => setName(e.target.value)}/>
+        
+
+
       </form>
     </Layout>
   );

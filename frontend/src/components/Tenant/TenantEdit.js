@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { json, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { setPageTitle } from "../Utils/Utils";
+
+import LabelInputComponent from '../Utils/LabelInputComponent';
+import LabelValueComponent from './../Utils/LabelValueComponent';
 
 import Layout from "../Layout/Layout";
 import { getTenant } from "../../api/ClientApi";
 
-import { Link } from "react-router-dom";
-
 import { useNavigate } from "react-router-dom";
 
-function TenantEdit({ isView = false }) {
+function TenantEdit() {
   // const isView = true;
   const { id } = useParams();
   const [name, setName] = useState("");
@@ -82,38 +83,16 @@ function TenantEdit({ isView = false }) {
 
   return (
     <Layout>
-      <button onClick={handleBackClick} className="backButton">
-        Back
-      </button>
+      <button  className="backButton" onClick={handleBackClick}> Back </button>
 
         <form>
-          <div className="form-group">
-            <label>Name</label>
-            <input
-              type="text"
-              value={name}
-              readOnly={false}
-              onChange={(e) => setName(e.target.value)}
-              
-            />
-          </div>
-          <div className="form-group">
-            <label>Tenant-ID</label>
-            {tenantId}
-          </div>
-          {!isView && (
-            <div className="button-container">
-              <button className="saveButton" onClick={handleSave}>
-                Save
-              </button>
-              <button className="deleteButton" onClick={handleDelete}>
-                Delete
-              </button>
-              <button className="resetButton" onClick={handleReset}>
-                Reset
-              </button>
-            </div>
-          )}
+         
+        <LabelValueComponent label={"Tenant-ID"} value={tenantId } onChange={(e) => setName(e.target.value)}/>
+        <LabelInputComponent lab={"Name"} val={name } onChange={(e) => setName(e.target.value)}/>
+        <button className="saveButton" onClick={handleSave}>Save</button>
+        <button className="deleteButton" onClick={handleDelete}> Delete</button>
+        <button className="resetButton" onClick={handleReset}> Reset </button>
+      
         </form>
       
     </Layout>

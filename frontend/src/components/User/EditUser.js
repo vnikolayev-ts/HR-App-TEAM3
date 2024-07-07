@@ -5,20 +5,22 @@ import { setPageTitle } from "../Utils/Utils";
 import Layout from "../Layout/Layout";
 import { getUserById, getUsers } from "../../api/ClientApi";
 
-import { Link } from "react-router-dom";
+import LabelValueComponent from './../Utils/LabelValueComponent';
+import LabelInputComponent from './../Utils/LabelInputComponent';
 
 import { useNavigate } from "react-router-dom";
 
 function EditUser({ isView = true }) {
   // const isView = true;
   const { id } = useParams();
+  const [tenantId, setTenantId] = useState(null);
   const [user, setUser] = useState(null);
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [admin, setAdmin] = useState(false);
-  const [isReadOnly, setIsReadOnly] = useState(isView);
+
   const [userId, setUserId] = useState(null);
 
   /* Back Button navigation zurück zum /dashboard */
@@ -50,14 +52,14 @@ function EditUser({ isView = true }) {
         setUser(fUser);
 
         if (user) {
-          
+          setTenantId(user.tenantId);
           setName(user.name);
           setUsername(user.username);
           setEmail(user.email);
           setPassword(user.password);
           setAdmin(user.admin);
           setUserId(user.userId)
-          setIsReadOnly(isView);
+ 
         }
 
         const title = isView ? "Detail Page" : "Edit Page";
@@ -96,72 +98,21 @@ function EditUser({ isView = true }) {
 
   return (
     <Layout>
-      <button onClick={handleBackClick} className="viewButton">
-        Back
-      </button>
+      <button onClick={handleBackClick} className="backButton">Back</button>
       
-      
-
-        <form>
-          <div className="form-group">
-            <label>Name</label> 
-            <input
-              type="text"
-              value={name}
-              readOnly={isReadOnly}
-              onChange={(e) => setName(e.target.value)}
-              
-            />
-          </div>
-          <div className="form-group">
-            <label>Username</label>
-            <input
-              type="text"
-              value={username}
-              readOnly={isReadOnly}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label>Email</label>
-            <input
-              type="email"
-              value={email}
-              readOnly={isReadOnly}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label>Password</label>
-            <input
-              type="password"
-              value={password}
-              readOnly={isReadOnly}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label>Admin</label>
-            <input
-              type="checkbox"
-              checked={admin}
-              readOnly={isReadOnly}
-              onChange={(e) => setAdmin(e.target.checked)}
-            />
-          </div>
-          {!isView && (
-            <div className="button-container">
-
-
-            </div>
-          )}
+      <form>
+        <LabelValueComponent label={"Tenant-ID"} value={tenantId } />
+        <LabelInputComponent lab={"Name"} name="name" val={name} onChange={(e) => setName(e.target.value)}/>
+        <LabelInputComponent lab={"Username"} name="username" val={name} onChange={(e) => setName(e.target.value)}/>
+        <LabelInputComponent lab={"Email"} name="name" val={email} onChange={(e) => setName(e.target.value)}/>
+        <LabelInputComponent lab={"Password"} name="name" val={password} type={'password'} onChange={(e) => setName(e.target.value)}/>
+        <LabelInputComponent lab={"Admin"} name="name" val={admin} checked={admin} type={'checkbox'} onChange={(e) => setName(e.target.value)}/>
+        
+          
+        <button className="resetButton" onClick={handleReset}>Reset</button>
+        <button className="saveButton" onClick={handleSave}>Save </button>
+        
         </form>
-        <button className="resetButton" onClick={handleReset}>
-          Reset
-        </button>
-        <button className="saveButton" onClick={handleSave}>
-          Save
-        </button>
     </Layout>
   );
 }

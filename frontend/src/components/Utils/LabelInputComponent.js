@@ -17,6 +17,8 @@ const LabelInputComponent = ({ lab, name, val, pholder, readonly, type, cname })
         
         
       }
+
+      if (!isNaN(che)) {
     }
     // Weitere Validierungen für andere Typen können hier hinzugefügt werden
 
@@ -44,7 +46,7 @@ LabelInputComponent.propTypes = {
   val: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   pholder: PropTypes.string,
   readonly: PropTypes.bool,
-  type: PropTypes.oneOf(['text', 'number', 'range', 'email', 'password', 'date']), // Füge hier weitere Typen hinzu, die du unterstützen möchtest
+  type: PropTypes.oneOf(['text', 'number', 'range', 'email', 'password', 'date', 'checkbox']), // Füge hier weitere Typen hinzu, die du unterstützen möchtest
   cname: PropTypes.string,
   onChange: PropTypes.func
 };
