@@ -1,40 +1,38 @@
 
 
-import React, { useState } from 'react';
+import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../Login/auth';
 
 
-
-
+const lUser = localStorage.getItem('loginUser');
+const loginUser = JSON.parse(lUser);
+const isAdmin = true;
 
 const Navbar =()  => {
+
+
    
-    const isAdmin = localStorage.getItem('loggedInUserIsAdmin');
- 
+   const [dropdownOpen, setDropdownOpen] = useState(false);
 
 
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  //const [isAdmin, setIsAdmin] = useState(localStorage.getItem('loggedInUserIsAdmin'));
-
- 
-
+   const navigate = useNavigate();
 
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
-  const navigate = useNavigate();
+  
 
   const handleLogout = () => {
-   
+    
     logout();
     navigate('/');
   };
 
-
+  
  
   console.log("admin:" + isAdmin);
   return (
@@ -51,15 +49,15 @@ const Navbar =()  => {
         {dropdownOpen && (
           <div className="dropdownContent">
             
-             { isAdmin === "true" && (
+             {  isAdmin === true && (
                 <>
                  <Link to="/user">User</Link>
                  <Link to="/tenant">Tenats</Link>
                 </>
 
                 )}
-           
-            <Link to="/user-profile">Profile</Link>
+           <Link to={`/user-profile/${loginUser.userId}`}>Profile</Link>
+     
             <button class="logout" onClick={handleLogout}>Logout</button>
 
            

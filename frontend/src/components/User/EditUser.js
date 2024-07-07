@@ -3,7 +3,7 @@ import { json, useParams } from "react-router-dom";
 import { setPageTitle } from "../Utils/Utils";
 
 import Layout from "../Layout/Layout";
-import { getUsers } from "../../api/ClientApi";
+import { getUserById, getUsers } from "../../api/ClientApi";
 
 import { Link } from "react-router-dom";
 
@@ -45,18 +45,18 @@ function EditUser({ isView = true }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const isDataFromLocal = true;
-        const data = await getUsers(isDataFromLocal); // Aufruf der async Funktion getEmployees -API
-        const foundUser = data.users.find((u) => u.userId === parseInt(id));
+        
+        const fUser = await getUserById(id); // Aufruf der async Funktion getEmployees -API
+        setUser(fUser);
 
-        if (foundUser) {
-          setUser(foundUser);
-          setName(foundUser.name);
-          setUsername(foundUser.username);
-          setEmail(foundUser.email);
-          setPassword(foundUser.password);
-          setAdmin(foundUser.admin);
-          setUserId(foundUser.userId)
+        if (user) {
+          
+          setName(user.name);
+          setUsername(user.username);
+          setEmail(user.email);
+          setPassword(user.password);
+          setAdmin(user.admin);
+          setUserId(user.userId)
           setIsReadOnly(isView);
         }
 

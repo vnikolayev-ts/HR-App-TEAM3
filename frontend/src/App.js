@@ -29,8 +29,10 @@ import EditUser from './components/User/EditUser';
 import TenantCreate from './components/Tenant/TenantCreate';
 
 
+
 const App = () => {
   return (
+   
     <Router>
     
       <Routes>
@@ -53,16 +55,11 @@ const App = () => {
       
         <Route path="/user-edit/:id"  element={ <PrivateRoute><EditUser isView={false} /></PrivateRoute> }  />
         <Route path="/user-create"  element={ <PrivateRoute><CreateUser /></PrivateRoute> }  />
-
-        
-        /*TODO*/
-        <Route path="/user-profile"  element={ <PrivateRoute><UserList /></PrivateRoute> }  />
-
-
-
+        <Route path="/user-profile/:id"  element={ <PrivateRoute><UserDetail /></PrivateRoute> }  />
       </Routes>
      
     </Router>
+
   );
 }
 

@@ -6,7 +6,7 @@
     "noimage_url":"./images/noimage.jpg",
     "employees": [
         {
-            "tenantId":"1", 
+            "tenantId":1, 
             "pers_id": "1001",
             "first_name": "Max",
             "last_name": "Mustermann",
@@ -44,7 +44,7 @@
             "salary": 120000
         },
         {
-            "tenantId":"1", 
+            "tenantId":1, 
             "pers_id": "1002",
             "first_name": "Erika",
             "last_name": "Mustermann",
@@ -82,7 +82,7 @@
             "salary": 85000
         },
         {
-            "tenantId":"1", 
+            "tenantId":1, 
             "pers_id": "1003",
             "first_name": "Hans",
             "last_name": "Müller",
@@ -120,7 +120,7 @@
             "salary": 70000
         },
         {
-            "tenantId":"1", 
+            "tenantId":1, 
             "pers_id": "1004",
             "first_name": "Lena",
             "last_name": "Schneider",
@@ -158,7 +158,7 @@
             "salary": 80000
         },
         {
-            "tenantId":"1", 
+            "tenantId":1, 
             "pers_id": "1005",
             "first_name": "Tom",
             "last_name": "Friedrich",
@@ -196,7 +196,7 @@
             "salary": 70000
         },
         {
-            "tenantId":"1", 
+            "tenantId":1, 
             "pers_id": "1006",
             "first_name": "Claudia",
             "last_name": "Klein",
@@ -234,7 +234,7 @@
             "salary": 75000
         },
         {
-            "tenantId":"2", 
+            "tenantId":2, 
             "pers_id": "1007",
             "first_name": "Lena",
             "last_name": "Schneider",
@@ -272,7 +272,7 @@
             "salary": 80000
         },
         {
-            "tenantId":"2", 
+            "tenantId":2, 
             "pers_id": "1008",
             "first_name": "Tom",
             "last_name": "Friedrich",
@@ -310,7 +310,7 @@
             "salary": 70000
         },
         {
-            "tenantId":"2", 
+            "tenantId":2, 
             "pers_id": "1009",
             "first_name": "Claudia",
             "last_name": "Klein",
@@ -348,7 +348,7 @@
             "salary": 75000
         },
         {
-            "tenantId":"2", 
+            "tenantId":2, 
             "pers_id": "1010",
             "first_name": "Markus",
             "last_name": "Weber",
@@ -386,7 +386,7 @@
             "salary": 68000
         },
         {
-            "tenantId":"2", 
+            "tenantId":2, 
             "pers_id": "1011",
             "first_name": "Sarah",
             "last_name": "Hofmann",
@@ -424,7 +424,7 @@
             "salary": 72000
         },
         {
-            "tenantId":"2", 
+            "tenantId":2, 
             "pers_id": "1012",
             "first_name": "Jonas",
             "last_name": "Schulz",

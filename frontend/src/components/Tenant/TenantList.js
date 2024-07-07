@@ -19,8 +19,8 @@ const TenantList = () => {
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const isDataFromLocal = true;
-      const data = await getTenants(isDataFromLocal); // Aufruf der async Funktion getEmployees -API
+     
+      const data = await getTenants(); // Aufruf der async Funktion getEmployees -API
       setTenatData(data);
      const title ="Tenant List ";
      setPageTitle(title);
@@ -47,7 +47,7 @@ if (!tenantData) {
         <Layout>
             <Link to={'/tenant-create'} > <button class="createButton"  >Create Tenant</button> </Link>
           
-            {tenantData.tenants.map((tenant) => (
+            {tenantData.map((tenant) => (
             <div key={(tenant.tenantId)}>
                 <div>{tenant.name}</div>
                 <div>{tenant.tenantId}</div>

@@ -2,92 +2,72 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from './auth';
 
+import { apiLogin } from "../../api/ClientApi";
 
-const imgUrl='../images/logo/android-chrome-512x512.png';
-
-
-
+const imgUrl = '../images/logo/android-chrome-512x512.png';
 
 
 const LoginForm = () => {
-    const validUsername = 'user@user.de';
-    const validPassword = '123456';
-    const isAdmin = true; 
+ const testUsername = 'user.one@tenanta.com';
+  const testPassword = '123456';
 
-  const [username, setUsername] = useState(validUsername);
-  const [password, setPassword] = useState(validPassword);
+
+  const [username, setUsername] = useState(testUsername);
+  const [password, setPassword] = useState(testPassword);
   const [showWarning, setShowWarning] = useState(false);
   const [accessGranted, setAccessGranted] = useState(false);
-  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const navigate = useNavigate()
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
- 
-  
-
- 
-    if (username === validUsername && password === validPassword) {
-        console.log('Acces granted');
-
-        localStorage.setItem('loggedInUser', username);
-        localStorage.setItem('loggedInUserIsAdmin', isAdmin);
-        localStorage.setItem('styleName', "extended");
-       
-
-        setAccessGranted(true); 
-        login();
+    
+    try {
+      const loginUser = await apiLogin(username, password);
+      
+      if (loginUser) {
+        console.log('Access granted');
+        setAccessGranted(true);
+        login(loginUser);
         navigate('/dashboard');
-
-        /*setTimeout(() => {
-          setAccessGranted(false);
-        }, 5000);*/
-
-      } else  {
-        console.log('Wrong credentials')
+      } else {
+        console.log('Wrong credentials');
         setShowWarning(true);
         setTimeout(() => {
           setShowWarning(false);
         }, 5000);
-
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      // Handle error (e.g., display error message)
     }
-    
-   
-   
-
   };
 
- 
-
   const closeWarning = () => {
-      setShowWarning(false);
-    
+    setShowWarning(false);
   };
 
   const closeAccessGranted = () => {
     setAccessGranted(false);
   };
 
-
   return (
     <div className="loginContainer">
-      
-        <div className={`warningPopup ${showWarning ? 'visible' : ''}`}>
-          <div className="warningContent">
-            <span className="closeBtn" onClick={closeWarning}>&times;</span>
-            <p>Wrong credentials!</p>
-            <p>Try again.</p>
-          </div>
+      <div className={`warningPopup ${showWarning ? 'visible' : ''}`}>
+        <div className="warningContent">
+          <span className="closeBtn" onClick={closeWarning}>&times;</span>
+          <p>Wrong credentials!</p>
+          <p>Try again.</p>
         </div>
-      
-        
-        <div className={`accessPopup ${accessGranted ? 'visible' : ''}`}>
-          <div className="accessContent">
-            <span className="closeBtn" onClick={closeAccessGranted}>&times;</span>
-            <p>Access granted</p>
-          </div>
+      </div>
+
+      <div className={`accessPopup ${accessGranted ? 'visible' : ''}`}>
+        <div className="accessContent">
+          <span className="closeBtn" onClick={closeAccessGranted}>&times;</span>
+          <p>Access granted</p>
         </div>
-        
+      </div>
+
       <img src={imgUrl} alt="Logo" className="logo" />
       <div className="loginItem">
         <h2 className="pageTitle">Welcome back!</h2>

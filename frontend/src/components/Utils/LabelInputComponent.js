@@ -24,7 +24,7 @@ const LabelInputComponent = ({ lab, name, val, pholder, readonly, type, cname })
 
   return (
     <div className={`label-input-component ${cname}`}>
-      {lab && <label className="label" >{lab}:</label>}
+      {lab && <label className="label" >{lab}</label>}
       <input 
         type={type}
         name={name}
@@ -32,7 +32,7 @@ const LabelInputComponent = ({ lab, name, val, pholder, readonly, type, cname })
         pholder={pholder || name}
         readOnly={readonly}
         className="input"
-        style={{ padding: '5px', margin: '5px' }}
+        
       />
     </div>
   );

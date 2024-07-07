@@ -2,14 +2,13 @@ export const isAuthenticated = () => {
     return localStorage.getItem('auth') === 'true';
   };
   
-  export const login = () => {
+  export const login = (loginUser) => {
     localStorage.setItem('auth', 'true');
+    localStorage.setItem('loginUser', JSON.stringify(loginUser));
   };
   
   export const logout = () => {
-    localStorage.removeItem('loggedInUser');
-    localStorage.removeItem('loggedInUserIsAdmin');
     localStorage.removeItem('auth');
-    localStorage.removeItem('styleName');
+    localStorage.removeItem('loginUser');
   };
   

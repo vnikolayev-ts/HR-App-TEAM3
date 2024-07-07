@@ -1,5 +1,4 @@
-
-import { setPageTitle,saveEmployee, getEmptyEmployee } from "../Utils/Utils";
+import { saveEmployee, getEmptyEmployee } from "../Utils/Utils";
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../Layout/Layout';

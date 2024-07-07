@@ -1,6 +1,7 @@
 import { checkUrlExists, getBarLevelsForScore, getColorForLevel, renderStars, getCurrentDomain, setPageTitle, saveEmployee } from '../Utils/Utils';
 import {getEmployees} from '../../api/ClientApi'
 import LabelInputComponent from '../Utils/LabelInputComponent';
+import LabelValueComponent from './../Utils/LabelValueComponent';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -110,15 +111,9 @@ const EmployeeEdit = () => {
     
       <button className="backButton" onClick={handleBackClick}>Back</button>
       
-     
-
-      
-      
-
-      <div className="create-form">
-        
-       
-
+     <div className="create-form">
+        <LabelValueComponent label={"MA-ID"} value={employee.pers_id } />
+        <LabelValueComponent label={"Tenant-ID"} value={employee.tenantId } />
         <LabelInputComponent lab={"First Name"} name="first_name" val={employee.first_name} onChange={handleInputChange}/>
         <LabelInputComponent lab={"Last Name"} name="last_name" val={employee.last_name} onChange={handleInputChange}/>
         <LabelInputComponent lab={"Date of Birth"} name="birthdate" val={employee.birthdate} onChange={handleInputChange}/>
@@ -130,35 +125,25 @@ const EmployeeEdit = () => {
         <LabelInputComponent lab={"Address"} name="address" val={employee.address} onChange={handleInputChange}/>
         <LabelInputComponent lab={"Sick Days"} name="sick_days" val={employee.sick_days} onChange={handleInputChange}/>
         <LabelInputComponent lab={"Salary"} name="salary" val={employee.salary} onChange={handleInputChange}/>
-
         <LabelInputComponent lab={"Position"} name="position" val={employee.position} onChange={handleInputChange}/>
-    
-        <LabelInputComponent
-        lab={"Number (1-10)"}
-        name="numberInput"
-
-        type="number"
-        min={1}
-        max={10}
-      />
-         
-        <h3>Skills:</h3>
-        <label>Teamwork:</label><input type="number" name="teamwork" min="1" max="10" value={employee.skills.soft_skills.teamwork} onChange={handleInputChange} />
-        <label>Communication:</label><input type="number" name="communication" min="1" max="10" value={employee.communication || employee.skills.soft_skills.communication} onChange={handleInputChange} />
-        <label>Leadership:</label><input type="number" name="leadership" min="1" max="10" value={employee.leadership || employee.skills.soft_skills.leadership} onChange={handleInputChange} />
-        <label>Problem Solving:</label><input type="number" name="problem_solving" min="1" max="10" value={employee.problem_solving || employee.skills.soft_skills.problem_solving} onChange={handleInputChange} />
-        <label>Adaptability:</label><input type="number" name="adaptability" min="1" max="10" value={employee.adaptability || employee.skills.soft_skills.adaptability} onChange={handleInputChange} />
-        <label>Punctuality:</label><input type="number" name="punctuality" min="1" max="10" value={employee.skills.soft_skills.punctuality} onChange={handleInputChange} />
-        <label>Friendliness:</label><input type="number" name="friendliness" min="1" max="10" value={employee.friendliness || employee.skills.soft_skills.friendliness} onChange={handleInputChange} />
-        <label>Creativity:</label><input type="number" name="creativity" min="1" max="10" value={employee.creativity || employee.skills.soft_skills.creativity} onChange={handleInputChange} />
-        <label>Reliability:</label><input type="number" name="reliability" min="1" max="10" value={employee.reliability || employee.skills.soft_skills.reliability} onChange={handleInputChange} />
-        <label>Initiative:</label><input type="number" name="initiative" min="1" max="10" value={employee.initiative || employee.skills.soft_skills.initiative} onChange={handleInputChange} />
   
-        </div>
+        <h3>Skills:</h3>
+        <LabelInputComponent lab={"Teamwork"}  name="teamwork" type="number"  min={1} max={10} val={employee.skills.soft_skills.teamwork} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Communication"}  name="communication" type="number"  min={1} max={10} val={employee.skills.soft_skills.communication} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Leadership"}  name="leadership" type="number"  min={1} max={10} val={employee.skills.soft_skills.leadership} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Problem Solving"}  name="problem_solving" type="number"  min={1} max={10} val={employee.skills.soft_skills.problem_solving} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Adaptability"}  name="adaptability" type="number"  min={1} max={10} val={employee.skills.soft_skills.adaptability} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Punctuality"}  name="punctuality" type="number"  min={1} max={10} val={employee.skills.soft_skills.punctuality} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Friendliness"}  name="friendliness" type="number"  min={1} max={10} val={employee.skills.personal_skills.friendliness} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Creativity"}  name="creativity" type="number"  min={1} max={10} val={employee.skills.personal_skills.creativity} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Reliability"}  name="reliability" type="number"  min={1} max={10} val={employee.skills.personal_skills.reliability} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Initiative"}  name="initiative" type="number"  min={1} max={10} val={employee.skills.personal_skills.initiative} onChange={handleInputChange}/>
+
 
    
     <button onClick={handleSave}>Save</button>
     <button onClick={handleReset}>Reset</button>
+    </div>
     </Layout>
   );
 }

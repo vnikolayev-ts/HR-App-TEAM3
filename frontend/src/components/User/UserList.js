@@ -1,17 +1,20 @@
 import React from "react";
 import { useEffect, useState } from "react";
 
-import { getUsers } from "../../api/ClientApi";
+import { getUsers, getLogUser } from "../../api/ClientApi";
 import Layout from "../Layout/Layout";
 import { Link } from "react-router-dom";
-import { setPageTitle } from "../Utils/Utils";
+
 import { useNavigate } from "react-router-dom";
 
 const UserList = () => {
   const [userData, setUserData] = useState(null);
+ 
 
   /* Back Button navigation zurück zum /dashboard */
   const navigate = useNavigate();
+
+  //setlogUser(getLogUser());
 
   const handleBackClick = () => {
     navigate("/dashboard");
@@ -25,11 +28,11 @@ const UserList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const isDataFromLocal = true;
-        const data = await getUsers(isDataFromLocal); // Aufruf der async Funktion getEmployees -API
+        
+        const data = await getUsers(); // Aufruf der async Funktion getEmployees -API
         setUserData(data);
-        const title = "User List";
-        setPageTitle(title);
+       
+
       } catch (error) {
         console.error("Error fetching HR data:", error);
         // Hier könntest du zusätzliche Fehlerbehandlung durchführen, z.B. eine Fehlermeldung anzeigen
@@ -38,19 +41,19 @@ const UserList = () => {
     };
 
     fetchData(); // Aufruf der fetchData Funktion, die daten aufruft
-  }, [userData]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
+  }, []); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
 
   if (!userData) {
     return <p>Loading...</p>; // Anzeige während des Ladens der Daten
   }
 
-  console.log(userData);
+  //console.log(userData);
   return (
-    <Layout>
+    <Layout pTitle={'User List'}>
       <button onClick={handleBackClick}>Back</button>
       <button onClick={handleCreateClick}>Create User</button>
       <ul class="list">
-        {userData.users.map((user) => (
+        {userData.map((user) => (
           <li class="listItem">
             <div key={user.userId}>
               <div class="persdate">

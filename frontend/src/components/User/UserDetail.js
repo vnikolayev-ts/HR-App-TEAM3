@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { json, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { setPageTitle } from "../Utils/Utils";
 
 import Layout from "../Layout/Layout";
-import { getUsers } from "../../api/ClientApi";
+import { getUserById } from "../../api/ClientApi";
 
 import { Link } from "react-router-dom";
 
@@ -12,8 +12,10 @@ import { useNavigate } from "react-router-dom";
 function UserDetail({ isView = true }) {
   // const isView = true;
   const { id } = useParams();
-  const [user, setUser] = useState(null);
+
   const [name, setName] = useState("");
+
+  const [foundUser, setFoundUser] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,18 +44,19 @@ function UserDetail({ isView = true }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const isDataFromLocal = true;
-        const data = await getUsers(isDataFromLocal); // Aufruf der async Funktion getEmployees -API
-        const foundUser = data.users.find((u) => u.userId === parseInt(id));
-
+        
+       
+        const fUser  = await getUserById( id);
+        setFoundUser(fUser);
         if (foundUser) {
-          setUser(foundUser);
+         
           setName(foundUser.name);
           setUsername(foundUser.username);
           setEmail(foundUser.email);
           setPassword(foundUser.password);
           setAdmin(foundUser.admin);
           setIsReadOnly(isView);
+          setTenantId(foundUser.tenantId);
         }
 
         const title = isView ? "Detail Page" : "Edit Page";
@@ -66,9 +69,9 @@ function UserDetail({ isView = true }) {
     };
 
     fetchData(); // Aufruf der fetchData Funktion, die daten aufruft
-  }, [user]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
+  }, [foundUser]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
 
-  if (!user) {
+  if (!foundUser) {
     return <p>Loading...</p>; // Anzeige während des Ladens der Daten
   }
 
@@ -84,7 +87,7 @@ function UserDetail({ isView = true }) {
     alert("User data deleted!");
   };
 
-  if (!user) {
+  if (!foundUser) {
     return <div>User not found {id}</div>;
   }
 
@@ -96,13 +99,14 @@ function UserDetail({ isView = true }) {
 
         <form>
           <div className="form-group">
+            <label>TID</label>{tenantId}
             <label>Name</label>
             <input
               type="text"
               value={name}
               readOnly={isReadOnly}
               onChange={(e) => setName(e.target.value)}
-              j
+              
             />
           </div>
           <div className="form-group">
@@ -155,7 +159,7 @@ function UserDetail({ isView = true }) {
             </div>
           )}
         </form>
-        <Link to={`/user-edit/${user.userId}`}>
+        <Link to={`/user-edit/${id}`}>
                 <button className="editButton">Edit</button>
               </Link>
       

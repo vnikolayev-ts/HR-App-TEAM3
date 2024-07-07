@@ -4,7 +4,7 @@
         "userId": 101,
         "tenantId": 1,
         "name": "User One",
-        "username": "user1",
+        "username": "user.one@tenanta.com",
         "password": "123456",
         "email": "user.one@tenanta.com",
         "admin": true
@@ -13,7 +13,7 @@
         "userId": 102,
         "tenantId": 1,
         "name": "User Two",
-        "username": "user2",
+        "username": "user.two@tenanta.com",
         "password": "123456",
         "email": "user.two@tenanta.com",
         "admin": false
@@ -22,18 +22,18 @@
         "userId": 201,
         "tenantId": 2,
         "name": "User One (2)",
-        "username": "user1",
+        "username": "user.one@tenantb.com",
         "password": "123456",
-        "email": "user.three@tenantb.com",
+        "email": "user.one@tenantb.com",
         "admin": false
       },
       {
         "userId": 202,
         "tenantId": 2,
         "name": "User Two (2)",
-        "username": "user2",
+        "username": "user.two@tenantb.com",
         "password": "123456",
-        "email": "user.four@tenantb.com",
+        "email": "user.two@tenantb.com",
         "admin": true
       }
     ]
