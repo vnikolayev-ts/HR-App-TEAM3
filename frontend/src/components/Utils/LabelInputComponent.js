@@ -1,40 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const LabelInputComponent = ({ lab, name, val, pholder, readonly, type, cname }) => {
-
- 
-
-
+const LabelInputComponent = ({ lab, name, val, pholder, readonly, type, cname, checked }) => {
 
   const handleBlur = (event) => {
-    // Validierung für number mit Min/Max
     if (type === 'number') {
       const value = parseFloat(event.target.value);
       if (!isNaN(value)) {
         const minValue = event.target.min ? parseFloat(event.target.min) : Number.MIN_VALUE;
         const maxValue = event.target.max ? parseFloat(event.target.max) : Number.MAX_VALUE;
-        
-        
+        // Implementiere hier deine Min/Max-Validierung
       }
-
-      if (!isNaN(che)) {
     }
-    // Weitere Validierungen für andere Typen können hier hinzugefügt werden
-
   };
 
   return (
     <div className={`label-input-component ${cname}`}>
-      {lab && <label className="label" >{lab}</label>}
-      <input 
+      {lab && <label className="label">{lab}</label>}
+      <input
         type={type}
         name={name}
-        value={val}
-        pholder={pholder || name}
+        value={type === 'checkbox' ? undefined : val} // Checkbox verwendet checked statt value
+        checked={type === 'checkbox' ? checked : undefined} // Nur Checkbox verwendet checked
+        placeholder={pholder || name}
         readOnly={readonly}
         className="input"
-        
+
+       
       />
     </div>
   );
@@ -46,16 +38,17 @@ LabelInputComponent.propTypes = {
   val: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   pholder: PropTypes.string,
   readonly: PropTypes.bool,
+  checked: PropTypes.bool,
   type: PropTypes.oneOf(['text', 'number', 'range', 'email', 'password', 'date', 'checkbox']), // Füge hier weitere Typen hinzu, die du unterstützen möchtest
-  cname: PropTypes.string,
-  onChange: PropTypes.func
+  cname: PropTypes.string
 };
 
 LabelInputComponent.defaultProps = {
-  label: '',
+  lab: '',
   val: '',
   pholder: '',
   readonly: false,
+  checked: false,
   type: 'text',
   cname: ''
 };
