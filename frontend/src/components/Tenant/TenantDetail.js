@@ -3,7 +3,7 @@ import { json, useParams } from "react-router-dom";
 import { setPageTitle } from "../Utils/Utils";
 
 import Layout from "../Layout/Layout";
-import { getTenants } from "../../api/ClientApi";
+import { getTenant } from "../../api/ClientApi";
 
 import { Link } from "react-router-dom";
 
@@ -37,9 +37,9 @@ function TenantDetail({ isView = true }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const isDataFromLocal = true;
-        const data = await getTenants(isDataFromLocal); // Aufruf der async Funktion getEmployees -API
-        const foundTenant = data.tenants.find((t) => t.tenantId === parseInt(id));
+   
+        const foundTenant = await getTenant(); // Aufruf der async Funktion getEmployees -API
+      
 
         if (foundTenant) {
           setName(foundTenant.name);
@@ -57,25 +57,12 @@ function TenantDetail({ isView = true }) {
     };
 
     fetchData(); // Aufruf der fetchData Funktion, die daten aufruft
-  }, [tenant]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
+  }, []); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
 
   if (!tenant) {
     return <p>Loading...</p>; // Anzeige während des Ladens der Daten
   }
 
-  /*useEffect(() => {
-    const foundUser = userData.users.find(
-      (user) => user.userId === parseInt(userId)
-    );
-    if (foundUser) {
-      setUser(foundUser);
-      setName(foundUser.name);
-      setUsername(foundUser.username);
-      setEmail(foundUser.email);
-      setPassword(foundUser.password);
-      setAdmin(foundUser.admin);
-    }
-  }, [userId]);*/
 
   const handleSave = (e) => {
     e.preventDefault();
@@ -111,7 +98,7 @@ function TenantDetail({ isView = true }) {
               value={name}
               readOnly={true}
               onChange={(e) => setName(e.target.value)}
-              j
+              
             />
           </div>
           <div className="form-group">

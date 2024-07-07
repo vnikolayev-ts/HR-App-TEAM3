@@ -1,5 +1,5 @@
 
-import {getEmployees} from '../../api/ClientApi'
+import {getEmployees, getTenant} from '../../api/ClientApi'
 import ScoreComponent from '../Utils/ScoreComponent';
 
 
@@ -14,19 +14,19 @@ const EmployeeList = () => {
     
   const [employeeData, setEmployeeData] = useState(null);
   const [title, setTitle] = useState("Employee List");
-  const [layout, setLayout] = useState("simple");
+  const [tenant, setTenant] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const isDataFromLocal = true;
-        const data = await getEmployees(isDataFromLocal); // Aufruf der async Funktion getEmployees -API
-        const apiLayout = data.layout;
-        //setHRData(data); // Setzen der empfangenen Daten in den State
-        
+       
+        const data = await getEmployees(); 
         setEmployeeData(data);
-        setLayout(apiLayout); 
-        setTitle(`Employee List ${employeeData.company}`);
+
+        const tData =  await getTenant();
+         setTenant(tData);
+      
+        setTitle(`Employee List ${tenant.name}`);
         
        
 
@@ -39,7 +39,7 @@ const EmployeeList = () => {
 
     fetchData(); // Aufruf der fetchData Funktion, die getHRData aufruft
 
-  }, [employeeData, layout]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
+  }, []); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
 
   if (!employeeData) {
     return <p>Loading...</p>; // Anzeige während des Ladens der Daten
@@ -55,7 +55,7 @@ return (
       
     
     <ul class="list" >
-      {employeeData.employees.map(employee => (
+      {employeeData.map(employee => (
         <li class="listItem" key={employee.pers_id} >
     
               <div class="fname">{employee.first_name}</div>             

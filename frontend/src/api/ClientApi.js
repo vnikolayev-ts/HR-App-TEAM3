@@ -45,6 +45,17 @@ export const getEmployees = async () => {
 };
 
 
+export  const  getEmployeeById = async (id) => {
+  var fEmployee = null;
+
+  const empList = await getEmployees();
+  fEmployee = empList.find((el) => el.pers_id === (id));
+
+  return fEmployee;
+
+}
+
+
 function getFileHrData () {
 
   

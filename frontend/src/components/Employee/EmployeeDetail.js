@@ -1,5 +1,5 @@
-import { checkUrlExists, getBarLevelsForScore, getColorForLevel, renderStars, getCurrentDomain } from '../Utils/Utils';
-import {getEmployees} from '../../api/ClientApi'
+import { checkUrlExists, getCurrentDomain } from '../Utils/Utils';
+import {getEmployeeById, getTenant} from '../../api/ClientApi'
 import ScoreComponent from '../Utils/ScoreComponent';
 import StarsComponent from '../Utils/StarsComponent';
 import LabelValueComponent from './../Utils/LabelValueComponent';
@@ -18,21 +18,23 @@ const EmployeeDetails = () => {
 
 
 
-  const [employeeData, setEmployeeData] = useState(null);
-  const [layout, setLayout] = useState("simple");
+  const [employee, setEmployee] = useState(null);
   const [title, setTitle] = useState("Employee Detail Page");
+  const [tenant, setTenant] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const isDataFromLocal = true;
-        const data = await getEmployees(isDataFromLocal); // Aufruf der async Funktion getEmployees -API
-        const apiLayout = data.layout;
-        //setHRData(data); // Setzen der empfangenen Daten in den State
         
-        setEmployeeData(data);
-        setLayout(apiLayout); 
+        const fEmp = await getEmployeeById(id); 
+        
+        setEmployee(fEmp);
         setTitle(title); 
+
+        const tData =  await getTenant();
+        setTenant(tData);
+
+
 
       } catch (error) {
         console.error('Error fetching HR data:', error);
@@ -43,18 +45,17 @@ const EmployeeDetails = () => {
 
     fetchData(); // Aufruf der fetchData Funktion, die getHRData aufruft
 
-  }, [employeeData, layout]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
+  }, []); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
 
-  if (!employeeData) {
+  if (!employee) {
     return <p>Loading...</p>; // Anzeige während des Ladens der Daten
   }
 
  
 
   const domain = getCurrentDomain();
-  const employeeIndex = employeeData.employees.findIndex(emp => emp.pers_id === id);
-  const employee = employeeData.employees[employeeIndex];
-  const imgUrl = checkUrlExists(employeeData.public_image_path) == true ? employeeData.public_image_path : "." + employeeData.noimage_url;
+
+  const imgUrl = checkUrlExists(tenant.public_image_path) == true ? tenant.public_image_path : "." + tenant.noimage_url;
 
   const handleBackClick = () => { 
     navigate('/employee');

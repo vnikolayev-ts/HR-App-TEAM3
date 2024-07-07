@@ -1,5 +1,5 @@
 import { checkUrlExists, getBarLevelsForScore, getColorForLevel, renderStars, getCurrentDomain, setPageTitle, saveEmployee } from '../Utils/Utils';
-import {getEmployees} from '../../api/ClientApi'
+import {getEmployeeById, getTenant} from '../../api/ClientApi'
 import LabelInputComponent from '../Utils/LabelInputComponent';
 import LabelValueComponent from './../Utils/LabelValueComponent';
 import React from 'react';
@@ -17,28 +17,19 @@ const EmployeeEdit = () => {
   const navigate = useNavigate();
 
 
-  const [employeeData, setEmployeeData] = useState(null);
-   const [editEmployee, setEditEmployee] = useState({});
-  const [originalEmployee, setOriginalEmployee] = useState({});
+  const [employee, setEmployee] = useState(null);
   const [title, setTitle] = useState("Employee Edit Page");
 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const isDataFromLocal = true;
-        const data = await getEmployees(isDataFromLocal); // Aufruf der async Funktion getEmployees -API
-        const apiLayout = data.layout;
-        //setHRData(data); // Setzen der empfangenen Daten in den State
         
-        setEmployeeData(data);
-    
-     
+        const fEmp = await getEmployeeById(id); 
+        
+        setEmployee(fEmp);
+        setTitle(title); 
 
-        const employeeIndex = data.employees.findIndex(emp => emp.pers_id === id);
-        const employee = data.employees[employeeIndex];
-        setOriginalEmployee(employee);
-        setEditEmployee(employee);
 
       } catch (error) {
         console.error('Error fetching HR data:', error);
@@ -49,25 +40,19 @@ const EmployeeEdit = () => {
 
     fetchData(); // Aufruf der fetchData Funktion, die getHRData aufruft
 
-  }, [id, title]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
+  }, []); 
 
-  if (!employeeData) {
+  if (!employee) {
     return <p>Loading...</p>; // Anzeige während des Ladens der Daten
   }
 
 
- 
-  const employeeIndex = employeeData.employees.findIndex(emp => emp.pers_id === id);
-  const employee = employeeData.employees[employeeIndex];
- //const imgUrl = checkUrlExists(employeeData.public_image_path) == true ? employeeData.public_image_path : "." + employeeData.noimage_url;
-
-  
 
  
  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setEditEmployee((prev) => ({
+    setEmployee((prev) => ({
       ...prev,
       [name]: value,
     }));
@@ -76,7 +61,7 @@ const EmployeeEdit = () => {
   const handleSave = (e) => {
     e.preventDefault();
     if (window.confirm("All data will be saved. Are you sure?")) {
-      saveEmployee (editEmployee);
+      saveEmployee (employee);
       alert("All data have been saved.");
       navigate(`/employee/${employee.pers_id}`);
      
@@ -87,7 +72,7 @@ const EmployeeEdit = () => {
   const handleReset = (e) => {
     e.preventDefault();
     if (window.confirm("All data will be resetted. Are you sure?")) {
-      setEditEmployee(originalEmployee);
+     
       alert("All data have been resetted.");
     } else {
       alert("Nothing has been changed.") 
@@ -112,7 +97,7 @@ const EmployeeEdit = () => {
       <button className="backButton" onClick={handleBackClick}>Back</button>
       
      <div className="create-form">
-        <LabelValueComponent label={"MA-ID"} value={employee.pers_id } />
+       
         <LabelValueComponent label={"Tenant-ID"} value={employee.tenantId } />
         <LabelInputComponent lab={"First Name"} name="first_name" val={employee.first_name} onChange={handleInputChange}/>
         <LabelInputComponent lab={"Last Name"} name="last_name" val={employee.last_name} onChange={handleInputChange}/>

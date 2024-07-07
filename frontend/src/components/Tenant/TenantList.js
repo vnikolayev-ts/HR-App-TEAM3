@@ -35,7 +35,7 @@ useEffect(() => {
 
   fetchData(); // Aufruf der fetchData Funktion, die daten aufruft
 
-}, [tenantData]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
+}, []); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
 
 if (!tenantData) {
   return <p>Loading...</p>; // Anzeige während des Ladens der Daten
