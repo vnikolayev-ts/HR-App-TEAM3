@@ -54,15 +54,15 @@ return (
         </Link>
       
     
-    <ul class="list" >
+    <ul className="list" >
       {employeeData.map(employee => (
-        <li class="listItem" key={employee.pers_id} >
+        <li className="listItem" key={employee.pers_id} >
     
-              <div class="fname">{employee.first_name}</div>             
-              <div class="lname">{employee.last_name}</div>            
-              <div class="persid">{employee.pers_id}</div>          
-              <div class="edate">{employee.entry_date}</div>       
-              <div class="bdate">{employee.position}</div>        
+              <div className="fname">{employee.first_name}</div>             
+              <div className="lname">{employee.last_name}</div>            
+              <div className="persid">{employee.pers_id}</div>          
+              <div className="edate">{employee.entry_date}</div>       
+              <div className="bdate">{employee.position}</div>        
               <ScoreComponent score={employee.ma_score} />
               
               

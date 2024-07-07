@@ -69,7 +69,7 @@ const EmployeeDetails = () => {
     
     <Layout  pTitle={title}>
     <button onClick={handleBackClick} >Back</button>
-    <img class="pimage"src={`${imgUrl}`} alt={`${employee.first_name} ${employee.last_name}`} />
+    <img className="pimage"src={`${imgUrl}`} alt={`${employee.first_name} ${employee.last_name}`} />
      
     <LabelValueComponent value={<ScoreComponent score={employee.ma_score} />} className={"ma-score"} />
     <LabelValueComponent label={"MA-Score"} value={employee.ma_score } />

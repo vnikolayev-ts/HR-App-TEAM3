@@ -54,32 +54,26 @@ const UserList = () => {
       <button onClick={handleCreateClick}>Create User</button>
       <ul class="list">
         {userData.map((user) => (
-          <li class="listItem">
+          <li className="listItem">
             <div key={user.userId}>
-              <div class="persdate">
-                <div class="UID">{user.userId}</div>
-                <div class="separator">|</div>
-                <div class="TID">{user.tenantId}</div>
-                <div class="separator">|</div>
-                <div class="name">{user.name}</div>
-                <div class="separator">|</div>
-                <div class="usname">{user.username}</div>
-                <div class="separator">|</div>
-                <div class="pw">{user.password}</div>
-                <div class="separator">|</div>
-                <div class="mail">{user.email}</div>
+              <div className="persdate">
+                <div className="UID">{user.userId}</div>               
+                <div className="TID">{user.tenantId}</div>               
+                <div className="name">{user.name}</div>               
+                <div className="usname">{user.username}</div>                         
+                <div className="mail">{user.email}</div>
 
                 {user.admin && (
                   <>
-                    <div class="separator">|</div>
-                    <div class="admin"> Administrator </div>
+                   
+                    <div className="admin"> Administrator </div>
                   </>
                 )}
               </div>
             </div>
-            <div class="action-list-item">
+            <div className="action-list-item">
               <Link to={`/user/${user.userId}`}>
-                <button class="viewButton">Details</button>
+                <button className="viewButton">Details</button>
               </Link>
 
             </div>

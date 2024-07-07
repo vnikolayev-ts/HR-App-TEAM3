@@ -45,7 +45,7 @@ if (!tenantData) {
 
     return (
         <Layout>
-            <Link to={'/tenant-create'} > <button class="createButton"  >Create Tenant</button> </Link>
+            <Link to={'/tenant-create'} > <button className="createButton"  >Create Tenant</button> </Link>
           
             {tenantData.map((tenant) => (
             <div key={(tenant.tenantId)}> 
