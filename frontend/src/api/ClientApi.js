@@ -143,3 +143,31 @@ export  const  apiLogin = async (username, password) => {
 
   return null;
 }
+
+function showAlertFromData(data, type){
+   // Ausgabe der Benutzerdaten im Format name: value in der Konsole
+   Object.entries(data).forEach(([key, value]) => {
+    console.log(`${key}: ${value}`);
+  });
+
+
+  alert(`Type: ${type} \n-------------\n${Object.entries(data).map(([key, value]) => `${key}: ${value}`).join('\n')}`);
+    
+}
+
+export async function  createUser(data){
+
+    showAlertFromData(data, "user");
+    
+  return false;
+
+  
+}
+
+export async function  createEmployee(data){
+
+  showAlertFromData(data, "employee");
+  
+return false;
+}
+

@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 import { useNavigate } from "react-router-dom";
 
-function UserDetail({ isView = true }) {
+function UserDetail() {
   // const isView = true;
   const { id } = useParams();
 
@@ -19,9 +19,7 @@ function UserDetail({ isView = true }) {
   const [foundUser, setFoundUser] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [admin, setAdmin] = useState(false);
-  const [isReadOnly, setIsReadOnly] = useState(isView);
   const [tenantId, setTenantId] = useState(null);
 
   /* Back Button navigation zurück zum /dashboard */
@@ -29,17 +27,6 @@ function UserDetail({ isView = true }) {
 
   const handleBackClick = () => {
     navigate("/user");
-  };
-
-  /* Cancel Button Funktion */
-  const handleReset = (e) => {
-    e.preventDefault();
-    if (window.confirm("All data will be resetted. Are you sure?")) {
-      window.location.reload(true);
-      alert("All data have been resetted.");
-    } else {
-      alert("Nothing has been changed.");
-    }
   };
 
   useEffect(() => {
@@ -54,13 +41,12 @@ function UserDetail({ isView = true }) {
           setName(foundUser.name);
           setUsername(foundUser.username);
           setEmail(foundUser.email);
-          setPassword(foundUser.password);
+      
           setAdmin(foundUser.admin);
-          setIsReadOnly(isView);
           setTenantId(foundUser.tenantId);
         }
 
-        const title = isView ? "Detail Page" : "Edit Page";
+        const title = "Detail Page";
         setPageTitle(title);
       } catch (error) {
         console.error("Error fetching HR data:", error);
@@ -70,23 +56,12 @@ function UserDetail({ isView = true }) {
     };
 
     fetchData(); // Aufruf der fetchData Funktion, die daten aufruft
-  }, [foundUser]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
+  }, [foundUser, id]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
 
   if (!foundUser) {
     return <p>Loading...</p>; // Anzeige während des Ladens der Daten
   }
 
-  const handleSave = (e) => {
-    e.preventDefault();
-    // Logik zum Speichern der Daten
-    alert("User data saved!");
-  };
-
-  const handleDelete = (e) => {
-    e.preventDefault();
-    // Logik zum Löschen der Daten
-    alert("User data deleted!");
-  };
 
   if (!foundUser) {
     return <div>User not found {id}</div>;
@@ -99,6 +74,7 @@ function UserDetail({ isView = true }) {
             <LabelValueComponent label={"Tenant-ID"} value={tenantId } />
             <LabelValueComponent label={"Name"} value={name} />
             <LabelValueComponent label={"Username"} value={username} />
+            <LabelValueComponent label={"E-mail"} value={email} />
             <LabelValueComponent label={"Password"} value={"******"} />
             <LabelValueComponent label={"Admin"} value={admin} />
             <LabelValueComponent label={"Name"} value={name} />

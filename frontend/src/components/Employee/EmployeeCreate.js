@@ -2,7 +2,7 @@ import { saveEmployee, getEmptyEmployee } from "../Utils/Utils";
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../Layout/Layout';
-
+import { createEmployee } from "../../api/ClientApi";
 
 
 const EmployeeCreate = ({ addEmployee}) => {
@@ -39,7 +39,7 @@ const EmployeeCreate = ({ addEmployee}) => {
 
   
   
-  const handleStarClick = (category, skill, value) => {
+/*  const handleStarClick = (category, skill, value) => {
     setNewEmployee((prev) => ({
       ...prev,
       skills: {
@@ -50,18 +50,18 @@ const EmployeeCreate = ({ addEmployee}) => {
         },
       },
     }));
-  };
+  };*/
 
-  const handleCreate = () => {
+  const  handleCreate = () => {
    
     
-  var retVal = saveEmployee (newEmployee);
+    let result = createEmployee(newEmployee);
 
-  if (retVal == false){
+  if (result == false){
     alert('Error: Employee was not added :( !');
   }else{
 
-   // addEmployee(newEmployee);
+  
     alert('Employee added successfully!');
     navigate("/employee");
 

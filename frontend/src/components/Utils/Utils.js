@@ -65,7 +65,7 @@
           return <div>{stars}</div>;
         };
 
-        export const saveEmployee = (newEmployee)=> {
+        export const saveEmployee2 = (newEmployee)=> {
           var ausgabe = "Employee added.";
            if (newEmployee.first_name)  ausgabe += "\nVorname: " + newEmployee.first_name; else return false;
            if (newEmployee.last_name)  ausgabe += "\nName: " + newEmployee.last_name; else return false;

@@ -1,19 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const LabelInputComponent = ({ lab, name, val, pholder, readonly, type, cname, checked }) => {
-
-  const handleBlur = (event) => {
-    if (type === 'number') {
-      const value = parseFloat(event.target.value);
-      if (!isNaN(value)) {
-        const minValue = event.target.min ? parseFloat(event.target.min) : Number.MIN_VALUE;
-        const maxValue = event.target.max ? parseFloat(event.target.max) : Number.MAX_VALUE;
-        // Implementiere hier deine Min/Max-Validierung
-      }
-    }
-  };
-
+const LabelInputComponent = ({ lab, name, val, placeholder, readonly, type, cname, checked, onChange }) => {
   return (
     <div className={`label-input-component ${cname}`}>
       {lab && <label className="label">{lab}</label>}
@@ -22,11 +10,10 @@ const LabelInputComponent = ({ lab, name, val, pholder, readonly, type, cname, c
         name={name}
         value={type === 'checkbox' ? undefined : val} // Checkbox verwendet checked statt value
         checked={type === 'checkbox' ? checked : undefined} // Nur Checkbox verwendet checked
-        placeholder={pholder || name}
+        placeholder={placeholder || name}
         readOnly={readonly}
         className="input"
-
-       
+        onChange={onChange}
       />
     </div>
   );
@@ -36,17 +23,18 @@ LabelInputComponent.propTypes = {
   lab: PropTypes.string,
   name: PropTypes.string.isRequired,
   val: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  pholder: PropTypes.string,
+  placeholder: PropTypes.string,
   readonly: PropTypes.bool,
   checked: PropTypes.bool,
   type: PropTypes.oneOf(['text', 'number', 'range', 'email', 'password', 'date', 'checkbox']), // Füge hier weitere Typen hinzu, die du unterstützen möchtest
-  cname: PropTypes.string
+  cname: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
 };
 
 LabelInputComponent.defaultProps = {
   lab: '',
   val: '',
-  pholder: '',
+  placeholder: '',
   readonly: false,
   checked: false,
   type: 'text',

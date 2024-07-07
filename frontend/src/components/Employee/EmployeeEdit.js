@@ -6,6 +6,8 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
+
+
 import Layout from '../Layout/Layout';
 
 
@@ -61,7 +63,7 @@ const EmployeeEdit = () => {
   const handleSave = (e) => {
     e.preventDefault();
     if (window.confirm("All data will be saved. Are you sure?")) {
-      saveEmployee (employee);
+    
       alert("All data have been saved.");
       navigate(`/employee/${employee.pers_id}`);
      
