@@ -7,6 +7,7 @@ import { createUser } from "../../api/ClientApi";
 
 function CreateUser() {
   const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -67,7 +68,7 @@ function CreateUser() {
         <LabelInputComponent lab={"Admin"} name="admin" checked={admin} type={'checkbox'} onChange={(e) => setAdmin(e.target.checked)} />
         
         <button className="resetButton" onClick={handleReset}>Reset</button>
-        <button className="saveButton" type="submit">Save</button>
+        <button className="createButton" type="submit">create</button>
       </form>
     </Layout>
   );

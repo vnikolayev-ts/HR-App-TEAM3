@@ -1,24 +1,84 @@
-import { saveEmployee, getEmptyEmployee } from "../Utils/Utils";
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../Layout/Layout';
-import { createEmployee } from "../../api/ClientApi";
+import LabelInputComponent from '../Utils/LabelInputComponent';
+import { createEmployee } from '../../api/ClientApi';
 
-
-const EmployeeCreate = ({ addEmployee}) => {
-  
+const EmployeeCreate = () => {
   const navigate = useNavigate();
-  
-  const [newEmployee, setNewEmployee] = useState(getEmptyEmployee());
-  const [title, setTitle] = useState("Employee Create Page");
 
+  // State-Hooks für jedes Eingabefeld
+  const [firstName, setFirstName] = useState(null);
+  const [lastName, setLastName] = useState('');
+  const [birthdate, setBirthdate] = useState('');
+  const [entryDate, setEntryDate] = useState('');
+  const [position, setPosition] = useState('');
+  const [department, setDepartment] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
+  const [sickDays, setSickDays] = useState('');
+  const [salary, setSalary] = useState('');
+  const [teamwork, setTeamwork] = useState('');
+  const [communication, setCommunication] = useState('');
+  const [leadership, setLeadership] = useState('');
+  const [problemSolving, setProblemSolving] = useState('');
+  const [adaptability, setAdaptability] = useState('');
+  const [punctuality, setPunctuality] = useState('');
+  const [friendliness, setFriendliness] = useState('');
+  const [creativity, setCreativity] = useState('');
+  const [reliability, setReliability] = useState('');
+  const [initiative, setInitiative] = useState('');
+
+  const [title] = useState('Employee Create Page');
 
   const handleBackClick = () => {
-    navigate("/employee");
+    navigate('/employee');
   };
 
-  
-  const handleResetButton = (e) => {
+
+  const handleCreate = async (e) => {
+    e.preventDefault();
+    const newEmployee = {
+      first_name:firstName,
+      last_name:lastName,
+      birthdate,
+      entry_date: entryDate,
+      position,
+      department,
+      email,
+      phone,
+      address,
+      sick_days: sickDays,
+      salary,
+      teamwork,
+      communication,
+      leadership,
+      problem_solving:problemSolving,
+      adaptability,
+      punctuality,
+      friendliness,
+      creativity,
+      reliability,
+      initiative,
+    };
+
+    try {
+      const result = await createEmployee(newEmployee);
+      if (result === false) throw new Error();
+      if (result.error) {
+        throw new Error(`Error: ${result.error}`);
+      } else {
+        alert('Employee created successfully!');
+        navigate('/employee');
+      }
+    } catch (error) {
+      console.error('Error creating employee:', error);
+      alert('Failed to create employee. Please try again later.');
+    }
+  };
+
+  const handleReset = (e) => {
     e.preventDefault();
     if (window.confirm("All data will be resetted. Are you sure?")) {
       window.location.reload(true);
@@ -28,87 +88,39 @@ const EmployeeCreate = ({ addEmployee}) => {
     }
   };
 
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewEmployee((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  
-  
-/*  const handleStarClick = (category, skill, value) => {
-    setNewEmployee((prev) => ({
-      ...prev,
-      skills: {
-        ...prev.skills,
-        [category]: {
-          ...prev.skills[category],
-          [skill]: value,
-        },
-      },
-    }));
-  };*/
-
-  const  handleCreate = () => {
-   
-    
-    let result = createEmployee(newEmployee);
-
-  if (result == false){
-    alert('Error: Employee was not added :( !');
-  }else{
-
-  
-    alert('Employee added successfully!');
-    navigate("/employee");
-
-    console.log('Create new employee');
-    // navigate to employee list or details page after creation
-    }
-  };
-
-  const handleReset = () => {
-    setNewEmployee(getEmptyEmployee());
-  };
-
- 
   return (
-   
-    <Layout  pTitle={title}>
-      <div className="create-form">
-        
+    <Layout pTitle={title}>
       <button onClick={handleBackClick}>Back</button>
-     
-      <label>First Name:</label> <input type="text" name="first_name" value={newEmployee.first_name} onChange={handleInputChange} />
-      <label>Last Name:</label> <input type="text" name="last_name" value={newEmployee.last_name} onChange={handleInputChange} />
-      <label>Date of Birth:</label> <input type="date" name="birthdate" value={newEmployee.birthdate} onChange={handleInputChange} />
-      <label>Entry Date:</label> <input type="date" name="entry_date" value={newEmployee.entry_date} onChange={handleInputChange} />
-      <label>Position:</label> <input type="text" name="position" value={newEmployee.position} onChange={handleInputChange} />
-      <label>Department:</label> <input type="text" name="department" value={newEmployee.department} onChange={handleInputChange} />
-      <label>Email:</label>  <input type="email" name="email" value={newEmployee.email} onChange={handleInputChange} />
-      <label>Phone:</label> <input type="text" name="phone" value={newEmployee.phone} onChange={handleInputChange} />
-      <label>Address:</label>  <input type="text" name="address" value={newEmployee.address} onChange={handleInputChange} />
-      <label>Sick Days:</label> <input type="number" name="sick_days" value={newEmployee.sick_days} onChange={handleInputChange} />  
-      <label>Salary:</label><input type="number" name="salary" value={newEmployee.salary} onChange={handleInputChange} />
-       
-      <h3>Skills:</h3>
-      <label>Teamwork:</label><input type="number" name="teamwork" min="1" max="10" value={newEmployee.teamwork || newEmployee.skills.soft_skills.teamwork} onChange={handleInputChange} />
-      <label>Communication:</label><input type="number" name="communication" min="1" max="10" value={newEmployee.communication || newEmployee.skills.soft_skills.communication} onChange={handleInputChange} />
-      <label>Leadership:</label><input type="number" name="leadership" min="1" max="10" value={newEmployee.leadership || newEmployee.skills.soft_skills.leadership} onChange={handleInputChange} />
-      <label>Problem Solving:</label><input type="number" name="problem_solving" min="1" max="10" value={newEmployee.problem_solving || newEmployee.skills.soft_skills.problem_solving} onChange={handleInputChange} />
-      <label>Adaptability:</label><input type="number" name="adaptability" min="1" max="10" value={newEmployee.adaptability || newEmployee.skills.soft_skills.adaptability} onChange={handleInputChange} />
-      <label>Punctuality:</label><input type="number" name="punctuality" min="1" max="10" value={newEmployee.punctuality || newEmployee.skills.soft_skills.punctuality} onChange={handleInputChange} />
-      <label>Friendliness:</label><input type="number" name="friendliness" min="1" max="10" value={newEmployee.friendliness || newEmployee.skills.soft_skills.friendliness} onChange={handleInputChange} />
-      <label>Creativity:</label><input type="number" name="creativity" min="1" max="10" value={newEmployee.creativity || newEmployee.skills.soft_skills.creativity} onChange={handleInputChange} />
-      <label>Reliability:</label><input type="number" name="reliability" min="1" max="10" value={newEmployee.reliability || newEmployee.skills.soft_skills.reliability} onChange={handleInputChange} />
-      <label>Initiative:</label><input type="number" name="initiative" min="1" max="10" value={newEmployee.initiative || newEmployee.skills.soft_skills.initiative} onChange={handleInputChange} />
 
-      </div>
-            <button onClick={handleCreate}>Create</button>
-            <button onClick={handleResetButton}>Reset</button>
+      <form onSubmit={handleCreate}>
+        <LabelInputComponent lab="First Name" name="first_name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+        <LabelInputComponent lab="First Name" name="first_name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+        <LabelInputComponent lab="Last Name" name="last_name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+        <LabelInputComponent lab="Date of Birth" name="birthdate" value={birthdate} onChange={(e) => setBirthdate(e.target.value)} />
+        <LabelInputComponent lab="Date of Entry" name="entry_date" value={entryDate} onChange={(e) => setEntryDate(e.target.value)} />
+        <LabelInputComponent lab="Position" name="position" value={position} onChange={(e) => setPosition(e.target.value)} />
+        <LabelInputComponent lab="Department" name="department" value={department} onChange={(e) => setDepartment(e.target.value)} />
+        <LabelInputComponent lab="Email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <LabelInputComponent lab="Phone" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
+        <LabelInputComponent lab="Address" name="address" value={address} onChange={(e) => setAddress(e.target.value)} />
+        <LabelInputComponent lab="Sick Days" name="sick_days" value={sickDays} onChange={(e) => setSickDays(e.target.value)} />
+        <LabelInputComponent lab="Salary" name="salary" value={salary} onChange={(e) => setSalary(e.target.value)} />
+
+        <h3>Skills:</h3>
+        <LabelInputComponent lab="Teamwork" name="teamwork" type="number" min="1" max="10" value={teamwork} onChange={(e) => setTeamwork(e.target.value)} />
+        <LabelInputComponent lab="Communication" name="communication" type="number" min="1" max="10" value={communication} onChange={(e) => setCommunication(e.target.value)} />
+        <LabelInputComponent lab="Leadership" name="leadership" type="number" min="1" max="10" value={leadership} onChange={(e) => setLeadership(e.target.value)} />
+        <LabelInputComponent lab="Problem Solving" name="problem_solving" type="number" min="1" max="10" value={problemSolving} onChange={(e) => setProblemSolving(e.target.value)} />
+        <LabelInputComponent lab="Adaptability" name="adaptability" type="number" min="1" max="10" value={adaptability} onChange={(e) => setAdaptability(e.target.value)} />
+        <LabelInputComponent lab="Punctuality" name="punctuality" type="number" min="1" max="10" value={punctuality} onChange={(e) => setPunctuality(e.target.value)} />
+        <LabelInputComponent lab="Friendliness" name="friendliness" type="number" min="1" max="10" value={friendliness} onChange={(e) => setFriendliness(e.target.value)} />
+        <LabelInputComponent lab="Creativity" name="creativity" type="number" min="1" max="10" value={creativity} onChange={(e) => setCreativity(e.target.value)} />
+        <LabelInputComponent lab="Reliability" name="reliability" type="number" min="1" max="10" value={reliability} onChange={(e) => setReliability(e.target.value)} />
+        <LabelInputComponent lab="Initiative" name="initiative" type="number" min="1" max="10" value={initiative} onChange={(e) => setInitiative(e.target.value)} />
+
+        <button className="resetButton" onClick={handleReset}>Reset</button>
+        <button className="createButton" type="submit">create</button>
+      </form>
     </Layout>
   );
 };

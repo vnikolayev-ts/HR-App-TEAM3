@@ -38,7 +38,7 @@ const Navbar =()  => {
   return (
 
 
-    <nav class="navBar">
+    <nav className="navBar">
         
         <Link to="/dashboard" >Home</Link>
         <Link to="/employee" >Employee</Link>

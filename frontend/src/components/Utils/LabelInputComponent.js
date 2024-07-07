@@ -1,7 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const LabelInputComponent = ({ lab, name, val, placeholder, readonly, type, cname, checked, onChange }) => {
+const LabelInputComponent = ({
+  lab,
+  name,
+  val,
+  placeholder = '',
+  readonly = false,
+  type = 'text',
+  cname = '',
+  checked = false,
+  onChange
+}) => {
   return (
     <div className={`label-input-component ${cname}`}>
       {lab && <label className="label">{lab}</label>}
@@ -29,16 +39,6 @@ LabelInputComponent.propTypes = {
   type: PropTypes.oneOf(['text', 'number', 'range', 'email', 'password', 'date', 'checkbox']), // Füge hier weitere Typen hinzu, die du unterstützen möchtest
   cname: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-};
-
-LabelInputComponent.defaultProps = {
-  lab: '',
-  val: '',
-  placeholder: '',
-  readonly: false,
-  checked: false,
-  type: 'text',
-  cname: ''
 };
 
 export default LabelInputComponent;
