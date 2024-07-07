@@ -1,5 +1,5 @@
-import { checkUrlExists, getBarLevelsForScore, getColorForLevel, renderStars, getCurrentDomain, setPageTitle, saveEmployee } from '../Utils/Utils';
-import {getEmployeeById, getTenant} from '../../api/ClientApi'
+import { saveEmployee } from '../Utils/Utils';
+import { getEmployeeById } from '../../api/ClientApi'
 import LabelInputComponent from '../Utils/LabelInputComponent';
 import LabelValueComponent from './../Utils/LabelValueComponent';
 import React from 'react';
