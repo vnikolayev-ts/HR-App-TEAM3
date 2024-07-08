@@ -8,12 +8,11 @@ import { getTenant } from "../../api/ClientApi";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 function TenantDetail() {
-  // const isView = true;
   const { id } = useParams();
   const [name, setName] = useState("");
   const [tenant, setTenant] = useState(null);
   const [tenantId, setTenantId] = useState(null);
-  const[title] = useState('Tenant Detail Page');
+  const [title, setTitel] = useState('Tenant Detail Page');
 
   /* Back Button navigation zurück zum /dashboard */
   const navigate = useNavigate();
@@ -28,8 +27,10 @@ function TenantDetail() {
    
         const foundTenant = await getTenant(); // Aufruf der async Funktion getEmployees -API
       
+          
 
         if (foundTenant) {
+          setTitel(`Tenant Details ${foundTenant.name}`)
           setName(foundTenant.name);
           setTenantId(foundTenant.tenantId);
           setTenant(foundTenant);
@@ -43,7 +44,7 @@ function TenantDetail() {
     };
 
     fetchData(); // Aufruf der fetchData Funktion, die daten aufruft
-  }, []); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
+  }, [id]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
 
   if (!tenant) {
     return <p>Loading...</p>; // Anzeige während des Ladens der Daten
@@ -56,7 +57,7 @@ function TenantDetail() {
   }
 
   return (
-    <Layout pTitle={{title}}>
+    <Layout pTitle={title}>
       <button onClick={handleBackClick} className="backButton">Back</button>
       <LabelValueComponent label={"Tenant-ID"} value={tenantId } />
       <LabelValueComponent label={"Name"} value={name } />
