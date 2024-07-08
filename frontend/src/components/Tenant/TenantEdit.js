@@ -46,7 +46,7 @@ function TenantEdit() {
           setName(fTenant.name);
         }
         
-        setPageTitle(title);
+//        setPageTitle(title);
         
 
       } catch (error) {

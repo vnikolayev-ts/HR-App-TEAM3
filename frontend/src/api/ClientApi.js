@@ -202,6 +202,14 @@ export async function  deleteEmployee(id){
 return false;
 }
 
+export async function createTenant(data){
+
+  alert(data, "create tenant");
+  
+return false;
+}
+
+
 
 export async function  deleteTenant(id){
 

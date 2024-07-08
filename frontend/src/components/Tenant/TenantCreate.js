@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import LabelInputComponent from "../Utils/LabelInputComponent";
@@ -52,31 +52,15 @@ const TenantCreate = () => {
   };
 
   return (
-    <Layout>
-      <button onClick={handleBackClick} className="backButton">
-        Back
-      </button>
-
-        <form>
-            <label>Name</label>
-            <input
-              type="text"
-              value={name}
-              readOnly={false}
-              onChange={(e) => setName(e.target.value)}
-              j
-            />
-              
+    <Layout pTitle={title}>
+      <button className="backButton" onClick={handleBackClick} > Back </button>
+        <form>        
+            <LabelInputComponent lab={"Name"} val={ Name } onChange={(e) => setName(e.target.value)}/>
+            <button className="saveButton" onClick={handleCreate}>Save</button>
+            <button className="resetButton" onClick={handleReset}> Reset </button>
         </form>
-              <button className="resetButton" onClick={handleReset}>
-                Reset
-              </button>
-        <button className="createButton" onClick={handleSave}>
-                Save
-              </button>
     </Layout>
-  );
-    
+  );   
 };
 
 export default TenantCreate;
