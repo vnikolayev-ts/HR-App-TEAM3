@@ -64,17 +64,43 @@ function EditUser() {
     return <p>Loading...</p>;
   }
 
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
-    // Logik zum Speichern der Daten
-    alert("User data saved!");
+    try {
+      const result = await updateUser(id);
+      if (result === false) throw new Error();
+      if (result.error) {
+        throw new Error(`Error: ${result.error}`);
+      } else {
+        alert('User saved successfully!');
+        navigate('/user');
+      }
+    } catch (error) {
+      console.error('Error saving user:', error);
+      alert('Failed to save user. Please try again later.');
+    }
+
+
+alert("User data saved!");
     navigate("/user/"+ userId);
   };
 
-  const handleDelete = (e) => {
+  const handleDelete = async (e) => {
     e.preventDefault();
-    // Logik zum Löschen der Daten
-    alert("User data deleted!");
+    try {
+      const result = await deleteUser(id);
+      if (result === false) throw new Error();
+      if (result.error) {
+        throw new Error(`Error: ${result.error}`);
+      } else {
+        alert('User deleted successfully!');
+        navigate('/user');
+      }
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      alert('Failed to delete user. Please try again later.');
+    }
+     
   };
 
   return (

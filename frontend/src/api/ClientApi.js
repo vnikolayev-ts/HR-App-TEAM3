@@ -157,11 +157,25 @@ function showAlertFromData(data, type){
 
 export async function  createUser(data){
 
-    showAlertFromData(data, "user");
+    showAlertFromData(data, "create user");
     
   return false;
 
   
+}
+
+export async function  updateUser(id, data){
+
+  showAlertFromData(data, "update " + id + " user");
+  
+return false;
+}
+
+export async function  deleteUser(id){
+
+  showAlertFromData(id, "user");
+  
+return false;
 }
 
 
