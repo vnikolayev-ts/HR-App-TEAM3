@@ -17,8 +17,11 @@ const EmployeeBirthdaysComponent = () => {
         const employeesData = await getFilteredEmployees(startDate,endDate);
 
         // Filtern der Mitarbeiter mit Geburtstagen in den nächsten 5 Tagen
-
-
+       /* const filtered = employeesData.filter(employee => {
+            const employeeBirthday = new Date(employee.birthdate);
+            return employeeBirthday >= startDate && employeeBirthday <= endDate;
+          });
+*/
         // Setzen der gefilterten Mitarbeiter
         setFilteredEmployees(employeesData);
 
