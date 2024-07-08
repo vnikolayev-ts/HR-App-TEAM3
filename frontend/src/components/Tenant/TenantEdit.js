@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { setPageTitle } from "../Utils/Utils";
 import Layout from "../Layout/Layout";
-import { getTenant } from "../../api/ClientApi";
+import { getTenant, deleteTenant, updateTenant } from "../../api/ClientApi";
 import LabelValueComponent from './../Utils/LabelValueComponent';
 import LabelInputComponent from '../Utils/LabelInputComponent';
 
@@ -72,13 +71,36 @@ function TenantEdit() {
     }));
   };
     
-  const handleSave = (e) => {
+
+
+  const handleSave = async (e)  => {
     e.preventDefault();
-    if (window.confirm("Tenant data have been saved. Are you sure?")) {
-    alert("All data have been saved.")  
-    navigate("/tenant/"+ tenantId);
-    }
-  }; 
+    try {
+
+      const newTenant = {
+        name
+      };
+
+      if (window.confirm("Tenant data have been saved. Are you sure?")) {
+        
+        const result = await updateTenant(id, newTenant);
+        if (result === false) throw new Error();
+        if (result.error) {
+          throw new Error(`Error: ${result.error}`);
+        } else {
+          alert('Tenant deleted successfully!');
+          navigate('/tenant');
+        }
+      }
+    } catch (error) {
+      console.error('Error deleting Tenant:', error);
+      alert("Failed to delete user. Please try again later.");
+    }  
+  };
+
+  if (!tenant) {
+    return <div>Tenant not found {id}</div>;
+  }
   
 
   const handleDelete = async (e)  => {

@@ -1,14 +1,21 @@
   
 
 
-    export const checkUrlExists = async (url) => {
-      try {
-        const response = await fetch(url, { method: 'HEAD' });
-        return response.ok;
-      } catch (error) {
-        return false;
-      }
-    };
+export const checkUrlExists = async (url) => {
+  // Überprüfen, ob die URL mit "http://" oder "https://" beginnt
+  if (!/^https?:\/\//i.test(url)) {
+    return false;
+  }
+
+  try {
+    const response = await fetch(url, { method: 'HEAD' });
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+
 
     export const getCurrentDomain = () => {
       try {

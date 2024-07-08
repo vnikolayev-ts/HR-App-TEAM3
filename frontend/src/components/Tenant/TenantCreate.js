@@ -31,9 +31,10 @@ const TenantCreate = () => {
 
   const handleCreate = async (e) => {
     e.preventDefault();
-    const newTenant = {
-      tenant_name: name,
-    }
+      const newTenant = {
+        name
+      };
+
   
   try {
       const result = await createTenant(newTenant);
@@ -55,7 +56,7 @@ const TenantCreate = () => {
     <Layout pTitle={title}>
       <button className="backButton" onClick={handleBackClick} > Back </button>
         <form>        
-            <LabelInputComponent lab={"Name"} val={ Name } onChange={(e) => setName(e.target.value)}/>
+            <LabelInputComponent lab={"Name"} val={ name } onChange={(e) => setName(e.target.value)}/>
             <button className="saveButton" onClick={handleCreate}>Save</button>
             <button className="resetButton" onClick={handleReset}> Reset </button>
         </form>

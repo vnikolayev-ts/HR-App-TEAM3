@@ -91,6 +91,61 @@ export  const  getTenant = async  () => {
 }
 
 
+
+export function getLogUser(){
+  const lUser = localStorage.getItem('loginUser');
+  const loginUser = JSON.parse(lUser);
+  return loginUser;
+}
+
+export  const  apiLogin = async (username, password) => {
+//export async function  apiLogin (username, password) {
+  
+
+  const userList = userData.users;
+  //const userList = await getUsers(); // Aufruf der async Funktion getEmployees -API
+  const foundUser = userList.find((u) => u.username === username);
+
+  if (!foundUser) return null;
+
+  if (foundUser.password === password){
+    
+    delete foundUser.password;
+    
+    logUser = foundUser;
+    return logUser;
+  }
+
+  
+  return null;
+}
+
+function showAlertFromData(data, type) {
+  if (typeof data !== 'object' || data === null) {
+    // Falls data kein Objekt ist, Ausgabe als String
+    console.log(data);
+    alert(`Type: ${type} \n-------------\nVAL: ${data}`);
+  } else {
+    // Ausgabe der Benutzerdaten im Format name: value in der Konsole
+    Object.entries(data).forEach(([key, value]) => {
+      console.log(`${key}: ${value}`);
+    });
+
+    // Erzeugen der Alert-Nachricht für ein Objekt
+    alert(`Type: ${type} \n-------------\n${Object.entries(data).map(([key, value]) => `${key}: ${value}`).join('\n')}`);
+  }
+}
+
+
+export async function  createUser(data){
+  
+    showAlertFromData(data, "create user");
+    
+  return false;
+
+  
+}
+
 export  const  getUsers = async  () => {
 
   var foundUsers = null;
@@ -104,9 +159,6 @@ export  const  getUsers = async  () => {
   return foundUsers;
 }
 
-
-
-
 export  const  getUserById = async (id) => {
   var foundUser = null;
 
@@ -116,64 +168,16 @@ export  const  getUserById = async (id) => {
 
 }
 
-export function getLogUser(){
-  const lUser = localStorage.getItem('loginUser');
-  const loginUser = JSON.parse(lUser);
-  return loginUser;
-}
-
-export  const  apiLogin = async (username, password) => {
-//export async function  apiLogin (username, password) {
-
-
-  const userList = userData.users;
-  //const userList = await getUsers(); // Aufruf der async Funktion getEmployees -API
-  const foundUser = userList.find((u) => u.username === username);
-
-  if (!foundUser) return null;
-
-  if (foundUser.password === password){
-
-    delete foundUser.password;
-    
-    logUser = foundUser;
-    return logUser;
-  }
-
-
-  return null;
-}
-
-function showAlertFromData(data, type){
-   // Ausgabe der Benutzerdaten im Format name: value in der Konsole
-   Object.entries(data).forEach(([key, value]) => {
-    console.log(`${key}: ${value}`);
-  });
-
-
-  alert(`Type: ${type} \n-------------\n${Object.entries(data).map(([key, value]) => `${key}: ${value}`).join('\n')}`);
-    
-}
-
-export async function  createUser(data){
-
-    showAlertFromData(data, "create user");
-    
-  return false;
-
-  
-}
-
 export async function  updateUser(id, data){
-
-  showAlertFromData(data, "update " + id + " user");
+    
+  showAlertFromData(data, "update user id:[" + id + "]");
   
 return false;
 }
 
 export async function  deleteUser(id){
 
-  alert(id + " user");
+  showAlertFromData(id, "delte user id:[" + id + "]");
   
 return false;
 }
@@ -197,14 +201,26 @@ return false;
 
 export async function  deleteEmployee(id){
 
-  alert(id + " employee");
+  
+  showAlertFromData(id, "delte employee id:[" + id + "]");
+  
+
+ 
   
 return false;
 }
 
 export async function createTenant(data){
 
-  alert(data, "create tenant");
+
+  showAlertFromData(data, "create tenant");
+  
+return false;
+}
+
+export async function updateTenant(id, data){
+
+  showAlertFromData(data, "update tenant id:[" + id + "]");
   
 return false;
 }
@@ -213,7 +229,7 @@ return false;
 
 export async function  deleteTenant(id){
 
-  alert(id + " tenant");
+  showAlertFromData(id, "delte tenant id:[" + id + "]");
   
 return false;
 }
