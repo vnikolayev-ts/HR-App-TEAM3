@@ -50,32 +50,36 @@ return (
  
  
         <Link to="/employee-create">
-          <button className="createButton">Create Employee</button>
+          <button className="createButton">Create </button>
         </Link>
       
     
     <ul className="list" >
       {employeeData.map(employee => (
         <li className="listItem" key={employee.pers_id} >
-    
-              <div className="fname">{employee.first_name}</div>             
-              <div className="lname">{employee.last_name}</div>            
-              <div className="persid">{employee.pers_id}</div>          
-              <div className="edate">{employee.entry_date}</div>       
-              <div className="bdate">{employee.position}</div>        
+
+
+              <div className="fname">{employee.first_name}</div>                     
+              <div className="lname">{employee.last_name}</div>                     
+              <div className="persid">{employee.pers_id}</div>                   
+              <div className="edate">{employee.entry_date}</div>                   
+              <div className="bdate">{employee.position}</div>             
+              
+           
               <ScoreComponent score={employee.ma_score} />
               
-              
+              <Link to={`/employee/${employee.pers_id}`} > <button className="viewButton"  >Details</button> </Link>
                           
               
-                  <Link to={`/employee/${employee.pers_id}`} > <button className="viewButton"  >Details</button> </Link>
-                 
-       
+                  
+             
+                  
           
         </li>
+        
       ))}
     </ul>
-
+  
   </Layout>
 );
 }

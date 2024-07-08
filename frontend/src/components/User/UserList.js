@@ -50,8 +50,8 @@ const UserList = () => {
   //console.log(userData);
   return (
     <Layout pTitle={'User List'}>
-      <button onClick={handleBackClick}>Back</button>
-      <button onClick={handleCreateClick}>Create User</button>
+      <button onClick={handleBackClick} className="backButton">Back</button>
+      <button onClick={handleCreateClick} className="createButton">Create </button>
       <ul class="list">
         {userData.map((user) => (
           <li className="listItem">
