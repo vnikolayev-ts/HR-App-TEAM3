@@ -44,6 +44,21 @@ export const getEmployees = async () => {
   return foundEmps;
 };
 
+export const getFilteredEmployees = async () => {
+  let foundEmps = null;
+  const loggedInUser = getLogUser();
+  const tId = loggedInUser ? loggedInUser.tenantId : null;
+  const empList = employeeData.employees;
+
+  if (!tId) {
+    foundEmps = empList;
+  } else {
+    foundEmps = employeeData.employees.filter(el => el.tenantId === tId);
+   
+  }
+  return foundEmps;
+};
+
 
 export  const  getEmployeeById = async (id) => {
   var fEmployee = null;

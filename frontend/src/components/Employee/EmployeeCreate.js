@@ -29,6 +29,7 @@ const EmployeeCreate = () => {
   const [creativity, setCreativity] = useState('');
   const [reliability, setReliability] = useState('');
   const [initiative, setInitiative] = useState('');
+  const [image, setImage] = useState('');
 
   const [title] = useState('Employee Create Page');
 
@@ -61,6 +62,7 @@ const EmployeeCreate = () => {
       creativity,
       reliability,
       initiative,
+      image
     };
 
     try {
@@ -93,7 +95,7 @@ const EmployeeCreate = () => {
       <button onClick={handleBackClick} className='backButton'>Back</button>
 
       <form onSubmit={handleCreate}>
-        <LabelInputComponent lab="First Name: " name="first_name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+       <LabelInputComponent lab={"Img Url"} name="image" val={image} onChange={(e) => setImage(e.target.value)}/>
         <LabelInputComponent lab="First Name: " name="first_name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
         <LabelInputComponent lab="Last Name: " name="last_name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
         <LabelInputComponent lab="Date of Birth: " name="birthdate" value={birthdate} onChange={(e) => setBirthdate(e.target.value)} />
