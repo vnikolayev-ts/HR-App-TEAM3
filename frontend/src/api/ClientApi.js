@@ -173,7 +173,7 @@ return false;
 
 export async function  deleteUser(id){
 
-  showAlertFromData(id, "user");
+  alert(id + " user");
   
 return false;
 }
@@ -197,7 +197,15 @@ return false;
 
 export async function  deleteEmployee(id){
 
-  showAlertFromData(id, "employee");
+  alert(id + " employee");
+  
+return false;
+}
+
+
+export async function  deleteTenant(id){
+
+  alert(id + " tenant");
   
 return false;
 }

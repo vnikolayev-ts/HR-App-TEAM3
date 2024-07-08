@@ -12,11 +12,13 @@ function CreateUser() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [admin, setAdmin] = useState(false);
+  const [admin, setAdmin] = useState(false); 
 
+  
+  
   const handleSave = async (e) => {
     e.preventDefault();
-
+    
     try {
 
       const newUser = {
@@ -28,7 +30,7 @@ function CreateUser() {
       };
 
       setTitle('Create User')
-
+      
       // Aufruf der Funktion createUser aus der API, um den Benutzer zu erstellen
       let result = await createUser(newUser);
       if (result === false) throw new Error();
@@ -56,7 +58,7 @@ function CreateUser() {
   };
 
   return (
-    <Layout pTitle={"Create User"}>
+    <Layout pTitle={title}>
       <button onClick={handleBackClick} className="backButton">
         Back
       </button>

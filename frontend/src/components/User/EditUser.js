@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { setPageTitle } from "../Utils/Utils";
 import Layout from "../Layout/Layout";
-import { getUserById } from "../../api/ClientApi";
+import { getUserById,updateUser,deleteUser } from "../../api/ClientApi";
 import LabelValueComponent from './../Utils/LabelValueComponent';
 import LabelInputComponent from './../Utils/LabelInputComponent';
+
+
+
+
 
 function EditUser() {
   const { id } = useParams();
@@ -40,9 +44,9 @@ function EditUser() {
       try {
         const fUser = await getUserById(id);
         setUser(fUser);
-        setPageTitle('Edit User ${user.name}')
+       
         if (fUser) {
-          
+          setTitle(`User Details ${fUser.name}`);
           setTenantId(fUser.tenantId);
           setName(fUser.name);
           setUsername(fUser.username);
@@ -52,8 +56,8 @@ function EditUser() {
           setUserId(fUser.userId);
         }
 
-        const title =  "Edit Page";
-        setPageTitle(title);
+        // const title =  "Edit Page";
+        // setPageTitle(title);
       } catch (error) {
         console.error("Error fetching user data:", error);
         return <p>Loading... Error</p>;
@@ -70,7 +74,7 @@ function EditUser() {
   const handleSave = async (e) => {
     e.preventDefault();
     try {
-      const result = await updateUser(id);
+      const result = await updateUser(id,user);
       if (result === false) throw new Error();
       if (result.error) {
         throw new Error(`Error: ${result.error}`);

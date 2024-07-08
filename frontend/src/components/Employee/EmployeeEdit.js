@@ -63,7 +63,7 @@ const EmployeeEdit = () => {
   const handleSave = async (e) => {
     e.preventDefault();
     try {
-      const result = await updateEmployee(id);
+      const result = await updateEmployee(id,employee);
       if (result === false) throw new Error();
       if (result.error) {
         throw new Error(`Error: ${result.error}`);
@@ -97,8 +97,8 @@ const EmployeeEdit = () => {
     }
   };
 
-  const handleDelete = async (e) => {
-    e.preventDefault();
+  const handleDelete = async () => {
+
 
     try {
       const result = await deleteEmployee(id);
