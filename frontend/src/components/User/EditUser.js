@@ -17,6 +17,8 @@ function EditUser() {
   const [admin, setAdmin] = useState(false);
   const [userId, setUserId] = useState(null);
 
+  const [title, setTitle] = useState('EditUser Page');
+
   const navigate = useNavigate();
 
   const handleBackClick = () => {
@@ -38,8 +40,9 @@ function EditUser() {
       try {
         const fUser = await getUserById(id);
         setUser(fUser);
-
+        setPageTitle('Edit User ${user.name}')
         if (fUser) {
+          
           setTenantId(fUser.tenantId);
           setName(fUser.name);
           setUsername(fUser.username);
@@ -78,7 +81,7 @@ function EditUser() {
   };
 
   return (
-    <Layout>
+    <Layout pTitle={title}> 
       <button onClick={handleBackClick} className="backButton">Back</button>
       
       <form>

@@ -7,7 +7,7 @@ import { createUser } from "../../api/ClientApi";
 
 function CreateUser() {
   const navigate = useNavigate();
-
+  const [title, setTitle] = useState("Create User Page");
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -27,7 +27,7 @@ function CreateUser() {
         admin,
       };
 
-
+      setTitle('Create User')
 
       // Aufruf der Funktion createUser aus der API, um den Benutzer zu erstellen
       let result = await createUser(newUser);

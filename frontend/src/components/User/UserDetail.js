@@ -16,6 +16,10 @@ function UserDetail() {
 
   const [name, setName] = useState("");
 
+  
+  const [title, setTitle] = useState('User Detail Page');
+  
+
   const [foundUser, setFoundUser] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -24,6 +28,9 @@ function UserDetail() {
 
   /* Back Button navigation zurück zum /dashboard */
   const navigate = useNavigate();
+
+
+
 
   const handleBackClick = () => {
     navigate("/user");
@@ -37,7 +44,7 @@ function UserDetail() {
         const fUser  = await getUserById( id);
         setFoundUser(fUser);
         if (foundUser) {
-         
+         setPageTitle('User Details ${user.name}')
           setName(foundUser.name);
           setUsername(foundUser.username);
           setEmail(foundUser.email);
@@ -68,7 +75,7 @@ function UserDetail() {
   }
 
   return (
-    <Layout>
+    <Layout pTitle={title}>
       <button onClick={handleBackClick} className="backButton"> Back </button>
             <LabelValueComponent label={"ID"} value={id } />
             <LabelValueComponent label={"Tenant-ID"} value={tenantId } />
