@@ -69,11 +69,11 @@ function TenantCreate({ isView = false }) {
             />
               
         </form>
-        <button className="saveButton" onClick={handleSave}>
-                Save
-              </button>
               <button className="resetButton" onClick={handleReset}>
                 Reset
+              </button>
+        <button className="createButton" onClick={handleSave}>
+                Save
               </button>
     </Layout>
   );

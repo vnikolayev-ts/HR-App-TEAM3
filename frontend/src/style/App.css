@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   
-  background-color: #fff;
+  background-color: rgb(249, 249, 249);
   margin: 0;
   padding: 20px;
 }
@@ -62,7 +62,7 @@ body {
 
 /* Andere allgemeine Stile */
 .rounded {
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 .text-center {
@@ -71,4 +71,158 @@ body {
 
 .text-bold {
   font-weight: bold;
+}
+
+.pageTitle {
+  font-size: 30px;
+  color: #212529;
+  text-shadow: 3px, 3px, 7px;
+}
+
+.saveButton{
+  width: 100px; 
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px; 
+  background-color: #909090; 
+  color: rgb(255, 255, 255);
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 16px; 
+  box-shadow: 2px 2px 7px rgb(86, 86, 86);
+}
+
+.saveButton:hover {
+  background-color: #757575; 
+}
+.viewButton{
+  width: 100px; 
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px; 
+  background-color: #909090; 
+  color: rgb(255, 255, 255);
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 16px; 
+  box-shadow: 2px 2px 7px rgb(86, 86, 86);
+}
+
+.viewButton:hover {
+  background-color: #757575; 
+}
+.backButton{
+  width: 100px; 
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px; 
+  background-color: #909090; 
+  color: rgb(215, 215, 215);
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 16px; 
+  box-shadow: 2px 2px 7px rgb(86, 86, 86);
+}
+
+.backButton:hover {
+  background-color: #757575; 
+}
+.createButton{
+  width: 100px; 
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px; 
+  background-color: #909090; 
+  color: rgb(255, 255, 255);
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 16px; 
+  box-shadow: 2px 2px 7px rgb(86, 86, 86);
+}
+
+.createButton:hover {
+  background-color: #757575; 
+}
+.editButton{
+  width: 100px; 
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px; 
+  background-color: #909090; 
+  color: rgb(255, 255, 255);
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 16px; 
+  box-shadow: 2px 2px 7px rgb(86, 86, 86);
+}
+
+.editButton:hover {
+  background-color: #3d3d3d; 
+}
+
+.label-input-component{
+  height: 30px;
+  width: 97%;
+  margin: 30px auto 0;
+  background-color: rgb(204, 204, 204);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 3px 3px 7px;
+  padding: 20px; 
+  display: ;
+  flex-direction:;
+  align-items: ; 
+  justify-content: space-between; 
+  
+}
+
+.input.input{
+  width: 250px; 
+  padding: 10px;
+  margin-bottom: 20px; 
+  
+  border-radius: 5px; 
+  border: none; 
+  box-sizing: border-box; 
+  text-align: center; 
+  box-shadow:inset 2px 2px 7px;
+}
+.label.label{
+  width: 25px; 
+  padding: 10px;
+  margin-bottom: 20px; 
+  border-radius: 5px; 
+  border: none; 
+  
+}
+
+.list{
+  list-style-type: none;
+  padding: 0px;
+
+}
+
+.listItem{
+  height: 50px;
+  width: 100%;
+  margin-bottom: 20px ;
+  background-color: rgb(204, 204, 204);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 3px 3px 7px;
+  padding: 10px 0; 
+  display: flex;
+  flex-direction:;
+  align-items: ; 
+  justify-content: space-between; 
+}
+
+
+.separator {
+  margin: 0 10px;
 }

@@ -164,14 +164,26 @@ export async function  createUser(data){
   
 }
 
+
 export async function  createEmployee(data){
 
-  showAlertFromData(data, "employee");
+  showAlertFromData(data, "create employee");
+  
   
 return false;
 }
 
 
+export async function  updateEmployee(id, data){
 
+  showAlertFromData(data, "update " + id + " employee");
+  
+return false;
+}
 
+export async function  deleteEmployee(id){
 
+  showAlertFromData(id, "employee");
+  
+return false;
+}

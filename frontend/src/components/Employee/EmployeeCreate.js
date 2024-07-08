@@ -90,14 +90,14 @@ const EmployeeCreate = () => {
 
   return (
     <Layout pTitle={title}>
-      <button onClick={handleBackClick}>Back</button>
+      <button onClick={handleBackClick} className='backButton'>Back</button>
 
       <form onSubmit={handleCreate}>
-        <LabelInputComponent lab="First Name" name="first_name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-        <LabelInputComponent lab="First Name" name="first_name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-        <LabelInputComponent lab="Last Name" name="last_name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-        <LabelInputComponent lab="Date of Birth" name="birthdate" value={birthdate} onChange={(e) => setBirthdate(e.target.value)} />
-        <LabelInputComponent lab="Date of Entry" name="entry_date" value={entryDate} onChange={(e) => setEntryDate(e.target.value)} />
+        <LabelInputComponent lab="First Name: " name="first_name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+        <LabelInputComponent lab="First Name: " name="first_name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+        <LabelInputComponent lab="Last Name: " name="last_name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+        <LabelInputComponent lab="Date of Birth: " name="birthdate" value={birthdate} onChange={(e) => setBirthdate(e.target.value)} />
+        <LabelInputComponent lab="Date of Entry: " name="entry_date" value={entryDate} onChange={(e) => setEntryDate(e.target.value)} />
         <LabelInputComponent lab="Position" name="position" value={position} onChange={(e) => setPosition(e.target.value)} />
         <LabelInputComponent lab="Department" name="department" value={department} onChange={(e) => setDepartment(e.target.value)} />
         <LabelInputComponent lab="Email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />

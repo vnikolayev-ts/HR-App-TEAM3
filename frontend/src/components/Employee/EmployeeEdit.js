@@ -81,6 +81,12 @@ const EmployeeEdit = () => {
     }
   };
 
+  const handleDelete = (e) => {
+    e.preventDefault();
+    // Logik zum Löschen der Daten
+    alert("User data deleted!");
+  };
+
   const handleBackClick = () => {
     navigate(`/employee/${employee.pers_id}`);
   };
@@ -128,8 +134,9 @@ const EmployeeEdit = () => {
 
 
    
-    <button onClick={handleSave}>Save</button>
-    <button onClick={handleReset}>Reset</button>
+        <button className="resetButton" onClick={handleReset}>Reset</button>
+        <button className="saveButton" onClick={handleSave}>Save</button>
+        <button className="deleteButton" onClick={handleDelete}>Delete</button>
     </div>
     </Layout>
   );
