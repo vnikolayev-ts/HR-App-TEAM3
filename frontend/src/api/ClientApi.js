@@ -171,3 +171,18 @@ export async function  createEmployee(data){
 return false;
 }
 
+
+export async function  createTenant(data){
+
+  showAlertFromData(data, "tenant");
+  
+return false;
+}
+
+
+export async function  deleteTenant(data){
+
+  showAlertFromData(data, "tenant");
+  
+return false;
+}

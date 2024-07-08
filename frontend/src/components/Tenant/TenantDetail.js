@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { setPageTitle } from "../Utils/Utils";
 import LabelValueComponent from './../Utils/LabelValueComponent';
 
 import Layout from "../Layout/Layout";
@@ -14,6 +13,7 @@ function TenantDetail() {
   const [name, setName] = useState("");
   const [tenant, setTenant] = useState(null);
   const [tenantId, setTenantId] = useState(null);
+  const[title] = useState('Tenant Detail Page');
 
   /* Back Button navigation zurück zum /dashboard */
   const navigate = useNavigate();
@@ -35,8 +35,6 @@ function TenantDetail() {
           setTenant(foundTenant);
         }
 
-        const title = "Tenant Detail";
-        setPageTitle(title);
       } catch (error) {
         console.error("Error fetching HR data:", error);
         // Hier könntest du zusätzliche Fehlerbehandlung durchführen, z.B. eine Fehlermeldung anzeigen
@@ -58,17 +56,12 @@ function TenantDetail() {
   }
 
   return (
-    <Layout>
+    <Layout pTitle={{title}}>
       <button onClick={handleBackClick} className="backButton">Back</button>
-
-
       <LabelValueComponent label={"Tenant-ID"} value={tenantId } />
       <LabelValueComponent label={"Name"} value={name } />
       <Link to={`/tenant-edit/${tenant.tenantId}`}><button className="editButton">Edit</button></Link>
-      
-       
-      
-    </Layout>
+     </Layout>
   );
 }
 
