@@ -29,7 +29,7 @@ function CreateUser() {
         admin,
       };
 
-      setTitle('Create User')
+      
       
       // Aufruf der Funktion createUser aus der API, um den Benutzer zu erstellen
       let result = await createUser(newUser);

@@ -33,9 +33,9 @@ const EmployeeDetails = () => {
         const tData =  await getTenant();
         setTenant(tData);
 
-        const imgUrl2 = checkUrlExists(tenant.public_image_path) ? tenant.public_image_path +"/"+employee.image : `.${ tenant.noimage_url}`;
+        const imgUrl2 = checkUrlExists(tenant.public_image_path) ? tenant.public_image_path +""+ fEmp.image : `.${ tenant.noimage_url}`;
 
-        setImgUrl (employee.image);
+        setImgUrl (imgUrl2);
 
       } catch (error) {
         console.error('Error fetching HR data:', error);

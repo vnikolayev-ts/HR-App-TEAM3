@@ -8,11 +8,16 @@ import { logout } from '../Login/auth';
 
 const lUser = localStorage.getItem('loginUser');
 const loginUser = JSON.parse(lUser);
-const isAdmin = true;
+var isAdmin = false;
+
+
 
 const Navbar =()  => {
 
+  if (loginUser){
 
+    if (loginUser.admin === true) isAdmin = true;
+  }
    
    const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -34,7 +39,7 @@ const Navbar =()  => {
 
   
  
-  console.log("admin:" + isAdmin);
+  //console.log("admin:" + isAdmin);
   return (
 
 
@@ -49,7 +54,7 @@ const Navbar =()  => {
         {dropdownOpen && (
           <div className="dropdownContent">
             
-             {  isAdmin === true && (
+             {  JSON.parse(lUser).admin === true && (
                 <>
                  <Link to="/user">User</Link>
                  <Link to="/tenant">Tenats</Link>

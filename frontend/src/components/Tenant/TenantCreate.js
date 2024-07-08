@@ -10,7 +10,7 @@ const TenantCreate = () => {
   const navigate = useNavigate();
 
   // State-Hooks für alle Eingabefelder
-  const [Name, setName] = useState(null);
+  const [name, setName] = useState(null);
 
   const[title] = useState('Tenant Create Page');
 
@@ -18,10 +18,21 @@ const TenantCreate = () => {
     navigate('/tenant');
   };
 
+  const handleReset = (e) => {
+    e.preventDefault();
+    if (window.confirm("All data will be resetted. Are you sure?")) {
+      window.location.reload(true);
+      alert("All data have been resetted.");
+    } else {
+      alert("Nothing has been changed.");
+    }
+  };
+
+
   const handleCreate = async (e) => {
     e.preventDefault();
     const newTenant = {
-      tenant_name: Name,
+      tenant_name: name,
     }
   
   try {
@@ -39,41 +50,20 @@ const TenantCreate = () => {
     }  
   }; 
     
-
-  /* Cancel Button Funktion */
-  const handleReset = (e) => {
-    e.preventDefault();
-    if (window.confirm("All data will be resetted. Are you sure?")) {
-      window.location.reload(true);
-      alert("All data have been resetted.");
-    } else {
-      alert("Nothing has been changed.");
-    }
-  };
-
+ 
   return (
-    <Layout>
+    <Layout pTitle={title}>
       <button onClick={handleBackClick} className="backButton">
         Back
       </button>
 
-        <form>
-            <label>Name</label>
-            <input
-              type="text"
-              value={name}
-              readOnly={false}
-              onChange={(e) => setName(e.target.value)}
-              j
-            />
-              
-        </form>
-              <button className="resetButton" onClick={handleReset}>
-                Reset
-              </button>
-        <button className="createButton" onClick={handleSave}>
-                Save
-              </button>
+        <LabelValueComponent label={"Tenant-ID"} value={tenantId } onChange={(e) => setName(e.target.value)}/>
+        <LabelInputComponent lab={"Name"} val={name } onChange={(e) => setName(e.target.value)}/>
+
+
+              <button className="resetButton" onClick={handleReset}>Reset</button>
+              <button className="createButton" onClick={handleCreate}>Save</button>
+
     </Layout>
   );
     
