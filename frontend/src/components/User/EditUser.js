@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { setPageTitle } from "../Utils/Utils";
 import Layout from "../Layout/Layout";
-import { getUserById } from "../../api/ClientApi";
+import { getUserById,updateUser,deleteUser } from "../../api/ClientApi";
 import LabelValueComponent from './../Utils/LabelValueComponent';
 import LabelInputComponent from './../Utils/LabelInputComponent';
+
+
+
+
 
 function EditUser() {
   const { id } = useParams();
@@ -16,6 +20,8 @@ function EditUser() {
   const [password, setPassword] = useState("");
   const [admin, setAdmin] = useState(false);
   const [userId, setUserId] = useState(null);
+
+  const [title, setTitle] = useState('EditUser Page');
 
   const navigate = useNavigate();
 
@@ -38,8 +44,9 @@ function EditUser() {
       try {
         const fUser = await getUserById(id);
         setUser(fUser);
-
+       
         if (fUser) {
+          setTitle(`User Details ${fUser.name}`);
           setTenantId(fUser.tenantId);
           setName(fUser.name);
           setUsername(fUser.username);
@@ -49,8 +56,8 @@ function EditUser() {
           setUserId(fUser.userId);
         }
 
-        const title =  "Edit Page";
-        setPageTitle(title);
+        // const title =  "Edit Page";
+        // setPageTitle(title);
       } catch (error) {
         console.error("Error fetching user data:", error);
         return <p>Loading... Error</p>;
@@ -64,21 +71,47 @@ function EditUser() {
     return <p>Loading...</p>;
   }
 
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
-    // Logik zum Speichern der Daten
-    alert("User data saved!");
+    try {
+      const result = await updateUser(id,user);
+      if (result === false) throw new Error();
+      if (result.error) {
+        throw new Error(`Error: ${result.error}`);
+      } else {
+        alert('User saved successfully!');
+        navigate('/user');
+      }
+    } catch (error) {
+      console.error('Error saving user:', error);
+      alert('Failed to save user. Please try again later.');
+    }
+
+
+alert("User data saved!");
     navigate("/user/"+ userId);
   };
 
-  const handleDelete = (e) => {
+  const handleDelete = async (e) => {
     e.preventDefault();
-    // Logik zum Löschen der Daten
-    alert("User data deleted!");
+    try {
+      const result = await deleteUser(id);
+      if (result === false) throw new Error();
+      if (result.error) {
+        throw new Error(`Error: ${result.error}`);
+      } else {
+        alert('User deleted successfully!');
+        navigate('/user');
+      }
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      alert('Failed to delete user. Please try again later.');
+    }
+     
   };
 
   return (
-    <Layout>
+    <Layout pTitle={title}> 
       <button onClick={handleBackClick} className="backButton">Back</button>
       
       <form>

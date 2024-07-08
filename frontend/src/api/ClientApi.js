@@ -157,32 +157,55 @@ function showAlertFromData(data, type){
 
 export async function  createUser(data){
 
-    showAlertFromData(data, "user");
+    showAlertFromData(data, "create user");
     
   return false;
 
   
 }
 
+export async function  updateUser(id, data){
+
+  showAlertFromData(data, "update " + id + " user");
+  
+return false;
+}
+
+export async function  deleteUser(id){
+
+  alert(id + " user");
+  
+return false;
+}
+
+
 export async function  createEmployee(data){
 
-  showAlertFromData(data, "employee");
+  showAlertFromData(data, "create employee");
+  
   
 return false;
 }
 
 
-export async function  createTenant(data){
+export async function  updateEmployee(id, data){
 
-  showAlertFromData(data, "tenant");
+  showAlertFromData(data, "update " + id + " employee");
+  
+return false;
+}
+
+export async function  deleteEmployee(id){
+
+  alert(id + " employee");
   
 return false;
 }
 
 
-export async function  deleteTenant(data){
+export async function  deleteTenant(id){
 
-  showAlertFromData(data, "tenant");
+  alert(id + " tenant");
   
 return false;
 }

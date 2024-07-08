@@ -52,13 +52,28 @@ const TenantCreate = () => {
   };
 
   return (
-    <Layout pTitle={title}>
-      <button onClick={handleBackClick}>Back</button>
-      <form onSubmit={handleCreate}>
-        <LabelInputComponent lab="Name" name="name" value={Name} onChange={(e) => setName(e.target.value)} />
-        <button className="resetButton" onClick={handleReset}>Reset</button>  
-        <button className="createButton" type="submit">Create</button>
-      </form>
+    <Layout>
+      <button onClick={handleBackClick} className="backButton">
+        Back
+      </button>
+
+        <form>
+            <label>Name</label>
+            <input
+              type="text"
+              value={name}
+              readOnly={false}
+              onChange={(e) => setName(e.target.value)}
+              j
+            />
+              
+        </form>
+              <button className="resetButton" onClick={handleReset}>
+                Reset
+              </button>
+        <button className="createButton" onClick={handleSave}>
+                Save
+              </button>
     </Layout>
   );
     

@@ -19,7 +19,10 @@ const EmployeeDetails = () => {
   const [employee, setEmployee] = useState(null);
   const [title, setTitle] = useState("Employee Detail Page");
   const [tenant, setTenant] = useState(null);
+  const [imgUrl, setImgUrl] = useState(null);
 
+ 
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -30,6 +33,10 @@ const EmployeeDetails = () => {
         const tData =  await getTenant();
         setTenant(tData);
 
+        const imgUrl2 = checkUrlExists(tenant.public_image_path) ? tenant.public_image_path +"/"+employee.image : `.${ tenant.noimage_url}`;
+
+        setImgUrl (employee.image);
+
       } catch (error) {
         console.error('Error fetching HR data:', error);
         // Hier könntest du zusätzliche Fehlerbehandlung durchführen, z.B. eine Fehlermeldung anzeigen
@@ -39,14 +46,14 @@ const EmployeeDetails = () => {
 
     fetchData(); // Aufruf der fetchData Funktion, die getHRData aufruft
 
-  }, [employee]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
+  }, [id]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
 
-  if (!employee) {
+  if (!employee || !tenant) {
     return <p>Loading...</p>; // Anzeige während des Ladens der Daten
   }
 
  
-  const imgUrl = checkUrlExists(tenant.public_image_path) == true ? tenant.public_image_path : "." + tenant.noimage_url;
+  
 
   const handleBackClick = () => { 
     navigate('/employee');
@@ -68,7 +75,7 @@ const EmployeeDetails = () => {
   return (
     
     <Layout  pTitle={title}>
-    <button onClick={handleBackClick} >Back</button>
+    <button onClick={handleBackClick} className="backButton" >Back</button>
     <img className="pimage"src={`${imgUrl}`} alt={`${employee.first_name} ${employee.last_name}`} />
      
     <LabelValueComponent value={<ScoreComponent score={employee.ma_score} />} className={"ma-score"} />
@@ -98,7 +105,7 @@ const EmployeeDetails = () => {
     <LabelValueComponent label={"Reliability"} value={<StarsComponent value={employee.skills.personal_skills.reliability} /> } />
     <LabelValueComponent label={"Initiative"} value={<StarsComponent value={employee.skills.personal_skills.initiative} /> } />
 
-    <button onClick={handleEditClick} >Edit</button>
+    <button onClick={handleEditClick} className="editButton">Edit</button>
     
     </Layout>
   );

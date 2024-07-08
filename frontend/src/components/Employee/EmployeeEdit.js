@@ -1,5 +1,5 @@
 import { saveEmployee } from '../Utils/Utils';
-import { getEmployeeById } from '../../api/ClientApi'
+import { deleteEmployee, getEmployeeById, updateEmployee } from '../../api/ClientApi'
 import LabelInputComponent from '../Utils/LabelInputComponent';
 import LabelValueComponent from './../Utils/LabelValueComponent';
 import React from 'react';
@@ -60,8 +60,24 @@ const EmployeeEdit = () => {
     }));
   };
 
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
+    try {
+      const result = await updateEmployee(id,employee);
+      if (result === false) throw new Error();
+      if (result.error) {
+        throw new Error(`Error: ${result.error}`);
+      } else {
+        alert('Employee saved successfully!');
+        navigate('/employee');
+      }
+    } catch (error) {
+      console.error('Error saving employee:', error);
+      alert('Failed to save employee. Please try again later.');
+    }
+
+
+
     if (window.confirm("All data will be saved. Are you sure?")) {
     
       alert("All data have been saved.");
@@ -79,6 +95,25 @@ const EmployeeEdit = () => {
     } else {
       alert("Nothing has been changed.") 
     }
+  };
+
+  const handleDelete = async () => {
+
+
+    try {
+      const result = await deleteEmployee(id);
+      if (result === false) throw new Error();
+      if (result.error) {
+        throw new Error(`Error: ${result.error}`);
+      } else {
+        alert('Employee deleted successfully!');
+        navigate('/employee');
+      }
+    } catch (error) {
+      console.error('Error deleting employee:', error);
+      alert('Failed to delete employee. Please try again later.');
+    }
+    
   };
 
   const handleBackClick = () => {
@@ -128,8 +163,9 @@ const EmployeeEdit = () => {
 
 
    
-    <button onClick={handleSave}>Save</button>
-    <button onClick={handleReset}>Reset</button>
+        <button className="resetButton" onClick={handleReset}>Reset</button>
+        <button className="saveButton" onClick={handleSave}>Save</button>
+        <button className="deleteButton" onClick={handleDelete}>Delete</button>
     </div>
     </Layout>
   );
