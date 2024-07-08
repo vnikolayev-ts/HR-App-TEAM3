@@ -1,0 +1,66 @@
+button{
+  width: 100px; 
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px; 
+  background-color: #909090; 
+  color: rgb(255, 255, 255);
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 16px; 
+  box-shadow: var(--primaryShadow);
+}
+
+button:hover {
+  background-color: #757575; 
+}
+
+.saveButton{
+  
+    background-color: var(--successColor);
+   
+   
+   
+  }
+  
+ 
+
+  .resetButton{
+   
+    background-color: #909090; 
+   
+   
+  }
+  
+
+  .viewButton{
+   
+    background-color: #909090; 
+   
+  }
+
+  .backButton{
+   
+    background-color: #494949; 
+   
+  }
+  
+  
+  .createButton{
+  
+    background-color: #909090; 
+   
+  }
+  
+ .deleteButton{
+    background-color: var(--dangerColor);
+ }
+  
+  .editButton{
+   
+    background-color: #909090; 
+   
+  }
+  
+ 

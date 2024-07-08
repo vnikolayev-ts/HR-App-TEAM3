@@ -10,6 +10,7 @@ import Footer from "./Footer";
 import '../../style/navbar.css';
 import '../../style/score.css';
 import '../../style/login.css';
+import '../../style/Buttons.css'
 
 
        

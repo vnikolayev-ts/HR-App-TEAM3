@@ -16,6 +16,7 @@ function EditUser() {
   const [password, setPassword] = useState("");
   const [admin, setAdmin] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [title, setTitle] = useState("Edit Page");
 
   const navigate = useNavigate();
 
@@ -49,7 +50,7 @@ function EditUser() {
           setUserId(fUser.userId);
         }
 
-        const title =  "Edit Page";
+        
         setPageTitle(title);
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -58,7 +59,7 @@ function EditUser() {
     };
 
     fetchData();
-  }, [user, id]);
+  }, [user, id, title]);
 
   if (!user) {
     return <p>Loading...</p>;
@@ -78,7 +79,7 @@ function EditUser() {
   };
 
   return (
-    <Layout>
+    <Layout pTitle={title}>
       <button onClick={handleBackClick} className="backButton">Back</button>
       
       <form>

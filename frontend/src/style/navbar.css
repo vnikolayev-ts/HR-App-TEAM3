@@ -16,17 +16,18 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
-    background: #676767;
+    background: #767676;
     margin-top: none;
     padding: 1rem;
-    box-shadow: 0px, 3px ,7px, rgba(86,86,86,1);
+    box-shadow: 0px 5px 11px rgba(86,86,86,1);
   }
 
  .navBar button {
-    background: #909090;
+    width: 150px;  
+    background-color: #6c6c6c;
     text-decoration: none;
     padding: 0.5rem;
-    color: rgb(255, 255, 255);
+    color: rgb(207, 206, 206);
     border-radius: 5px; 
     font-size: 16px;
     box-shadow: 2px 2px 7px;

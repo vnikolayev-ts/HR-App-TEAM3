@@ -60,7 +60,7 @@ function CreateUser() {
       <button onClick={handleBackClick} className="backButton">
         Back
       </button>
-      <form onSubmit={handleSave}>
+      
         <LabelInputComponent lab={"Name"} name="name" val={name} onChange={(e) => setName(e.target.value)} />
         <LabelInputComponent lab={"Username"} name="username" val={username} onChange={(e) => setUsername(e.target.value)} />
         <LabelInputComponent lab={"Email"} name="email" val={email} onChange={(e) => setEmail(e.target.value)} />
@@ -68,8 +68,8 @@ function CreateUser() {
         <LabelInputComponent lab={"Admin"} name="admin" checked={admin} type={'checkbox'} onChange={(e) => setAdmin(e.target.checked)} />
         
         <button className="resetButton" onClick={handleReset}>Reset</button>
-        <button className="createButton" type="submit">create</button>
-      </form>
+        <button className="createButton" onClick={handleSave}>create</button>
+      
     </Layout>
   );
 }

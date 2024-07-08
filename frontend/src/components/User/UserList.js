@@ -64,10 +64,10 @@ const UserList = () => {
                 <div className="mail">{user.email}</div>
 
                 {user.admin && (
-                  <>
+                  <div>
                    
                     <div className="admin"> Administrator </div>
-                  </>
+                  </div>
                 )}
               </div>
             </div>
