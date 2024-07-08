@@ -44,7 +44,7 @@
     text-align: center;
   }
 
-  input[type="email"], 
+  .loginContainer .[type="email"], 
   input[type="password"] {
     width: 250px; 
     padding: 10px;

@@ -13,22 +13,31 @@
 
 
   .navBar {
+    width: 100%;
     display: flex;
     justify-content: space-around;
-    background: #3a6fc1;
+    background: #676767;
+    margin-top: none;
     padding: 1rem;
+    box-shadow: 0px, 3px ,7px, rgba(86,86,86,1);
   }
 
  .navBar button {
-    background: #3a6fc1;
+    background: #909090;
     text-decoration: none;
     padding: 0.5rem;
-    color: white;
+    color: rgb(255, 255, 255);
+    border-radius: 5px; 
     font-size: 16px;
-  
+    box-shadow: 2px 2px 7px;
     border: none;
     background: none;
     cursor: pointer;
+    border-radius: 5px; 
+  }
+
+  .navBar button:hover {
+    background-color: #555555; 
   }
 
   .navBar .logout{
@@ -38,9 +47,11 @@
 
 
   .navBar a {
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
     padding: 0.5rem;
+    margin-top: none;
+    box-shadow: 0px, 3px ,7px, rgba(86,86,86,1);;
   }
 
   .dropdown {
@@ -52,7 +63,7 @@
   .dropdownContent{
         display: block;
       position: absolute;
-      background-color: #3a6fc1;
+      background-color: #848484;
       min-width: 160px;
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
       z-index:  1;
