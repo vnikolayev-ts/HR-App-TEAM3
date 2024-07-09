@@ -4,7 +4,7 @@ import { getEmployees, getUsers, getTenant } from '../../api/ClientApi';
 import JokeComponent from '../Utils/JokeComponent'; 
 import EmployeeBirthdaysComponent from '../Employee/EmployeeBirthdaysComponent'; 
 
-
+const imgUrl = '../images/logo/android-chrome-512x512.png';
 const Dashboard = () => {
   const [employeeData, setEmployeeData] = useState(null);
   const [userData, setUserData] = useState(null);
@@ -44,11 +44,19 @@ const Dashboard = () => {
   return (
     <div>
       <Layout pTitle={`Dashboard - ${tenant.name}`}>
+      <div className="logo-container"> 
+      <img src={imgUrl} alt="Logo" className="logo" />
+      </div>
+      <div className="dashboard-container">
+          <div className="main-content">
         <label>Users:</label> {uLength}
         <label>Employees:</label> {eLength}
-        <div>
-                   <JokeComponent />
+        
                    <EmployeeBirthdaysComponent />
+          </div>
+          <div className="joke-component">
+            <JokeComponent />
+        </div>           
         </div>
       </Layout>
     </div>
@@ -56,3 +64,5 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+

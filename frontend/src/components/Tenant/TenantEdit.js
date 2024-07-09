@@ -132,9 +132,9 @@ function TenantEdit() {
          
         <LabelValueComponent label={"Tenant-ID"} value={tenantId } onChange={(e) => setName(e.target.value)}/>
         <LabelInputComponent lab={"Name"} val={name } onChange={(e) => setName(e.target.value)}/>
+        <button className="resetButton" onClick={handleReset}> Reset </button>
         <button className="saveButton" onClick={handleSave}>Save</button>
         <button className="deleteButton" onClick={handleDelete}> Delete</button>
-        <button className="resetButton" onClick={handleReset}> Reset </button>
       
         </form>
       

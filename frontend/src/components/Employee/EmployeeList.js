@@ -63,7 +63,7 @@ return (
               <div className="lname">{employee.last_name}</div>                     
               <div className="persid">{employee.pers_id}</div>                   
               <div className="edate">{employee.entry_date}</div>                   
-              <div className="bdate">{employee.position}</div>             
+              <div className="position">{employee.position}</div>             
               
            
               <ScoreComponent score={employee.ma_score} />

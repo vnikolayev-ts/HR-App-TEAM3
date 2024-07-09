@@ -56,31 +56,30 @@ const UserList = () => {
     <Layout pTitle={title}>
       <button onClick={handleBackClick}>Back</button>
       <button onClick={handleCreateClick}>Create User</button>
-      <ul class="list">
+      <ul className="list">
         {userData.map((user) => (
-          <li className="listItem">
-            <div key={user.userId}>
-              <div className="persdate">
-                <div className="UID">{user.userId}</div>               
-                <div className="TID">{user.tenantId}</div>               
+          <li className="listItem" key={user.userId}>
+           
+              
+                          
                 <div className="name">{user.name}</div>               
                 <div className="usname">{user.username}</div>                         
                 <div className="mail">{user.email}</div>
 
                 {user.admin && (
-                  <div>
+                  
                    
                     <div className="admin"> Administrator </div>
-                  </div>
+                  
                 )}
-              </div>
-            </div>
-            <div className="action-list-item">
+              
+            
+            
               <Link to={`/user/${user.userId}`}>
                 <button className="viewButton">Details</button>
               </Link>
 
-            </div>
+          
           </li>
         ))}
       </ul>

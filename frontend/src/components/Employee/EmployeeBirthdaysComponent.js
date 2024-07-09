@@ -54,9 +54,9 @@ const EmployeeBirthdaysComponent = () => {
       <ul>
         {filteredEmployees.length > 0 ? (
           filteredEmployees.map((employee, index) => (
-            <li key={index}>
+            <ul key={index}>
               {employee.first_name} {employee.last_name} - {formatDate(employee.birthdate)}
-            </li>
+            </ul>
           ))
         ) : (
           <p>No employees have birthdays in the next 5 days</p>

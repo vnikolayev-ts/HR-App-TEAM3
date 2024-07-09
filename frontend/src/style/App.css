@@ -123,12 +123,141 @@ body {
   box-shadow: 3px 3px 7px;
   padding: 10px 0; 
   display: flex;
-  flex-direction:;
-  align-items: ; 
+  
+  
   justify-content: space-between; 
+}
+
+.listItem div{
+  border-right: solid #6c757d 2px;
+}
+.listItem div.position, .listItem div.score, .listItem div:nth-last-child(2){
+  border: none;
 }
 
 
 .separator {
   margin: 0 10px;
+}
+
+.employee-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.backButton .editButton {
+  margin-bottom: 20px;
+  top: -20px;
+  
+}
+
+.employee-main {
+  display: flex;
+  width: 100%;
+}
+
+.employee-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 30px;
+}
+
+.employee-image-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.pimage {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 30px;
+}
+
+.ma-score {
+  margin-top: 30px;
+}
+
+.employee-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  
+}
+
+.employee-skills {
+  flex: 1;
+  margin-left: 30px;
+}
+
+.editButton {
+  margin-top: 20px;
+}
+
+.dashboard-container {
+  display: flex;
+}
+
+.joke-component {
+  flex:  300px; 
+  display: flex;
+  margin-right: 10px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: rgb(204, 204, 204);
+  border: none;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 3px 3px 7px;
+}
+
+.main-content {
+  flex: 300px;
+  display: flex;
+  padding: 10px;
+  margin-bottom: 10px;
+  flex-direction: column;
+  background-color: rgb(204, 204, 204);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 3px 3px 7px;
+  justify-content: center;
+  align-items:;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  perspective: 1000px;
+}
+.logo {
+  width: 200px;
+  height: 200px;
+  margin: 20px 0; 
+  animation: rotate 10s infinite linear;
+  transform-style: preserve-3d;
+}
+
+.logo:hover {
+  animation-play-state: paused;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
 }

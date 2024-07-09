@@ -50,7 +50,7 @@ const Navbar =()  => {
       
 
       <div className="dropdown">
-        <button onClick={toggleDropdown}>Configuration <span className="arrow">▼</span>  </button>
+        <button clasName="configButton" onClick={toggleDropdown}>Configuration <span className="arrow">▼</span>  </button>
         {dropdownOpen && (
           <div className="dropdownContent">
             

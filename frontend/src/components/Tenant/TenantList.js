@@ -16,6 +16,8 @@ import { setPageTitle} from '../Utils/Utils';
 const TenantList = () => {
   const [tenantData, setTenatData] = useState(null);
 
+  const [title] = useState("Tenant List");
+
 useEffect(() => {
   const fetchData = async () => {
     try {
@@ -44,16 +46,17 @@ if (!tenantData) {
 
 
     return (
-        <Layout>
+        <Layout pTitle={title}>
             <Link to={'/tenant-create'} > <button className="createButton"  >Create Tenant</button> </Link>
-          
+            <ul className="list" >
             {tenantData.map((tenant) => (
-            <div key={(tenant.tenantId)}> 
-              <div>{tenant.name}</div> <div>{tenant.tenantId}</div>
+            <li className="listItem" key={(tenant.tenantId)}> 
+              <div>{tenant.name}</div> 
+              <div>{tenant.tenantId}</div>
               <Link to={`/tenant/${tenant.tenantId}`} > <button className="viewButton"  >Details</button> </Link>
-            </div>        
+            </li>        
             ))}
-
+</ul>
       </Layout>
   );   
 };

@@ -76,9 +76,15 @@ const EmployeeDetails = () => {
     
     <Layout  pTitle={title}>
     <button onClick={handleBackClick} className="backButton" >Back</button>
-    <img className="pimage"src={`${imgUrl}`} alt={`${employee.first_name} ${employee.last_name}`} />
-     
+       <div className="employee-details-container">
+    
+    <div className="employee-main">
+    <div className="employee-left">
+    <div className="employee-image-info">
+    <img className="pimage"src={`${imgUrl}`} alt={`${employee.first_name} ${employee.last_name}`} />     
     <LabelValueComponent value={<ScoreComponent score={employee.ma_score} />} className={"ma-score"} />
+    </div>
+    <div className="employee-info">
     <LabelValueComponent label={"MA-Score"} value={employee.ma_score } />
     <LabelValueComponent label={"Pers-ID"} value={employee.pers_id}  />
     <LabelValueComponent label={"First Name"} value={employee.first_name}  />
@@ -92,7 +98,9 @@ const EmployeeDetails = () => {
     <LabelValueComponent label={"Address"} value={employee.address}  />
     <LabelValueComponent label={"Sick Days"} value={employee.sick_days}  />
     <LabelValueComponent label={"Salary / Year (€)"} value={employee.salary}  />
-
+    </div>
+    </div> 
+    <div className="employee-skills">      
     <h3>Skills:</h3>
     <LabelValueComponent label={"Teamwork"} value={<StarsComponent value={employee.skills.soft_skills.teamwork} /> } />
     <LabelValueComponent label={"Communication"} value={<StarsComponent value={employee.skills.soft_skills.communication} /> } />
@@ -104,11 +112,18 @@ const EmployeeDetails = () => {
     <LabelValueComponent label={"Creativity"} value={<StarsComponent value={employee.skills.personal_skills.creativity} /> } />
     <LabelValueComponent label={"Reliability"} value={<StarsComponent value={employee.skills.personal_skills.reliability} /> } />
     <LabelValueComponent label={"Initiative"} value={<StarsComponent value={employee.skills.personal_skills.initiative} /> } />
-
+    </div>
+    </div>
+    </div>
     <button onClick={handleEditClick} className="editButton">Edit</button>
+
     
     </Layout>
   );
 }
 
 export default EmployeeDetails; 
+
+
+
+

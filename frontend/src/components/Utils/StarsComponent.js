@@ -9,9 +9,9 @@ const StarsComponent = ({ value }) => {
           <span 
             className="star_full" 
             key={i} 
-            style={{ color: 'gold', fontSize: 45, textShadow: '2px 2px 2px rgba(0,0,0,0.4)' }}
-            onMouseOver={(e) => e.target.style.backgroundColor = 'red'}
-            onMouseOut={(e) => e.target.style.backgroundColor = ''}
+            style={{ color: 'gold', fontSize: 45, textShadow: '2px 2px 2px rgba(0,0,0,0.4)', transition: 'transform 0.2s ease-in-out',  display: 'inline-block' }}
+            onMouseOver={(e) => e.target.style.transform = 'scale(2.05)'}
+            onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
           >
             ★
           </span>
