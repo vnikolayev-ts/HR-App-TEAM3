@@ -1,25 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { setPageTitle } from "../Utils/Utils";
-
-import LabelInputComponent from '../Utils/LabelInputComponent';
-import LabelValueComponent from './../Utils/LabelValueComponent';
-
+import { useParams, useNavigate } from "react-router-dom";
 import Layout from "../Layout/Layout";
-import { getTenant } from "../../api/ClientApi";
+import { getTenant, deleteTenant, updateTenant } from "../../api/ClientApi";
+import LabelValueComponent from './../Utils/LabelValueComponent';
+import LabelInputComponent from '../Utils/LabelInputComponent';
 
-import { useNavigate } from "react-router-dom";
+
+
+
 
 function TenantEdit() {
-  // const isView = true;
   const { id } = useParams();
-  const [name, setName] = useState("");
-  const [tenant, setTenant] = useState(null);
   const [tenantId, setTenantId] = useState(null);
+  const [tenant, setTenant] = useState(null);
+  const [name, setName] = useState("");
+  const[title] = useState('Tenant Edit Page')
 
-  /* Back Button navigation zurück zum /dashboard */
   const navigate = useNavigate();
 
+  /* Back Button navigation zurück zu "/tenant/:id" TenantDetail  */
   const handleBackClick = () => {
     navigate("/tenant/"+ tenantId);
   };
@@ -34,47 +33,91 @@ function TenantEdit() {
       alert("Nothing has been changed.");
     }
   };
-
+  
   useEffect(() => {
     const fetchData = async () => {
-      try {
-    
-        const foundTenant = await getTenant(); // Aufruf der async Funktion getEmployees -API
-  
-
-        if (foundTenant) {
-          setName(foundTenant.name);
-          setTenantId(foundTenant.tenantId);
-          setTenant(foundTenant);
+      try {    
+        const fTenant = await getTenant(id); // Aufruf der async Funktion getEmployees -API
+        setTenant (fTenant);
+        
+        if (fTenant) {
+          setTenantId(fTenant.tenantId);
+          setName(fTenant.name);
         }
+        
+        
 
-        const title = "Tenant Edit";
-        setPageTitle(title);
       } catch (error) {
-        console.error("Error fetching HR data:", error);
+        console.error("Error fetching Tenant-Data:", error);
         // Hier könntest du zusätzliche Fehlerbehandlung durchführen, z.B. eine Fehlermeldung anzeigen
         return <p>Loading... Error </p>; // Anzeige während des Ladens der Daten
       }
     };
 
     fetchData(); // Aufruf der fetchData Funktion, die daten aufruft
-  }, []); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
+  //}, [tenant, id]); 
+  }, []); 
 
   if (!tenant) {
     return <p>Loading...</p>; // Anzeige während des Ladens der Daten
   }
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setTenant ((prev) => ({
+      ...prev,
+      [name]: value,
+      
+    }));
+  };
+    
 
-  const handleSave = (e) => {
+
+  const handleSave = async (e)  => {
     e.preventDefault();
-    // Logik zum Speichern der Daten
-    alert("Tenant data saved!");
+    try {
+
+      const newTenant = {
+        name
+      };
+
+      if (window.confirm("Tenant data have been saved. Are you sure?")) {
+        
+        const result = await updateTenant(id, newTenant);
+        if (result === false) throw new Error();
+        if (result.error) {
+          throw new Error(`Error: ${result.error}`);
+        } else {
+          alert('Tenant deleted successfully!');
+          navigate('/tenant');
+        }
+      }
+    } catch (error) {
+      console.error('Error deleting Tenant:', error);
+      alert("Failed to delete user. Please try again later.");
+    }  
   };
 
-  const handleDelete = (e) => {
+  if (!tenant) {
+    return <div>Tenant not found {id}</div>;
+  }
+  
+
+  const handleDelete = async (e)  => {
     e.preventDefault();
-    // Logik zum Löschen der Daten
-    alert("Tenant data deleted!");
+    try {
+      const result = await deleteTenant(id);
+      if (result === false) throw new Error();
+      if (result.error) {
+        throw new Error(`Error: ${result.error}`);
+      } else {
+        alert('Tenant deleted successfully!');
+        navigate('/tenant');
+      }
+    } catch (error) {
+      console.error('Error deleting Tenant:', error);
+      alert("Failed to delete user. Please try again later.");
+    }  
   };
 
   if (!tenant) {
@@ -82,7 +125,7 @@ function TenantEdit() {
   }
 
   return (
-    <Layout>
+    <Layout pTitle={title}>
       <button  className="backButton" onClick={handleBackClick}> Back </button>
 
         <form>

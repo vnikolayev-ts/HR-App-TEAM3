@@ -29,6 +29,7 @@ const EmployeeCreate = () => {
   const [creativity, setCreativity] = useState('');
   const [reliability, setReliability] = useState('');
   const [initiative, setInitiative] = useState('');
+  const [image, setImage] = useState('');
 
   const [title] = useState('Employee Create Page');
 
@@ -61,6 +62,7 @@ const EmployeeCreate = () => {
       creativity,
       reliability,
       initiative,
+      image
     };
 
     try {
@@ -93,18 +95,18 @@ const EmployeeCreate = () => {
       <button onClick={handleBackClick} className='backButton'>Back</button>
 
       <form onSubmit={handleCreate}>
-       
+       <LabelInputComponent lab={"Img Url"} name="image" val={image} onChange={(e) => setImage(e.target.value)}/>
         <LabelInputComponent lab="First Name: " name="first_name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-        <LabelInputComponent lab="Last Name:   " name="last_name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-        <LabelInputComponent lab="Date of Birth:" name="birthdate" value={birthdate} onChange={(e) => setBirthdate(e.target.value)} />
-        <LabelInputComponent lab="Date of Entry:" name="entry_date" value={entryDate} onChange={(e) => setEntryDate(e.target.value)} />
-        <LabelInputComponent lab="Position:    " name="position" value={position} onChange={(e) => setPosition(e.target.value)} />
-        <LabelInputComponent lab="Department:" name="department" value={department} onChange={(e) => setDepartment(e.target.value)} />
-        <LabelInputComponent lab="Emai:   " name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <LabelInputComponent lab="Phone:  " name="phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
-        <LabelInputComponent lab="Address:" name="address" value={address} onChange={(e) => setAddress(e.target.value)} />
-        <LabelInputComponent lab="Sick Days:" name="sick_days" value={sickDays} onChange={(e) => setSickDays(e.target.value)} />
-        <LabelInputComponent lab="Salary:  " name="salary" value={salary} onChange={(e) => setSalary(e.target.value)} />
+        <LabelInputComponent lab="Last Name: " name="last_name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+        <LabelInputComponent lab="Date of Birth: " name="birthdate" value={birthdate} onChange={(e) => setBirthdate(e.target.value)} />
+        <LabelInputComponent lab="Date of Entry: " name="entry_date" value={entryDate} onChange={(e) => setEntryDate(e.target.value)} />
+        <LabelInputComponent lab="Position" name="position" value={position} onChange={(e) => setPosition(e.target.value)} />
+        <LabelInputComponent lab="Department" name="department" value={department} onChange={(e) => setDepartment(e.target.value)} />
+        <LabelInputComponent lab="Email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <LabelInputComponent lab="Phone" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
+        <LabelInputComponent lab="Address" name="address" value={address} onChange={(e) => setAddress(e.target.value)} />
+        <LabelInputComponent lab="Sick Days" name="sick_days" value={sickDays} onChange={(e) => setSickDays(e.target.value)} />
+        <LabelInputComponent lab="Salary" name="salary" value={salary} onChange={(e) => setSalary(e.target.value)} />
 
         <h3>Skills:</h3>
         <LabelInputComponent lab="Teamwork" name="teamwork" type="number" min="1" max="10" value={teamwork} onChange={(e) => setTeamwork(e.target.value)} />

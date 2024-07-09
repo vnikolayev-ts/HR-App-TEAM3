@@ -16,6 +16,10 @@ function UserDetail() {
 
   const [name, setName] = useState("");
 
+  
+  const [title, setTitle] = useState('User Detail Page');
+  
+
   const [foundUser, setFoundUser] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -24,6 +28,9 @@ function UserDetail() {
 
   /* Back Button navigation zurück zum /dashboard */
   const navigate = useNavigate();
+
+
+
 
   const handleBackClick = () => {
     navigate("/user");
@@ -37,7 +44,7 @@ function UserDetail() {
         const fUser  = await getUserById( id);
         setFoundUser(fUser);
         if (foundUser) {
-         
+         setTitle(`User Details ${foundUser.name}`);
           setName(foundUser.name);
           setUsername(foundUser.username);
           setEmail(foundUser.email);
@@ -46,8 +53,8 @@ function UserDetail() {
           setTenantId(foundUser.tenantId);
         }
 
-        const title = "Detail Page";
-        setPageTitle(title);
+        // const title = "Detail Page";
+        // setPageTitle(title);
       } catch (error) {
         console.error("Error fetching HR data:", error);
         // Hier könntest du zusätzliche Fehlerbehandlung durchführen, z.B. eine Fehlermeldung anzeigen
@@ -68,7 +75,7 @@ function UserDetail() {
   }
 
   return (
-    <Layout>
+    <Layout pTitle={title}>
       <button onClick={handleBackClick} className="backButton"> Back </button>
             <LabelValueComponent label={"ID"} value={id } />
             <LabelValueComponent label={"Tenant-ID"} value={tenantId } />

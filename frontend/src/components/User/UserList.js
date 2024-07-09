@@ -3,13 +3,17 @@ import { useEffect, useState } from "react";
 
 import { getUsers, getLogUser } from "../../api/ClientApi";
 import Layout from "../Layout/Layout";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import { useNavigate } from "react-router-dom";
+
+
+
+
+
 
 const UserList = () => {
   const [userData, setUserData] = useState(null);
- 
+  const [title, setTitle] = useState('User List Page');
 
   /* Back Button navigation zurück zum /dashboard */
   const navigate = useNavigate();
@@ -25,13 +29,13 @@ const UserList = () => {
     navigate("/user-create");
   };
 
-  useEffect(() => {
+  useEffect(() => { 
     const fetchData = async () => {
       try {
         
         const data = await getUsers(); // Aufruf der async Funktion getEmployees -API
         setUserData(data);
-       
+        setTitle('User List')
 
       } catch (error) {
         console.error("Error fetching HR data:", error);
@@ -49,9 +53,9 @@ const UserList = () => {
 
   //console.log(userData);
   return (
-    <Layout pTitle={'User List'}>
-      <button onClick={handleBackClick} className="backButton">Back</button>
-      <button onClick={handleCreateClick} className="createButton">Create </button>
+    <Layout pTitle={title}>
+      <button onClick={handleBackClick}>Back</button>
+      <button onClick={handleCreateClick}>Create User</button>
       <ul class="list">
         {userData.map((user) => (
           <li className="listItem">

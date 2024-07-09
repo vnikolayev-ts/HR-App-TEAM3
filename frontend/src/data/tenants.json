@@ -3,7 +3,7 @@
     {
       "tenantId": 1,
       "name": "Company1 ABC Ltd.",
-      "public_image_path":"../images/personal/",
+      "public_image_path":"http://localhost:3000/images/personal/",
       "layout":"extended",
       "logo_url":"./images/logo/apple-touch-icon.png",
       "noimage_url":"./images/noimage.jpg"
@@ -11,7 +11,7 @@
     {
       "tenantId": 2,
       "name": "Company2 XYZ Ltd.",
-      "public_image_path":"../images/personal/",
+      "public_image_path":"http://localhost:3000/images/personal/",
       "layout":"extended",
       "logo_url":"./images/logo/apple-touch-icon.png",
       "noimage_url":"./images/noimage.jpg"

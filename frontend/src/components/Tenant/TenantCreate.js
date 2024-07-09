@@ -1,29 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { json, useParams } from "react-router-dom";
-import { setPageTitle } from "../Utils/Utils";
-
-import Layout from "../Layout/Layout";
-import { getTenants } from "../../api/ClientApi";
-
-import { Link } from "react-router-dom";
-
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Layout from "../Layout/Layout";
+import LabelInputComponent from "../Utils/LabelInputComponent";
+import { createTenant } from "../../api/ClientApi";
 
-function TenantCreate({ isView = false }) {
-  // const isView = true;
-  const { id } = useParams();
-  const [name, setName] = useState("");
-  const [tenant, setTenant] = useState(null);
-  const [tenantId, setTenantId] = useState(null);
 
-  /* Back Button navigation zurück zum /dashboard */
+
+const TenantCreate = () => {
   const navigate = useNavigate();
 
-  const handleBackClick = () => { 
-    navigate("/tenant");
+  // State-Hooks für alle Eingabefelder
+  const [name, setName] = useState(null);
+
+  const[title] = useState('Tenant Create Page');
+
+  const handleBackClick = () => {
+    navigate('/tenant');
   };
 
-  /* Cancel Button Funktion */
   const handleReset = (e) => {
     e.preventDefault();
     if (window.confirm("All data will be resetted. Are you sure?")) {
@@ -34,49 +28,40 @@ function TenantCreate({ isView = false }) {
     }
   };
 
-  useEffect(() => {
 
-
-        const title = "Create Tenant";
-        setPageTitle(title);
-      } 
-      ); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
+  const handleCreate = async (e) => {
+    e.preventDefault();
+      const newTenant = {
+        name
+      };
 
   
-
-
-  const handleSave = (e) => {
-    e.preventDefault();
-    // Logik zum Speichern der Daten
-    alert("Tenant data saved!");
-  };
-
-
+  try {
+      const result = await createTenant(newTenant);
+      if (result === false) throw new Error();
+      if (result.error) {
+        throw new Error(`Error: ${result.error}`);
+      } else {
+        alert('Tenant created successfully!')
+        navigate ('/tenant');
+      }
+    } catch (error) {
+      console.error('Error creating tenant:', error);
+      alert('Failed to create tenant. Please try again later.');
+    }  
+  }; 
+    
+ 
   return (
-    <Layout>
-      <button onClick={handleBackClick} className="backButton">
-        Back
-      </button>
-
-        <form>
-            <label>Name</label>
-            <input
-              type="text"
-              value={name}
-              readOnly={false}
-              onChange={(e) => setName(e.target.value)}
-              j
-            />
-              
+    <Layout pTitle={title}>
+      <button className="backButton" onClick={handleBackClick} > Back </button>
+        <form>        
+            <LabelInputComponent lab={"Name"} val={ name } onChange={(e) => setName(e.target.value)}/>
+            <button className="saveButton" onClick={handleCreate}>Save</button>
+            <button className="resetButton" onClick={handleReset}> Reset </button>
         </form>
-              <button className="resetButton" onClick={handleReset}>
-                Reset
-              </button>
-        <button className="createButton" onClick={handleSave}>
-                Save
-              </button>
     </Layout>
-  );
-}
+  );   
+};
 
 export default TenantCreate;

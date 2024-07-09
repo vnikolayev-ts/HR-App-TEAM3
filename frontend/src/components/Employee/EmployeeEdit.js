@@ -1,5 +1,5 @@
 import { saveEmployee } from '../Utils/Utils';
-import { getEmployeeById } from '../../api/ClientApi'
+import { deleteEmployee, getEmployeeById, updateEmployee } from '../../api/ClientApi'
 import LabelInputComponent from '../Utils/LabelInputComponent';
 import LabelValueComponent from './../Utils/LabelValueComponent';
 import React from 'react';
@@ -60,8 +60,24 @@ const EmployeeEdit = () => {
     }));
   };
 
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
+    try {
+      const result = await updateEmployee(id,employee);
+      if (result === false) throw new Error();
+      if (result.error) {
+        throw new Error(`Error: ${result.error}`);
+      } else {
+        alert('Employee saved successfully!');
+        navigate('/employee');
+      }
+    } catch (error) {
+      console.error('Error saving employee:', error);
+      alert('Failed to save employee. Please try again later.');
+    }
+
+
+
     if (window.confirm("All data will be saved. Are you sure?")) {
     
       alert("All data have been saved.");
@@ -81,10 +97,23 @@ const EmployeeEdit = () => {
     }
   };
 
-  const handleDelete = (e) => {
-    e.preventDefault();
-    // Logik zum Löschen der Daten
-    alert("User data deleted!");
+  const handleDelete = async () => {
+
+
+    try {
+      const result = await deleteEmployee(id);
+      if (result === false) throw new Error();
+      if (result.error) {
+        throw new Error(`Error: ${result.error}`);
+      } else {
+        alert('Employee deleted successfully!');
+        navigate('/employee');
+      }
+    } catch (error) {
+      console.error('Error deleting employee:', error);
+      alert('Failed to delete employee. Please try again later.');
+    }
+    
   };
 
   const handleBackClick = () => {
@@ -107,6 +136,7 @@ const EmployeeEdit = () => {
      <div className="create-form">
        
         <LabelValueComponent label={"Tenant-ID"} value={employee.tenantId } />
+        <LabelInputComponent lab={"Img Url"} name="image" val={employee.image} onChange={handleInputChange}/>
         <LabelInputComponent lab={"First Name"} name="first_name" val={employee.first_name} onChange={handleInputChange}/>
         <LabelInputComponent lab={"Last Name"} name="last_name" val={employee.last_name} onChange={handleInputChange}/>
         <LabelInputComponent lab={"Date of Birth"} name="birthdate" val={employee.birthdate} onChange={handleInputChange}/>
