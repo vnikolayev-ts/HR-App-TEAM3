@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs')
+const database  = require('../db/database'); // Annahme, dass SQLiteAdapter die SQLite-Datenbanklogik enthält
+
 
 // Funktion, um die HR-IMAGE path  anzupassen
 const updateImagePaths = (data) => {
@@ -28,6 +30,18 @@ function getHR(req) {
     return retJson;
 }
 
+
+
+
+router.get('/my-users', (req, res) => {
+  database.getUsers((err, users) => {
+    if (err) {
+        res.status(500).json({ error: 'Error fetching users' });
+        return;
+    }
+    res.json(users);
+});
+});
 
 
 // Beispiel-Endpunkt GET /api/example
