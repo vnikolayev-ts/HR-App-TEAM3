@@ -5,8 +5,8 @@ const fs = require("fs")
 
 // const connection = require('./mysql.js'); // Pfad zu mysql-connect.js
 // const bodyParser = require('body-parser');
-const { authenticateUser } = require('./auth.js'); // Passe den Pfad zu auth.js an
-const router = require('./routes/route.js');
+//const { authenticateUser } = require('./auth.js'); // Passe den Pfad zu auth.js an
+//const router = require('./routes/route.js');
 
 // Middleware für JSON-Parser
 
@@ -19,7 +19,7 @@ app.use(express.static('public')); // Public ordenr einbinden
 
 
 // Verwende die API-Routen unter /api
-app.use('/', router);
+//app.use('/', router);
 
 var SERVER_URL_PUBLIC = "http://127.0.0.1";
 
@@ -62,7 +62,7 @@ app.get("/employees/:id", (req, res) => {
   let employees = getEmployees()
   console.log(employees.employees)
   const id = parseInt(req.params.id)
-  const employee = employees.employees.find((employee) => employee.employeeId === id)
+  const employee = employees.employees.find((employee) => employee.pers_id === id)
 
   if (employee) {
 
@@ -118,7 +118,7 @@ app.delete("/employee/:id", (req, res) => {
   let employees = getEmployees()
   const id = parseInt(req.params.id);
   if (id > 0) {
-    employees.employees = employees.employees.filter((employee) => employee.employeeId !== id);
+    employees.employees = employees.employees.filter((employee) => employee.pers_id !== id);
     res.json({ message: "Employee wurde erfolgreich gelöscht" });
     saveEmployees(employees)
   } else {
@@ -126,7 +126,23 @@ app.delete("/employee/:id", (req, res) => {
   }
 });
 
+app.put("/employee/:id", (req, res) => {
+  let employees = getEmployees();
+  const id = parseInt(req.params.id);
+  const updatedEmployee = req.body;
 
+  const employeeIndex = employees.employees.findIndex((employee) => employee.pers_id === id);
+
+  if (employeeIndex !== -1 && updatedEmployee) {
+    employees.employees[employeeIndex] = { ...employees.employees[employeeIndex], ...updatedEmployee };
+    saveEmployees(employees);
+    res.status(200).send({ message: "Employee erfolgreich aktualisiert"});
+  } else {
+    res.status(400).send({
+     message: "Please chose a valid Employee in form of {'employee':'updated Employee'} or enter a valid ID!"  
+    });
+  }
+});
 
 
 
