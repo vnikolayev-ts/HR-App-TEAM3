@@ -2,12 +2,15 @@ const express = require ("express");
 const app = express();
 const cors = require ('cors');
 const fs = require ("fs");
+const { v4: uuidv4 } = require('uuid');
+uuidv4();
 
 
-const connection = require('./mysql'); // Pfad zu mysql-connect.js
+
+//const connection = require('./mysql'); // Pfad zu mysql-connect.js
 const bodyParser = require('body-parser');
-const { authenticateUser } = require('./auth'); // Passe den Pfad zu auth.js an
-const router = require('./routes/route');
+//const { authenticateUser } = require('./auth'); // Passe den Pfad zu auth.js an
+//const router = require('./routes/route');
 
 
 
@@ -36,7 +39,7 @@ app.use(express.static('public')); // Public ordenr einbinden
 
 
 // Verwende die API-Routen unter /api
-app.use('/', router);
+//app.use('/', router);
 
 // Get-Funktion: Tenants einlesen
 // Pfad zur Json-Datei: backend/data/tenants.json
@@ -57,7 +60,7 @@ app.get("/tenant", (req, res) => {
 });
 
 // Get-Funktion: Holt mir ein bestimmtes Element aus der Tenants Liste
-app.get("/tenant/:id",(req,res) => {
+app.get("/tenants/:id",(req,res) => {
   let tenants = getTenants()
   console.log(tenants.tenants)
   const id = parseInt(req.params.id)
@@ -95,9 +98,11 @@ app.put("tenant/:id", (req, res) => {
 
 // Post-Funktion: Speichern neu angelegter Tenants mit Prüfung auf Vorhandensein des Namenfelds als Zielfeld
 app.post("/newTenant", (req, res) => {
+  //let newID = uuidv4()
   let tenants = getTenants()
-  const newTenant = req.body.tenant;
+  const newTenant = req.body;
   if (newTenant && newTenant.name)   {
+    //newTenant.tenantId = newID;
     tenants.tenants.push(newTenant);
     saveTenants(tenants)
     res
@@ -114,14 +119,61 @@ app.post("/newTenant", (req, res) => {
 app.delete("/tenant/:id", (req, res) => {
   let tenants = getTenants();
   const id = parseInt(req.params.id);
-  const tenantIndex = tenants.tenants.findIndex((user) => tenant.tenantId);
+  const tenantIndex = tenants.tenants.findIndex((tenant) => tenant.tenantId);
 
   if (tenantIndex !== -1) {
-    tenants.tenats = tenants.tenants.filter((tenant) => tenant.tenantId !== id);
+    tenants.tenants = tenants.tenants.filter((tenant) => tenant.tenantId !== id);
     saveTenants(tenants);
     res.json({ message: "Tenant was deleted successfully!"});
   } else {
     res.status(404).json({ message: "Tenant-ID not found!"});
+  }
+});
+
+app.get("/headers", (req, res) => {
+  // Auslesen aller Header
+  const headers = req.headers;
+  console.log("Headers:", headers);
+
+  // Spezifischer Header
+  const specificHeader = req.header("custom-header"); // Beispiel für einen benutzerdefinierten Header
+
+  res.json({
+    message: "Headers received",
+    headers: headers,
+    customHeader: specificHeader
+  });
+});
+
+
+
+// Beispiel-Objekt, um den API-Key zu speichern
+let apiKeyStorage = {};
+
+// Beispiel-Route zum Auslesen des API-Keys aus den Headern und Speichern im Objekt
+app.get("/save-api-key", (req, res) => {
+  const apiKey = req.header("api-key");
+
+  if (apiKey) {
+    apiKeyStorage.key = apiKey; // API-Key im Objekt speichern
+
+    // API-Key in einer Datei speichern
+    fs.writeFileSync("./data/apiKey.json", JSON.stringify(apiKeyStorage, null, 2));
+
+    res.json({ message: "API-Key wurde erfolgreich gespeichert", apiKey: apiKeyStorage.key });
+  } else {
+    res.status(400).json({ message: "API-Key fehlt im Header" });
+  }
+});
+
+// Route zum Abrufen des gespeicherten API-Keys (optional)
+app.get("/get-api-key", (req, res) => {
+  try {
+    const data = fs.readFileSync("./data/apiKey.json");
+    const storedApiKey = JSON.parse(data);
+    res.json(storedApiKey);
+  } catch (error) {
+    res.status(500).json({ message: "Fehler beim Abrufen des API-Keys" });
   }
 });
 
