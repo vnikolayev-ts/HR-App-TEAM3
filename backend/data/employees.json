@@ -42,7 +42,7 @@
     },
     {
       "tenantId": "1",
-      "pers_id": "1002",
+      "pers_id": 1002,
       "first_name": "Erika",
       "last_name": "Mustermann",
       "gender": "female",
@@ -80,7 +80,7 @@
     },
     {
       "tenantId": "1",
-      "pers_id": "1003",
+      "pers_id": 1003,
       "first_name": "Hans",
       "last_name": "Müller",
       "gender": "male",
@@ -118,7 +118,7 @@
     },
     {
       "tenantId": "1",
-      "pers_id": "1004",
+      "pers_id": 1004,
       "first_name": "Lena",
       "last_name": "Schneider",
       "gender": "female",
@@ -156,7 +156,7 @@
     },
     {
       "tenantId": "1",
-      "pers_id": "1005",
+      "pers_id": 1005,
       "first_name": "Tom",
       "last_name": "Friedrich",
       "gender": "male",
@@ -194,7 +194,7 @@
     },
     {
       "tenantId": "1",
-      "pers_id": "1006",
+      "pers_id": 1006,
       "first_name": "Claudia",
       "last_name": "Klein",
       "gender": "female",
@@ -232,7 +232,7 @@
     },
     {
       "tenantId": "2",
-      "pers_id": "1007",
+      "pers_id": 1007,
       "first_name": "Lena",
       "last_name": "Schneider",
       "gender": "female",
@@ -270,7 +270,7 @@
     },
     {
       "tenantId": "2",
-      "pers_id": "1008",
+      "pers_id": 1008,
       "first_name": "Tom",
       "last_name": "Friedrich",
       "gender": "male",
@@ -308,7 +308,7 @@
     },
     {
       "tenantId": "2",
-      "pers_id": "1009",
+      "pers_id": 1009,
       "first_name": "Claudia",
       "last_name": "Klein",
       "gender": "female",
@@ -346,7 +346,7 @@
     },
     {
       "tenantId": "2",
-      "pers_id": "1010",
+      "pers_id": 1010,
       "first_name": "Markus",
       "last_name": "Weber",
       "gender": "male",
@@ -384,7 +384,7 @@
     },
     {
       "tenantId": "2",
-      "pers_id": "1011",
+      "pers_id": 1011,
       "first_name": "Sarah",
       "last_name": "Hofmann",
       "gender": "female",
@@ -422,7 +422,7 @@
     },
     {
       "tenantId": "2",
-      "pers_id": "1012",
+      "pers_id": 1012,
       "first_name": "Jonas",
       "last_name": "Schulz",
       "gender": "male",
@@ -461,8 +461,8 @@
     {
       "tenantId": "1",
       "pers_id": 1013,
-      "first_name": "Hans",
-      "last_name": "Wurst",
+      "first_name": "Peter",
+      "last_name": "Nissan3",
       "gender": "male",
       "title": "Mr.",
       "position": "CFO",

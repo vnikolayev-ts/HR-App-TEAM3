@@ -5,8 +5,8 @@ const fs = require("fs")
 
 // const connection = require('./mysql.js'); // Pfad zu mysql-connect.js
 // const bodyParser = require('body-parser');
-const { authenticateUser } = require('./auth.js'); // Passe den Pfad zu auth.js an
-const router = require('./routes/route.js');
+// const { authenticateUser } = require('./auth.js'); // Passe den Pfad zu auth.js an
+// const router = require('./routes/route.js');
 
 // Middleware für JSON-Parser
 
@@ -19,7 +19,7 @@ app.use(express.static('public')); // Public ordenr einbinden
 
 
 // Verwende die API-Routen unter /api
-app.use('/', router);
+// app.use('/', router);
 
 var SERVER_URL_PUBLIC = "http://127.0.0.1";
 
@@ -34,6 +34,57 @@ var public_image_path = `${SERVER_URL_PUBLIC}:${PORT}${IMAGE_PATH_PUBLIC}`;
  public_image_path = `${SERVER_URL_PUBLIC}${IMAGE_PATH_PUBLIC}`;
  console.log( `Request from [${userIP}] on [${SERVER_URL_PUBLIC}]`);
 */
+
+
+
+app.get("/headers", (req, res) => {
+  // Auslesen aller Header
+  const headers = req.headers;
+  console.log("Headers:", headers);
+
+  // Spezifischer Header
+  const specificHeader = req.header("custom-header"); // Beispiel für einen benutzerdefinierten Header
+
+  res.json({
+    message: "Headers received",
+    headers: headers,
+    customHeader: specificHeader
+  });
+});
+
+
+
+// Beispiel-Objekt, um den API-Key zu speichern
+let apiKeyStorage = {};
+
+// Beispiel-Route zum Auslesen des API-Keys aus den Headern und Speichern im Objekt
+app.get("/save-api-key", (req, res) => {
+  const apiKey = req.header("api-key");
+
+  if (apiKey) {
+    apiKeyStorage.key = apiKey; // API-Key im Objekt speichern
+
+    // API-Key in einer Datei speichern
+    fs.writeFileSync("./data/marcel.apiKey.json", JSON.stringify(apiKeyStorage, null, 2));
+
+    res.json({ message: "API-Key wurde erfolgreich gespeichert", apiKey: apiKeyStorage.key });
+  } else {
+    res.status(400).json({ message: "API-Key fehlt im Header" });
+  }
+});
+
+// Route zum Abrufen des gespeicherten API-Keys (optional)
+app.get("/get-api-key", (req, res) => {
+  try {
+    const data = fs.readFileSync("./data/marcel.apiKey.json");
+    const storedApiKey = JSON.parse(data);
+    res.json(storedApiKey);
+  } catch (error) {
+    res.status(500).json({ message: "Fehler beim Abrufen des API-Keys" });
+  }
+});
+
+
 
 
 

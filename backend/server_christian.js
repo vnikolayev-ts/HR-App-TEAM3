@@ -5,8 +5,8 @@ const fs = require("fs")
 
 // const connection = require('./mysql.js'); // Pfad zu mysql-connect.js
 // const bodyParser = require('body-parser');
-const { authenticateUser } = require('./auth.js'); // Passe den Pfad zu auth.js an
-const router = require('./routes/route.js');
+//const { authenticateUser } = require('./auth.js'); // Passe den Pfad zu auth.js an
+//const router = require('./routes/route.js');
 
 // Middleware für JSON-Parser
 
@@ -19,7 +19,7 @@ app.use(express.static('public')); // Public ordenr einbinden
 
 
 // Verwende die API-Routen unter /api
-app.use('/', router);
+//app.use('/', router);
 
 var SERVER_URL_PUBLIC = "http://127.0.0.1";
 
@@ -36,6 +36,53 @@ var public_image_path = `${SERVER_URL_PUBLIC}:${PORT}${IMAGE_PATH_PUBLIC}`;
 */
 
 
+
+app.get("/headers", (req, res) => {
+  // Auslesen aller Header
+  const headers = req.headers;
+  console.log("Headers:", headers);
+
+  // Spezifischer Header
+  const specificHeader = req.header("custom-header"); // Beispiel für einen benutzerdefinierten Header
+
+  res.json({
+    message: "Headers received",
+    headers: headers,
+    customHeader: specificHeader
+  });
+});
+
+
+
+// Beispiel-Objekt, um den API-Key zu speichern
+let apiKeyStorage = {};
+
+// Beispiel-Route zum Auslesen des API-Keys aus den Headern und Speichern im Objekt
+app.get("/save-api-key", (req, res) => {
+  const apiKey = req.header("api-key");
+
+  if (apiKey) {
+    apiKeyStorage.key = apiKey; // API-Key im Objekt speichern
+
+    // API-Key in einer Datei speichern
+    fs.writeFileSync("./data/apiKey.json", JSON.stringify(apiKeyStorage, null, 2));
+
+    res.json({ message: "API-Key wurde erfolgreich gespeichert", apiKey: apiKeyStorage.key });
+  } else {
+    res.status(400).json({ message: "API-Key fehlt im Header" });
+  }
+});
+
+// Route zum Abrufen des gespeicherten API-Keys (optional)
+app.get("/get-api-key", (req, res) => {
+  try {
+    const data = fs.readFileSync("./data/christian.apiKey.json");
+    const storedApiKey = JSON.parse(data);
+    res.json(storedApiKey);
+  } catch (error) {
+    res.status(500).json({ message: "Fehler beim Abrufen des API-Keys" });
+  }
+});
 
 // Get Funktion
 function getEmployees() {
@@ -62,7 +109,7 @@ app.get("/employees/:id", (req, res) => {
   let employees = getEmployees()
   console.log(employees.employees)
   const id = parseInt(req.params.id)
-  const employee = employees.employees.find((employee) => employee.employeeId === id)
+  const employee = employees.employees.find((employee) => employee.pers_id === id)
 
   if (employee) {
 
@@ -118,7 +165,7 @@ app.delete("/employee/:id", (req, res) => {
   let employees = getEmployees()
   const id = parseInt(req.params.id);
   if (id > 0) {
-    employees.employees = employees.employees.filter((employee) => employee.employeeId !== id);
+    employees.employees = employees.employees.filter((employee) => employee.pers_id !== id);
     res.json({ message: "Employee wurde erfolgreich gelöscht" });
     saveEmployees(employees)
   } else {
@@ -126,7 +173,23 @@ app.delete("/employee/:id", (req, res) => {
   }
 });
 
+app.put("/employee/:id", (req, res) => {
+  let employees = getEmployees();
+  const id = parseInt(req.params.id);
+  const updatedEmployee = req.body;
 
+  const employeeIndex = employees.employees.findIndex((employee) => employee.pers_id === id);
+
+  if (employeeIndex !== -1 && updatedEmployee) {
+    employees.employees[employeeIndex] = { ...employees.employees[employeeIndex], ...updatedEmployee };
+    saveEmployees(employees);
+    res.status(200).send({ message: "Employee erfolgreich aktualisiert"});
+  } else {
+    res.status(400).send({
+     message: "Please chose a valid Employee in form of {'employee':'updated Employee'} or enter a valid ID!"  
+    });
+  }
+});
 
 
 
