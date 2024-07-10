@@ -44,20 +44,20 @@ function getUsers() {
 }
 
 
-// Save Funktion
+// SAVE Funktion
 function saveUsers(users) {
   fs.writeFileSync("./data/users.json", JSON.stringify(users, null, 2))
 }
 
 
-// Holt mir alle users
+// Funktion Holt mir alle users
 app.get("/users", (req, res) => {
   let users = getUsers()
   res.json(users);
 });
 
 
-// Holt mir ein bestimmtes Element aus der User Liste
+// Holt mir ein bestimmten User aus der User Liste
 app.get("/users/:id", (req, res) => {
   let users = getUsers()
   console.log(users.users)
@@ -74,26 +74,7 @@ app.get("/users/:id", (req, res) => {
   }
 });
 
-
-
-
-// app.put("/newUser", (req, res) => {
-//   let users = getUsers()
-//   const newUser = req.body.user;
-//   if (newUser) {
-//     users.users.push(newUser);
-//     res
-//       .status(201)
-//       .send({ message: "Dein User wurde erfolgreich hinzugefügt" });
-//     saveUsers(users)
-//   } else {
-//     res.status(400).send({
-//       message: "Bitte einen User in form von {'user':'neuer user'} hinzufügen",
-//     });
-
-
-
-
+// POST- Funktion  (neuen User erstellen)
 app.post("/newUser", (req, res) => {
   let users = getUsers()
   const newUser = req.body.user;
@@ -110,19 +91,41 @@ app.post("/newUser", (req, res) => {
 
 
 
+    // PUT Funktion (Aktualisiert einen bestehenden Benutzer)
+    app.put("/users/:id", (req, res) => {
+      let users = getUsers();
+      const id = parseInt(req.params.id);
+      const updatedUser = req.body.user;
+
+      const userIndex = users.users.findIndex((user) => user.userId === id);
+
+      if (userIndex !== -1 && updatedUser) {
+        users.users[userIndex] = { ...users.users[userIndex], ...updatedUser };
+        saveUsers(users);
+        res.status(200).send({ message: "User erfolgreich aktualisiert" });
+      } else {
+        res.status(400).send({
+          message: "Bitte einen gültigen User in form von {'user':'updated user'} hinzufügen oder eine gültige ID angeben",
+        });
+      }
+    });
+
 
   }
 });
-//Delete User
+// DELETE User Funktion
 app.delete("/users/:id", (req, res) => {
-  let users = getUsers()
+  let users = getUsers();
   const id = parseInt(req.params.id);
-  if (id > 0) {
+
+  const userIndex = users.users.findIndex((user) => user.userId === id);
+
+  if (userIndex !== -1) {
     users.users = users.users.filter((user) => user.userId !== id);
+    saveUsers(users);
     res.json({ message: "User wurde erfolgreich gelöscht" });
-    saveUsers(users)
   } else {
-    res.status(400).json({ message: "Bitte einen gültige ID angeben" })
+    res.status(404).json({ message: "User mit dieser ID nicht gefunden" });
   }
 });
 
