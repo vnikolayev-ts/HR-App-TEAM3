@@ -1,0 +1,14 @@
+{
+  "users": [
+    {
+      "userId": 1337,
+      "tenantId": 1,
+      "name": "marcel",
+      "username": "marcel1",
+      "password": "1234563",
+      "email": "user.one@tenanta.com",
+      "admin": true,
+      "key": "value"
+    }
+  ]
+}
