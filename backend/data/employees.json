@@ -118,7 +118,7 @@
     },
     {
       "tenantId": "1",
-      "pers_id": "1004",
+      "pers_id": 1004,
       "first_name": "Lena",
       "last_name": "Schneider",
       "gender": "female",
