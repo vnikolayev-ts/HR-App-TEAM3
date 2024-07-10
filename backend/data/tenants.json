@@ -7,6 +7,22 @@
     {
       "tenantId": 2,
       "name": "Company2 XYZ Ltd."
+    },
+    {
+      "tenantId": 3,
+      "name": "Company3 FGH Ltd."
+    },
+    {
+      "tenantId": 4,
+      "name": "Company4 NMP Ltd."
+    },
+    {
+      "tenantId": 5,
+      "name": "Company5 HIJ Ltd."
+    },
+    {
+      "name": "Alder AG",
+      "apiKey": "pmb1967apiKey"
     }
   ]
 }

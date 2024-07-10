@@ -76,7 +76,7 @@ app.get("/tenants/:id",(req,res) => {
 });
 
 // Put-Funktion: Aktualisierung der Daten eines Tenants z.B. bei Firmennamen-Änderung Rechtsform o.ä.
-app.put("tenant/:id", (req, res) => {
+app.put("/tenant/:id", (req, res) => {
   let tenants = getTenants();
   const id = parseInt(req.params.id);
   const updatedTenant = req.body.tenant;
@@ -99,10 +99,11 @@ app.put("tenant/:id", (req, res) => {
 // Post-Funktion: Speichern neu angelegter Tenants mit Prüfung auf Vorhandensein des Namenfelds als Zielfeld
 app.post("/newTenant", (req, res) => {
   //let newID = uuidv4()
+  const apiKey = req.header("api-key");
   let tenants = getTenants()
   const newTenant = req.body;
   if (newTenant && newTenant.name)   {
-    //newTenant.tenantId = newID;
+    newTenant.apiKey = apiKey;
     tenants.tenants.push(newTenant);
     saveTenants(tenants)
     res
