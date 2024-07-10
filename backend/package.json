@@ -4,12 +4,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server_marcel.js"
+    "start": "nodemon server_christian.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
@@ -26,5 +25,6 @@
     "swagger-ui": "^5.17.14",
     "swagger-ui-express": "^5.0.1",
     "swagger-ui-react": "^5.17.14"
-  }
+  },
+  "description": ""
 }
