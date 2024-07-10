@@ -6,7 +6,10 @@ const cors = require ('cors');
 const connection = require('./mysql'); // Pfad zu mysql-connect.js
 const bodyParser = require('body-parser');
 const { authenticateUser } = require('./auth'); // Passe den Pfad zu auth.js an
-const router = require('./routes/route');
+const apiRouter = require('./routes/ApiRoute');
+const employeeRoute = require('./routes/employeeRoute');
+const tenantRoute = require('./routes/tenantRoute');
+const userRoute = require('./routes/userRoute');
 
 
 
@@ -35,7 +38,10 @@ app.use(express.static('public')); // Public ordenr einbinden
 
 
 // Verwende die API-Routen unter /api
-app.use('/', router);
+app.use('/api', apiRouter);
+app.use('/employee', employeeRoute);
+app.use('/tenant', tenantRoute);
+app.use('/user', tenantRoute);
 
 // Server starten
 app.listen(PORT, () => {
