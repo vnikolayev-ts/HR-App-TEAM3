@@ -23,3 +23,9 @@ yarn-debug.log*
 yarn-error.log*
 
 package-lock.json
+package.json
+
+data/employees.json
+data/users.json
+data/tenants.json
+backend/data/tenants.json
