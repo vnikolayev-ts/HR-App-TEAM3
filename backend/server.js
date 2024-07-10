@@ -1,6 +1,6 @@
-const express = require ("express");
+const express = require("express");
 const app = express();
-const cors = require ('cors');
+const cors = require('cors');
 
 
 const connection = require('./mysql'); // Pfad zu mysql-connect.js
@@ -20,11 +20,11 @@ const IMAGE_PATH_PUBLIC = "/images/personal/";
 
 var public_image_path = `${SERVER_URL_PUBLIC}:${PORT}${IMAGE_PATH_PUBLIC}`;
 
- /* //update public url
-  var userIP = req.headers['x-forwarded-for'] || req.socket.remoteAddress ||  null;
-  SERVER_URL_PUBLIC = req.protocol + "://"+  req.get('host');
-  public_image_path = `${SERVER_URL_PUBLIC}${IMAGE_PATH_PUBLIC}`;
-  console.log( `Request from [${userIP}] on [${SERVER_URL_PUBLIC}]`);
+/* //update public url
+ var userIP = req.headers['x-forwarded-for'] || req.socket.remoteAddress ||  null;
+ SERVER_URL_PUBLIC = req.protocol + "://"+  req.get('host');
+ public_image_path = `${SERVER_URL_PUBLIC}${IMAGE_PATH_PUBLIC}`;
+ console.log( `Request from [${userIP}] on [${SERVER_URL_PUBLIC}]`);
 */
 
 // Middleware für JSON-Parser
@@ -41,9 +41,9 @@ app.use(express.static('public')); // Public ordenr einbinden
 app.use('/api', apiRouter);
 app.use('/employee', employeeRoute);
 app.use('/tenant', tenantRoute);
-app.use('/user', tenantRoute);
+app.use('/user', userRoute);
 
 // Server starten
 app.listen(PORT, () => {
-    console.log(`Der Server läuft auf ${SERVER_URL_PUBLIC}:${PORT}`) // `` -> backticks
+  console.log(`Der Server läuft auf ${SERVER_URL_PUBLIC}:${PORT}`) // `` -> backticks
 })
