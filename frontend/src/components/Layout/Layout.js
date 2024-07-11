@@ -19,6 +19,8 @@ const Layout = ({ children, pTitle, styleName="default" }) => {
 
 
   const loginStyleName = localStorage.getItem('styleName');
+
+  const imgUrl = '../images/logo/android-chrome-512x512.png';
        
   return (
     <div id="application" className={loginStyleName?loginStyleName:styleName}>
@@ -26,9 +28,11 @@ const Layout = ({ children, pTitle, styleName="default" }) => {
       
       <h2 id="pTitle" className="pageTitle">{pTitle}</h2>
       <main>{children}
-      <div className="footer">
+      <div className="footer">      
+      <img src={imgUrl} alt="Logo" className="logof" />
       <Footer />
       </div>
+      
       </main>
     </div>
   );
