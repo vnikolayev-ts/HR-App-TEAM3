@@ -4,13 +4,14 @@ const database  = require('../db/database');
 const router = express.Router();
 
 // Middleware to extract tenantId from query params or headers
-router.use((req, res, next) => {
+/*router.use((req, res, next) => {
     req.tenantId = req.query.tenantId || req.headers['tenant-id'];
     if (!req.tenantId) {
         return res.status(400).send('tenantId is required');
     }
     next();
 });
+*/
 
 // Get all employees
 router.get('/', (req, res) => {
