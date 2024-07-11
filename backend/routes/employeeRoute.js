@@ -15,7 +15,7 @@ const router = express.Router();
 
 // Get all employees
 router.get('/', (req, res) => {
-    const tenantId = req.tenantId;
+    let tenantId = req.tenantId;
     tenantId = 1;
     database.getEmployees(tenantId, (err, employees) => {
         if (err) {
@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
 
 // Get employee by ID
 router.get('/:id', (req, res) => {
-    const tenantId = req.tenantId;
+    let tenantId = req.tenantId;
     tenantId = 1;
     const employeeId = req.params.id;
     database.getEmployeeById(tenantId, employeeId, (err, employee) => {
