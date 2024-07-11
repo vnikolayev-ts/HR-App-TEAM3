@@ -3,7 +3,8 @@ import userData from '../data/users.json';
 import tenantData from '../data/tenants.json';
 
 const apiServerPort = 3001;
-const apiServerUrl = `http://3.67.177.230:${apiServerPort}/employee`;
+// const apiServerUrl = `http://3.67.177.230:${apiServerPort}/`;
+const apiServerUrl = 'http://3.67.177.230:3001';
 
 let logUser = null;
 
@@ -11,16 +12,53 @@ let logUser = null;
 //fetch(`localhost:${apiport}`), {method:'POST', headers: {'Content-Type': 'application/json'}},
 //body: 
 
+// export const getEmployees = async () => {
+//   try {
+//     const response = await fetch(apiServerUrl);
+//     const data = await response.json();
+//     return data;
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//     throw error;
+//   }
+// }
+
+
+// export const getUsers = async () => {
+//   try {
+//     const response = await fetch(apiServerUrl);
+//     const data = await response.json();
+//     return data;
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//     throw error;
+//   }
+// }
+
 export const getEmployees = async () => {
   try {
-    const response = await fetch(apiServerUrl);
+    const response = await fetch(`${apiServerUrl}/employee`); // Beispiel-Endpunkt für Employees
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error('Error fetching employee data:', error);
     throw error;
   }
 }
+
+export const getUsers = async () => {
+  try {
+    const response = await fetch(`${apiServerUrl}/user`); // Beispiel-Endpunkt für Users
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    throw error;
+  }
+}
+
+
+
 
 
 export const getFilteredEmployees = async () => {
@@ -40,16 +78,15 @@ export const getFilteredEmployees = async () => {
 
 
 export const getEmployeeById = async (id) => {
-  var fEmployee = null;
-
-  const empList = await getEmployees();
-  console.log(empList)
-  fEmployee = empList.find((el) => el.pers_id === (parseInt(id)));
-  console.log(fEmployee)
-
-  return fEmployee;
-
-}
+  try {
+    const response = await fetch(`${apiServerUrl}/employee/${id}`); // Beispiel-Endpunkt für Employees
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching employee data:', error);
+    throw error;
+  }
+};
 
 
 function getFileHrData() {
@@ -142,18 +179,18 @@ export async function createUser(data) {
 
 }
 
-export const getUsers = async () => {
+// export const getUsers = async () => {
 
-  var foundUsers = null;
-  var tenantId = getLogUser().tenantId;
+//   var foundUsers = null;
+//   var tenantId = getLogUser().tenantId;
 
-  const userList = userData.users;
-  if (!tenantId) {
-    foundUsers = userList;
-  } else
-    foundUsers = userList.filter((ul) => ul.tenantId === parseInt(tenantId));
-  return foundUsers;
-}
+//   const userList = userData.users;
+//   if (!tenantId) {
+//     foundUsers = userList;
+//   } else
+//     foundUsers = userList.filter((ul) => ul.tenantId === parseInt(tenantId));
+//   return foundUsers;
+// }
 
 export const getUserById = async (id) => {
   var foundUser = null;

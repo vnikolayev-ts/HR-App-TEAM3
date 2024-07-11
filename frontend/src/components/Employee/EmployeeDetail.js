@@ -1,8 +1,9 @@
 import React from 'react';
 import { checkUrlExists, getCurrentDomain } from '../Utils/Utils';
-import { getEmployeeById, getTenant } from '../../api/ClientApi_copy'
+import { getEmployeeById, getEmployees, getTenant } from '../../api/ClientApi_copy'
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+
 
 import ScoreComponent from '../Utils/ScoreComponent';
 import StarsComponent from '../Utils/StarsComponent';
@@ -18,7 +19,7 @@ const EmployeeDetails = () => {
 
   const [employee, setEmployee] = useState(null);
   const [title, setTitle] = useState("Employee Detail Page");
-  const [tenant, setTenant] = useState(null);
+  const [setTenant] = useState(null);
   const [imgUrl, setImgUrl] = useState(null);
 
 
@@ -33,9 +34,9 @@ const EmployeeDetails = () => {
         const tData = await getTenant();
         setTenant(tData);
 
-        const imgFullPath = checkUrlExists(fEmp.image) === true ? fEmp.image : `.${tData.noimage_url}`;
+        // const imgFullPath = checkUrlExists(fEmp.image) === true ? fEmp.image : `.${tData.noimage_url}`;
 
-        setImgUrl(imgFullPath);
+        // setImgUrl(imgFullPath);
 
       } catch (error) {
         console.error('Error fetching HR data:', error);
@@ -46,7 +47,7 @@ const EmployeeDetails = () => {
 
     fetchData(); // Aufruf der fetchData Funktion, die getHRData aufruft
 
-  }, [imgUrl]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
+  }, [employee]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
 
   if (!employee) {
     return <p>Loading...</p>; // Anzeige während des Ladens der Daten
