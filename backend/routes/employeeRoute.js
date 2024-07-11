@@ -15,6 +15,7 @@ router.use((req, res, next) => {
 // Get all employees
 router.get('/', (req, res) => {
     const tenantId = req.tenantId;
+    tenantId = 1;
     database.getEmployees(tenantId, (err, employees) => {
         if (err) {
             return res.status(500).send(err);
@@ -26,6 +27,7 @@ router.get('/', (req, res) => {
 // Get employee by ID
 router.get('/:id', (req, res) => {
     const tenantId = req.tenantId;
+    tenantId = 1;
     const employeeId = req.params.id;
     database.getEmployeeById(tenantId, employeeId, (err, employee) => {
         if (err) {
