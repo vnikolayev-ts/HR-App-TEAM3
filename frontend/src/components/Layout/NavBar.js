@@ -50,7 +50,7 @@ const Navbar =()  => {
       
 
       <div className="dropdown">
-        <button clasName="configButton" onClick={toggleDropdown}>Navigate <span className="arrow">▼</span>  </button>
+        <Link className="navigation" onClick={toggleDropdown}>Navigate <span className="arrow">▼</span>  </Link>
         {dropdownOpen && (
           <div className="dropdownContent">
             
@@ -63,7 +63,7 @@ const Navbar =()  => {
                 )}
            <Link to={`/user-profile/${loginUser.userId}`}>Profile</Link>
      
-            <button class="logout" onClick={handleLogout}>Logout</button>
+            <button className="logout" onClick={handleLogout}>Logout</button>
 
            
 

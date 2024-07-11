@@ -74,11 +74,11 @@ const LoginForm = () => {
         <form onSubmit={handleSubmit}>
           <div>
             <div>
-              <label htmlFor="email"></label>
+              <label htmlFor="username"></label>
               <input
-                placeholder="Bitte Email eingeben"
-                type="email"
-                id="email"
+                placeholder="Username"
+                type="text"
+                id="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required

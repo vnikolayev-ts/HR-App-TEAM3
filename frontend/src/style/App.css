@@ -12,11 +12,28 @@
 
 
 body {
-  font-family: Arial, sans-serif;
-  
+  font-family: Arial, sans-serif;  
   background: linear-gradient(to right, #2a96df 0%, #ffffff 49%, #186598 100%);
   margin: 0;
   padding: 20px;
+  position: relative;
+  overflow: auto;
+  
+
+}
+
+#application {
+  position: relative;
+  z-index: 100;
+}
+
+.logo-background {
+  position: absolute;
+  top: -150px;
+  right: -350px;
+  width: 60%;
+  opacity: 0.05; 
+  pointer-events: none; 
 }
 
 .pageTitle {
@@ -45,10 +62,10 @@ body {
 
 
 
-.createItem{
-  width: 100%;
+.createItem{  
+  width: 50%;
   flex-direction: column;
-  margin: 20px auto;
+  margin: 20px;
   background-color: rgb(204, 204, 204);
   border: none;
   border-radius: 5px;
@@ -119,8 +136,14 @@ body {
   border-radius: 5px;
   box-shadow: 3px 3px 7px;
   padding: 10px 0; 
-  display: flex;  
+  display: flex; 
   justify-content: space-between; 
+  z-index: 500;
+}
+
+.listItem:hover{
+  transform: scale(1.01);
+  transition:  0.1s ease-in-out;
 }
 
 
@@ -137,12 +160,9 @@ body {
   width: 100%;
 }
 
-.backButton .editButton {
-  margin-bottom: 20px;
-  top: -20px;
+
   
-  
-}
+
 
 .employee-main {
   display: flex;
@@ -187,9 +207,7 @@ body {
   margin-left: 30px;
 }
 
-.editButton {
-  margin-top: 20px;
-}
+
 
 .dashboard-container {
   display: flex;
@@ -209,6 +227,7 @@ body {
   align-items: center;
   border-radius: 5px;
   box-shadow: 3px 3px 9px;
+  z-index: 500;
 }
 
 
@@ -245,23 +264,8 @@ body {
   width: 50px;
   height: 50px;
   margin: 20px 0; 
-  animation: rotate 10s infinite linear;
-  transform-style: preserve-3d;
-}
 
-.logof:hover {
-  animation-play-state: paused;
 }
-
-@keyframes rotate {
-  from {
-    transform: rotateY(0deg);
-  }
-  to {
-    transform: rotateY(360deg);
-  }
-}
-
 .dashTitle {
   font-size: 33px;
   color: #513030;

@@ -33,6 +33,7 @@ const Layout = ({ children, pTitle, styleName="default" }) => {
       <Footer />
       </div>
       
+      <img src={imgUrl} alt="Logo" className="logo-background" />
       </main>
     </div>
   );
