@@ -48,11 +48,13 @@ const Dashboard = () => {
       <img src={imgUrl} alt="Logo" className="logo" />
       </div>
       <div className="dashboard-container">
-          <div className="main-content">
+          <div className="birthday-component">
+                   <EmployeeBirthdaysComponent />
+                   </div>
+          <div className="actives">
+            <h1 className='dashTitle'>Actives</h1>
         <label>Users:</label> {uLength}
         <label>Employees:</label> {eLength}
-        
-                   <EmployeeBirthdaysComponent />
           </div>
           <div className="joke-component">
             <JokeComponent />

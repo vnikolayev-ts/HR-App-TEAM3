@@ -47,11 +47,11 @@ if (!tenantData) {
 
     return (
         <Layout pTitle={title}>
-            <Link to={'/tenant-create'} > <button className="createButton"  >Create Tenant</button> </Link>
+            <Link to={'/tenant-create'} > <button className="createButton"  >Create</button> </Link>
             <ul className="list" >
             {tenantData.map((tenant) => (
             <li className="listItem" key={(tenant.tenantId)}> 
-              <div>{tenant.name}</div> 
+              <div className="tName">{tenant.name}</div> 
               <div>{tenant.tenantId}</div>
               <Link to={`/tenant/${tenant.tenantId}`} > <button className="viewButton"  >Details</button> </Link>
             </li>        

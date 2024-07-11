@@ -7,7 +7,7 @@ import { createUser } from "../../api/ClientApi";
 
 function CreateUser() {
   const navigate = useNavigate();
-  const [title, setTitle] = useState("Create User Page");
+  const [title, setTitle] = useState("Create User ");
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -59,19 +59,20 @@ function CreateUser() {
 
   return (
     <Layout pTitle={title}>
-      <button onClick={handleBackClick} className="backButton">
-        Back
-      </button>
-      
+      <button onClick={handleBackClick} className="backButton"> Back</button>
+      <form>    
+      <div className="createItem">
         <LabelInputComponent lab={"Name"} name="name" val={name} onChange={(e) => setName(e.target.value)} />
         <LabelInputComponent lab={"Username"} name="username" val={username} onChange={(e) => setUsername(e.target.value)} />
         <LabelInputComponent lab={"Email"} name="email" val={email} onChange={(e) => setEmail(e.target.value)} />
         <LabelInputComponent lab={"Password"} name="password" val={password} type={'password'} onChange={(e) => setPassword(e.target.value)} />
-        <LabelInputComponent lab={"Admin"} name="admin" checked={admin} type={'checkbox'} onChange={(e) => setAdmin(e.target.checked)} />
         
+        <LabelInputComponent  lab={"Admin"} name="admin" checked={admin} type={'checkbox'} onChange={(e) => setAdmin(e.target.checked)} />
+
+        </div>
         <button className="resetButton" onClick={handleReset}>Reset</button>
         <button className="createButton" onClick={handleSave}>create</button>
-      
+      </form>
     </Layout>
   );
 }

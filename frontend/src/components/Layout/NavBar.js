@@ -45,12 +45,12 @@ const Navbar =()  => {
 
     <nav className="navBar">
         
-        <Link to="/dashboard" >Home</Link>
-        <Link to="/employee" >Employee</Link>
+        <Link className="navigation" to="/dashboard" >Home</Link>
+        <Link  className="navigation" to="/employee" >Employee</Link>
       
 
       <div className="dropdown">
-        <button clasName="configButton" onClick={toggleDropdown}>Configuration <span className="arrow">▼</span>  </button>
+        <button clasName="configButton" onClick={toggleDropdown}>Navigate <span className="arrow">▼</span>  </button>
         {dropdownOpen && (
           <div className="dropdownContent">
             

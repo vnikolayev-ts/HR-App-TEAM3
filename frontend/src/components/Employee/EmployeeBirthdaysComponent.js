@@ -49,7 +49,7 @@ const EmployeeBirthdaysComponent = () => {
 
   return (
     <div>
-      <h2>Employees with Birthdays in the Next 5 Days</h2>
+      <h3 className="dashTitle">Employees birthdays in the next 5 Days</h3>
       {tenant && <p>Tenant: {tenant.name}</p>}
       <ul>
         {filteredEmployees.length > 0 ? (

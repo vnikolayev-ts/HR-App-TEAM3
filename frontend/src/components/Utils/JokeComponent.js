@@ -45,11 +45,11 @@ const JokeComponent = () => {
   }, []); // Leeres Abhängigkeits-Array sorgt dafür, dass useEffect nur einmal ausgeführt wird
 
   // Countdown-Text generieren
-  const countdownText = `Page refresh in ${countdown}s`;
+  const countdownText = `New Joke in ${countdown}s`;
 
   return (
     <div>
-      <h1>Random Jokes</h1>
+      <h3 className='dashTitle'>You´re best dressed with a smile!</h3>
       <div>
         <p>{countdownText}</p>
         {loading ? (
@@ -61,7 +61,7 @@ const JokeComponent = () => {
         ) : (
           <p>No jokes available</p>
         )}
-        <button onClick={getNewJokes}>Sync Jokes</button>
+        <button onClick={getNewJokes}>New Jokes from api</button>
       </div>
     </div>
   );

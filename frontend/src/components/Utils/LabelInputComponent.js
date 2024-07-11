@@ -15,19 +15,30 @@ const LabelInputComponent = ({
   return (
     <div className={`label-input-component ${cname}`}>
       {lab && <label className="label">{lab}</label>}
+      {type === 'checkbox' ? (
+        
       <input
-        type={type}
-        name={name}
-        value={type === 'checkbox' ? undefined : val} // Checkbox verwendet checked statt value
-        checked={type === 'checkbox' ? checked : undefined} // Nur Checkbox verwendet checked
-        placeholder={placeholder || name}
-        readOnly={readonly}
-        className="input"
-        onChange={onChange}
-      />
+          type="checkbox"
+          name={name}
+          checked={checked}
+          className="input-checkbox"
+          onChange={onChange}
+        />
+      ) : (
+        <input
+          type={type}
+          name={name}
+          value={val}
+          placeholder={placeholder || name}
+          readOnly={readonly}
+          className="input"
+          onChange={onChange}
+        />
+      )}
     </div>
   );
 };
+
 
 LabelInputComponent.propTypes = {
   lab: PropTypes.string,

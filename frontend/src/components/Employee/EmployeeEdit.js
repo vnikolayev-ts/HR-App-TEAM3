@@ -135,7 +135,7 @@ const EmployeeEdit = () => {
       
      <div className="create-form">
        
-        <LabelValueComponent label={"Tenant-ID"} value={employee.tenantId } />
+        
         <LabelInputComponent lab={"Img Url"} name="image" val={employee.image} onChange={handleInputChange}/>
         <LabelInputComponent lab={"First Name"} name="first_name" val={employee.first_name} onChange={handleInputChange}/>
         <LabelInputComponent lab={"Last Name"} name="last_name" val={employee.last_name} onChange={handleInputChange}/>

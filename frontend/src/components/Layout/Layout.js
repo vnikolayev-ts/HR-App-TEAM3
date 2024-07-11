@@ -23,11 +23,17 @@ const Layout = ({ children, pTitle, styleName="default" }) => {
   return (
     <div id="application" className={loginStyleName?loginStyleName:styleName}>
       <Navbar />
+      
       <h2 id="pTitle" className="pageTitle">{pTitle}</h2>
-      <main>{children}</main>
+      <main>{children}
+      <div className="footer">
       <Footer />
+      </div>
+      </main>
     </div>
   );
 };
 
 export default Layout;
+
+

@@ -54,17 +54,21 @@ const UserList = () => {
   //console.log(userData);
   return (
     <Layout pTitle={title}>
-      <button onClick={handleBackClick}>Back</button>
-      <button onClick={handleCreateClick}>Create User</button>
+      <form>
+      <button className="backButton" onClick={handleBackClick}>Back</button>
+      <button className="creatButton" onClick={handleCreateClick}>Create </button>
       <ul className="list">
         {userData.map((user) => (
           <li className="listItem" key={user.userId}>
            
               
                           
-                <div className="name">{user.name}</div>               
-                <div className="usname">{user.username}</div>                         
+                <div className="name">{user.name}</div> 
+                <div className="separator"></div>           
+                <div className="usname">{user.username}</div> 
+                <div className="separator"></div>                        
                 <div className="mail">{user.email}</div>
+                <div className="separator"></div>
 
                 {user.admin && (
                   
@@ -83,6 +87,7 @@ const UserList = () => {
           </li>
         ))}
       </ul>
+      </form>
     </Layout>
   );
 };

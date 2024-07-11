@@ -93,8 +93,8 @@ const EmployeeCreate = () => {
   return (
     <Layout pTitle={title}>
       <button onClick={handleBackClick} className='backButton'>Back</button>
-
       <form onSubmit={handleCreate}>
+      <div className="createItem">
        <LabelInputComponent lab={"Img Url"} name="image" val={image} onChange={(e) => setImage(e.target.value)}/>
         <LabelInputComponent lab="First Name: " name="first_name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
         <LabelInputComponent lab="Last Name: " name="last_name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
@@ -119,9 +119,11 @@ const EmployeeCreate = () => {
         <LabelInputComponent lab="Creativity" name="creativity" type="number" min="1" max="10" value={creativity} onChange={(e) => setCreativity(e.target.value)} />
         <LabelInputComponent lab="Reliability" name="reliability" type="number" min="1" max="10" value={reliability} onChange={(e) => setReliability(e.target.value)} />
         <LabelInputComponent lab="Initiative" name="initiative" type="number" min="1" max="10" value={initiative} onChange={(e) => setInitiative(e.target.value)} />
+          </div>
 
         <button className="resetButton" onClick={handleReset}>Reset</button>
         <button className="createButton" type="submit">create</button>
+
       </form>
     </Layout>
   );

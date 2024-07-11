@@ -14,12 +14,13 @@
 body {
   font-family: Arial, sans-serif;
   
-  background-color: rgb(249, 249, 249);
+  background: linear-gradient(to right, #2a96df 0%, #ffffff 49%, #186598 100%);
   margin: 0;
   padding: 20px;
 }
 
 .pageTitle {
+  margin-top: 100px;
   font-size: 30px;
   color: #212529;
   text-shadow: 3px 3px 7px;
@@ -42,70 +43,66 @@ body {
 
 
 
-/* Schriftarten */
-.font-small {
-  font-size: 12px;
-}
-
-.font-medium {
-  font-size: 16px;
-}
-
-.font-large {
-  font-size: 20px;
-}
-
-/* Andere allgemeine Stile */
-.rounded {
-  border-radius: 5px;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.text-bold {
-  font-weight: bold;
-}
 
 
-
-
-.label-input-component{
-  height: 30px;
-  width: 99%;
-  margin: 30px auto 0;
+.createItem{
+  width: 100%;
+  flex-direction: column;
+  margin: 20px auto;
   background-color: rgb(204, 204, 204);
   border: none;
   border-radius: 5px;
   box-shadow: 3px 3px 7px;
-  padding: 20px; 
-  display: ;
-  flex-direction:;
-  align-items: ; 
+  padding: 10px ; 
+  display: flex;  
   justify-content: space-between; 
+}
+
+.label-input-component{
+  display: flex;
+  align-items: ;
+  height: 30px;
+  width: 99%;
+  margin:  auto 0;
+  padding: 20px; 
+   
   
 }
 
 .input.input{
-  width: 250px; 
-  padding: 10px;
-  margin-bottom: 20px; 
-  
+  width: 250px;
+  height: 30px;
   border-radius: 5px; 
   border: none; 
   box-sizing: border-box; 
   text-align: center; 
   box-shadow:inset 2px 2px 7px;
+  margin-left: 20px;
 }
 .label.label{
-  width: 25px; 
+  width: 250px; 
   padding: 10px;
   margin-bottom: 20px; 
-  border-radius: 5px; 
-  border: none; 
+  text-align: center; 
   
 }
+
+.input-checkbox {
+  margin-left: 30px;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px; 
+  border: px solid #5b5b5b;
+  cursor: pointer;
+}
+
+
+.input-checkbox:checked {
+  background-color: #5a5a5a; /* Farbe, wenn die Checkbox markiert ist */
+  border-color: #5c5c5c;
+}
+
+
 
 .list{
   list-style-type: none;
@@ -114,30 +111,23 @@ body {
 }
 
 .listItem{
-  height: 50px;
+  height: 55px;
   width: 100%;
-  margin-bottom: 20px ;
+  margin: 50px auto;
   background-color: rgb(204, 204, 204);
   border: none;
   border-radius: 5px;
   box-shadow: 3px 3px 7px;
   padding: 10px 0; 
-  display: flex;
-  
-  
+  display: flex;  
   justify-content: space-between; 
-}
-
-.listItem div{
-  border-right: solid #6c757d 2px;
-}
-.listItem div.position, .listItem div.score, .listItem div:nth-last-child(2){
-  border: none;
 }
 
 
 .separator {
-  margin: 0 10px;
+  height: 24px; /* Höhe des Textes oder der Symbole */
+  border: solid 2px;
+  
 }
 
 .employee-details-container {
@@ -150,6 +140,7 @@ body {
 .backButton .editButton {
   margin-bottom: 20px;
   top: -20px;
+  
   
 }
 
@@ -204,9 +195,10 @@ body {
   display: flex;
 }
 
-.joke-component {
+.joke-component, .birthday-component, .actives {
   flex:  300px; 
   display: flex;
+  flex-direction: column;
   margin-right: 10px;
   margin-left: 20px;
   margin-bottom: 10px;
@@ -216,22 +208,10 @@ body {
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  box-shadow: 3px 3px 7px;
+  box-shadow: 3px 3px 9px;
 }
 
-.main-content {
-  flex: 300px;
-  display: flex;
-  padding: 10px;
-  margin-bottom: 10px;
-  flex-direction: column;
-  background-color: rgb(204, 204, 204);
-  border: none;
-  border-radius: 5px;
-  box-shadow: 3px 3px 7px;
-  justify-content: center;
-  align-items:;
-}
+
 
 .logo-container {
   display: flex;
@@ -261,3 +241,52 @@ body {
     transform: rotateY(360deg);
   }
 }
+
+.dashTitle {
+  font-size: 33px;
+  color: #513030;
+  text-shadow: 2px 2px 7px #2e2e2e;
+
+}
+
+.footer {
+  
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  
+}
+
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#application {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  margin-top: 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.fname {
+  padding: 10px;
+}
+
+.name{
+  padding: 10px;
+}
+.tName{
+  padding: 10px;
+}
+
