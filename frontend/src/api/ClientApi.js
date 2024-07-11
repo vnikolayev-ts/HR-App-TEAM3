@@ -2,8 +2,8 @@ import employeeData from '../data/employees.json';
 import userData from '../data/users.json'; 
 import tenantData from '../data/tenants.json'; 
 
-//const apiServerPort = 3001;
-//const apiServerUrl = "http://localhost";
+const apiServerPort = 3001;
+const apiServerUrl = "http://3.67.177.230";
 
 let logUser = null;
 
@@ -11,25 +11,24 @@ let logUser = null;
 //fetch(`localhost:${apiport}`), {method:'POST', headers: {'Content-Type': 'application/json'}},
 //body: 
 
- export  const  getEmployees2 = async  () => {
-   return await getFileHrData(); //Todo warten bis backend da ist
- /* try {
-    const apiUrl = `${apiServerUrl}:${apiServerPort}`;
-   // const response = await fetch(apiUrl);
-   // const data = await response.json();
+ export  const  getEmployees = async  () => {
+   
+  try {
+    const apiUrl = `${apiServerUrl}:${apiServerPort}/employee`;
+    const res = await fetch(apiUrl);
+    const data = await res.json();
 
-    const response = await  fetch(apiUrl);
-    const data =  await response.json();
+
 
     return data;
   } catch (error) {
     console.error('Error fetching data:', error);
     throw error;
     
-  }*/
+  }
 }
 
-export const getEmployees = async () => {
+export const getEmployees2 = async () => {
   let foundEmps = null;
   const loggedInUser = getLogUser();
   const tId = loggedInUser ? loggedInUser.tenantId : null;
