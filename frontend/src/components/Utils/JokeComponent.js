@@ -6,14 +6,30 @@ const JokeComponent = () => {
   const [loading, setLoading] = useState(false);
   const countdownIntervalRef = useRef(null); // Ref für das Interval-Objekt
   const [countdown, setCountdown] = useState(60);
+  const [retryCount, setRetryCount] = useState(0);
+  const divRef = useRef(null); // Ref für das div-Element
 
   // Funktion zum Abrufen und Setzen neuer Witze
-  const getNewJokes = async () => {
+  const getNewJokes = async (retry = true) => {
     setLoading(true);
-    const newJokes = await fetchRandomJokes();
-    setJokes(newJokes);
-    setLoading(false);
-    resetCountdown(); // Countdown zurücksetzen nach manuellem Klick auf "Sync Jokes"
+    try {
+      const newJokes = await fetchRandomJokes();
+      if (newJokes.length > 0 || retryCount >= 3) {
+        setJokes(newJokes);
+        setRetryCount(0);
+      } else if (retry) {
+        setRetryCount((prevRetryCount) => prevRetryCount + 1);
+        getNewJokes();
+      }
+    } catch (error) {
+      console.error('Error fetching jokes:', error);
+      if (retry && retryCount < 3) {
+        setRetryCount((prevRetryCount) => prevRetryCount + 1);
+        getNewJokes();
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   // Funktion zum Zurücksetzen des Countdowns
@@ -21,10 +37,10 @@ const JokeComponent = () => {
     setCountdown(60);
   };
 
-  // Funktion zum Starten des Intervals
+  // Funktion zum Starten des Countdowns
   const startCountdown = () => {
     countdownIntervalRef.current = setInterval(() => {
-      setCountdown(prevCountdown => {
+      setCountdown((prevCountdown) => {
         if (prevCountdown === 1) {
           clearInterval(countdownIntervalRef.current); // Interval stoppen, wenn Countdown bei 1 ist
           getNewJokes(); // Neue Witze abrufen
@@ -35,23 +51,32 @@ const JokeComponent = () => {
     }, 1000); // Alle 1000ms = 1 Sekunde
   };
 
-  // useEffect zum Starten und Beenden des Intervals
+  // useEffect zum Starten und Beenden des Countdowns
   useEffect(() => {
     startCountdown(); // Interval beim ersten Laden starten
 
     return () => {
       clearInterval(countdownIntervalRef.current); // Interval beim Unmount der Komponente stoppen
     };
-  }, []); // Leeres Abhängigkeits-Array sorgt dafür, dass useEffect nur einmal ausgeführt wird
+  }, [jokes]); // Leeres Abhängigkeits-Array sorgt dafür, dass useEffect nur einmal ausgeführt wird
+
+  // useEffect, um eine Funktion aufzurufen, wenn das div-Element geladen wird
+  useEffect(() => {
+    if (divRef.current) {
+      console.log('div element has loaded');
+      //alert("OOPS");
+      getNewJokes(false);
+      // Hier die gewünschte Funktion aufrufen
+    }
+  }, [loading, jokes]); // Abhängig von loading und jokes
 
   // Countdown-Text generieren
   const countdownText = `New Joke in ${countdown}s`;
 
   return (
-    <div>
-      <h3 className='dashTitle'>You`re best dressed with a smile!</h3>
+    <div ref={divRef}>
+      <h3 className='dashTitle'>You're best dressed with a smile!</h3>
       <div>
-        <p>{countdownText}</p>
         {loading ? (
           <p>Loading...</p>
         ) : jokes.length > 0 ? (
@@ -59,10 +84,11 @@ const JokeComponent = () => {
             <p key={index}>{joke.text}</p>
           ))
         ) : (
-          <p>No jokes available</p>
+          <p  ref={divRef}>No jokes available</p>
         )}
-        <button onClick={getNewJokes}>New Jokes from api</button>
+        <button onClick={() => getNewJokes(false)}>New Jokes from API</button>
       </div>
+      <p>{countdownText}</p>
     </div>
   );
 };
