@@ -3,9 +3,9 @@ const app = express();
 const cors = require('cors');
 
 
-const connection = require('./mysql'); // Pfad zu mysql-connect.js
 const bodyParser = require('body-parser');
-const { authenticateUser } = require('./auth'); // Passe den Pfad zu auth.js an
+
+
 const apiRouter = require('./routes/ApiRoute');
 const employeeRoute = require('./routes/employeeRoute');
 const tenantRoute = require('./routes/tenantRoute');
@@ -37,13 +37,15 @@ app.use(express.json());
 app.use(express.static('public')); // Public ordenr einbinden
 
 
+
 // Verwende die API-Routen unter /api
+app.use('/user', userRoute);
 app.use('/api', apiRouter);
 app.use('/employee', employeeRoute);
 app.use('/tenant', tenantRoute);
-app.use('/user', userRoute);
 
 // Server starten
 app.listen(PORT, () => {
   console.log(`Der Server läuft auf ${SERVER_URL_PUBLIC}:${PORT}`) // `` -> backticks
 })
+ 

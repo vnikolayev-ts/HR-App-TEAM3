@@ -3,6 +3,7 @@ const database  = require('../db/database');
 
 const router = express.Router();
 
+
 router.use((req, res, next) => {
     req.tenantId = req.query.tenantId || req.headers['tenant-id'];
     if (!req.tenantId) {
@@ -10,8 +11,8 @@ router.use((req, res, next) => {
     }
     next();
   });
-  
-  router.get('/', (req, res) => {
+ 
+router.get('/', (req, res) => {
     const tenantId = req.tenantId;
     database.getUsers(tenantId, (err, users) => {
         if (err) {
@@ -20,7 +21,7 @@ router.use((req, res, next) => {
         res.send(users);
     });
   });
-  
+
   router.get('/:id', (req, res) => {
     const tenantId = req.tenantId;
     const userId = req.params.id;
@@ -31,7 +32,8 @@ router.use((req, res, next) => {
         res.send(user);
     });
   });
-  
+
+
   router.post('/', (req, res) => {
     const tenantId = req.tenantId;
     const newUser = req.body;
@@ -42,7 +44,7 @@ router.use((req, res, next) => {
         res.status(201).send('User created');
     });
   });
-  
+
   router.put('/:id', (req, res) => {
     const tenantId = req.tenantId;
     const userId = req.params.id;
@@ -54,7 +56,7 @@ router.use((req, res, next) => {
         res.send('User updated');
     });
   });
-  
+
   router.delete('/:id', (req, res) => {
     const tenantId = req.tenantId;
     const userId = req.params.id;
@@ -65,3 +67,6 @@ router.use((req, res, next) => {
         res.send('User deleted');
     });
   });
+  
+
+module.exports = router;
