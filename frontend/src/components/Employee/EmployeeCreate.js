@@ -31,7 +31,7 @@ const EmployeeCreate = () => {
   const [initiative, setInitiative] = useState('');
   const [image, setImage] = useState('');
 
-  const [title] = useState('Employee Create Page');
+  const [title] = useState('Create Employee');
 
   const handleBackClick = () => {
     navigate('/employee');

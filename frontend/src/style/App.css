@@ -63,13 +63,16 @@ body {
 
 
 .createItem{  
-  width: 50%;
+  width: 600px;
   flex-direction: column;
-  margin: 20px;
-  background-color: rgb(204, 204, 204);
-  border: none;
-  border-radius: 5px;
-  box-shadow: 3px 3px 7px;
+  margin: 20px;  
+  background-color:  rgba(184, 184, 184, 0.2)
+  ;
+  box-shadow: 3px 4px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(22px);
+  border: solid 1px rgba(255, 255, 255, 0.1);
+  
+  border-radius: 5px;  
   padding: 10px ; 
   display: flex;  
   justify-content: space-between; 
@@ -97,7 +100,7 @@ body {
   margin-left: 20px;
 }
 .label.label{
-  width: 250px; 
+  width: 150px; 
   padding: 10px;
   margin-bottom: 20px; 
   text-align: center; 
@@ -128,13 +131,15 @@ body {
 }
 
 .listItem{
+  position: relative;
   height: 55px;
   width: 100%;
   margin: 50px auto;
-  background-color: rgb(204, 204, 204);
-  border: none;
+  background-color: rgb(204, 204, 204, 0.3);
+  border: solid 1px rgba(255, 255, 255, 0.1);
   border-radius: 5px;
-  box-shadow: 3px 3px 7px;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(12px);
   padding: 10px 0; 
   display: flex; 
   justify-content: space-between; 
@@ -221,12 +226,13 @@ body {
   margin-left: 20px;
   margin-bottom: 10px;
   padding: 10px;
-  background-color: rgb(204, 204, 204);
-  border: none;
+  background-color: rgb(205, 205, 205, 0.1);
+  backdrop-filter: blur(12px);
+  border: solid 1px rgba(255, 255, 255, 0.1);
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  box-shadow: 3px 3px 9px;
+  box-shadow: 3px 3px 30px rgba(0, 0, 0, 0.3);
   z-index: 500;
 }
 
@@ -259,6 +265,7 @@ body {
   to {
     transform: rotateY(360deg);
   }
+  
 }
 .logof {
   width: 50px;

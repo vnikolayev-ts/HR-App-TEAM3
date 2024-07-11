@@ -12,7 +12,7 @@ const TenantCreate = () => {
   // State-Hooks für alle Eingabefelder
   const [name, setName] = useState(null);
 
-  const[title] = useState('Tenant Create Page');
+  const[title] = useState('Create Tenant');
 
   const handleBackClick = () => {
     navigate('/tenant');
