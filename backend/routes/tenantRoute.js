@@ -1,5 +1,5 @@
 const express = require('express');
-const database  = require('../db/database'); 
+const database = require('../db/database');
 
 const router = express.Router();
 
@@ -16,6 +16,7 @@ router.get('/', (req, res) => {
 // Get tenant by ID
 router.get('/:id', (req, res) => {
     const tenantId = req.params.id;
+    tenantId = 1;
     database.getTenantById(tenantId, (err, tenant) => {
         if (err) {
             return res.status(500).send(err);
@@ -27,6 +28,7 @@ router.get('/:id', (req, res) => {
 // Create a new tenant
 router.post('/', (req, res) => {
     const newTenant = req.body;
+    tenantId = 1;
     database.createTenant(newTenant, (err, tenantId) => {
         if (err) {
             return res.status(500).send(err);
@@ -38,6 +40,7 @@ router.post('/', (req, res) => {
 // Update a tenant by ID
 router.put('/:id', (req, res) => {
     const tenantId = req.params.id;
+    tenantId = 1;
     const updatedTenant = req.body;
     database.updateTenantById(tenantId, updatedTenant, (err) => {
         if (err) {
@@ -50,6 +53,7 @@ router.put('/:id', (req, res) => {
 // Delete a tenant by ID
 router.delete('/:id', (req, res) => {
     const tenantId = req.params.id;
+    tenantId = 1;
     database.deleteTenantById(tenantId, (err) => {
         if (err) {
             return res.status(500).send(err);
