@@ -1,7 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
 
-import { getUsers, getLogUser } from "../../api/ClientApi";
+// import { getUsers, getLogUser } from "../../api/ClientApi_copy";
+import { getUsers } from '../../api/ClientApi_copy';
+
+
 import Layout from "../Layout/Layout";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -29,10 +32,10 @@ const UserList = () => {
     navigate("/user-create");
   };
 
-  useEffect(() => { 
+  useEffect(() => {
     const fetchData = async () => {
       try {
-        
+
         const data = await getUsers(); // Aufruf der async Funktion getEmployees -API
         setUserData(data);
         setTitle('User List')
@@ -55,38 +58,38 @@ const UserList = () => {
   return (
     <Layout pTitle={title}>
       <form>
-      <button className="backButton" onClick={handleBackClick}>Back</button>
-      <button className="creatButton" onClick={handleCreateClick}>Create </button>
-      <ul className="list">
-        {userData.map((user) => (
-          <li className="listItem" key={user.userId}>
-           
-              
-                          
-                <div className="name">{user.name}</div> 
-                <div className="separator"></div>           
-                <div className="usname">{user.username}</div> 
-                <div className="separator"></div>                        
-                <div className="mail">{user.email}</div>
-                <div className="separator"></div>
+        <button className="backButton" onClick={handleBackClick}>Back</button>
+        <button className="creatButton" onClick={handleCreateClick}>Create </button>
+        <ul className="list">
+          {userData.map((user) => (
+            <li className="listItem" key={user.userId}>
 
-                {user.admin && (
-                  
-                   
-                    <div className="admin"> Administrator </div>
-                  
-                )}
-              
-            
-            
+
+
+              <div className="name">{user.name}</div>
+              <div className="separator"></div>
+              <div className="usname">{user.username}</div>
+              <div className="separator"></div>
+              <div className="mail">{user.email}</div>
+              <div className="separator"></div>
+
+              {user.admin && (
+
+
+                <div className="admin"> Administrator </div>
+
+              )}
+
+
+
               <Link to={`/user/${user.userId}`}>
                 <button className="viewButton">Details</button>
               </Link>
 
-          
-          </li>
-        ))}
-      </ul>
+
+            </li>
+          ))}
+        </ul>
       </form>
     </Layout>
   );

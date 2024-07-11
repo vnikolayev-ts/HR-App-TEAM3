@@ -49,7 +49,7 @@ const JokeComponent = () => {
 
   return (
     <div>
-      <h3 className='dashTitle'>You´re best dressed with a smile!</h3>
+      <h3 className='dashTitle'>You`re best dressed with a smile!</h3>
       <div>
         <p>{countdownText}</p>
         {loading ? (

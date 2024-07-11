@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { setPageTitle } from "../Utils/Utils";
 
+
 import Layout from "../Layout/Layout";
 import { getUserById } from "../../api/ClientApi";
 import LabelValueComponent from './../Utils/LabelValueComponent';
@@ -16,9 +17,9 @@ function UserDetail() {
 
   const [name, setName] = useState("");
 
-  
+
   const [title, setTitle] = useState('User Detail Page');
-  
+
 
   const [foundUser, setFoundUser] = useState("");
   const [username, setUsername] = useState("");
@@ -39,16 +40,16 @@ function UserDetail() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        
-       
-        const fUser  = await getUserById( id);
+
+
+        const fUser = await getUserById(id);
         setFoundUser(fUser);
         if (foundUser) {
-         setTitle(`User Details ${foundUser.name}`);
+          setTitle(`User Details ${foundUser.name}`);
           setName(foundUser.name);
           setUsername(foundUser.username);
           setEmail(foundUser.email);
-      
+
           setAdmin(foundUser.admin);
           setTenantId(foundUser.tenantId);
         }
@@ -77,17 +78,17 @@ function UserDetail() {
   return (
     <Layout pTitle={title}>
       <button onClick={handleBackClick} className="backButton"> Back </button>
-            <LabelValueComponent label={"ID"} value={id } />
-            <LabelValueComponent label={"Tenant-ID"} value={tenantId } />
-            <LabelValueComponent label={"Name"} value={name} />
-            <LabelValueComponent label={"Username"} value={username} />
-            <LabelValueComponent label={"E-mail"} value={email} />
-            <LabelValueComponent label={"Password"} value={"******"} />
-            <LabelValueComponent label={"Admin"} value={admin} />
-            <LabelValueComponent label={"Name"} value={name} />
-       
-        <Link to={`/user-edit/${id}`}><button className="editButton">Edit</button>  </Link>
-      
+      <LabelValueComponent label={"ID"} value={id} />
+      <LabelValueComponent label={"Tenant-ID"} value={tenantId} />
+      <LabelValueComponent label={"Name"} value={name} />
+      <LabelValueComponent label={"Username"} value={username} />
+      <LabelValueComponent label={"E-mail"} value={email} />
+      <LabelValueComponent label={"Password"} value={"******"} />
+      <LabelValueComponent label={"Admin"} value={admin} />
+      <LabelValueComponent label={"Name"} value={name} />
+
+      <Link to={`/user-edit/${id}`}><button className="editButton">Edit</button>  </Link>
+
     </Layout>
   );
 }

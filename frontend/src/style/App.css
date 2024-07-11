@@ -12,11 +12,28 @@
 
 
 body {
-  font-family: Arial, sans-serif;
-  
+  font-family: Arial, sans-serif;  
   background: linear-gradient(to right, #2a96df 0%, #ffffff 49%, #186598 100%);
   margin: 0;
   padding: 20px;
+  position: relative;
+  overflow: auto;
+  
+
+}
+
+#application {
+  position: relative;
+  z-index: 100;
+}
+
+.logo-background {
+  position: absolute;
+  top: -150px;
+  right: -350px;
+  width: 60%;
+  opacity: 0.05; 
+  pointer-events: none; 
 }
 
 .pageTitle {
@@ -45,14 +62,17 @@ body {
 
 
 
-.createItem{
-  width: 100%;
+.createItem{  
+  width: 600px;
   flex-direction: column;
-  margin: 20px auto;
-  background-color: rgb(204, 204, 204);
-  border: none;
-  border-radius: 5px;
-  box-shadow: 3px 3px 7px;
+  margin: 20px;  
+  background-color:  rgba(184, 184, 184, 0.2)
+  ;
+  box-shadow: 3px 4px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(22px);
+  border: solid 1px rgba(255, 255, 255, 0.1);
+  
+  border-radius: 5px;  
   padding: 10px ; 
   display: flex;  
   justify-content: space-between; 
@@ -80,7 +100,7 @@ body {
   margin-left: 20px;
 }
 .label.label{
-  width: 250px; 
+  width: 150px; 
   padding: 10px;
   margin-bottom: 20px; 
   text-align: center; 
@@ -111,16 +131,24 @@ body {
 }
 
 .listItem{
+  position: relative;
   height: 55px;
   width: 100%;
   margin: 50px auto;
-  background-color: rgb(204, 204, 204);
-  border: none;
+  background-color: rgb(204, 204, 204, 0.3);
+  border: solid 1px rgba(255, 255, 255, 0.1);
   border-radius: 5px;
-  box-shadow: 3px 3px 7px;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(12px);
   padding: 10px 0; 
-  display: flex;  
+  display: flex; 
   justify-content: space-between; 
+  z-index: 500;
+}
+
+.listItem:hover{
+  transform: scale(1.01);
+  transition:  0.1s ease-in-out;
 }
 
 
@@ -137,12 +165,9 @@ body {
   width: 100%;
 }
 
-.backButton .editButton {
-  margin-bottom: 20px;
-  top: -20px;
+
   
-  
-}
+
 
 .employee-main {
   display: flex;
@@ -187,9 +212,7 @@ body {
   margin-left: 30px;
 }
 
-.editButton {
-  margin-top: 20px;
-}
+
 
 .dashboard-container {
   display: flex;
@@ -203,12 +226,14 @@ body {
   margin-left: 20px;
   margin-bottom: 10px;
   padding: 10px;
-  background-color: rgb(204, 204, 204);
-  border: none;
+  background-color: rgb(205, 205, 205, 0.1);
+  backdrop-filter: blur(12px);
+  border: solid 1px rgba(255, 255, 255, 0.1);
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  box-shadow: 3px 3px 9px;
+  box-shadow: 3px 3px 30px rgba(0, 0, 0, 0.3);
+  z-index: 500;
 }
 
 
@@ -240,28 +265,14 @@ body {
   to {
     transform: rotateY(360deg);
   }
+  
 }
 .logof {
   width: 50px;
   height: 50px;
   margin: 20px 0; 
-  animation: rotate 10s infinite linear;
-  transform-style: preserve-3d;
-}
 
-.logof:hover {
-  animation-play-state: paused;
 }
-
-@keyframes rotate {
-  from {
-    transform: rotateY(0deg);
-  }
-  to {
-    transform: rotateY(360deg);
-  }
-}
-
 .dashTitle {
   font-size: 33px;
   color: #513030;
