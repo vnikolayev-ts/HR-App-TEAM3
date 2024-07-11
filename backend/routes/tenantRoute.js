@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 
 // Get tenant by ID
 router.get('/:id', (req, res) => {
-    const tenantId = req.params.id;
+    let tenantId = req.params.id;
     tenantId = 1;
     database.getTenantById(tenantId, (err, tenant) => {
         if (err) {
@@ -39,7 +39,7 @@ router.post('/', (req, res) => {
 
 // Update a tenant by ID
 router.put('/:id', (req, res) => {
-    const tenantId = req.params.id;
+    let tenantId = req.params.id;
     tenantId = 1;
     const updatedTenant = req.body;
     database.updateTenantById(tenantId, updatedTenant, (err) => {
@@ -52,7 +52,7 @@ router.put('/:id', (req, res) => {
 
 // Delete a tenant by ID
 router.delete('/:id', (req, res) => {
-    const tenantId = req.params.id;
+    let tenantId = req.params.id;
     tenantId = 1;
     database.deleteTenantById(tenantId, (err) => {
         if (err) {

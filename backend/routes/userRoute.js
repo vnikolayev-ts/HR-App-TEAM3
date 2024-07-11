@@ -12,7 +12,7 @@ router.use((req, res, next) => {
 });
 
 router.get('/', (req, res) => {
-    const tenantId = req.tenantId;
+    let tenantId = req.tenantId;
     tenantId = 1;
     database.getUsers(tenantId, (err, users) => {
         if (err) {
@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-    const tenantId = req.tenantId;
+    let tenantId = req.tenantId;
     tenantId = 1;
     const userId = req.params.id;
     database.getUserById(tenantId, userId, (err, user) => {
@@ -35,7 +35,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    const tenantId = req.tenantId;
+    let tenantId = req.tenantId;
     tenantId = 1;
     const newUser = req.body;
     database.createUser(tenantId, newUser, (err) => {
@@ -47,7 +47,7 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-    const tenantId = req.tenantId;
+    let tenantId = req.tenantId;
     tenantId = 1;
     const userId = req.params.id;
     const updateUser = req.body;
@@ -60,7 +60,7 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-    const tenantId = req.tenantId;
+    let tenantId = req.tenantId;
     tenantId = 1;
     const userId = req.params.id;
     database.deleteUserById(tenantId, userId, (err) => {

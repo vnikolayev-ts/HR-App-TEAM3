@@ -14,7 +14,7 @@ router.use((req, res, next) => {
 
 // Get all employees
 router.get('/', (req, res) => {
-    const tenantId = req.tenantId;
+    let tenantId = req.tenantId;
     tenantId = 1;
     database.getEmployees(tenantId, (err, employees) => {
         if (err) {
@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
 
 // Get employee by ID
 router.get('/:id', (req, res) => {
-    const tenantId = req.tenantId;
+    let tenantId = req.tenantId;
     tenantId = 1;
     const employeeId = req.params.id;
     database.getEmployeeById(tenantId, employeeId, (err, employee) => {
@@ -39,7 +39,7 @@ router.get('/:id', (req, res) => {
 
 // Create a new employee
 router.post('/', (req, res) => {
-    const tenantId = req.tenantId;
+    let tenantId = req.tenantId;
     tenantId = 1;
     const newEmployee = req.body;
     database.createEmployee(tenantId, newEmployee, (err, employeeId) => {
@@ -52,7 +52,7 @@ router.post('/', (req, res) => {
 
 // Update an employee by ID
 router.put('/:id', (req, res) => {
-    const tenantId = req.tenantId;
+    let tenantId = req.tenantId;
     tenantId = 1;
     const employeeId = req.params.id;
     const updatedEmployee = req.body;
@@ -66,7 +66,7 @@ router.put('/:id', (req, res) => {
 
 // Delete an employee by ID
 router.delete('/:id', (req, res) => {
-    const tenantId = req.tenantId;
+    let tenantId = req.tenantId;
     tenantId = 1;
     const employeeId = req.params.id;
     database.deleteEmployeeById(tenantId, employeeId, (err) => {
