@@ -14,7 +14,7 @@ const bodyParser = require('body-parser');
 
 
 
-var SERVER_URL_PUBLIC = "http://127.0.0.1";
+var SERVER_URL_PUBLIC = "http://3.67.177.230";
 
 const PORT = 3001;
 const IMAGE_PATH_PUBLIC = "/images/personal/";
