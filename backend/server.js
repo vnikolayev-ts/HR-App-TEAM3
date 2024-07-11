@@ -48,4 +48,4 @@ app.use('/tenant', tenantRoute);
 app.listen(PORT, () => {
   console.log(`Der Server läuft auf ${SERVER_URL_PUBLIC}:${PORT}`) // `` -> backticks
 })
- 
+

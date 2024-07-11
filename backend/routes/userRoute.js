@@ -3,13 +3,13 @@ const database = require('../db/database');
 
 const router = express.Router();
 
-// router.use((req, res, next) => {
-//     req.tenantId = req.query.tenantId || req.headers['tenant-id'];
-//     if (!req.tenantId) {
-//         return res.status(400).send('tenantId is required');
-//     }
-//     next();
-//   });
+router.use((req, res, next) => {
+    req.tenantId = req.query.tenantId || req.headers['tenant-id'];
+    // if (!req.tenantId) {
+    //     return res.status(400).send('tenantId is required');
+    // }
+    next();
+});
 
 router.get('/', (req, res) => {
     const tenantId = req.tenantId;
@@ -70,3 +70,5 @@ router.delete('/:id', (req, res) => {
         res.send('User deleted');
     });
 });
+
+module.exports = router;
