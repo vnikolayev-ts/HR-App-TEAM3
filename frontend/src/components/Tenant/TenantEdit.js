@@ -10,13 +10,16 @@ import { getLogUser } from '../../api/ClientApi';
 
 
 function TenantEdit() {
+  const { id } = useParams();
+
   const loggedInUser = getLogUser();
   let isAdmin = false;
   let isSuperAdmin = false;
+  let isHimSelf = false;
   if (loggedInUser.admin === 1) isAdmin = true;
   if (loggedInUser.superadmin === 1) isSuperAdmin = true;
+  if (String(loggedInUser.tenantId) === String(id)) isHimSelf = true;
 
-  const { id } = useParams();
   const [tenantId, setTenantId] = useState(null);
   const [tenant, setTenant] = useState(null);
   const [name, setName] = useState("");
@@ -143,7 +146,7 @@ function TenantEdit() {
         <button className="saveButton" onClick={handleSave}>Save</button>
       )}
 
-        {isSuperAdmin === true && (
+        {isSuperAdmin === true || isHimSelf === false && (
           <button className="deleteButton" onClick={handleDelete}> Delete</button>
         )}
 

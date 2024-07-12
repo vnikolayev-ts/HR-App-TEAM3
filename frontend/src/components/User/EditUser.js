@@ -6,12 +6,22 @@ import { getUserById,updateUser,deleteUser } from "../../api/ClientApi";
 import LabelValueComponent from './../Utils/LabelValueComponent';
 import LabelInputComponent from './../Utils/LabelInputComponent';
 
-
+import { getLogUser } from '../../api/ClientApi';
 
 
 
 function EditUser() {
+
   const { id } = useParams();
+
+  const loggedInUser = getLogUser();
+  let isAdmin = false;
+  let isSuperAdmin = false;
+  let isHimSelf = false;
+  if (loggedInUser.admin === 1) isAdmin = true;
+  if (loggedInUser.superadmin === 1) isSuperAdmin = true;
+  if (String(loggedInUser.userId) === String(id)) isHimSelf = true;
+
   const [tenantId, setTenantId] = useState(null);
   const [user, setUser] = useState(null);
   const [name, setName] = useState("");
@@ -131,11 +141,16 @@ alert("User data saved!");
         <LabelInputComponent lab={"Username"} name="username" val={username} onChange={(e) => setUsername(e.target.value)} />
         <LabelInputComponent lab={"Email"} name="email" val={email} onChange={(e) => setEmail(e.target.value)} />
         <LabelInputComponent lab={"Password"} name="password" val={password} type={'password'} onChange={(e) => setPassword(e.target.value)} />
-        <LabelInputComponent lab={"Admin"} name="admin" checked={admin} type={'checkbox'} onChange={(e) => setAdmin(e.target.checked)} />
-        
+        {isAdmin === true && (
+         <LabelInputComponent lab={"Admin"} name="admin" checked={admin} type={'checkbox'} onChange={(e) => setAdmin(e.target.checked)} />
+        )}
         <button className="resetButton" onClick={handleReset}>Reset</button>
         <button className="saveButton" onClick={handleSave}>Save</button>
-        <button className="deleteButton" onClick={handleDelete}>Delete</button>
+        {isHimSelf === false && (
+         <button className="deleteButton" onClick={handleDelete}>Delete</button>
+      )}
+
+       
       </form>
     </Layout>
   );

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../Layout/Layout';
+import { formatCurrency } from '../Utils/Utils';
 import { getEmployees, getUsers, getTenantById } from '../../api/ClientApi'
 import JokeComponent from '../Utils/JokeComponent'; 
 import EmployeeBirthdaysComponent from '../Employee/EmployeeBirthdaysComponent'; 
+import EmployeesPerDepartment from '../Employee/EmployeesPerDepartment';
 
 const imgUrl = '../images/logo/android-chrome-512x512.png';
 const Dashboard = () => {
@@ -10,6 +12,8 @@ const Dashboard = () => {
   const [userData, setUserData] = useState(null);
   const [eLength, setELength] = useState(0);
   const [uLength, setULength] = useState(0);
+  const [salarySUM, setSalarySUM] = useState(0);
+  const [sickDays, setSickDays] = useState(0);
  
 
   useEffect(() => {
@@ -19,13 +23,17 @@ const Dashboard = () => {
         const dataEmployee = await getEmployees();
         const dataUser = await getUsers();
 
-
+        
+        const salSum = dataEmployee.reduce((total, employee) => total + employee.salary, 0);
+        const sikDaysSum = dataEmployee.reduce((total, employee) => total + employee.sick_days, 0);
         // Daten setzen
         setEmployeeData(dataEmployee);
         setELength(dataEmployee.length);
 
         setUserData(dataUser);
         setULength(dataUser.length);
+        setSalarySUM(formatCurrency(salSum));
+        setSickDays((sikDaysSum));
 
  
 
@@ -49,12 +57,15 @@ const Dashboard = () => {
       </div>
       <div className="dashboard-container">
           <div className="birthday-component">
-                   <EmployeeBirthdaysComponent />
+                   <EmployeeBirthdaysComponent employees={employeeData}/>
                    </div>
           <div className="actives">
             <h1 className='dashTitle'>Actives</h1>
         <label>Users:</label> {uLength}
         <label>Employees:</label> {eLength}
+        <label>Total Salary per Year:</label> {salarySUM}
+        <label>Current Sick Days:</label> {sickDays}
+        <EmployeesPerDepartment employees={employeeData} />
           </div>
           <div className="joke-component">
             <JokeComponent />

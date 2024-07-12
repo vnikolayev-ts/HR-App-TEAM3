@@ -1,60 +1,109 @@
-import React, { useState, useEffect } from 'react';
-import { getEmployees, getTenant } from '../../api/ClientApi';
+import React from 'react';
 
-const EmployeeBirthdaysComponent = () => {
-  const [filteredEmployees, setFilteredEmployees] = useState([]);
+const BirthdaysInNextTimeframe = ({ employees }) => {
+  const today = new Date();
+  const future2WeeksDate = new Date();
+  future2WeeksDate.setDate(future2WeeksDate.getDate() + 14);
 
-  useEffect(() => {
-    const fetchEmployeeData = async () => {
-      try {
-        const today = new Date();
-        const startDate = new Date(today);
-        startDate.setDate(today.getDate() - 350); // Minus 5 Tage vom heutigen Datum
-        const endDate = new Date(today);
-        endDate.setDate(today.getDate() + 350); // Plus 5 Tage vom heutigen Datum
+  const futureMonthDate = new Date();
+  futureMonthDate.setMonth(futureMonthDate.getMonth() +31);
 
-        const employeesData = await getEmployees();
+  const future6MonthsDate = new Date();
+  future6MonthsDate.setMonth(future6MonthsDate.getMonth() + 6);
 
-        // Setzen der gefilterten Mitarbeiter
-        setFilteredEmployees(employeesData);
-
-
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchEmployeeData();
-  }, []); // Leeres Dependency Array für einmaliges Laden beim Mounten
-
-  // Funktion zum Formatieren des Datums in "YYYY-MM-DD"
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    let month = (1 + date.getMonth()).toString();
-    month = month.length > 1 ? month : '0' + month;
-    let day = date.getDate().toString();
-    day = day.length > 1 ? day : '0' + day;
-    return `${year}-${month}-${day}`;
+  // Funktion zum Formatieren des Datums in YYYY-MM-DD
+  const formatDate = (date) => {
+    return date.toLocaleDateString('de-DE'); // Adjust 'en-CA' to your desired locale if needed
   };
+
+  const formatDateNoYear = (dateString, local='en-US') => {
+    const date = new Date(dateString);
+    const month = date.toLocaleString(local, { month: 'short' });
+    const day = date.getDate();
+    return ` ${day}.${month}`;
+  };
+
+  // Funktion zur Anzeige der Monatsbezeichnung
+  const formatMonthsLabel = (months) => {
+    if (months === 1) {
+      return '1 Monat';
+    } else {
+      return `${months} Monate`;
+    }
+  };
+
+  // Filter für Geburtstage in den nächsten 2 Wochen
+  const upcomingBirthdays2Weeks = employees.filter(employee => {
+    const birthdate = new Date(employee.birthdate);
+    if (isNaN(birthdate)) return false;
+    birthdate.setFullYear(today.getFullYear());
+    return birthdate > today && birthdate <= future2WeeksDate;
+  });
+
+  // Filter für Geburtstage im nächsten 3 Monate, falls keine in den nächsten 2 Wochen gefunden wurden
+  const upcomingBirthdaysMonth = upcomingBirthdays2Weeks.length === 0
+    ? employees.filter(employee => {
+      const birthdate = new Date(employee.birthdate);
+      if (isNaN(birthdate)) return false;
+      birthdate.setFullYear(today.getFullYear());
+      return birthdate > today && birthdate <= futureMonthDate;
+    })
+    : [];
+
+  // Filter für Geburtstage im nächsten halben Jahr, falls keine in den nächsten 2 Wochen oder im nächsten Monat gefunden wurden
+  const upcomingBirthdays6Months = upcomingBirthdays2Weeks.length === 0 && upcomingBirthdaysMonth.length === 0
+    ? employees.filter(employee => {
+      const birthdate = new Date(employee.birthdate);
+      if (isNaN(birthdate)) return false;
+      birthdate.setFullYear(today.getFullYear());
+      return birthdate > today && birthdate <= future6MonthsDate;
+    })
+    : [];
 
   return (
     <div>
-      <h3 className="dashTitle">Employees birthdays in the next 5 Days</h3>
-    
-      <ul>
-        {filteredEmployees.length > 0 ? (
-          filteredEmployees.map((employee, index) => (
-            <ul key={index}>
-              {employee.first_name} {employee.last_name} - {formatDate(employee.birthdate)}
-            </ul>
-          ))
-        ) : (
-          <p>No employees have birthdays in the next 5 days</p>
-        )}
-      </ul>
+      <h2>Upcoming Birthdays</h2>
+      {upcomingBirthdays2Weeks.length > 0 && (
+        <div>
+          <h3>Next 2 Weeks:</h3>
+          <ul>
+            {upcomingBirthdays2Weeks.map(employee => (
+              <li key={employee.id}>
+                <label>{employee.last_name}, {employee.first_name}:</label> {formatDateNoYear(new Date(employee.birthdate))}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {upcomingBirthdays2Weeks.length === 0 && upcomingBirthdaysMonth.length > 0 && (
+        <div>
+          <h3>Next {formatMonthsLabel(3)}:</h3>
+          <ul>
+            {upcomingBirthdaysMonth.map(employee => (
+              <li key={employee.id}>
+             <label>{employee.last_name}, {employee.first_name}:</label> {formatDateNoYear(new Date(employee.birthdate))}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {(upcomingBirthdays2Weeks.length === 0 && upcomingBirthdaysMonth.length === 0 && upcomingBirthdays6Months.length > 0) && (
+        <div>
+          <h3>Next {formatMonthsLabel(6)}:</h3>
+          <ul>
+            {upcomingBirthdays6Months.map(employee => (
+              <li key={employee.id}>
+            <label>{employee.last_name}, {employee.first_name}:</label> {formatDateNoYear(new Date(employee.birthdate))}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {upcomingBirthdays2Weeks.length === 0 && upcomingBirthdaysMonth.length === 0 && upcomingBirthdays6Months.length === 0 && (
+        <p>No upcoming birthdays in the next 6 months.</p>
+      )}
     </div>
   );
 };
 
-export default EmployeeBirthdaysComponent;
+export default BirthdaysInNextTimeframe;

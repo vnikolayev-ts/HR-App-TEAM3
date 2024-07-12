@@ -20,7 +20,8 @@ useEffect(() => {
   const fetchData = async () => {
     try {
      
-      const data = await getTenants(); // Aufruf der async Funktion getEmployees -API
+      const data = await getTenants();
+     // let itemList  =Array(data[0]);
       setTenatData(data);
 
   
