@@ -1,110 +1,128 @@
-import employeeData from '../data/employees.json';
-import userData from '../data/users.json';
-import tenantData from '../data/tenants.json';
+
+import { showAlertFromData } from '../components/Utils/Utils'; 
+import { v4 as uuidv4 } from 'uuid';
 
 const apiServerPort = 3001;
-const apiServerUrl = "http://3.67.177.230";
+// const apiServerUrl = `http://3.67.177.230:${apiServerPort}/`;
+const apiBaseUrl = 'http://3.67.177.230';
+
+const apiBackendUrl = `${apiBaseUrl}:${apiServerPort}`;
 
 let logUser = null;
 
 
-//fetch(`localhost:${apiport}`), {method:'POST', headers: {'Content-Type': 'application/json'}},
-//body: 
 
- export  const  getEmployees = async  () => {
-   
+async function  getData(endPoint, isDebugOn=false){
+
+  if(isDebugOn)  showAlertFromData(endPoint, "get / List");
+
   try {
-    const apiUrl = `${apiServerUrl}:${apiServerPort}/employee`;
-    const res = await fetch(apiUrl);
-    const data = await res.json();
-
-
-
+    const response = await fetch(`${apiBackendUrl}/${endPoint}`); 
+    const data = await response.json();
     return data;
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error('Error fetching user data:', error);
     throw error;
-    
+  }
+
+
+}
+
+async function  getDatabyId(endPoint, id, isDebugOn=false){
+
+  if(isDebugOn)  showAlertFromData(endPoint, "get / List");
+
+  try {
+    const response = await fetch(`${apiBackendUrl}/${endPoint}/${id}`); 
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    throw error;
+  }
+
+
+}
+
+async function  createData(endPoint, data, isDebugOn=true){
+
+   if(isDebugOn)  showAlertFromData(data, "create " + endPoint);
+
+  try {
+    const response = await fetch(`${apiBackendUrl}/${endPoint}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8'
+      },
+      body: JSON.stringify(data)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return true;
+  } catch (error) {
+    console.error("Error creating " + {endPoint} + ":", error);
+    return false;
+    // Optional: throw error; // Uncomment if you want to re-throw the error
+  }
+
+
+}
+
+async function  updateData(endPoint, id, data, isDebugOn=false){
+
+  if(isDebugOn)  showAlertFromData(data, "update ["+id+"] " + endPoint);
+
+
+  try {
+    const response = await fetch(`${apiBackendUrl}/${endPoint}/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8'
+      },
+      body: JSON.stringify(data)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return true;
+  } catch (error) {
+    console.error("Error updating " + {endPoint} + ":", error);
+    return false;
+  }
+
+
+}
+
+
+export async function deleteData(endPoint, id, isDebugOn=false) {
+
+  if(isDebugOn)  showAlertFromData(id, "delete ["+id+"] " + endPoint);
+
+  try {
+    const response = await fetch(`${apiBackendUrl}/${endPoint}/${id}`, {
+      method: 'DELETE'
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return true;
+  } catch (error) {
+    console.error("Error deleting " + {endPoint} + ":", error);
+    return false;
   }
 }
 
-export const getEmployees2 = async () => {
-  let foundEmps = null;
-  const loggedInUser = getLogUser();
-  const tId = loggedInUser ? loggedInUser.tenantId : null;
-  const empList = employeeData.employees;
-
-  if (!tId) {
-    foundEmps = empList;
-  } else {
-    foundEmps = employeeData.employees.filter(el => el.tenantId === tId);
-
-  }
-  return foundEmps;
-};
-
-export const getFilteredEmployees = async () => {
-  let foundEmps = null;
-  const loggedInUser = getLogUser();
-  const tId = loggedInUser ? loggedInUser.tenantId : null;
-  const empList = employeeData.employees;
-
-  if (!tId) {
-    foundEmps = empList;
-  } else {
-    foundEmps = employeeData.employees.filter(el => el.tenantId === tId);
-
-  }
-  return foundEmps;
-};
-
-
-export const getEmployeeById = async (id) => {
-  var fEmployee = null;
-
-  const empList = await getEmployees();
-  fEmployee = empList.find((el) => el.pers_id === (id));
-
-  return fEmployee;
-
-}
-
-
-function getFileHrData() {
 
 
 
-  return employeeData;
-}
-
-
-export const getTenants = async () => {
-
-
-  let foundTnList = null;
-  const loggedInUser = getLogUser();
-  const tId = loggedInUser ? loggedInUser.tenantId : null;
-  const tnList = tenantData.tenants;
-
-
-  if (!tId) {
-    foundTnList = tnList;
-  } else
-    foundTnList = tnList.filter((tl) => tl.tenantId === parseInt(tId));
-
-
-  return foundTnList;
-}
-
-export const getTenant = async () => {
-  var fTn = null;
-  var id = getLogUser().tenantId;
-  const tList = await getTenants();
-  fTn = tList.find((tl) => tl.tenantId === parseInt(id));
-  return fTn;
-}
-
-
+///----------------------------------------------------
 
 export function getLogUser() {
   const lUser = localStorage.getItem('loginUser');
@@ -112,89 +130,115 @@ export function getLogUser() {
   return loginUser;
 }
 
-export const apiLogin = async (username, password) => {
-  //export async function  apiLogin (username, password) {
+export async function  apiLogin (username, password) {
 
 
-  const userList = userData.users;
-  //const userList = await getUsers(); // Aufruf der async Funktion getEmployees -API
-  const foundUser = userList.find((u) => u.username === username);
-
-  if (!foundUser) return null;
-
-  if (foundUser.password === password) {
-
-    delete foundUser.password;
-
-    logUser = foundUser;
-    return logUser;
+  try {
+    const apiUrl = `${apiBackendUrl}/user`;
+    const res = await fetch(apiUrl);
+    const data = await res.json();
+    const foundUser = data.find((u) => u.username === username);
+    
+    return foundUser;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+    
   }
-
 
   return null;
 }
 
-function showAlertFromData(data, type) {
-  if (typeof data !== 'object' || data === null) {
-    // Falls data kein Objekt ist, Ausgabe als String
-    console.log(data);
-    alert(`Type: ${type} \n-------------\nVAL: ${data}`);
-  } else {
-    // Ausgabe der Benutzerdaten im Format name: value in der Konsole
-    Object.entries(data).forEach(([key, value]) => {
-      console.log(`${key}: ${value}`);
-    });
 
-    // Erzeugen der Alert-Nachricht für ein Objekt
-    alert(`Type: ${type} \n-------------\n${Object.entries(data).map(([key, value]) => `${key}: ${value}`).join('\n')}`);
-  }
+
+
+///----------------------------------------------------
+
+export const getUsers = async () => {
+  return getData("user");
 }
 
+
+export const getUserById = async (id) => {
+ return getDatabyId("user", id);
+
+}
 
 export async function createUser(data) {
 
-  showAlertFromData(data, "create user");
+  data.userId = uuidv4();
 
-  return false;
-
-
-}
-
-export const getUsers = async () => {
-
-  var foundUsers = null;
-  var tenantId = getLogUser().tenantId;
-
-  const userList = userData.users;
-  if (!tenantId) {
-    foundUsers = userList;
-  } else
-    foundUsers = userList.filter((ul) => ul.tenantId === parseInt(tenantId));
-  return foundUsers;
-}
-
-export const getUserById = async (id) => {
-  var foundUser = null;
-
-  const userList = await getUsers();
-  foundUser = userList.find((u) => u.userId === parseInt(id));
-  return foundUser;
+  return createData("user", data);
 
 }
 
 export async function updateUser(id, data) {
 
-  showAlertFromData(data, "update user id:[" + id + "]");
-
-  return false;
+  return updateData("user", id, data);
 }
 
 export async function deleteUser(id) {
 
-  showAlertFromData(id, "delte user id:[" + id + "]");
+  return deleteData("user", id);
 
-  return false;
 }
+
+
+///----------------------------------------------------
+
+export const getEmployees = async () => {
+  return getData("employee");
+}
+
+
+export const getEmployeeById = async (id) => {
+ return getDatabyId("employee", id);
+
+}
+
+export async function createEmployee(data) {
+
+  data.pers_id = uuidv4();
+
+  return createData("employee", data);
+
+}
+
+export async function updateEmployee(id, data) {
+
+  return updateData("employee", id, data);
+}
+
+export async function deleteEmployee(id) {
+
+  return deleteData("employee", id);
+
+}
+
+
+/*
+export const getEmployees = async () => {
+  try {
+    const response = await fetch(`${apiBackendUrl}/employee`); // Beispiel-Endpunkt für Employees
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching employee data:', error);
+    throw error;
+  }
+}
+
+
+export const getEmployeeById = async (id) => {
+  try {
+    const response = await fetch(`${apiBackendUrl}/employee/${id}`); // Beispiel-Endpunkt für Employees
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching employee data:', error);
+    throw error;
+  }
+};
 
 
 export async function createEmployee(data) {
@@ -223,27 +267,33 @@ export async function deleteEmployee(id) {
 
   return false;
 }
+*/
+///----------------------------------------------------
+export const getTenants = async () => {
+  return getData("tenant");
+}
+
+
+export const getTenantById = async (id) => {
+ return getDatabyId("tenant", id);
+
+}
 
 export async function createTenant(data) {
 
+  data.tenatId = uuidv4();
 
-  showAlertFromData(data, "create tenant");
+  return createData("tenant", data);
 
-  return false;
 }
 
 export async function updateTenant(id, data) {
 
-  showAlertFromData(data, "update tenant id:[" + id + "]");
-
-  return false;
+  return updateData("tenant", id, data);
 }
-
-
 
 export async function deleteTenant(id) {
 
-  showAlertFromData(id, "delte tenant id:[" + id + "]");
+  return deleteData("tenant", id);
 
-  return false;
 }

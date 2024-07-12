@@ -1,7 +1,6 @@
 
-import { getEmployees, getTenant } from '../../api/ClientApi'
 import ScoreComponent from '../Utils/ScoreComponent';
-import { getEmployees as gmp } from '../../api/ClientApi_copy';
+import { getEmployees, getEmployeeById, getTenantById } from '../../api/ClientApi';
 
 import React from 'react';
 import { useEffect, useState } from 'react';
@@ -14,22 +13,15 @@ const EmployeeList = () => {
 
   const [employeeData, setEmployeeData] = useState(null);
   const [title, setTitle] = useState("Employee List");
-  const [tenant, setTenant] = useState(null);
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
 
-        const data = await gmp();
+        const data = await getEmployees();
         setEmployeeData(data);
-
-        const tData = await getTenant();
-        setTenant(tData);
-
-        setTitle(`Employee List ${tenant.name}`);
-
-
-
+     
       } catch (error) {
         console.error('Error fetching HR data:', error);
         // Hier könntest du zusätzliche Fehlerbehandlung durchführen, z.B. eine Fehlermeldung anzeigen

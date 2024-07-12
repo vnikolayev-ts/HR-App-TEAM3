@@ -8,6 +8,7 @@ const EmployeeCreate = () => {
   const navigate = useNavigate();
 
   // State-Hooks für jedes Eingabefeld
+  const [employee, setEmployee] = useState(null);
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState('');
   const [birthdate, setBirthdate] = useState('');
@@ -37,8 +38,31 @@ const EmployeeCreate = () => {
     navigate('/employee');
   };
 
-
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEmployee((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
   const handleCreate = async (e) => {
+    e.preventDefault();
+    try {
+      const result = await createEmployee(employee);
+      if (result === false) throw new Error();
+      if (result.error) {
+        throw new Error(`Error: ${result.error}`);
+      } else {
+        alert('Employee saved successfully!');
+        navigate('/employee');
+      }
+    } catch (error) {
+      console.error('Error saving employee:', error);
+      alert('Failed to save employee. Please try again later.');
+    }
+  }
+
+  const handleCreateOld = async (e) => {
     e.preventDefault();
     const newEmployee = {
       first_name:firstName,
@@ -52,17 +76,17 @@ const EmployeeCreate = () => {
       address,
       sick_days: sickDays,
       salary,
-      teamwork,
-      communication,
-      leadership,
-      problem_solving:problemSolving,
-      adaptability,
-      punctuality,
-      friendliness,
-      creativity,
-      reliability,
-      initiative,
-      image
+      softskill_teamwork: teamwork,
+      softskill_communication: communication,
+      softskill_leadership: leadership,
+      softskill_problem_solving:problemSolving,
+      softskill_adaptability:adaptability,
+      perskill_punctuality:punctuality,
+      perskill_friendliness:friendliness,
+      perskill_creativity:creativity,
+      perskill_reliability:reliability ,
+      perskill_initiative:initiative ,
+      imgUrl:image
     };
 
     try {
@@ -95,30 +119,30 @@ const EmployeeCreate = () => {
       <button onClick={handleBackClick} className='backButton'>Back</button>
       <form onSubmit={handleCreate}>
       <div className="createItem">
-       <LabelInputComponent lab={"Img Url"} name="image" val={image} onChange={(e) => setImage(e.target.value)}/>
-        <LabelInputComponent lab="First Name: " name="first_name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-        <LabelInputComponent lab="Last Name: " name="last_name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-        <LabelInputComponent lab="Date of Birth: " name="birthdate" value={birthdate} onChange={(e) => setBirthdate(e.target.value)} />
-        <LabelInputComponent lab="Date of Entry: " name="entry_date" value={entryDate} onChange={(e) => setEntryDate(e.target.value)} />
-        <LabelInputComponent lab="Position" name="position" value={position} onChange={(e) => setPosition(e.target.value)} />
-        <LabelInputComponent lab="Department" name="department" value={department} onChange={(e) => setDepartment(e.target.value)} />
-        <LabelInputComponent lab="Email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <LabelInputComponent lab="Phone" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
-        <LabelInputComponent lab="Address" name="address" value={address} onChange={(e) => setAddress(e.target.value)} />
-        <LabelInputComponent lab="Sick Days" name="sick_days" value={sickDays} onChange={(e) => setSickDays(e.target.value)} />
-        <LabelInputComponent lab="Salary" name="salary" value={salary} onChange={(e) => setSalary(e.target.value)} />
+       <LabelInputComponent lab={"Img Url"} name="image" val={image} onChange={handleInputChange}/>
+        <LabelInputComponent lab="First Name: " name="first_name" value={firstName} onChange={handleInputChange} />
+        <LabelInputComponent lab="Last Name: " name="last_name" value={lastName} onChange={handleInputChange} />
+        <LabelInputComponent lab="Date of Birth: " name="birthdate" value={birthdate} onChange={handleInputChange} />
+        <LabelInputComponent lab="Date of Entry: " name="entry_date" value={entryDate} onChange={handleInputChange} />
+        <LabelInputComponent lab="Position" name="position" value={position} onChange={handleInputChange} />
+        <LabelInputComponent lab="Department" name="department" value={department} onChange={handleInputChange} />
+        <LabelInputComponent lab="Email" name="email" value={email} onChange={handleInputChange} />
+        <LabelInputComponent lab="Phone" name="phone" value={phone} onChange={handleInputChange} />
+        <LabelInputComponent lab="Address" name="address" value={address} onChange={handleInputChange} />
+        <LabelInputComponent lab="Sick Days" name="sick_days" value={sickDays} onChange={handleInputChange} />
+        <LabelInputComponent lab="Salary" name="salary" value={salary} onChange={handleInputChange} />
 
         <h3>Skills:</h3>
-        <LabelInputComponent lab="Teamwork" name="teamwork" type="number" min="1" max="10" value={teamwork} onChange={(e) => setTeamwork(e.target.value)} />
-        <LabelInputComponent lab="Communication" name="communication" type="number" min="1" max="10" value={communication} onChange={(e) => setCommunication(e.target.value)} />
-        <LabelInputComponent lab="Leadership" name="leadership" type="number" min="1" max="10" value={leadership} onChange={(e) => setLeadership(e.target.value)} />
-        <LabelInputComponent lab="Problem Solving" name="problem_solving" type="number" min="1" max="10" value={problemSolving} onChange={(e) => setProblemSolving(e.target.value)} />
-        <LabelInputComponent lab="Adaptability" name="adaptability" type="number" min="1" max="10" value={adaptability} onChange={(e) => setAdaptability(e.target.value)} />
-        <LabelInputComponent lab="Punctuality" name="punctuality" type="number" min="1" max="10" value={punctuality} onChange={(e) => setPunctuality(e.target.value)} />
-        <LabelInputComponent lab="Friendliness" name="friendliness" type="number" min="1" max="10" value={friendliness} onChange={(e) => setFriendliness(e.target.value)} />
-        <LabelInputComponent lab="Creativity" name="creativity" type="number" min="1" max="10" value={creativity} onChange={(e) => setCreativity(e.target.value)} />
-        <LabelInputComponent lab="Reliability" name="reliability" type="number" min="1" max="10" value={reliability} onChange={(e) => setReliability(e.target.value)} />
-        <LabelInputComponent lab="Initiative" name="initiative" type="number" min="1" max="10" value={initiative} onChange={(e) => setInitiative(e.target.value)} />
+        <LabelInputComponent lab="Teamwork" name="teamwork" type="number" min="1" max="10" value={teamwork} onChange={handleInputChange} />
+        <LabelInputComponent lab="Communication" name="communication" type="number" min="1" max="10" value={communication} onChange={handleInputChange} />
+        <LabelInputComponent lab="Leadership" name="leadership" type="number" min="1" max="10" value={leadership} onChange={handleInputChange} />
+        <LabelInputComponent lab="Problem Solving" name="problem_solving" type="number" min="1" max="10" value={problemSolving} onChange={handleInputChange} />
+        <LabelInputComponent lab="Adaptability" name="adaptability" type="number" min="1" max="10" value={adaptability} onChange={handleInputChange} />
+        <LabelInputComponent lab="Punctuality" name="punctuality" type="number" min="1" max="10" value={punctuality} onChange={handleInputChange} />
+        <LabelInputComponent lab="Friendliness" name="friendliness" type="number" min="1" max="10" value={friendliness} onChange={handleInputChange} />
+        <LabelInputComponent lab="Creativity" name="creativity" type="number" min="1" max="10" value={creativity} onChange={handleInputChange} />
+        <LabelInputComponent lab="Reliability" name="reliability" type="number" min="1" max="10" value={reliability} onChange={handleInputChange} />
+        <LabelInputComponent lab="Initiative" name="initiative" type="number" min="1" max="10" value={initiative} onChange={handleInputChange} />
           </div>
 
         <button className="resetButton" onClick={handleReset}>Reset</button>

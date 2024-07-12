@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { setPageTitle } from "../Utils/Utils";
-
 
 import Layout from "../Layout/Layout";
 import { getUserById } from "../../api/ClientApi";

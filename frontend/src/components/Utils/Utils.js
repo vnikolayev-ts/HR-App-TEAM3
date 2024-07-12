@@ -1,4 +1,21 @@
-  
+
+
+export const showAlertFromData = (data, type) => {
+  if (typeof data !== 'object' || data === null) {
+    // Falls data kein Objekt ist, Ausgabe als String
+    console.log(data);
+    alert(`Type: ${type} \n-------------\nVAL: ${data}`);
+  } else {
+    // Ausgabe der Benutzerdaten im Format name: value in der Konsole
+    Object.entries(data).forEach(([key, value]) => {
+      console.log(`${key}: ${value}`);
+    });
+
+    // Erzeugen der Alert-Nachricht für ein Objekt
+    alert(`Type: ${type} \n-------------\n${Object.entries(data).map(([key, value]) => `${key}: ${value}`).join('\n')}`);
+  }
+}
+
 
 
 export const checkUrlExists = async (url) => {

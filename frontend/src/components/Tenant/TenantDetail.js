@@ -2,12 +2,19 @@ import React, { useState, useEffect } from "react";
 import LabelValueComponent from './../Utils/LabelValueComponent';
 
 import Layout from "../Layout/Layout";
-import { getTenant } from "../../api/ClientApi";
-
+import { getTenantById } from "../../api/ClientApi";
+import { getLogUser } from '../../api/ClientApi';
 
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 function TenantDetail() {
+
+  const loggedInUser = getLogUser();
+  let isAdmin = false;
+  let isSuperAdmin = false;
+  if (loggedInUser.admin === 1) isAdmin = true;
+  if (loggedInUser.superadmin === 1) isSuperAdmin = true;
+
   const { id } = useParams();
   const [name, setName] = useState("");
   const [tenant, setTenant] = useState(null);
@@ -25,7 +32,7 @@ function TenantDetail() {
     const fetchData = async () => {
       try {
    
-        const foundTenant = await getTenant(); // Aufruf der async Funktion getEmployees -API
+        const foundTenant = await getTenantById(id); // Aufruf der async Funktion getEmployees -API
       
           
 
@@ -44,7 +51,7 @@ function TenantDetail() {
     };
 
     fetchData(); // Aufruf der fetchData Funktion, die daten aufruft
-  }, [id]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
+  }, [id, title]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
 
   if (!tenant) {
     return <p>Loading...</p>; // Anzeige während des Ladens der Daten
@@ -61,7 +68,12 @@ function TenantDetail() {
       <button onClick={handleBackClick} className="backButton">Back</button>
       <LabelValueComponent label={"Tenant-ID"} value={tenantId } />
       <LabelValueComponent label={"Name"} value={name } />
-      <Link to={`/tenant-edit/${tenant.tenantId}`}><button className="editButton">Edit</button></Link>
+      {isAdmin === true && (
+        <Link to={`/tenant-edit/${tenant.tenantId}`}><button className="editButton">Edit</button></Link>
+      )}
+
+
+      
      </Layout>
   );
 }

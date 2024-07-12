@@ -5,7 +5,7 @@ import LabelValueComponent from './../Utils/LabelValueComponent';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-
+import { getLogUser } from '../../api/ClientApi';
 
 
 import Layout from '../Layout/Layout';
@@ -149,18 +149,21 @@ const EmployeeEdit = () => {
         <LabelInputComponent lab={"Sick Days"} name="sick_days" val={employee.sick_days} onChange={handleInputChange}/>
         <LabelInputComponent lab={"Salary"} name="salary" val={employee.salary} onChange={handleInputChange}/>
         <LabelInputComponent lab={"Position"} name="position" val={employee.position} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Position"} name="ma_score" val={employee.ma_score} onChange={handleInputChange}/>
   
         <h3>Skills:</h3>
-        <LabelInputComponent lab={"Teamwork"}  name="teamwork" type="number"  min={1} max={10} val={employee.skills.soft_skills.teamwork} onChange={handleInputChange}/>
-        <LabelInputComponent lab={"Communication"}  name="communication" type="number"  min={1} max={10} val={employee.skills.soft_skills.communication} onChange={handleInputChange}/>
-        <LabelInputComponent lab={"Leadership"}  name="leadership" type="number"  min={1} max={10} val={employee.skills.soft_skills.leadership} onChange={handleInputChange}/>
-        <LabelInputComponent lab={"Problem Solving"}  name="problem_solving" type="number"  min={1} max={10} val={employee.skills.soft_skills.problem_solving} onChange={handleInputChange}/>
-        <LabelInputComponent lab={"Adaptability"}  name="adaptability" type="number"  min={1} max={10} val={employee.skills.soft_skills.adaptability} onChange={handleInputChange}/>
-        <LabelInputComponent lab={"Punctuality"}  name="punctuality" type="number"  min={1} max={10} val={employee.skills.soft_skills.punctuality} onChange={handleInputChange}/>
-        <LabelInputComponent lab={"Friendliness"}  name="friendliness" type="number"  min={1} max={10} val={employee.skills.personal_skills.friendliness} onChange={handleInputChange}/>
-        <LabelInputComponent lab={"Creativity"}  name="creativity" type="number"  min={1} max={10} val={employee.skills.personal_skills.creativity} onChange={handleInputChange}/>
-        <LabelInputComponent lab={"Reliability"}  name="reliability" type="number"  min={1} max={10} val={employee.skills.personal_skills.reliability} onChange={handleInputChange}/>
-        <LabelInputComponent lab={"Initiative"}  name="initiative" type="number"  min={1} max={10} val={employee.skills.personal_skills.initiative} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Teamwork"}  name="teamwork" type="number"  min={1} max={10} val={employee.softskill_teamwork} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Communication"}  name="communication" type="number"  min={1} max={10} val={employee.softskill_communication} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Leadership"}  name="leadership" type="number"  min={1} max={10} val={employee.softskill_leadership} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Problem Solving"}  name="problem_solving" type="number"  min={1} max={10} val={employee.softskill_problem_solving} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Adaptability"}  name="adaptability" type="number"  min={1} max={10} val={employee.softskill_adaptability} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Punctuality"}  name="punctuality" type="number"  min={1} max={10} val={employee.softskill_punctuality} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Friendliness"}  name="friendliness" type="number"  min={1} max={10} val={employee.perskill_friendliness} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Creativity"}  name="creativity" type="number"  min={1} max={10} val={employee.perskill_creativity} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Reliability"}  name="reliability" type="number"  min={1} max={10} val={employee.perskill_reliability} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Initiative"}  name="initiative" type="number"  min={1} max={10} val={employee.perskill_initiative} onChange={handleInputChange}/>
+
+
 
 
    

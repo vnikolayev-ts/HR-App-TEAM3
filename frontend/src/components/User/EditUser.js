@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { setPageTitle } from "../Utils/Utils";
+
 import Layout from "../Layout/Layout";
 import { getUserById,updateUser,deleteUser } from "../../api/ClientApi";
 import LabelValueComponent from './../Utils/LabelValueComponent';
@@ -47,7 +47,7 @@ function EditUser() {
        
         if (fUser) {
           setTitle(`User Details ${fUser.name}`);
-          setTenantId(fUser.tenantId);
+       
           setName(fUser.name);
           setUsername(fUser.username);
           setEmail(fUser.email);
@@ -65,7 +65,7 @@ function EditUser() {
     };
 
     fetchData();
-  }, [user, id, title]);
+  }, []);
 
   if (!user) {
     return <p>Loading...</p>;
@@ -74,7 +74,18 @@ function EditUser() {
   const handleSave = async (e) => {
     e.preventDefault();
     try {
-      const result = await updateUser(id,user);
+     
+
+        const uspdateUser = {
+          name,
+          username,
+          email,
+          password,
+          admin
+        };
+
+        
+      const result = await updateUser(id,uspdateUser);
       if (result === false) throw new Error();
       if (result.error) {
         throw new Error(`Error: ${result.error}`);
@@ -115,7 +126,7 @@ alert("User data saved!");
       <button onClick={handleBackClick} className="backButton">Back</button>
       
       <form>
-        <LabelValueComponent label={"Tenant-ID"} value={tenantId} />
+        
         <LabelInputComponent lab={"Name"} name="name" val={name} onChange={(e) => setName(e.target.value)} /> 
         <LabelInputComponent lab={"Username"} name="username" val={username} onChange={(e) => setUsername(e.target.value)} />
         <LabelInputComponent lab={"Email"} name="email" val={email} onChange={(e) => setEmail(e.target.value)} />

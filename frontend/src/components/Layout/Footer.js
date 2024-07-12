@@ -13,7 +13,7 @@ const Footer =()  => {
 
 */
 const loggedInUser = getLogUser();
-const userTypeString = loggedInUser.admin === "false" ?  "user" : "admin";
+
 
 
   return (
@@ -21,8 +21,8 @@ const userTypeString = loggedInUser.admin === "false" ?  "user" : "admin";
 
     <div id="footer">
         
-        <div className='copyrightInfo'> &copy; {getCurrentYear()} - copyright by Techstarte Team 3</div>  
-        <div className='logInfo'> {loggedInUser && (<span>Angemeldet als: {loggedInUser.username} ({userTypeString}) </span> )}  </div>
+        <div className='copyrightInfo'> &copy; {getCurrentYear()} - copyright by Techstarter Team 3</div>  
+        <div className='logInfo'> {loggedInUser && (<span>Angemeldet als: {loggedInUser.username} ({getLogUser().admin === 0 ?  "user" : "admin"}) </span> )}  </div>
     
     </div>
   );

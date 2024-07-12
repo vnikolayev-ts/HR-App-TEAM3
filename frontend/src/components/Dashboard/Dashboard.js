@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../Layout/Layout';
-import { getEmployees, getUsers, getTenant } from '../../api/ClientApi';
+import { getEmployees, getUsers, getTenantById } from '../../api/ClientApi'
 import JokeComponent from '../Utils/JokeComponent'; 
 import EmployeeBirthdaysComponent from '../Employee/EmployeeBirthdaysComponent'; 
 
@@ -10,7 +10,7 @@ const Dashboard = () => {
   const [userData, setUserData] = useState(null);
   const [eLength, setELength] = useState(0);
   const [uLength, setULength] = useState(0);
-  const [tenant, setTenant] = useState(null);
+ 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,7 +18,7 @@ const Dashboard = () => {
         // Daten von der API abrufen
         const dataEmployee = await getEmployees();
         const dataUser = await getUsers();
-        const dataTenant = await getTenant();
+
 
         // Daten setzen
         setEmployeeData(dataEmployee);
@@ -27,7 +27,7 @@ const Dashboard = () => {
         setUserData(dataUser);
         setULength(dataUser.length);
 
-        setTenant(dataTenant);
+ 
 
       } catch (error) {
         console.error('Error fetching HR data:', error);
@@ -37,13 +37,13 @@ const Dashboard = () => {
     fetchData();
   }, []); // Leeres Abhängigkeits-Array sorgt dafür, dass useEffect nur einmal ausgeführt wird
 
-  if (!employeeData || !userData || !tenant) {
+  if (!employeeData || !userData ) {
     return <p>Loading...</p>; // Anzeige während des Ladens der Daten
   }
 
   return (
     <div>
-      <Layout pTitle={`Dashboard - ${tenant.name}`}>
+      <Layout pTitle={`Dashboard`}>
       <div className="logo-container"> 
       <img src={imgUrl} alt="Logo" className="logo" />
       </div>

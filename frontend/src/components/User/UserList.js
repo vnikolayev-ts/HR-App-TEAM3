@@ -1,8 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-
-// import { getUsers, getLogUser } from "../../api/ClientApi_copy";
-import { getUsers } from '../../api/ClientApi_copy';
+import { getUsers } from '../../api/ClientApi';
 
 
 import Layout from "../Layout/Layout";

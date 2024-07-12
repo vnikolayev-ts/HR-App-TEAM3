@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { getFilteredEmployees, getTenant } from '../../api/ClientApi';
+import { getEmployees, getTenant } from '../../api/ClientApi';
 
 const EmployeeBirthdaysComponent = () => {
   const [filteredEmployees, setFilteredEmployees] = useState([]);
-  const [tenant, setTenant] = useState(null);
 
   useEffect(() => {
     const fetchEmployeeData = async () => {
@@ -14,20 +13,12 @@ const EmployeeBirthdaysComponent = () => {
         const endDate = new Date(today);
         endDate.setDate(today.getDate() + 350); // Plus 5 Tage vom heutigen Datum
 
-        const employeesData = await getFilteredEmployees(startDate,endDate);
+        const employeesData = await getEmployees();
 
-        // Filtern der Mitarbeiter mit Geburtstagen in den nächsten 5 Tagen
-       /* const filtered = employeesData.filter(employee => {
-            const employeeBirthday = new Date(employee.birthdate);
-            return employeeBirthday >= startDate && employeeBirthday <= endDate;
-          });
-*/
         // Setzen der gefilterten Mitarbeiter
         setFilteredEmployees(employeesData);
 
-        // Abrufen und Setzen der Tenant-Daten
-        const tenantData = await getTenant();
-        setTenant(tenantData);
+
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -50,7 +41,7 @@ const EmployeeBirthdaysComponent = () => {
   return (
     <div>
       <h3 className="dashTitle">Employees birthdays in the next 5 Days</h3>
-      {tenant && <p>Tenant: {tenant.name}</p>}
+    
       <ul>
         {filteredEmployees.length > 0 ? (
           filteredEmployees.map((employee, index) => (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { checkUrlExists, getCurrentDomain } from '../Utils/Utils';
-import { getEmployeeById, getEmployees, getTenant } from '../../api/ClientApi_copy'
+import { getEmployeeById, getEmployees, getTenant } from '../../api/ClientApi'
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -19,7 +19,6 @@ const EmployeeDetails = () => {
 
   const [employee, setEmployee] = useState(null);
   const [title, setTitle] = useState("Employee Detail Page");
-  const [setTenant] = useState(null);
   const [imgUrl, setImgUrl] = useState(null);
 
 
@@ -31,9 +30,7 @@ const EmployeeDetails = () => {
         const fEmp = await getEmployeeById(id);
         setEmployee(fEmp);
         setTitle(title);
-        const tData = await getTenant();
-        setTenant(tData);
-
+  
         // const imgFullPath = checkUrlExists(fEmp.image) === true ? fEmp.image : `.${tData.noimage_url}`;
 
         // setImgUrl(imgFullPath);

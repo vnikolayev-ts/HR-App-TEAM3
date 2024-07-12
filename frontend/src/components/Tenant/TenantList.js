@@ -6,17 +6,15 @@ import Layout from '../Layout/Layout';
 
 
 import { useEffect, useState } from 'react';
+import { getTenants } from "../../api/ClientApi";
 
-import {  getTenants } from "../../api/ClientApi";
-
-import { setPageTitle} from '../Utils/Utils'; 
 
 
 
 const TenantList = () => {
   const [tenantData, setTenatData] = useState(null);
 
-  const [title] = useState("Tenant List");
+  const [title, setTitle] = useState("Tenant List");
 
 useEffect(() => {
   const fetchData = async () => {
@@ -24,8 +22,7 @@ useEffect(() => {
      
       const data = await getTenants(); // Aufruf der async Funktion getEmployees -API
       setTenatData(data);
-     const title ="Tenant List ";
-     setPageTitle(title);
+
   
 
     } catch (error) {

@@ -8,8 +8,8 @@ const imgUrl = '../images/logo/android-chrome-512x512.png';
 
 
 const LoginForm = () => {
- const testUsername = 'user.one@tenanta.com';
-  const testPassword = '123456';
+ const testUsername = 'superadmin';
+  const testPassword = '##########';
 
 
   const [username, setUsername] = useState(testUsername);
@@ -23,11 +23,12 @@ const LoginForm = () => {
     event.preventDefault();
     
     try {
-      const loginUser = await apiLogin(username, password);
+      let loginUser = await apiLogin(username, password);
       
       if (loginUser) {
         console.log('Access granted');
         setAccessGranted(true);
+        delete loginUser.password;
         login(loginUser);
         navigate('/dashboard');
       } else {

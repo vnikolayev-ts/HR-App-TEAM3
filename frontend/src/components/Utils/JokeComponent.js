@@ -58,13 +58,12 @@ const JokeComponent = () => {
     return () => {
       clearInterval(countdownIntervalRef.current); // Interval beim Unmount der Komponente stoppen
     };
-  }, [jokes]); // Leeres Abhängigkeits-Array sorgt dafür, dass useEffect nur einmal ausgeführt wird
+  }, [jokes, startCountdown]); // Leeres Abhängigkeits-Array sorgt dafür, dass useEffect nur einmal ausgeführt wird
 
   // useEffect, um eine Funktion aufzurufen, wenn das div-Element geladen wird
   useEffect(() => {
     if (divRef.current) {
       console.log('div element has loaded');
-      //alert("OOPS");
       getNewJokes(false);
       // Hier die gewünschte Funktion aufrufen
     }

@@ -5,6 +5,11 @@ import LabelInputComponent from './../Utils/LabelInputComponent';
 
 import { createUser } from "../../api/ClientApi";
 
+
+import { useId } from 'react';
+
+
+
 function CreateUser() {
   const navigate = useNavigate();
   const [title, setTitle] = useState("Create User ");
@@ -13,8 +18,7 @@ function CreateUser() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [admin, setAdmin] = useState(false); 
-
-  
+    
   
   const handleSave = async (e) => {
     e.preventDefault();
@@ -62,6 +66,7 @@ function CreateUser() {
       <button onClick={handleBackClick} className="backButton"> Back</button>
       <form>    
       <div className="createItem">
+   
         <LabelInputComponent lab={"Name"} name="name" val={name} onChange={(e) => setName(e.target.value)} />
         <LabelInputComponent lab={"Username"} name="username" val={username} onChange={(e) => setUsername(e.target.value)} />
         <LabelInputComponent lab={"Email"} name="email" val={email} onChange={(e) => setEmail(e.target.value)} />

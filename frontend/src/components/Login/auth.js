@@ -4,6 +4,7 @@ export const isAuthenticated = () => {
   
   export const login = (loginUser) => {
     localStorage.setItem('auth', 'true');
+   
     localStorage.setItem('loginUser', JSON.stringify(loginUser));
   };
   

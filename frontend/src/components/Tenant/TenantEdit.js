@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Layout from "../Layout/Layout";
-import { getTenant, deleteTenant, updateTenant } from "../../api/ClientApi";
+import { getTenantById, deleteTenant, updateTenant } from "../../api/ClientApi";
 import LabelValueComponent from './../Utils/LabelValueComponent';
 import LabelInputComponent from '../Utils/LabelInputComponent';
-
+import { getLogUser } from '../../api/ClientApi';
 
 
 
 
 function TenantEdit() {
+  const loggedInUser = getLogUser();
+  let isAdmin = false;
+  let isSuperAdmin = false;
+  if (loggedInUser.admin === 1) isAdmin = true;
+  if (loggedInUser.superadmin === 1) isSuperAdmin = true;
+
   const { id } = useParams();
   const [tenantId, setTenantId] = useState(null);
   const [tenant, setTenant] = useState(null);
@@ -37,7 +43,7 @@ function TenantEdit() {
   useEffect(() => {
     const fetchData = async () => {
       try {    
-        const fTenant = await getTenant(id); // Aufruf der async Funktion getEmployees -API
+        const fTenant = await getTenantById(id); // Aufruf der async Funktion getEmployees -API
         setTenant (fTenant);
         
         if (fTenant) {
@@ -133,9 +139,14 @@ function TenantEdit() {
         <LabelValueComponent label={"Tenant-ID"} value={tenantId } onChange={(e) => setName(e.target.value)}/>
         <LabelInputComponent lab={"Name"} val={name } onChange={(e) => setName(e.target.value)}/>
         <button className="resetButton" onClick={handleReset}> Reset </button>
+        {isAdmin === true && (
         <button className="saveButton" onClick={handleSave}>Save</button>
-        <button className="deleteButton" onClick={handleDelete}> Delete</button>
-      
+      )}
+
+        {isSuperAdmin === true && (
+          <button className="deleteButton" onClick={handleDelete}> Delete</button>
+        )}
+
         </form>
       
     </Layout>
