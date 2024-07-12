@@ -120,17 +120,17 @@ const EmployeeCreate = () => {
       <form onSubmit={handleCreate}>
       <div className="createItem">
        <LabelInputComponent lab={"Img Url"} name="image" val={image} onChange={handleInputChange}/>
-        <LabelInputComponent lab="First Name: " name="first_name" value={firstName} onChange={handleInputChange} />
-        <LabelInputComponent lab="Last Name: " name="last_name" value={lastName} onChange={handleInputChange} />
-        <LabelInputComponent lab="Date of Birth: " name="birthdate" value={birthdate} onChange={handleInputChange} />
-        <LabelInputComponent lab="Date of Entry: " name="entry_date" value={entryDate} onChange={handleInputChange} />
+        <LabelInputComponent lab="First Name " name="first_name" value={firstName} onChange={handleInputChange} />
+        <LabelInputComponent lab="Last Name " name="last_name" value={lastName} onChange={handleInputChange} />
+        <LabelInputComponent lab="Date of Birth " name="birthdate" type="date" onChange={handleInputChange} />
+        <LabelInputComponent lab="Date of Entry " name="entry_date" type="date" onChange={handleInputChange} />
         <LabelInputComponent lab="Position" name="position" value={position} onChange={handleInputChange} />
         <LabelInputComponent lab="Department" name="department" value={department} onChange={handleInputChange} />
         <LabelInputComponent lab="Email" name="email" value={email} onChange={handleInputChange} />
         <LabelInputComponent lab="Phone" name="phone" value={phone} onChange={handleInputChange} />
         <LabelInputComponent lab="Address" name="address" value={address} onChange={handleInputChange} />
-        <LabelInputComponent lab="Sick Days" name="sick_days" value={sickDays} onChange={handleInputChange} />
-        <LabelInputComponent lab="Salary" name="salary" value={salary} onChange={handleInputChange} />
+        <LabelInputComponent lab="Sick Days" name="sick_days" type="number"  min="1" onChange={handleInputChange} />
+        <LabelInputComponent lab="Salary" name="salary" type="number"  min="1" onChange={handleInputChange} />
 
         <h3>Skills:</h3>
         <LabelInputComponent lab="Teamwork" name="teamwork" type="number" min="1" max="10" value={teamwork} onChange={handleInputChange} />

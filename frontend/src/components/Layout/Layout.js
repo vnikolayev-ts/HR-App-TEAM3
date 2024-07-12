@@ -20,7 +20,7 @@ const Layout = ({ children, pTitle, styleName="default" }) => {
 
   const loginStyleName = localStorage.getItem('styleName');
 
-  const imgUrl = '../images/logo/android-chrome-512x512.png';
+  const imgUrl = '../images/logo/neues logo.png';
        
   return (
     <div id="application" className={loginStyleName?loginStyleName:styleName}>

@@ -4,7 +4,7 @@ import { login } from './auth';
 
 import { apiLogin } from "../../api/ClientApi";
 
-const imgUrl = '../images/logo/android-chrome-512x512.png';
+const imgUrl = '../images/logo/neues logo.png';
 
 
 const LoginForm = () => {
@@ -99,8 +99,13 @@ const LoginForm = () => {
             </div>
           </div>
           <button type="submit">Login</button>
+        
+      
+      
+        
         </form>
       </div>
+        <img src={imgUrl} alt="Logo" className="logo-background" />
     </div>
   );
 };

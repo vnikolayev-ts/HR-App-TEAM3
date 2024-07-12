@@ -13,11 +13,8 @@
     width: 200px; 
     height: auto; 
     margin-bottom: 20px; 
-    transition: transform 0.7s ease-in-out; /* Hinzufügen von Übergangseffekten */
-}
+    transition: transform 0.7s ease-in-out;
 
-.loginContainer .logo:hover {
-  transform: scale(1.2); /* Vergrößern des Logos bei Hover */
 }
 
 .loginContainer .loginItem{
@@ -28,12 +25,15 @@
   border: solid 1px rgba(255, 255, 255, 0.1);
     border-radius: 5px;
     box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.3);
-    box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
     padding: 20px; 
     display: flex;
     flex-direction: column;
     align-items: center; 
     justify-content: center; 
+    position: relative;
+    z-index: 1000;
+
 
    }
 
@@ -153,3 +153,5 @@
     font-size: 20px;
     cursor: pointer;
   }
+
+ 
