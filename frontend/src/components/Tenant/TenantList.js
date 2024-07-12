@@ -7,7 +7,7 @@ import Layout from '../Layout/Layout';
 
 import { useEffect, useState } from 'react';
 import { getTenants } from "../../api/ClientApi";
-
+import { getLogUser } from '../../api/ClientApi';
 
 
 
@@ -15,6 +15,16 @@ const TenantList = () => {
   const [tenantData, setTenatData] = useState(null);
 
   const [title, setTitle] = useState("Tenant List");
+
+
+  const loggedInUser = getLogUser();
+  let isAdmin = false;
+  let isSuperAdmin = false;
+
+  if (loggedInUser.admin === 1) isAdmin = true;
+  if (loggedInUser.superadmin === 1) isSuperAdmin = true;
+
+
 
 useEffect(() => {
   const fetchData = async () => {

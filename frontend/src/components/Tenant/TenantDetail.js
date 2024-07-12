@@ -9,13 +9,15 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 function TenantDetail() {
 
+  const { id } = useParams();
   const loggedInUser = getLogUser();
   let isAdmin = false;
   let isSuperAdmin = false;
+  let isHimSelf = false;
   if (loggedInUser.admin === 1) isAdmin = true;
   if (loggedInUser.superadmin === 1) isSuperAdmin = true;
+  if (String(loggedInUser.tenantId) === String(id)) isHimSelf = true;
 
-  const { id } = useParams();
   const [name, setName] = useState("");
   const [tenant, setTenant] = useState(null);
   const [tenantId, setTenantId] = useState(null);
@@ -65,9 +67,13 @@ function TenantDetail() {
 
   return (
     <Layout pTitle={title}>
-      <button onClick={handleBackClick} className="backButton">Back</button>
+       {isSuperAdmin === true && (
+           <button onClick={handleBackClick} className="backButton">Back</button>
+        )}
+    
       <LabelValueComponent label={"Tenant-ID"} value={tenantId } />
       <LabelValueComponent label={"Name"} value={name } />
+
       {isAdmin === true && (
         <Link to={`/tenant-edit/${tenant.tenantId}`}><button className="editButton">Edit</button></Link>
       )}
