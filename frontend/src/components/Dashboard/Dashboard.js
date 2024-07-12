@@ -32,7 +32,7 @@ const Dashboard = () => {
 
         setUserData(dataUser);
         setULength(dataUser.length);
-        setSalarySUM(formatCurrency(salSum));
+        setSalarySUM((salSum));
         setSickDays((sikDaysSum));
 
  
@@ -63,8 +63,10 @@ const Dashboard = () => {
             <h1 className='dashTitle'>Actives</h1>
         <label>Users:</label> {uLength}
         <label>Employees:</label> {eLength}
-        <label>Total Salary per Year:</label> {salarySUM}
-        <label>Current Sick Days:</label> {sickDays}
+        <label>Total Salary per Year:</label> {formatCurrency(salarySUM) }
+        <label>Average Salary per Year/ Worker:</label> {formatCurrency(salarySUM/eLength) }
+        <label>Current Sick Days: </label> {sickDays}
+        <label>Average Sick Days per Worker:</label> {sickDays/eLength} 
         <EmployeesPerDepartment employees={employeeData} />
           </div>
           <div className="joke-component">

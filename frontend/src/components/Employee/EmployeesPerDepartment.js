@@ -1,23 +1,40 @@
 import React from 'react';
 
+
+
+const formatCurrency = (amount) => {
+  return new Intl.NumberFormat('de-DE', {
+    style: 'currency',
+    currency: 'EUR'
+  }).format(amount);
+};
+
+
+
 const EmployeesPerDepartment = ({ employees }) => {
-  // Funktion zur Berechnung der Anzahl der Mitarbeiter pro Abteilung
+  // Funktion zur Berechnung der Anzahl der Mitarbeiter und der Gehaltssumme pro Abteilung
   const calculateEmployeesPerDepartment = (employees) => {
-    const departmentCount = {};
+    const departmentStats = {};
 
     employees.forEach(employee => {
       const department = employee.department;
-      if (departmentCount[department]) {
-        departmentCount[department]++;
+      const salary = employee.salary;
+
+      if (departmentStats[department]) {
+        departmentStats[department].count++;
+        departmentStats[department].salarySum += salary;
       } else {
-        departmentCount[department] = 1;
+        departmentStats[department] = {
+          count: 1,
+          salarySum: salary
+        };
       }
     });
 
-    return departmentCount;
+    return departmentStats;
   };
 
-  // Berechne die Anzahl der Mitarbeiter pro Abteilung
+  // Berechne die Anzahl der Mitarbeiter und Gehaltssumme pro Abteilung
   const employeesPerDepartment = calculateEmployeesPerDepartment(employees);
 
   return (
@@ -26,7 +43,8 @@ const EmployeesPerDepartment = ({ employees }) => {
       <ul>
         {Object.keys(employeesPerDepartment).map(department => (
           <li key={department}>
-            {department}: {employeesPerDepartment[department]}
+            <label>{department}:</label> {employeesPerDepartment[department].count} Worker,
+            Salary: {formatCurrency(employeesPerDepartment[department].salarySum)} €
           </li>
         ))}
       </ul>
