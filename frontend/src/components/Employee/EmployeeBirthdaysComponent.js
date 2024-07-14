@@ -6,30 +6,39 @@ const BirthdaysInNextTimeframe = ({ employees }) => {
   future2WeeksDate.setDate(future2WeeksDate.getDate() + 14);
 
   const futureMonthDate = new Date();
-  futureMonthDate.setMonth(futureMonthDate.getMonth() +31);
+  futureMonthDate.setMonth(futureMonthDate.getMonth() + 1);
 
   const future6MonthsDate = new Date();
   future6MonthsDate.setMonth(future6MonthsDate.getMonth() + 6);
 
   // Funktion zum Formatieren des Datums in YYYY-MM-DD
   const formatDate = (date) => {
-    return date.toLocaleDateString('de-DE'); // Adjust 'en-CA' to your desired locale if needed
+    return date.toLocaleDateString('de-DE'); // Adjust 'de-DE' to your desired locale if needed
   };
 
-  const formatDateNoYear = (dateString, local='en-US') => {
+  const formatDateNoYear = (dateString, local = 'en-US') => {
     const date = new Date(dateString);
     const month = date.toLocaleString(local, { month: 'short' });
     const day = date.getDate();
-    return ` ${day}.${month}`;
+    return `${day}.${month}`;
   };
 
   // Funktion zur Anzeige der Monatsbezeichnung
   const formatMonthsLabel = (months) => {
     if (months === 1) {
-      return '1 Monat';
+      return '1 Month';
     } else {
-      return `${months} Monate`;
+      return `${months} Month`;
     }
+  };
+
+  // Funktion zur Sortierung nach Datum
+  const sortByDate = (a, b) => {
+    const dateA = new Date(a.birthdate);
+    const dateB = new Date(b.birthdate);
+    dateA.setFullYear(today.getFullYear());
+    dateB.setFullYear(today.getFullYear());
+    return dateA - dateB;
   };
 
   // Filter für Geburtstage in den nächsten 2 Wochen
@@ -38,16 +47,16 @@ const BirthdaysInNextTimeframe = ({ employees }) => {
     if (isNaN(birthdate)) return false;
     birthdate.setFullYear(today.getFullYear());
     return birthdate > today && birthdate <= future2WeeksDate;
-  });
+  }).sort(sortByDate);
 
-  // Filter für Geburtstage im nächsten 3 Monate, falls keine in den nächsten 2 Wochen gefunden wurden
+  // Filter für Geburtstage im nächsten Monat, falls keine in den nächsten 2 Wochen gefunden wurden
   const upcomingBirthdaysMonth = upcomingBirthdays2Weeks.length === 0
     ? employees.filter(employee => {
       const birthdate = new Date(employee.birthdate);
       if (isNaN(birthdate)) return false;
       birthdate.setFullYear(today.getFullYear());
       return birthdate > today && birthdate <= futureMonthDate;
-    })
+    }).sort(sortByDate)
     : [];
 
   // Filter für Geburtstage im nächsten halben Jahr, falls keine in den nächsten 2 Wochen oder im nächsten Monat gefunden wurden
@@ -57,7 +66,7 @@ const BirthdaysInNextTimeframe = ({ employees }) => {
       if (isNaN(birthdate)) return false;
       birthdate.setFullYear(today.getFullYear());
       return birthdate > today && birthdate <= future6MonthsDate;
-    })
+    }).sort(sortByDate)
     : [];
 
   return (
@@ -77,11 +86,11 @@ const BirthdaysInNextTimeframe = ({ employees }) => {
       )}
       {upcomingBirthdays2Weeks.length === 0 && upcomingBirthdaysMonth.length > 0 && (
         <div>
-          <h3>Next {formatMonthsLabel(3)}:</h3>
+          <h3>Next {formatMonthsLabel(1)}:</h3>
           <ul>
             {upcomingBirthdaysMonth.map(employee => (
               <li key={employee.id}>
-             <label>{employee.last_name}, {employee.first_name}:</label> {formatDateNoYear(new Date(employee.birthdate))}
+                <label>{employee.last_name}, {employee.first_name}:</label> {formatDateNoYear(new Date(employee.birthdate))}
               </li>
             ))}
           </ul>
@@ -93,7 +102,7 @@ const BirthdaysInNextTimeframe = ({ employees }) => {
           <ul>
             {upcomingBirthdays6Months.map(employee => (
               <li key={employee.id}>
-            <label>{employee.last_name}, {employee.first_name}:</label> {formatDateNoYear(new Date(employee.birthdate))}
+                <label>{employee.last_name}, {employee.first_name}:</label> {formatDateNoYear(new Date(employee.birthdate))}
               </li>
             ))}
           </ul>

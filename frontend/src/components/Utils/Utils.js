@@ -41,6 +41,12 @@ export const formatCurrency = (amount) => {
 };
 
 
+export function round(value, step=0.5) {
+  step || (step = 1.0);
+  var inv = 1.0 / step;
+  return Math.round(value * inv) / inv;
+}
+
     export const getCurrentDomain = () => {
       try {
         const { hostname } = window.location;

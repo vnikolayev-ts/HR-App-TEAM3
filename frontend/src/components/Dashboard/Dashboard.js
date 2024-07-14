@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../Layout/Layout';
-import { formatCurrency } from '../Utils/Utils';
+import { formatCurrency, round } from '../Utils/Utils';
 import { getEmployees, getUsers, getTenantById } from '../../api/ClientApi'
 import JokeComponent from '../Utils/JokeComponent'; 
 import EmployeeBirthdaysComponent from '../Employee/EmployeeBirthdaysComponent'; 
@@ -66,7 +66,7 @@ const Dashboard = () => {
         <label>Total Salary per Year:</label> {formatCurrency(salarySUM) }
         <label>Average Salary per Year/ Worker:</label> {formatCurrency(salarySUM/eLength) }
         <label>Current Sick Days: </label> {sickDays}
-        <label>Average Sick Days per Worker:</label> {sickDays/eLength} 
+        <label>Average Sick Days per Worker:</label> {round(sickDays/eLength, 0.25)} 
         <EmployeesPerDepartment employees={employeeData} />
           </div>
           <div className="joke-component">
