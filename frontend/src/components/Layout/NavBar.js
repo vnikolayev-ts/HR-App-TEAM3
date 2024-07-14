@@ -53,12 +53,12 @@ return (
         <Link className="navigation" onClick={toggleDropdown}>Setup<span className="arrow">▼</span>  </Link>
         {dropdownOpen && (
           <div className="dropdownContent">
-            <label>Admin</label> <hr/>
-            <Link to="/user">User</Link>
+            <label className="navi1">Admin</label> 
+            <Link className="navi" to="/user">User</Link>
               { isSuperAdmin === true && (
                 <>
-                <label>Superadmin</label> <hr/>
-                 <Link to="/tenant">Tenats</Link>
+                <label className="navi1">Superadmin</label> 
+                 <Link className="navi"to="/tenant">Tenats</Link>
                 </>
                 )
              }

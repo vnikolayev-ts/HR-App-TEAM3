@@ -27,8 +27,9 @@ const BirthdaysInNextTimeframe = ({ employees }) => {
   const formatMonthsLabel = (months) => {
     if (months === 1) {
       return '1 Month';
+      return '1 month';
     } else {
-      return `${months} Month`;
+      return `${months} Monate`;
     }
   };
 
@@ -71,10 +72,10 @@ const BirthdaysInNextTimeframe = ({ employees }) => {
 
   return (
     <div>
-      <h2>Upcoming Birthdays</h2>
+      <h2 className='dashTitle'>Upcoming Birthdays</h2>
       {upcomingBirthdays2Weeks.length > 0 && (
         <div>
-          <h3>Next 2 Weeks:</h3>
+          <h3 className='dashTiltle1'>Next 3 months:</h3>
           <ul>
             {upcomingBirthdays2Weeks.map(employee => (
               <li key={employee.id}>
@@ -87,6 +88,7 @@ const BirthdaysInNextTimeframe = ({ employees }) => {
       {upcomingBirthdays2Weeks.length === 0 && upcomingBirthdaysMonth.length > 0 && (
         <div>
           <h3>Next {formatMonthsLabel(1)}:</h3>
+          <h3 className='dashtitle1'>Next {formatMonthsLabel(3)}:</h3>
           <ul>
             {upcomingBirthdaysMonth.map(employee => (
               <li key={employee.id}>

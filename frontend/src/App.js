@@ -28,13 +28,14 @@ import CreateUser from "./components/User/CreateUser";
 import EditUser from './components/User/EditUser';
 import TenantCreate from './components/Tenant/TenantCreate';
 
+import ScrollToTop from './components/Utils/ScrollToTop';
 
 
 const App = () => {
   return (
    
     <Router>
-    
+       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/dashboard"  element={ <PrivateRoute><Dashboard /></PrivateRoute> }  />
@@ -64,3 +65,4 @@ const App = () => {
 }
 
 export default App; 
+

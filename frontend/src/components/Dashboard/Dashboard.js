@@ -6,7 +6,7 @@ import JokeComponent from '../Utils/JokeComponent';
 import EmployeeBirthdaysComponent from '../Employee/EmployeeBirthdaysComponent'; 
 import EmployeesPerDepartment from '../Employee/EmployeesPerDepartment';
 
-const imgUrl = '../images/logo/android-chrome-512x512.png';
+const imgUrl = '../images/logo/neues logo.png';
 const Dashboard = () => {
   const [employeeData, setEmployeeData] = useState(null);
   const [userData, setUserData] = useState(null);
