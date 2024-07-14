@@ -1,0 +1,17 @@
+/* dark.css */
+:root {
+  --primaryColor: #333;
+  --primaryFontColor: #fff;
+  --backgroundColor: #000;
+  --successColor: #28a745;
+  --dangerColor: #dc3545;
+  --warningColor: #ffc107;
+  --primaryShadow: 3px 3px 7px rgba(0, 0, 0, 0.7);
+}
+
+body.dark-mode {
+  background: var(--backgroundColor);
+  color: var(--primaryFontColor);
+}
+
+/* Weitere Stile für das Dark Theme hier definieren */

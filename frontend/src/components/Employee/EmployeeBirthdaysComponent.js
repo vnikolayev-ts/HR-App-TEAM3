@@ -9,7 +9,7 @@ const BirthdaysInNextTimeframe = ({ employees }) => {
   futureMonthDate.setMonth(futureMonthDate.getMonth() + 1);
 
   const future6MonthsDate = new Date();
-  future6MonthsDate.setMonth(future6MonthsDate.getMonth() + 6);
+  future6MonthsDate.setMonth(future6MonthsDate.getMonth() + 3);
 
   // Funktion zum Formatieren des Datums in YYYY-MM-DD
   const formatDate = (date) => {
@@ -100,7 +100,7 @@ const BirthdaysInNextTimeframe = ({ employees }) => {
       )}
       {(upcomingBirthdays2Weeks.length === 0 && upcomingBirthdaysMonth.length === 0 && upcomingBirthdays6Months.length > 0) && (
         <div>
-          <h3>Next {formatMonthsLabel(6)}:</h3>
+          <h3>Next {formatMonthsLabel(3)}:</h3>
           <ul>
             {upcomingBirthdays6Months.map(employee => (
               <li key={employee.id}>

@@ -51,7 +51,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Layout pTitle={`Dashboard`}>
+      <Layout >
       <div className="logo-container"> 
       <img src={imgUrl} alt="Logo" className="logo" />
       </div>
