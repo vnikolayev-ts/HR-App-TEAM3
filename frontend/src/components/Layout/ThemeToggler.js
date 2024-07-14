@@ -14,7 +14,7 @@ const ToggleContainer = styled.button`
   padding: 0.5rem;
   position: fixed;
   left: 20px;
-  bottom: 20px;
+  top: 20px;
   width: 10rem;
   height: 3rem;
   z-index: 1000;
