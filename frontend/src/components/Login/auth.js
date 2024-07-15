@@ -11,5 +11,6 @@ export const isAuthenticated = () => {
   export const logout = () => {
     localStorage.removeItem('auth');
     localStorage.removeItem('loginUser');
+    localStorage.setItem('theme', 'light');
   };
   

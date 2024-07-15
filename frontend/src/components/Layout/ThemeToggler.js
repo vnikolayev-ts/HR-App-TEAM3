@@ -36,7 +36,11 @@ const MoonIcon2 = () => (
 </svg>
 );
 
-const ThemeToggler = ({ theme, toggleTheme }) => {
+const ThemeToggler = ({ toggleTheme }) => {
+  // Überprüfen, ob das Theme im localStorage gesetzt ist
+  const storedTheme = localStorage.getItem('theme');
+  const theme = storedTheme ? storedTheme : 'light'; // Standardmäßig light Theme verwenden
+
   return (
     <ToggleContainer onClick={toggleTheme}>
       {theme === 'light' ? <SunIcon /> : <MoonIcon />}

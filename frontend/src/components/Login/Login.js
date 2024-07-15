@@ -11,6 +11,7 @@ const LoginForm = () => {
  const testUsername = 'superadmin';
   const testPassword = '##########';
 
+  localStorage.setItem('theme', 'light');
 
   const [username, setUsername] = useState(testUsername);
   const [password, setPassword] = useState(testPassword);
@@ -51,6 +52,8 @@ const LoginForm = () => {
   const closeAccessGranted = () => {
     setAccessGranted(false);
   };
+
+ 
 
   return (
     <div className="loginContainer">
