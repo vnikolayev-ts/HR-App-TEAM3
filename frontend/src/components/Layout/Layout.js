@@ -30,7 +30,9 @@ const Layout = ({ children, pTitle, styleName = "default" }) => {
           <img src={imgUrl} alt="Logo" className="logof" />
           <Footer />
         </div>
+        <div className="logo-container">
         <img src={imgUrl} alt="Logo" className="logo-background" />
+        </div>
       </main>
       <ThemeToggler theme={theme} toggleTheme={toggleTheme} />
     </div>

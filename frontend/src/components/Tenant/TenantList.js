@@ -58,11 +58,13 @@ if (!tenantData) {
             <Link to={'/tenant-create'} > <button className="createButton"  >Create</button> </Link>
             <ul className="list" >
             {tenantData.map((tenant) => (
+               <Link to={`/tenant/${tenant.tenantId}`} key={tenant.tenantId} className="listItemLink"> 
             <li className="listItem" key={(tenant.tenantId)}> 
               <div className="tName">{tenant.name}</div> 
               <div>{tenant.tenantId}</div>
-              <Link to={`/tenant/${tenant.tenantId}`} > <button className="viewButton"  >Details</button> </Link>
-            </li>        
+            <button className="viewButton"  >Details</button> 
+            </li> 
+            </Link>       
             ))}
 </ul>
       </Layout>

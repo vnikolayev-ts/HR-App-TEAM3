@@ -15,11 +15,11 @@ const ToggleContainer = styled.button`
   align-items: center;
   padding: 0.5rem;
   position: fixed;
-  left: 20px;
-  bottom: 20px;
+  right: 20px;
+  top: 100px;
   width: 4rem;
   height: 4rem;
-  z-index: 1000;
+  z-index: 100;
 `;
 
 const SunIcon2 = () => (

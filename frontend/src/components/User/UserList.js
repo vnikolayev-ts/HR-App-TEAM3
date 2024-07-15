@@ -60,9 +60,8 @@ const UserList = () => {
         <button className="creatButton" onClick={handleCreateClick}>Create </button>
         <ul className="list">
           {userData.map((user) => (
-            <li className="listItem" key={user.userId}>
-
-
+               <Link to={`/user/${user.userId}`} key={user.userId} className="listItemLink">
+            <li className="listItem">
 
               <div className="name">{user.name}</div>
               <div className="separator"></div>
@@ -77,15 +76,11 @@ const UserList = () => {
                 <div className="admin"> Administrator </div>
 
               )}
-
-
-
-              <Link to={`/user/${user.userId}`}>
-                <button className="viewButton">Details</button>
-              </Link>
-
+              
+                <button className="viewButton">Details</button>          
 
             </li>
+            </Link>
           ))}
         </ul>
       </form>
