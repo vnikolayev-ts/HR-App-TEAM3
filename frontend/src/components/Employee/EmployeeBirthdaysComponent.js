@@ -29,7 +29,7 @@ const BirthdaysInNextTimeframe = ({ employees }) => {
       return '1 Month';
       return '1 month';
     } else {
-      return `${months} Monate`;
+      return `${months} months`;
     }
   };
 
@@ -71,41 +71,43 @@ const BirthdaysInNextTimeframe = ({ employees }) => {
     : [];
 
   return (
-    <div>
+    <div className='birthday-container'>
       <h2 className='dashTitle'>Upcoming Birthdays</h2>
       {upcomingBirthdays2Weeks.length > 0 && (
-        <div>
+        <div className='birthdaySection'>
           <h3 className='dashTiltle1'>Next 3 months:</h3>
-          <ul>
+          <span className='birthdayList'>
             {upcomingBirthdays2Weeks.map(employee => (
-              <li key={employee.id}>
+              <ul key={employee.id} className='birthdayItem'>
                 <label>{employee.last_name}, {employee.first_name}:</label> {formatDateNoYear(new Date(employee.birthdate))}
-              </li>
+              </ul>
             ))}
-          </ul>
+          </span>
         </div>
       )}
       {upcomingBirthdays2Weeks.length === 0 && upcomingBirthdaysMonth.length > 0 && (
-        <div>
+        <div className='birthdaySection'>
           <h3>Next {formatMonthsLabel(1)}:</h3>
           <h3 className='dashtitle1'>Next {formatMonthsLabel(3)}:</h3>
-          <ul>
+          <ul className='birthdayList'>
             {upcomingBirthdaysMonth.map(employee => (
-              <li key={employee.id}>
+              <ul key={employee.id} className='birthdayItem'>
                 <label>{employee.last_name}, {employee.first_name}:</label> {formatDateNoYear(new Date(employee.birthdate))}
-              </li>
+              </ul>
             ))}
           </ul>
         </div>
       )}
       {(upcomingBirthdays2Weeks.length === 0 && upcomingBirthdaysMonth.length === 0 && upcomingBirthdays6Months.length > 0) && (
-        <div>
-          <h3>Next {formatMonthsLabel(3)}:</h3>
-          <ul>
+        <div className='birthdaySection'>
+          <h3 className='dashTitle'>Next {formatMonthsLabel(3)}:</h3>
+          <ul className='birthdayList'>
             {upcomingBirthdays6Months.map(employee => (
-              <li key={employee.id}>
-                <label>{employee.last_name}, {employee.first_name}:</label> {formatDateNoYear(new Date(employee.birthdate))}
-              </li>
+              <ul key={employee.id} className='birthdayItem'>
+                <label>{employee.last_name}, {employee.first_name}:</label>
+                <br/> 
+                <label>{formatDateNoYear(new Date(employee.birthdate))}</label>
+              </ul>
             ))}
           </ul>
         </div>

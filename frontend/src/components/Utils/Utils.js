@@ -117,11 +117,11 @@ export function round(value, step=0.5) {
            if (newEmployee.salary)  ausgabe += "\nSalary: " + newEmployee.salary;
 
            if (newEmployee.teamwork)  ausgabe += "\nTeamwork: " + newEmployee.teamwork ;
-           if (newEmployee.communication)  ausgabe += "\nCommunikation: " + newEmployee.communication ;
+           if (newEmployee.communication)  ausgabe += "\nCommunication: " + newEmployee.communication ;
            if (newEmployee.leadership)  ausgabe += "\nLeadership: " + newEmployee.leadership ;
            if (newEmployee.problem_solving)  ausgabe += "\nProblem solving: " + newEmployee.problem_solving ;
            if (newEmployee.adaptability)  ausgabe += "\nAdaptability: " + newEmployee.adaptability ;
-           if (newEmployee.punctuality)  ausgabe += "\nPunktuality: " + newEmployee.punctuality ;
+           if (newEmployee.punctuality)  ausgabe += "\nPunctuality: " + newEmployee.punctuality ;
 
            if (newEmployee.friendliness)  ausgabe += "\nFriendliness: " + newEmployee.friendliness ;
            if (newEmployee.creativity)  ausgabe += "\nCreativity: " + newEmployee.creativity ;

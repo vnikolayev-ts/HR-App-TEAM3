@@ -206,7 +206,7 @@ export async function createEmployee(data) {
 
 export async function updateEmployee(id, data) {
 
-  return updateData("employee", id, data);
+  return updateData("employee", id, data, true);
 }
 
 export async function deleteEmployee(id) {

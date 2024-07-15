@@ -36,11 +36,11 @@ const Navbar = () => {
           <Link className="navigation" onClick={toggleDropdown}>Setup<span className="arrow">▼</span></Link>
           {dropdownOpen && (
             <div className="dropdownContent">
-              <label className="navi1">Admin</label>
+              <label className="navi1"></label>
               <Link className="navi" to="/user">User</Link>
               {isSuperAdmin && (
                 <>
-                  <label className="navi1">Superadmin</label>
+                  <label className="navi1"></label>
                   <Link className="navi" to="/tenant">Tenants</Link>
                 </>
               )}

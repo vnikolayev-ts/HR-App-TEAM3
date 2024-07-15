@@ -39,13 +39,17 @@ const EmployeesPerDepartment = ({ employees }) => {
 
   return (
     <div>
-      <h2>Employees per Department:</h2>
+      <h2 className='dashTitle'>Employees per Department:</h2>
       <ul>
         {Object.keys(employeesPerDepartment).map(department => (
-          <li key={department}>
-            <label>{department}:</label> {employeesPerDepartment[department].count} Worker,
-            Salary: {formatCurrency(employeesPerDepartment[department].salarySum)} €
-          </li>
+            <div key={department} className="department-item">
+            <label className="department-name">{department}: 
+            </label>
+              <br/>
+            <span className="department-count">{employeesPerDepartment[department].count} Workers, </span>
+            
+            <span className="department-salary">Salary: {formatCurrency(employeesPerDepartment[department].salarySum)} €</span>
+          </div>
         ))}
       </ul>
     </div>

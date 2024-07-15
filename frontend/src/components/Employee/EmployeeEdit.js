@@ -157,7 +157,7 @@ const EmployeeEdit = () => {
         <LabelInputComponent lab={"Leadership"}  name="leadership" type="number"  min={1} max={10} val={employee.softskill_leadership} onChange={handleInputChange}/>
         <LabelInputComponent lab={"Problem Solving"}  name="problem_solving" type="number"  min={1} max={10} val={employee.softskill_problem_solving} onChange={handleInputChange}/>
         <LabelInputComponent lab={"Adaptability"}  name="adaptability" type="number"  min={1} max={10} val={employee.softskill_adaptability} onChange={handleInputChange}/>
-        <LabelInputComponent lab={"Punctuality"}  name="punctuality" type="number"  min={1} max={10} val={employee.softskill_punctuality} onChange={handleInputChange}/>
+        <LabelInputComponent lab={"Punctuality"}  name="punctuality" type="number"  min={1} max={10} val={employee.perskill_punctuality} onChange={handleInputChange}/>
         <LabelInputComponent lab={"Friendliness"}  name="friendliness" type="number"  min={1} max={10} val={employee.perskill_friendliness} onChange={handleInputChange}/>
         <LabelInputComponent lab={"Creativity"}  name="creativity" type="number"  min={1} max={10} val={employee.perskill_creativity} onChange={handleInputChange}/>
         <LabelInputComponent lab={"Reliability"}  name="reliability" type="number"  min={1} max={10} val={employee.perskill_reliability} onChange={handleInputChange}/>
