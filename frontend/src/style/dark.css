@@ -14,4 +14,10 @@ body.dark-mode {
   color: var(--primaryFontColor);
 }
 
+
+body.dark-mode h2, body.dark-mode h3, body.dark-mode h1, body.dark-mode label, .dark-mode .navigation
+{
+  color: var(--primaryFontColor);
+}
+
 /* Weitere Stile für das Dark Theme hier definieren */

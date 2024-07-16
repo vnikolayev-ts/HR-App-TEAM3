@@ -243,6 +243,11 @@ body {
 
 }
 
+.dashboard-container div{
+
+  justify-content: flex-start;
+}
+
 .joke-component, .birthday-component, .actives, .birthdaySection {
   flex:  300px; 
   display: flex;
@@ -366,6 +371,7 @@ html, body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow: hidden;
 }
 
 main {

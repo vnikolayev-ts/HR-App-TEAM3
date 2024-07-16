@@ -4,7 +4,7 @@ import { login } from './auth';
 
 import { apiLogin } from "../../api/ClientApi";
 
-const imgUrl = '../images/logo/neues logo.png';
+const imgUrl = '../images/logo/neues_logo.png';
 
 
 const LoginForm = () => {
@@ -57,6 +57,7 @@ const LoginForm = () => {
 
   return (
     <div className="loginContainer">
+      
       <div className={`warningPopup ${showWarning ? 'visible' : ''}`}>
         <div className="warningContent">
           <span className="closeBtn" onClick={closeWarning}>&times;</span>

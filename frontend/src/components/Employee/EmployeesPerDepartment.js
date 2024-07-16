@@ -48,7 +48,7 @@ const EmployeesPerDepartment = ({ employees }) => {
               <br/>
             <span className="department-count">{employeesPerDepartment[department].count} Workers, </span>
             
-            <span className="department-salary">Salary: {formatCurrency(employeesPerDepartment[department].salarySum)} €</span>
+            <span className="department-salary">Salary: {formatCurrency(employeesPerDepartment[department].salarySum)}</span>
           </div>
         ))}
       </ul>

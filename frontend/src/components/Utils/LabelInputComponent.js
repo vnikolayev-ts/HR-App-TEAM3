@@ -10,19 +10,34 @@ const LabelInputComponent = ({
   type = 'text',
   cname = '',
   checked = false,
+  min,
+  max,
   onChange
 }) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    // Validierung für numerische Eingaben mit min und max
+    if (type === 'number') {
+      if (value !== '' && (parseFloat(value) < min || parseFloat(value) > max)) {
+        alert(`Value must be between ${min} and ${max}.`);
+        return;
+      }
+    }
+
+    onChange(e); // Aufruf der übergebenen onChange-Funktion
+  };
+
   return (
     <div className={`label-input-component ${cname}`}>
       {lab && <label className="label">{lab}</label>}
       {type === 'checkbox' ? (
-        
-      <input
+        <input
           type="checkbox"
           name={name}
           checked={checked}
           className="input-checkbox"
-          onChange={onChange}
+          onChange={handleChange}
         />
       ) : (
         <input
@@ -32,13 +47,14 @@ const LabelInputComponent = ({
           placeholder={placeholder || name}
           readOnly={readonly}
           className="input"
-          onChange={onChange}
+          onChange={handleChange}
+          min={min}
+          max={max}
         />
       )}
     </div>
   );
 };
-
 
 LabelInputComponent.propTypes = {
   lab: PropTypes.string,
@@ -47,9 +63,11 @@ LabelInputComponent.propTypes = {
   placeholder: PropTypes.string,
   readonly: PropTypes.bool,
   checked: PropTypes.bool,
-  type: PropTypes.oneOf(['text', 'number', 'range', 'email', 'password', 'date', 'checkbox']), // Füge hier weitere Typen hinzu, die du unterstützen möchtest
+  type: PropTypes.oneOf(['text', 'number', 'range', 'email', 'password', 'date', 'checkbox']),
   cname: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  min: PropTypes.number,
+  max: PropTypes.number,
 };
 
 export default LabelInputComponent;

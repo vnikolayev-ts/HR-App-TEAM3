@@ -6,7 +6,7 @@ import JokeComponent from '../Utils/JokeComponent';
 import EmployeeBirthdaysComponent from '../Employee/EmployeeBirthdaysComponent'; 
 import EmployeesPerDepartment from '../Employee/EmployeesPerDepartment';
 
-const imgUrl = '../images/logo/neues logo.png';
+const imgUrl = '../images/logo/neues_logo.png';
 const Dashboard = () => {
   const [employeeData, setEmployeeData] = useState(null);
   const [userData, setUserData] = useState(null);

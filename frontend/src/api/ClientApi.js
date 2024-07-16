@@ -1,60 +1,86 @@
-
-import { showAlertFromData } from '../components/Utils/Utils'; 
+import { showAlertFromData } from '../components/Utils/Utils';
 import { v4 as uuidv4 } from 'uuid';
 
 const apiServerPort = 3001;
-// const apiServerUrl = `http://3.67.177.230:${apiServerPort}/`;
-const apiBaseUrl = 'http://3.67.177.230';
+const apiBaseUrl = 'http://3.67.177.230'; // Beispiel-URL deines API-Servers
+const apiBaseUrl2 = 'http://127.0.0.1'; // Alternative Basis-URL (falls benötigt)
+const apiBackendUrl = `${apiBaseUrl2}:${apiServerPort}`;
 
-const apiBackendUrl = `${apiBaseUrl}:${apiServerPort}`;
+// Funktion zum Abrufen des Tokens aus dem Local Storage
+const getToken = () => {
+  return localStorage.getItem('token');
+};
 
-let logUser = null;
+// Funktion zum Abrufen von Benutzerdaten aus dem Local Storage
+const getUser = () => {
+  const user = localStorage.getItem('loginUser');
+  return user ? JSON.parse(user) : null;
+};
+
+async function getData(endPoint, isDebugOn = false) {
+   // Token aus dem Local Storage holen
+  const user = getUser(); // Benutzerdaten aus dem Local Storage holen
+  const token = user.apikey;
 
 
-
-async function  getData(endPoint, isDebugOn=false){
-
-  if(isDebugOn)  showAlertFromData(endPoint, "get / List");
+  if (isDebugOn) showAlertFromData(endPoint, 'get / List');
 
   try {
-    const response = await fetch(`${apiBackendUrl}/${endPoint}`); 
+    const response = await fetch(`${apiBackendUrl}/${endPoint}`, {
+      headers: {
+        'apikey': token,
+        'Content-Type': 'application/json; charset=UTF-8'
+      }
+    });
+
+
+    
+
     const data = await response.json();
     return data;
   } catch (error) {
     console.error('Error fetching user data:', error);
     throw error;
   }
-
-
 }
 
-async function  getDatabyId(endPoint, id, isDebugOn=false){
+async function getDatabyId(endPoint, id, isDebugOn = false) {
+  const token = getToken();
+  const user = getUser();
 
-  if(isDebugOn)  showAlertFromData(endPoint, "get / List");
+  if (isDebugOn) showAlertFromData(endPoint, 'get / List');
 
   try {
-    const response = await fetch(`${apiBackendUrl}/${endPoint}/${id}`); 
+    const response = await fetch(`${apiBackendUrl}/${endPoint}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'X-User-Id': user ? user.id : '',
+      },
+    });
+
     const data = await response.json();
     return data;
   } catch (error) {
     console.error('Error fetching user data:', error);
     throw error;
   }
-
-
 }
 
-async function  createData(endPoint, data, isDebugOn=true){
-
-   if(isDebugOn)  showAlertFromData(data, "create " + endPoint);
+async function createData(endPoint, data, isDebugOn = true) {
+  const token = getToken();
+  const user = getUser();
+ 
+  if (isDebugOn) showAlertFromData(data, `create ${endPoint}`);
 
   try {
     const response = await fetch(`${apiBackendUrl}/${endPoint}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json; charset=UTF-8'
+        'Content-Type': 'application/json; charset=UTF-8',
+        Authorization: `Bearer ${token}`,
+        'X-User-Id': user ? user.id : '',
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
 
     if (!response.ok) {
@@ -63,26 +89,26 @@ async function  createData(endPoint, data, isDebugOn=true){
 
     return true;
   } catch (error) {
-    console.error("Error creating " + {endPoint} + ":", error);
+    console.error(`Error creating ${endPoint}:`, error);
     return false;
-    // Optional: throw error; // Uncomment if you want to re-throw the error
   }
-
-
 }
 
-async function  updateData(endPoint, id, data, isDebugOn=false){
+async function updateData(endPoint, id, data, isDebugOn = false) {
+  const token = getToken();
+  const user = getUser();
 
-  if(isDebugOn)  showAlertFromData(data, "update ["+id+"] " + endPoint);
-
+  if (isDebugOn) showAlertFromData(data, `update [${id}] ${endPoint}`);
 
   try {
     const response = await fetch(`${apiBackendUrl}/${endPoint}/${id}`, {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json; charset=UTF-8'
+        'Content-Type': 'application/json; charset=UTF-8',
+        Authorization: `Bearer ${token}`,
+        'X-User-Id': user ? user.id : '',
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
 
     if (!response.ok) {
@@ -91,21 +117,24 @@ async function  updateData(endPoint, id, data, isDebugOn=false){
 
     return true;
   } catch (error) {
-    console.error("Error updating " + {endPoint} + ":", error);
+    console.error(`Error updating ${endPoint}:`, error);
     return false;
   }
-
-
 }
 
+export async function deleteData(endPoint, id, isDebugOn = false) {
+  const token = getToken();
+  const user = getUser();
 
-export async function deleteData(endPoint, id, isDebugOn=false) {
-
-  if(isDebugOn)  showAlertFromData(id, "delete ["+id+"] " + endPoint);
+  if (isDebugOn) showAlertFromData(id, `delete [${id}] ${endPoint}`);
 
   try {
     const response = await fetch(`${apiBackendUrl}/${endPoint}/${id}`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'X-User-Id': user ? user.id : '',
+      },
     });
 
     if (!response.ok) {
@@ -114,15 +143,12 @@ export async function deleteData(endPoint, id, isDebugOn=false) {
 
     return true;
   } catch (error) {
-    console.error("Error deleting " + {endPoint} + ":", error);
+    console.error(`Error deleting ${endPoint}:`, error);
     return false;
   }
 }
 
-
-
-
-///----------------------------------------------------
+// Export der restlichen Funktionen (getLogUser, apiLogin, usw.)
 
 export function getLogUser() {
   const lUser = localStorage.getItem('loginUser');
@@ -130,24 +156,35 @@ export function getLogUser() {
   return loginUser;
 }
 
-export async function  apiLogin (username, password) {
 
-
+export async function apiLogin(username, password) {
   try {
-    const apiUrl = `${apiBackendUrl}/user`;
-    const res = await fetch(apiUrl);
-    const data = await res.json();
-    const foundUser = data.find((u) => u.username === username);
-    
-    return foundUser;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error;
-    
-  }
+    const apiUrl = `${apiBackendUrl}/user/login`;
+    const credentials = btoa(`${username}:${password}`); // Kodieren der Anmeldedaten in Base64
 
-  return null;
+    const res = await fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Basic ${credentials}`, // Hinzufügen der Anmeldedaten zum Authorization-Header
+        'Content-Type': 'application/json; charset=UTF-8'
+      }
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      throw new Error(errorData.message || 'Login failed');
+    }
+
+    const data = await res.json();
+    return data; // Angenommen, die Antwort enthält Benutzerinformationen und möglicherweise ein Token
+  } catch (error) {
+    console.error('Error during login:', error);
+    throw error;
+  }
 }
+
+
+// Restliche API-Funktionen für Nutzer, Mitarbeiter und Mieter (getUsers, getUserById, usw.)
 
 
 
