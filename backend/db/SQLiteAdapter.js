@@ -21,6 +21,18 @@ class SQLiteAdapter {
             .catch(err => callback(err));
     }
 
+    getUserByUsername(uname, callback) {
+        this.knex('users').where({ username: uname }).first()
+            .then(user => callback(null, user))
+            .catch(err => callback(err));
+    }
+    
+    getUserByApiKey(apikey, callback) {
+        this.knex('users').where({ apikey : apikey }).first()
+            .then(user => callback(null, user))
+            .catch(err => callback(err));
+    }
+
     createUser(tenantId, user, callback) {
         user.tenantId = tenantId;  // Ensure the tenantId is set
         this.knex('users').insert(user)

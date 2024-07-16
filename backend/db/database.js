@@ -15,6 +15,15 @@ class Database {
         this.adapter.getUserById(tenantId, id, callback);
     }
 
+    getUserByUsername(username, callback) {
+        this.adapter.getUserByUsername(username, callback);
+    }
+
+    getUserByApiKey(apikey, callback) {
+        this.adapter.getUserByApiKey(apikey, callback);
+    }
+
+
     createUser(tenantId, user, callback) {
         this.adapter.createUser(tenantId, user, callback);
     }
