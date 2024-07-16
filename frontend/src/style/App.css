@@ -170,8 +170,63 @@ body {
   padding: 10px ; 
   display: flex; 
   align-items: center; 
-  justify-content: space-between; 
+  _justify-content: space-between; 
   z-index: 500;
+  min-width: 920px;
+}
+
+.listItem div{
+ 
+  border-right: solid 2px;
+  min-width: 200px;
+  margin-left: 50px;
+}
+
+.employee .listItem div{
+ 
+  border-right: solid 2px;
+ 
+  margin-left: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+ div:first-child{
+ 
+ 
+  margin-left: 10px;
+}
+
+
+
+.employee .listItem :nth-last-child(2){
+ 
+ border:none;
+
+  
+}
+.listItem :nth-last-child(2){
+ 
+ border:none;
+
+  
+}
+
+.listItem div.score{
+  min-width: none;
+
+}
+
+.listItem :last-child{
+ 
+  position: absolute;
+  right: 5%;
+}
+
+.employee .listItem :last-child{
+ 
+  position: absolute;
+  right: 2%;
 }
 
 .listItem:hover{
@@ -180,9 +235,10 @@ body {
 }
 
 
-.separator {
+.listItem  .separator2 {
   height: 24px; /* Höhe des Textes oder der Symbole */
   border: solid 2px;
+  width: 0;
   
 }
 

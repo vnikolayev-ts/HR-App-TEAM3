@@ -39,7 +39,7 @@ const ScoreComponent = ({ score }) => {
   return (
     <div className="score">
       {getBarLevelsForScore(score).map((level, index) => (
-        <div
+        <span
           className="scoreItem"
           key={index}
           style={{
@@ -47,7 +47,7 @@ const ScoreComponent = ({ score }) => {
             backgroundColor: getColorForLevel(score, index),
             borderRight: getColorForLevel(score, index) !== 'white' ? 'none' : 'none',
           }}
-        ></div>
+        ></span>
       ))}
     </div>
   );

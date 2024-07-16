@@ -46,17 +46,16 @@ const EmployeeList = () => {
       </Link>
 
 
-      <ul className="list" >
+      <ul className="list employee" >
         {employeeData.map(employee => (
            <Link to={`/employee/${employee.pers_id}`}  key={employee.pers_id} className="listItemLink">
             <li className="listItem">
 
             <div className="fname">{employee.first_name}</div>
-            <div className="separator"></div>
+       
             <div className="lname">{employee.last_name}</div>
-            <div className="separator"></div>
-            <div className="persid">{employee.pers_id}</div>  <div className="separator"></div>
-            <div className="edate">{employee.entry_date}</div>  <div className="separator"></div>
+         
+            <div className="edate">{employee.entry_date}</div>  
             <div className="position">{employee.position}</div>
            
 
