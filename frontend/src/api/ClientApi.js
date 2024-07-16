@@ -182,7 +182,7 @@ export async function apiLogin(username, password) {
 }
 
 
-// Restliche API-Funktionen für Nutzer, Mitarbeiter und Mieter (getUsers, getUserById, usw.)
+// Restliche API-Funktionen für Nutzer, Mitarbeiter und Tenants (getUsers, getUserById, usw.)
 
 
 
@@ -251,59 +251,6 @@ export async function deleteEmployee(id) {
 }
 
 
-/*
-export const getEmployees = async () => {
-  try {
-    const response = await fetch(`${apiBackendUrl}/employee`); // Beispiel-Endpunkt für Employees
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching employee data:', error);
-    throw error;
-  }
-}
-
-
-export const getEmployeeById = async (id) => {
-  try {
-    const response = await fetch(`${apiBackendUrl}/employee/${id}`); // Beispiel-Endpunkt für Employees
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching employee data:', error);
-    throw error;
-  }
-};
-
-
-export async function createEmployee(data) {
-
-  showAlertFromData(data, "create employee");
-
-
-  return false;
-}
-
-
-export async function updateEmployee(id, data) {
-
-  showAlertFromData(data, "update " + id + " employee");
-
-  return false;
-}
-
-export async function deleteEmployee(id) {
-
-
-  showAlertFromData(id, "delte employee id:[" + id + "]");
-
-
-
-
-  return false;
-}
-*/
-///----------------------------------------------------
 export const getTenants = async () => {
   return getData("tenant");
 }
