@@ -36,22 +36,34 @@ router.get('/login', async (req, res) => {
         req.auth = { username, password };
         try {
 
-        database.getUserByUsername( username, (err, user) => {
-            if (err) {
-                return res.status(500).send(err);
+        database.getUserByUsername( username, (err1, user) => {
+            if (err1) {
+                return res.status(501).send(err1);
             }
 
             const  token  = authenticateUser(username, password, user);
             let data = {"apikey":token};
            
-            database.updateUserById(user.tenantId, user.userId, data, (err) => {
-                if (err) {
-                    return res.status(500).send(err);
+            database.updateUserById(user.tenantId, user.userId, data, (err2) => {
+                if (err2) {
+                    return res.status(502).send(err2);
                 }
-                  
-                res.json({ token });
+
+         
             });
+
+
            
+
+            
+                database.getUserById(user.tenantId, user.userId, (err, newUser) => {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                    if(!user)  return res.status(404).send('User not found');
+                    res.send(newUser);
+                });
+                    
 
 
         });

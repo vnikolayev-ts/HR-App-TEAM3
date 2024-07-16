@@ -60,7 +60,7 @@ const authenticateUser =  (username, password, userObj) => {
 const authenticateByApiKey =  (apiKey, userObj) => {
 
   try {
-   
+    
    
       if (apiKey === userObj.api-key){
 
