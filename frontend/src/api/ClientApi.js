@@ -2,7 +2,7 @@ import { showAlertFromData } from '../components/Utils/Utils';
 import { v4 as uuidv4 } from 'uuid';
 
 const apiServerPort = 3001;
-const apiBaseUrl = 'http://3.67.177.230'; // Beispiel-URL deines API-Servers
+const apiBaseUrl = 'http://18.199.10.90/'; // Beispiel-URL deines API-Servers
 const apiBaseUrl2 = 'http://127.0.0.1'; // Alternative Basis-URL (falls benötigt)
 const apiBackendUrl = `${apiBaseUrl2}:${apiServerPort}`;
 
@@ -44,18 +44,18 @@ async function getData(endPoint, isDebugOn = false) {
   }
 }
 
-async function getDatabyId(endPoint, id, isDebugOn = false) {
-  const token = getToken();
+async function getDatabyId(endPoint, id, isDebugOn = true) {
   const user = getUser();
+  const token = user.apikey;
 
   if (isDebugOn) showAlertFromData(endPoint, 'get / List');
 
   try {
     const response = await fetch(`${apiBackendUrl}/${endPoint}/${id}`, {
       headers: {
-        Authorization: `Bearer ${token}`,
-        'X-User-Id': user ? user.id : '',
-      },
+        'apikey': token,
+        'Content-Type': 'application/json; charset=UTF-8'
+      }
     });
 
     const data = await response.json();
@@ -67,8 +67,8 @@ async function getDatabyId(endPoint, id, isDebugOn = false) {
 }
 
 async function createData(endPoint, data, isDebugOn = true) {
-  const token = getToken();
   const user = getUser();
+  const token = user.apikey;
  
   if (isDebugOn) showAlertFromData(data, `create ${endPoint}`);
 
@@ -76,9 +76,8 @@ async function createData(endPoint, data, isDebugOn = true) {
     const response = await fetch(`${apiBackendUrl}/${endPoint}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-        Authorization: `Bearer ${token}`,
-        'X-User-Id': user ? user.id : '',
+        'apikey': token,
+        'Content-Type': 'application/json; charset=UTF-8'
       },
       body: JSON.stringify(data),
     });
@@ -95,8 +94,8 @@ async function createData(endPoint, data, isDebugOn = true) {
 }
 
 async function updateData(endPoint, id, data, isDebugOn = false) {
-  const token = getToken();
   const user = getUser();
+  const token = user.apikey;
 
   if (isDebugOn) showAlertFromData(data, `update [${id}] ${endPoint}`);
 
@@ -104,9 +103,8 @@ async function updateData(endPoint, id, data, isDebugOn = false) {
     const response = await fetch(`${apiBackendUrl}/${endPoint}/${id}`, {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-        Authorization: `Bearer ${token}`,
-        'X-User-Id': user ? user.id : '',
+        'apikey': token,
+        'Content-Type': 'application/json; charset=UTF-8'
       },
       body: JSON.stringify(data),
     });
@@ -123,8 +121,8 @@ async function updateData(endPoint, id, data, isDebugOn = false) {
 }
 
 export async function deleteData(endPoint, id, isDebugOn = false) {
-  const token = getToken();
   const user = getUser();
+  const token = user.apikey;
 
   if (isDebugOn) showAlertFromData(id, `delete [${id}] ${endPoint}`);
 
@@ -132,8 +130,8 @@ export async function deleteData(endPoint, id, isDebugOn = false) {
     const response = await fetch(`${apiBackendUrl}/${endPoint}/${id}`, {
       method: 'DELETE',
       headers: {
-        Authorization: `Bearer ${token}`,
-        'X-User-Id': user ? user.id : '',
+        'apikey': token,
+        'Content-Type': 'application/json; charset=UTF-8'
       },
     });
 
