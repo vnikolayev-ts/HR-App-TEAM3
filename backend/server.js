@@ -13,19 +13,19 @@ const userRoute = require('./routes/userRoute');
 
 
 
-var SERVER_URL_PUBLIC = "http://127.0.0.1";
+var SERVER_URL_PUBLIC = "http://18.199.10.90";
 
 const PORT = 3001;
 const IMAGE_PATH_PUBLIC = "/images/personal/";
 
 var public_image_path = `${SERVER_URL_PUBLIC}:${PORT}${IMAGE_PATH_PUBLIC}`;
 
-/* //update public url
- var userIP = req.headers['x-forwarded-for'] || req.socket.remoteAddress ||  null;
- SERVER_URL_PUBLIC = req.protocol + "://"+  req.get('host');
- public_image_path = `${SERVER_URL_PUBLIC}${IMAGE_PATH_PUBLIC}`;
- console.log( `Request from [${userIP}] on [${SERVER_URL_PUBLIC}]`);
-*/
+//update public url
+ //var userIP = req.headers['x-forwarded-for'] || req.socket.remoteAddress ||  null;
+ //SERVER_URL_PUBLIC = req.protocol + "://"+  req.get('host');
+ //public_image_path = `${SERVER_URL_PUBLIC}${IMAGE_PATH_PUBLIC}`;
+ //console.log( `Request from [${userIP}] on [${SERVER_URL_PUBLIC}]`);
+
 
 // Middleware für JSON-Parser
 app.use(bodyParser.json());

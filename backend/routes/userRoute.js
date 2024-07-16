@@ -25,58 +25,60 @@ function isUserSuperAdmin(user){
 
 // Login-Endpunkt für die Benutzerauthentifizierung
 router.get('/login', async (req, res) => {
-
-
-   
     const authHeader = req.headers['authorization'];
-  
-    if (authHeader) {
-        const authString = Buffer.from(authHeader.split(' ')[1], 'base64').toString();
-        const [username, password] = authString.split(':');
-        req.auth = { username, password };
-        try {
 
-        database.getUserByUsername( username, (err1, user) => {
+    if (!authHeader) {
+        return res.status(401).send({ error:'Authorization header is missing'});
+    }
+
+    const authString = Buffer.from(authHeader.split(' ')[1], 'base64').toString();
+    const [username, password] = authString.split(':');
+    req.auth = { username, password };
+
+    try {
+        database.getUserByUsername(username, (err1, user) => {
             if (err1) {
-                return res.status(501).send(err1);
+                console.error('Database error:', err1);
+                return res.status(500).send({ error:'Database error'});
             }
 
-            const  token  = authenticateUser(username, password, user);
-            let data = {"apikey":token};
-           
+            if (!user) {
+                return res.status(404).send({ error:'User not found'});
+            }
+
+            const token = authenticateUser(username, password, user);
+            if (!token) {
+                return res.status(401).send({ error:'Invalid credentials'});
+            }
+
+            const data = { "apikey": token };
+
             database.updateUserById(user.tenantId, user.userId, data, (err2) => {
                 if (err2) {
-                    return res.status(502).send(err2);
+                    console.error('Update user error:', err2);
+                    return res.status(500).send({ error:'Error updating user(apikey)'});
                 }
 
-         
-            });
-
-
-           
-
-            
                 database.getUserById(user.tenantId, user.userId, (err, newUser) => {
                     if (err) {
-                        return res.status(500).send(err);
+                        console.error('Get user by id error:', err);
+                        return res.status(500).send({ error:'Error fetching user'});
                     }
-                    if(!user)  return res.status(404).send('User not found');
+
+                    if (!newUser) {
+                        return res.status(404).send({ error:'User not found'});
+                    }
+
                     res.send(newUser);
                 });
-                    
-
-
+            });
         });
-    
-    
-      
-
-      } catch (error) {
-        console.error('Fehler bei der Benutzerauthentifizierung:', error.message);
-        res.status(401).json({ error: error.message });
-      }
+    } catch (error) {
+        console.error('Unexpected error:', error);
+        res.status(500).send('Internal server error');
     }
-    });
+});
+
 
 
     
@@ -84,7 +86,7 @@ router.get('/login', async (req, res) => {
         const apiKey = req.headers['apikey'];
     
         if (!apiKey) {
-            return res.status(400).send('API key is required');
+            return res.status(400).send({ error:'API key is required'});
         }
     
         // Beispiel: Annahme, dass Sie die TenantId und UserId aus dem req-Objekt erhalten
@@ -147,19 +149,20 @@ router.get('/', (req, res) => {
                 return res.status(500).send(err);
             }
             if(!user)  return res.status(404).send('User not found');
-            res.send(user);
+            res.send([user]);
         });
-    }
+    } else {
   
     database.getUsers(user.tenantId, (err, users) => {
         if (err) {
             return res.status(500).send(err);
         } 
-        res.send(users);
+        res.send(users); 
     });
-});
+    }
+}); 
 
-
+  
 
 router.get('/:id', (req, res) => {
    
