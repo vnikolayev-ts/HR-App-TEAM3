@@ -65,7 +65,7 @@ router.get('/', (req, res) => {
             if (err) {
                 return res.status(500).send(err);
             }
-            res.send(tenants);
+            res.send([tenants]);
         });
     }
    
