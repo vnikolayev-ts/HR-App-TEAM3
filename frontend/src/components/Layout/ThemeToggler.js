@@ -6,7 +6,7 @@ import { ReactComponent as MoonIcon } from '../../style/moon.svg';
 
 const ToggleContainer = styled.button`
   background: ${({ theme }) => theme.toggleBorder};
-  border: 2px solid ${({ theme }) => theme.toggleBorder};
+  border: px solid ${({ theme }) => theme.toggleBorder};
   border-radius: 30px;
   cursor: pointer;
   display: flex;
@@ -15,7 +15,7 @@ const ToggleContainer = styled.button`
   padding: 0.5rem;
   position: fixed;
   right: 20px;
-  top: 100px;
+  top: 120px;
   width: 4rem;
   height: 4rem;
   z-index: 100;

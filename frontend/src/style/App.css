@@ -15,7 +15,7 @@ body {
   font-size: 20px;
   font-family: Arial, sans-serif;  
   background: linear-gradient(to right, #2a96df 0%, #ffffff 49%, #186598 100%);
-  padding: 20px;
+  padding: ;
   position: relative;
   overflow: auto;
   
@@ -34,8 +34,9 @@ body {
 
 
 .pageTitle {
-  margin-top: 100px;
+  margin-top: 130px;
   font-size: 30px;
+  margin-left: 20px;
   color: #202020;
   text-shadow: 3px 3px 7px;
 }
@@ -56,12 +57,13 @@ body {
   right: -350px;
   width: 60%;
   max-width: 100%;
-  opacity: 0.08; 
+  opacity: 0.1; 
   pointer-events: none; 
 }
 
 
 .pTitle.pageTitle {
+  margin: 110px 20px;
   font-size: 30px;
   color: #222222;
   text-shadow: 3px, 3px, 7px;
@@ -120,7 +122,8 @@ body {
   width: 200px; 
   padding: 1px;
   margin-bottom: 20px; 
-  text-align: center; 
+  text-align: center;
+  margin-left: 20px; 
   
 }
 
@@ -158,7 +161,7 @@ body {
   font-size: 20px;
   position: relative;
   height: 55px;
-  margin: 10px auto;
+  margin: 10px;
   background-color: rgb(204, 204, 204, 0.3);
   border: solid 1px rgba(255, 255, 255, 0.1);
   border-radius: 5px;
@@ -201,6 +204,7 @@ body {
   flex-direction: column;
   align-items: flex-start;
   margin-right: 30px;
+  margin-left: 20px;
 }
 
 .employee-image-info {
@@ -376,6 +380,8 @@ html, body {
 
 main {
   margin-top: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
   flex: 1;
   display: flex;
   flex-direction: column;

@@ -26,7 +26,7 @@ const BirthdaysInNextTimeframe = ({ employees }) => {
   // Funktion zur Anzeige der Monatsbezeichnung
   const formatMonthsLabel = (months) => {
     if (months === 1) {
-      return '1 Month';
+      return '  month';
       return '1 month';
     } else {
       return `${months} months`;

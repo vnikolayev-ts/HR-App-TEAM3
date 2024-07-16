@@ -4,6 +4,7 @@ button{
   margin-top: 20px;
   margin-bottom: 20px;
   margin-right: 10px; 
+  margin-left: 20px;
   background-color: #909090; 
   color: rgb(255, 255, 255);
   border: none; 
@@ -75,3 +76,6 @@ button:hover {
     
     
   }
+
+  
+

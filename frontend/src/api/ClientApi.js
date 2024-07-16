@@ -44,7 +44,7 @@ async function getData(endPoint, isDebugOn = false) {
   }
 }
 
-async function getDatabyId(endPoint, id, isDebugOn = true) {
+async function getDatabyId(endPoint, id, isDebugOn = false) {
   const user = getUser();
   const token = user.apikey;
 
