@@ -10,7 +10,7 @@ function generateRandomImageName(gender) {
         throw new Error('Ungültiges Geschlecht');
     }
 
-    const randomNumber = Math.floor(Math.random() * 10); // Zufällige Zahl von 0 bis 5
+    const randomNumber = Math.floor(Math.random() * 6); // Zufällige Zahl von 0 bis 5
     return `${gender}_bild_${randomNumber}.jpg`;
 }
 
