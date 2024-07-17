@@ -57,6 +57,11 @@ app.use('/api', apiRouter);
 app.use('/employee', employeeRoute);
 app.use('/tenant', tenantRoute);
 
+// Funktion, um Hyperlinks in der Konsole zu erstellen
+const clickableLink = (text, link) => {
+  return `\u001b]8;;${link}\u0007${text}\u001b]8;;\u0007`;
+};
+
 // Server starten, nachdem die IP-Adressen ermittelt wurden
 Promise.all([getPublicIP(), getLocalIP()]).then(([publicIP, localIP]) => {
   if (publicIP) {
@@ -74,9 +79,10 @@ Promise.all([getPublicIP(), getLocalIP()]).then(([publicIP, localIP]) => {
   }
 
   const public_image_path = `http://${PUBLIC_IP_ADDRESS}:${PORT}${IMAGE_PATH_PUBLIC}`;
+  const local_server_url = `http://${LOCAL_IP_ADDRESS}:${PORT}`;
 
   app.listen(PORT, () => {
-    console.log(`Der Server läuft lokal auf ${LOCAL_IP_ADDRESS}:${PORT}`);
-    console.log(`Öffentlicher Zugriff auf ${public_image_path}`);
+    console.log(`Der Server läuft lokal auf ${clickableLink(local_server_url, local_server_url)}`);
+    console.log(`Öffentlicher Zugriff auf ${clickableLink(public_image_path, public_image_path)}`);
   });
 });
