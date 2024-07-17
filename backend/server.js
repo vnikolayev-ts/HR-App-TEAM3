@@ -3,42 +3,26 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const axios = require('axios');
-const morgan = require('morgan');
-const fs = require('fs');
-const path = require('path');
-const rfs = require('rotating-file-stream'); // Modul für rotierende Logdateien
+const os = require('os');
 
 const apiRouter = require('./routes/ApiRoute');
 const employeeRoute = require('./routes/employeeRoute');
 const tenantRoute = require('./routes/tenantRoute');
 const userRoute = require('./routes/userRoute');
 
-// Port als Parameter übergeben, Standardwert 3001
 const PORT = process.argv[2] || 3001;
 const IMAGE_PATH_PUBLIC = "/images/personal/";
 
-let SERVER_URL_PUBLIC = "";
-
-// Middleware für HTTP-Logging mit Morgan
-// Datei für die Logs erstellen
-const logDirectory = path.join(__dirname, 'logs');
-fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
-
-const accessLogStream = rfs.createStream('access.log', {
-  interval: '1d', // tägliche Rotation der Logdatei
-  path: logDirectory
-});
-
-// HTTP-Logging mit Morgan, Logs in Datei schreiben
-app.use(morgan('combined', { stream: accessLogStream }));
+let LOCAL_IP_ADDRESS = "";
+let PUBLIC_IP_ADDRESS = "";
 
 // Middleware für JSON-Parser
 app.use(bodyParser.json());
 
-//Frontend-Verbindung ermöglichen
+// Frontend-Verbindung ermöglichen
 app.use(cors());
 
-//Aufruf für JSON und API (body)
+// Aufruf für JSON und API (body)
 app.use(express.json());
 app.use(express.static('public')); // Public Ordner einbinden
 
@@ -53,25 +37,46 @@ const getPublicIP = async () => {
   }
 };
 
+// Funktion, um die lokale IP-Adresse zu ermitteln
+const getLocalIP = () => {
+  const interfaces = os.networkInterfaces();
+  for (const interfaceName in interfaces) {
+    const interface = interfaces[interfaceName];
+    for (const i of interface) {
+      if (i.family === 'IPv4' && !i.internal) {
+        return i.address;
+      }
+    }
+  }
+  return null;
+};
+
 // Verwende die API-Routen unter /api
 app.use('/user', userRoute);
 app.use('/api', apiRouter);
 app.use('/employee', employeeRoute);
 app.use('/tenant', tenantRoute);
 
-// Server starten, nachdem die öffentliche IP-Adresse abgerufen wurde
-getPublicIP().then(ip => {
-  if (ip) {
-    SERVER_URL_PUBLIC = `http://${ip}`;
+// Server starten, nachdem die IP-Adressen ermittelt wurden
+Promise.all([getPublicIP(), getLocalIP()]).then(([publicIP, localIP]) => {
+  if (publicIP) {
+    PUBLIC_IP_ADDRESS = publicIP;
   } else {
     console.warn("Konnte die öffentliche IP-Adresse nicht abrufen. Verwende die Standard-URL.");
-    SERVER_URL_PUBLIC = "http://localhost";
+    PUBLIC_IP_ADDRESS = "localhost";
   }
 
-  const public_image_path = `${SERVER_URL_PUBLIC}:${PORT}${IMAGE_PATH_PUBLIC}`;
+  if (localIP) {
+    LOCAL_IP_ADDRESS = localIP;
+  } else {
+    console.warn("Konnte die lokale IP-Adresse nicht ermitteln. Verwende die Standard-IP-Adresse.");
+    LOCAL_IP_ADDRESS = "127.0.0.1";
+  }
+
+  const public_image_path = `http://${PUBLIC_IP_ADDRESS}:${PORT}${IMAGE_PATH_PUBLIC}`;
 
   app.listen(PORT, () => {
-    console.log(`Der Server läuft auf ${SERVER_URL_PUBLIC}:${PORT}`);
-    console.log(`Public Image Path: ${public_image_path}`);
+    console.log(`Der Server läuft lokal auf ${LOCAL_IP_ADDRESS}:${PORT}`);
+    console.log(`Öffentlicher Zugriff auf ${public_image_path}`);
   });
 });
