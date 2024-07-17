@@ -54,7 +54,7 @@ const EmployeeCreate = () => {
       if (result.error) {
         throw new Error(`Error: ${result.error}`);
       } else {
-        alert('Employee saved successfully!');
+       // alert('Employee saved successfully!');
         navigate('/employee');
       }
     } catch (error) {

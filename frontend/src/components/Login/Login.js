@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiLogin } from '../../api/ClientApi';
 import { login } from './auth';
@@ -13,17 +13,33 @@ const LoginForm = () => {
 
   const [username, setUsername] = useState(testUsername);
   const [password, setPassword] = useState(testPassword);
-  const [showWarning, setShowWarning] = useState(false);
-  const [accessGranted, setAccessGranted] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [fadeOut, setFadeOut] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (errorMessage) {
+      const timer = setTimeout(() => {
+        setFadeOut(true);
+      }, 4000); 
+
+      const timer2 = setTimeout(() => {
+        setErrorMessage('');
+        setFadeOut(false);
+      }, 5000); 
+
+      return () => {
+        clearTimeout(timer);
+        clearTimeout(timer2);
+      };
+    }
+  }, [errorMessage]);
+
   const handleLoginError = (error) => {
-    
-  
-    
+    console.error('Login error:', error);
+    setErrorMessage(error.message);
   };
-  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -32,54 +48,24 @@ const LoginForm = () => {
 
       if (loginUser) {
         console.log('Access granted');
-        setAccessGranted(true);
         delete loginUser.password;
         login(loginUser);  // Funktion 'login' muss definiert sein, um den Benutzer in der Session zu speichern
         navigate('/dashboard');
       } else {
         console.log('Wrong credentials');
-        setShowWarning(true);
-        setTimeout(closeWarning, 5000); // Schließt die Warnmeldung nach 5 Sekunden
+        setErrorMessage('Wrong credentials! Try again.');
       }
     } catch (error) {
       console.error('Error during login:', error);
-      //handleLoginError(error); // Methode zur Fehlerbehandlung aufrufen
-      setErrorMessage(error.message);
+      handleLoginError(error);
     }
-  };
-
-  const closeWarning = () => {
-    setShowWarning(false);
-  };
-
-  const closeAccessGranted = () => {
-    setAccessGranted(false);
   };
 
   return (
     <div className="loginContainer">
-      <div className={`warningPopup ${showWarning ? 'visible' : ''}`}>
-        <div className="warningContent">
-          <span className="closeBtn" onClick={closeWarning}>
-            &times;
-          </span>
-          <p>Wrong credentials!</p>
-          <p>Try again.</p>
-        </div>
-      </div>
-
-      <div className={`accessPopup ${accessGranted ? 'visible' : ''}`}>
-        <div className="accessContent">
-          <span className="closeBtn" onClick={closeAccessGranted}>
-            &times;
-          </span>
-          <p>Access granted</p>
-        </div>
-      </div>
-
       {errorMessage && (
-        <div className="errorPopup visible">
-          <div className="errorContent">
+        <div className={`popup errorPopup ${fadeOut ? 'fadeOut' : 'visible'}`}>
+          <div className="popupContent">
             <span className="closeBtn" onClick={() => setErrorMessage('')}>
               &times;
             </span>
@@ -90,34 +76,28 @@ const LoginForm = () => {
 
       <img src={imgUrl} alt="Logo" className="logo" />
       <div className="loginItem">
-        <h2 className="pageTitle">Welcome back!</h2>
+        <h2 className="pageTitleL">Welcome back!</h2>
         <form onSubmit={handleSubmit}>
-          <div>
-            <div>
-              <label htmlFor="username"></label>
-              <input
-                placeholder="Username"
-                type="text"
-                id="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-              />
-            </div>
-            <br />
-            <div>
-              <label htmlFor="password"></label>
-              <input
-                placeholder="Please enter password"
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-          </div>
-          <button type="submit">Login</button>
+          <label htmlFor="username"></label>
+          <input
+            placeholder="Username"
+            type="text"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <br />
+          <label htmlFor="password"></label>
+          <input
+            placeholder="Please enter password"
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button className="loginButton" type="submit">Login</button>
         </form>
       </div>
       <img src={imgUrl} alt="Logo" className="logo-background" />

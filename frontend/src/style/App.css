@@ -115,11 +115,12 @@ body {
   text-align: center; 
   box-shadow:inset 2px 2px 7px;
   margin-left: 20px;
+  margin-top: 20px;
 }
 .label.label{
   width: 200px; 
   padding: 1px;
-  margin-bottom: 20px; 
+  margin-top: 20px; 
   text-align: center;
   margin-left: 20px; 
   
@@ -233,12 +234,7 @@ body {
 }
 
 
-.listItem  .separator2 {
-  height: 24px; /* Höhe des Textes oder der Symbole */
-  border: solid 2px;
-  width: 0;
-  
-}
+
 
 .employee-details-container {
   display: flex;
@@ -306,7 +302,7 @@ body {
   justify-content: flex-start;
 }
 
-.joke-component, .birthday-component, .actives, .birthdaySection {
+.joke-component, .birthday-component, .actives {
   flex:  300px; 
   display: flex;
   flex-direction: column;
@@ -324,19 +320,39 @@ body {
   z-index: 500;
 }
 
-.birthdays-list {
+.birthdaySection {
+  flex:  300px; 
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: rgb(205, 205, 205, 0.1);
+  backdrop-filter: blur(12px);
+  border: solid 1px rgba(255, 255, 255, 0.1);
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 3px 3px 30px rgba(0, 0, 0, 0.3);
+  z-index: 500;
+}
+
+.birthday-container {
+  margin: 10px;
+}
+
+.birthdayList {
   list-style-type: none;
-  padding-left: 1px;
+  padding-left: 0;
   margin: 0;
 }
 
 .birthdayItem {
-  
+  padding: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
- 
-  
+  justify-content: center;  
   margin-bottom: 5px;
 
 }
@@ -441,4 +457,10 @@ main {
   flex-direction: column;
 }
 
+
+.label-value-component .label {
+  font-weight: bold;
+  display: inline-block;
+  width: 170px; /* Legen Sie hier die gewünschte Breite fest */
+}
 

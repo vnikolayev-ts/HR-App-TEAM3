@@ -1,9 +1,9 @@
 import { showAlertFromData } from '../components/Utils/Utils';
 import { v4 as uuidv4 } from 'uuid';
 
-const apiServerPort = 3001;
-//const apiBaseUrl = 'http://18.199.10.90/'; // Beispiel-URL deines API-Servers
-const apiBaseUrl = 'http://127.0.0.1'; // Alternative Basis-URL (falls benötigt)
+const apiServerPort = 3002;
+const apiBaseUrl = 'http://18.199.10.90'; // Beispiel-URL deines API-Servers
+//const apiBaseUrl = 'http://127.0.0.1'; // Alternative Basis-URL (falls benötigt)
 const apiBackendUrl = `${apiBaseUrl}:${apiServerPort}`;
 
 
