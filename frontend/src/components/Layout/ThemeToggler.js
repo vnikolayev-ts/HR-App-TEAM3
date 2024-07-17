@@ -24,7 +24,7 @@ const ToggleContainer = styled.button`
 const ThemeToggler = ({ theme, toggleTheme }) => {
   return (
     <ToggleContainer onClick={toggleTheme}>
-      {theme === 'light' ? <SunIcon /> : <MoonIcon />}
+      {theme === 'light' ?  <MoonIcon />: <SunIcon />}
     </ToggleContainer>
   );
 };
