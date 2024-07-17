@@ -3,6 +3,18 @@ const database = require('../db/database');
 
 const router = express.Router();
 
+
+function generateRandomImageName(gender) {
+    const genders = ['male', 'female'];
+    if (!genders.includes(gender)) {
+        throw new Error('Ungültiges Geschlecht');
+    }
+
+    const randomNumber = Math.floor(Math.random() * 10); // Zufällige Zahl von 0 bis 5
+    return `${gender}_bild_${randomNumber}.jpg`;
+}
+
+
 // Middleware to extract tenantId from query params or headers
 router.use((req, res, next) => {
     const apiKey = req.headers['apikey'];
@@ -43,12 +55,26 @@ router.get('/', (req, res) => {
 // Get employee by ID
 router.get('/:id', (req, res) => {
     let tenantId = req.user.tenantId;
+    let public_image_path = req.public_image_path;
+    let request_image_path = req.req_image_url;
 
     const employeeId = req.params.id;
     database.getEmployeeById(tenantId, employeeId, (err, employee) => {
         if (err) {
             return res.status(500).send(err);
         }
+
+        const rImage =  generateRandomImageName(employee.gender);
+        if (public_image_path) {
+            let newPath = public_image_path + rImage;
+            employee.imagePath = newPath;
+        }
+
+        if (request_image_path) {
+            let newPath = request_image_path + rImage;
+            employee.imagePath2 = newPath;
+        }
+        console.log('Public Image Path:', public_image_path);
         res.send(employee);
     });
 });
