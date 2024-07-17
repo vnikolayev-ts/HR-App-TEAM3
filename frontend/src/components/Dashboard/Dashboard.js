@@ -9,20 +9,25 @@ import EmployeesPerDepartment from '../Employee/EmployeesPerDepartment';
 const imgUrl = '../images/logo/neues_logo.png';
 const Dashboard = () => {
   const [employeeData, setEmployeeData] = useState(null);
+  const [companyName, setCompanyName] = useState(null);
   const [userData, setUserData] = useState(null);
   const [eLength, setELength] = useState(0);
   const [uLength, setULength] = useState(0);
   const [salarySUM, setSalarySUM] = useState(0);
   const [sickDays, setSickDays] = useState(0);
+  const [title, setTitle] = useState("AA");
  
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Daten von der API abrufen
+        // Daten von der API abrufen        
         const dataEmployee = await getEmployees();
         const dataUser = await getUsers();
-
+        const tenantId = dataUser[0].tenantId;
+        const tenant = await getTenantById(tenantId);
+        setCompanyName(tenant.name);
+        setTitle(companyName);
         
         const salSum = dataEmployee.reduce((total, employee) => total + employee.salary, 0);
         const sikDaysSum = dataEmployee.reduce((total, employee) => total + employee.sick_days, 0);
@@ -43,7 +48,7 @@ const Dashboard = () => {
     };
 
     fetchData();
-  }, []); // Leeres Abhängigkeits-Array sorgt dafür, dass useEffect nur einmal ausgeführt wird
+  }, [title]); // Leeres Abhängigkeits-Array sorgt dafür, dass useEffect nur einmal ausgeführt wird
 
   if (!employeeData || !userData ) {
     return <p>Loading...</p>; // Anzeige während des Ladens der Daten
@@ -51,7 +56,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Layout >
+      <Layout pTitle={title}>
       <div className="logo-container"> 
       <img src={imgUrl} alt="Logo" className="logo" />
       </div>
