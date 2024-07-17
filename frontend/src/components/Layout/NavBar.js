@@ -1,29 +1,36 @@
 // Navbar.js
 import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link  } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { logout as performLogout } from '../Login/auth';
 import ThemeToggler from './ThemeToggler';
-
-const lUser = localStorage.getItem('loginUser');
-const loginUser = JSON.parse(lUser);
-var isAdmin = false;
-var isSuperAdmin = false;
 
 
 
 const Navbar = ({  toggleTheme }) => {
 
+const [loginUser, setLoginUser] = useState(null);
+const [isAdmin, setIsAdmin] = useState(false);
+const [isSuperAdmin, setIsSuperAdmin] = useState(false);
+
+
   const resetTheme = () => {
     setTheme('light');
     localStorage.setItem('theme', 'light');
   };
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('loginUser'));
+   
+    if (storedUser) {
+      setLoginUser(storedUser);
+      setIsAdmin(storedUser.admin === 1);
+      setIsSuperAdmin(storedUser.superadmin === 1);
+    }
+  }, []);
   
 
-  if (loginUser){
-    if (loginUser.admin === 1) isAdmin = true;
-    if (loginUser.superadmin === 1) isSuperAdmin = true;
-  }
+
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
@@ -34,7 +41,7 @@ const Navbar = ({  toggleTheme }) => {
 
   const handleLogout = () => {
     performLogout();
-    resetTheme(); // Reset theme to light
+    resetTheme(); // Theme zurücksetzen
     navigate('/');
   };
 
@@ -43,7 +50,9 @@ const Navbar = ({  toggleTheme }) => {
      
       <Link className="navigation" to="/dashboard" >Home</Link>
       <Link className="navigation" to="/employee" >Employee</Link>
-      <Link className="navigation" to={`/user-profile/${loginUser.userId}`}>Profile</Link>
+      {loginUser && (
+        <Link className="navigation" to={`/user-profile/${loginUser.userId}`}>Profile</Link>
+      )}
       {isAdmin && (
         <div className="dropdown">
           <Link className="navigation" onClick={toggleDropdown}>Setup<span className="arrow">▼</span></Link>

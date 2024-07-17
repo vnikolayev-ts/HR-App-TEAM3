@@ -62,7 +62,7 @@ function UserDetail() {
     };
 
     fetchData(); // Aufruf der fetchData Funktion, die daten aufruft
-  }, [foundUser, id]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
+  }, [id]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
 
   if (!foundUser) {
     return <p>Loading...</p>; // Anzeige während des Ladens der Daten

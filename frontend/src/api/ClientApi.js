@@ -2,14 +2,10 @@ import { showAlertFromData } from '../components/Utils/Utils';
 import { v4 as uuidv4 } from 'uuid';
 
 const apiServerPort = 3001;
-const apiBaseUrl = 'http://18.199.10.90/'; // Beispiel-URL deines API-Servers
-const apiBaseUrl2 = 'http://127.0.0.1'; // Alternative Basis-URL (falls benötigt)
-const apiBackendUrl = `${apiBaseUrl2}:${apiServerPort}`;
+//const apiBaseUrl = 'http://18.199.10.90/'; // Beispiel-URL deines API-Servers
+const apiBaseUrl = 'http://127.0.0.1'; // Alternative Basis-URL (falls benötigt)
+const apiBackendUrl = `${apiBaseUrl}:${apiServerPort}`;
 
-// Funktion zum Abrufen des Tokens aus dem Local Storage
-const getToken = () => {
-  return localStorage.getItem('token');
-};
 
 // Funktion zum Abrufen von Benutzerdaten aus dem Local Storage
 const getUser = () => {
@@ -169,8 +165,32 @@ export async function apiLogin(username, password) {
     });
 
     if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Login failed');
+      let errorMessage = 'An unexpected error occurred. Please try again later.';
+    
+      if (res.status === 401) {
+        errorMessage = 'Invalid username or password. Please try again.';
+      } else if (res.status === 404) {
+        const contentType = res.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          // Handle JSON response
+          try {
+            const errorData = await res.json();
+            errorMessage = errorData.message || 'User not found';
+          } catch (error) {
+            console.error('Error parsing JSON response:', error);
+            errorMessage = 'User not found';
+          }
+        } else {
+          // Handle plain text response
+          errorMessage = 'User not found';
+        }
+      } else if (res.status === 500) {
+        errorMessage = 'Internal server error. Please try again later.';
+      } else {
+        errorMessage = 'Unexpected error occurred. Please try again later.';
+      }
+    
+      throw new Error(errorMessage || 'Login failed');
     }
 
     const data = await res.json();

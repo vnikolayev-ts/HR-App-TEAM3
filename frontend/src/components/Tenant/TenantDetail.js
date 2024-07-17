@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from "react";
 import LabelValueComponent from './../Utils/LabelValueComponent';
-
 import Layout from "../Layout/Layout";
-import { getTenantById } from "../../api/ClientApi";
-import { getLogUser } from '../../api/ClientApi';
-
+import { getTenantById, getLogUser } from '../../api/ClientApi';
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 function TenantDetail() {
-
   const { id } = useParams();
   const loggedInUser = getLogUser();
   let isAdmin = false;
   let isSuperAdmin = false;
   let isHimSelf = false;
+
   if (loggedInUser.admin === 1) isAdmin = true;
   if (loggedInUser.superadmin === 1) isSuperAdmin = true;
   if (String(loggedInUser.tenantId) === String(id)) isHimSelf = true;
@@ -21,7 +18,7 @@ function TenantDetail() {
   const [name, setName] = useState("");
   const [tenant, setTenant] = useState(null);
   const [tenantId, setTenantId] = useState(null);
-  const [title, setTitel] = useState('Tenant Detail Page');
+  const [title, setTitle] = useState('Tenant Detail Page');
 
   /* Back Button navigation zurück zum /dashboard */
   const navigate = useNavigate();
@@ -33,54 +30,38 @@ function TenantDetail() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-   
-        const foundTenant = await getTenantById(id); // Aufruf der async Funktion getEmployees -API
-      
-          
+        const foundTenant = await getTenantById(id);
 
         if (foundTenant) {
-          setTitel(`Tenant Details ${foundTenant.name}`)
-          setName(foundTenant.name);
-          setTenantId(foundTenant.tenantId);
-          setTenant(foundTenant);
+          // Zustand nur aktualisieren, wenn sich die Daten geändert haben
+          if (foundTenant.name !== name) setName(foundTenant.name);
+          if (foundTenant.tenantId !== tenantId) setTenantId(foundTenant.tenantId);
+          if (foundTenant !== tenant) setTenant(foundTenant);
+          if (`Tenant Details ${foundTenant.name}` !== title) setTitle(`Tenant Details ${foundTenant.name}`);
         }
-
       } catch (error) {
-        console.error("Error fetching HR data:", error);
-        // Hier könntest du zusätzliche Fehlerbehandlung durchführen, z.B. eine Fehlermeldung anzeigen
-        return <p>Loading... Error </p>; // Anzeige während des Ladens der Daten
+        console.error("Error fetching tenant data:", error);
       }
     };
 
-    fetchData(); // Aufruf der fetchData Funktion, die daten aufruft
-  }, [id, title]); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
+    fetchData();
+  }, [id]); // Beachte, dass id hier die einzige Abhängigkeit ist
 
   if (!tenant) {
-    return <p>Loading...</p>; // Anzeige während des Ladens der Daten
-  }
-
-
-
-  if (!tenant) {
-    return <div>Tenant not found {id}</div>;
+    return <p>Loading...</p>;
   }
 
   return (
     <Layout pTitle={title}>
-       {isSuperAdmin === true && (
-           <button onClick={handleBackClick} className="backButton">Back</button>
-        )}
-    
-      <LabelValueComponent label={"Tenant-ID"} value={tenantId } />
-      <LabelValueComponent label={"Name"} value={name } />
-
-      {isAdmin === true && (
+      {isSuperAdmin && (
+        <button onClick={handleBackClick} className="backButton">Back</button>
+      )}
+      <LabelValueComponent label={"Tenant-ID"} value={tenantId} />
+      <LabelValueComponent label={"Name"} value={name} />
+      {isAdmin && (
         <Link to={`/tenant-edit/${tenant.tenantId}`}><button className="editButton">Edit</button></Link>
       )}
-
-
-      
-     </Layout>
+    </Layout>
   );
 }
 

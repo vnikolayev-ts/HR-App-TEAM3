@@ -42,7 +42,7 @@ const TenantCreate = () => {
       if (result.error) {
         throw new Error(`Error: ${result.error}`);
       } else {
-        alert('Tenant created successfully!')
+        //alert('Tenant created successfully!')
         navigate ('/tenant');
       }
     } catch (error) {

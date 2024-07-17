@@ -42,7 +42,7 @@ const EmployeeDetails = () => {
       }
     };
 
-    fetchData(); // Aufruf der fetchData Funktion, die getHRData aufruft
+    fetchData(); 
 
   }, []); // Leeres Array als zweites Argument für useEffect bedeutet, dass es nur einmalig beim Laden der Komponente ausgeführt wird
 

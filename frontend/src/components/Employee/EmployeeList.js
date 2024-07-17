@@ -1,6 +1,6 @@
 
 import ScoreComponent from '../Utils/ScoreComponent';
-import { getEmployees, getEmployeeById, getTenantById } from '../../api/ClientApi';
+import { getEmployees } from '../../api/ClientApi';
 
 import React from 'react';
 import { useEffect, useState } from 'react';
@@ -12,7 +12,7 @@ import Layout from '../Layout/Layout';
 const EmployeeList = () => {
 
   const [employeeData, setEmployeeData] = useState(null);
-  const [title, setTitle] = useState("Employee List");
+  const [title] = useState("Employee List");
 
 
   useEffect(() => {

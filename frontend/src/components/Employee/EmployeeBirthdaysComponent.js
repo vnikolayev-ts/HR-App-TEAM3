@@ -12,9 +12,9 @@ const BirthdaysInNextTimeframe = ({ employees }) => {
   future6MonthsDate.setMonth(future6MonthsDate.getMonth() + 3);
 
   // Funktion zum Formatieren des Datums in YYYY-MM-DD
-  const formatDate = (date) => {
+ /* const formatDate = (date) => {
     return date.toLocaleDateString('de-DE'); // Adjust 'de-DE' to your desired locale if needed
-  };
+  };*/
 
   const formatDateNoYear = (dateString, local = 'en-US') => {
     const date = new Date(dateString);
@@ -26,8 +26,8 @@ const BirthdaysInNextTimeframe = ({ employees }) => {
   // Funktion zur Anzeige der Monatsbezeichnung
   const formatMonthsLabel = (months) => {
     if (months === 1) {
-      return '  month';
-      return '1 month';
+      return ' 1 month';
+     
     } else {
       return `${months} months`;
     }

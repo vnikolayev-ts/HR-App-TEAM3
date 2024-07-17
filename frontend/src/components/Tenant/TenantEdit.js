@@ -97,13 +97,13 @@ function TenantEdit() {
         if (result.error) {
           throw new Error(`Error: ${result.error}`);
         } else {
-          alert('Tenant deleted successfully!');
+          //alert('Tenant deleted successfully!');
           navigate('/tenant');
         }
       }
     } catch (error) {
-      console.error('Error deleting Tenant:', error);
-      alert("Failed to delete user. Please try again later.");
+      console.error('Error saving Tenant:', error);
+      alert("Failed to save user. Please try again later.");
     }  
   };
 
@@ -120,7 +120,7 @@ function TenantEdit() {
       if (result.error) {
         throw new Error(`Error: ${result.error}`);
       } else {
-        alert('Tenant deleted successfully!');
+        //alert('Tenant deleted successfully!');
         navigate('/tenant');
       }
     } catch (error) {

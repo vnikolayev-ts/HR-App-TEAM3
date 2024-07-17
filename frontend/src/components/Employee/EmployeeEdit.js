@@ -49,7 +49,7 @@ const EmployeeEdit = () => {
       if (result.error) {
         throw new Error(`Error: ${result.error}`);
       } else {
-        alert('Employee saved successfully!');
+        //alert('Employee saved successfully!');
         navigate('/employee');
       }
     } catch (error) {
@@ -74,7 +74,7 @@ const EmployeeEdit = () => {
       if (result.error) {
         throw new Error(`Error: ${result.error}`);
       } else {
-        alert('Employee deleted successfully!');
+       // alert('Employee deleted successfully!');
         navigate('/employee');
       }
     } catch (error) {

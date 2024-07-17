@@ -38,7 +38,7 @@ function CreateUser() {
       // Aufruf der Funktion createUser aus der API, um den Benutzer zu erstellen
       let result = await createUser(newUser);
       if (result === false) throw new Error();
-        alert("User created successfully!");
+        //alert("User created successfully!");
       navigate("/user");
     } catch (error) {
       console.error("Error creating user:", error);

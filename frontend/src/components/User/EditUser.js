@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import Layout from "../Layout/Layout";
 import { getUserById,updateUser,deleteUser } from "../../api/ClientApi";
-import LabelValueComponent from './../Utils/LabelValueComponent';
+
 import LabelInputComponent from './../Utils/LabelInputComponent';
 
 import { getLogUser } from '../../api/ClientApi';
@@ -22,7 +22,7 @@ function EditUser() {
   if (loggedInUser.superadmin === 1) isSuperAdmin = true;
   if (String(loggedInUser.userId) === String(id)) isHimSelf = true;
 
-  const [tenantId, setTenantId] = useState(null);
+
   const [user, setUser] = useState(null);
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
@@ -75,7 +75,7 @@ function EditUser() {
     };
 
     fetchData();
-  }, []);
+  }, [id]);
 
   if (!user) {
     return <p>Loading...</p>;
@@ -100,7 +100,7 @@ function EditUser() {
       if (result.error) {
         throw new Error(`Error: ${result.error}`);
       } else {
-        alert('User saved successfully!');
+       // alert('User saved successfully!');
         navigate('/user');
       }
     } catch (error) {
@@ -121,7 +121,7 @@ alert("User data saved!");
       if (result.error) {
         throw new Error(`Error: ${result.error}`);
       } else {
-        alert('User deleted successfully!');
+        //alert('User deleted successfully!');
         navigate('/user');
       }
     } catch (error) {

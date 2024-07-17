@@ -96,7 +96,7 @@ const EmployeeCreate = () => {
       if (result.error) {
         throw new Error(`Error: ${result.error}`);
       } else {
-        alert('Employee created successfully!');
+       // alert('Employee created successfully!');
         navigate('/employee');
       }
     } catch (error) {
@@ -109,7 +109,7 @@ const EmployeeCreate = () => {
     e.preventDefault();
     if (window.confirm("All data will be resetted. Are you sure?")) {
       window.location.reload(true);
-      alert("All data have been resetted.");
+     // alert("All data have been resetted.");
     } else {
       alert("Nothing has been changed.");
     }
