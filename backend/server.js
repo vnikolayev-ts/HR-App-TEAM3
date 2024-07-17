@@ -3,7 +3,10 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const axios = require('axios');
-const morgan = require('morgan'); // Modul für HTTP-Logging
+const morgan = require('morgan');
+const fs = require('fs');
+const path = require('path');
+const rfs = require('rotating-file-stream'); // Modul für rotierende Logdateien
 
 const apiRouter = require('./routes/ApiRoute');
 const employeeRoute = require('./routes/employeeRoute');
@@ -17,7 +20,17 @@ const IMAGE_PATH_PUBLIC = "/images/personal/";
 let SERVER_URL_PUBLIC = "";
 
 // Middleware für HTTP-Logging mit Morgan
-app.use(morgan('dev'));
+// Datei für die Logs erstellen
+const logDirectory = path.join(__dirname, 'logs');
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+
+const accessLogStream = rfs.createStream('access.log', {
+  interval: '1d', // tägliche Rotation der Logdatei
+  path: logDirectory
+});
+
+// HTTP-Logging mit Morgan, Logs in Datei schreiben
+app.use(morgan('combined', { stream: accessLogStream }));
 
 // Middleware für JSON-Parser
 app.use(bodyParser.json());
