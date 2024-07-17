@@ -26,8 +26,10 @@ export const checkUrlExists = async (url) => {
 
   try {
     const response = await fetch(url, { method: 'HEAD' });
-    return true;
+    // Überprüfen, ob der Statuscode im Bereich 200-299 liegt
+    return response.ok;
   } catch (error) {
+    // Bei einem Fehler false zurückgeben
     return false;
   }
 };
