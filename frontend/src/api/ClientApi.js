@@ -261,7 +261,11 @@ export async function createEmployee(data) {
 
 export async function updateEmployee(id, data) {
 
-  return updateData("employee", id, data, true);
+  delete data.imagePath; 
+  delete data.imagePath2; 
+  delete data.tenatId; 
+
+  return updateData("employee", id, data, false);
 }
 
 export async function deleteEmployee(id) {

@@ -91,7 +91,7 @@ const EmployeeEdit = () => {
     <Layout pTitle={title}>
       <button className="backButton" onClick={handleBackClick}>Back</button>
       <div className="create-form">
-        <LabelInputComponent lab={"Img Url"} name="image" val={employee.image} onChange={handleInputChange} />
+       
         <LabelInputComponent lab={"First Name"} name="first_name" val={employee.first_name} onChange={handleInputChange} />
         <LabelInputComponent lab={"Last Name"} name="last_name" val={employee.last_name} onChange={handleInputChange} />
         <LabelInputComponent lab={"Date of Birth"} name="birthdate" val={employee.birthdate} onChange={handleInputChange} />
@@ -103,7 +103,7 @@ const EmployeeEdit = () => {
         <LabelInputComponent lab={"Address"} name="address" val={employee.address} onChange={handleInputChange} />
         <LabelInputComponent lab={"Sick Days"} name="sick_days" val={employee.sick_days} onChange={handleInputChange} />
         <LabelInputComponent lab={"Salary"} name="salary" val={employee.salary} onChange={handleInputChange} />
-        <LabelInputComponent lab={"MA score"} name="ma_score" val={employee.ma_score} onChange={handleInputChange} />
+        <LabelInputComponent lab={"MA score"} name="ma_score" type="number" min={1} max={100} val={employee.ma_score} onChange={handleInputChange} />
         <h3>Skills:</h3>
         <LabelInputComponent lab={"Teamwork"} name="softskill_teamwork" type="number" min={1} max={10} val={employee.softskill_teamwork} onChange={handleInputChange} />
         <LabelInputComponent lab={"Communication"} name="softskill_communication" type="number" min={1} max={10} val={employee.softskill_communication} onChange={handleInputChange} />

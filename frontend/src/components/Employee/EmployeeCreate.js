@@ -31,6 +31,7 @@ const EmployeeCreate = () => {
   const [reliability, setReliability] = useState('');
   const [initiative, setInitiative] = useState('');
   const [image, setImage] = useState('');
+  const [mascore, setMaScore] = useState('');
   
 
   const [title] = useState('Create Employee');
@@ -87,7 +88,7 @@ const EmployeeCreate = () => {
       perskill_creativity:creativity,
       perskill_reliability:reliability ,
       perskill_initiative:initiative ,
-      imgUrl:image
+      ma_score:mascore
     };
 
     try {
@@ -120,7 +121,7 @@ const EmployeeCreate = () => {
       <button onClick={handleBackClick} className='backButton'>Back</button>
       <form onSubmit={handleCreate}>
       <div className="createItem">
-       <LabelInputComponent lab={"Img Url"} name="image" val={image} onChange={handleInputChange}/>
+     
         <LabelInputComponent lab="First Name " name="first_name" value={firstName} onChange={handleInputChange} />
         <LabelInputComponent lab="Last Name " name="last_name" value={lastName} onChange={handleInputChange} />
         <LabelInputComponent lab="Date of Birth " name="birthdate" type="date" onChange={handleInputChange} />
@@ -132,19 +133,8 @@ const EmployeeCreate = () => {
         <LabelInputComponent lab="Address" name="address" value={address} onChange={handleInputChange} />
         <LabelInputComponent lab="Sick Days" name="sick_days" type="number"  min="1" onChange={handleInputChange} />
         <LabelInputComponent lab="Salary" name="salary" type="number"  min="1" onChange={handleInputChange} />
-
-        <h3>Skills:</h3>
-        <LabelInputComponent lab="Teamwork" name="teamwork" type="number" min="1" max="10" value={teamwork} onChange={handleInputChange} />
-        <LabelInputComponent lab="Communication" name="communication" type="number" min="1" max="10" value={communication} onChange={handleInputChange} />
-        <LabelInputComponent lab="Leadership" name="leadership" type="number" min="1" max="10" value={leadership} onChange={handleInputChange} />
-        <LabelInputComponent lab="Problem Solving" name="problem_solving" type="number" min="1" max="10" value={problemSolving} onChange={handleInputChange} />
-        <LabelInputComponent lab="Adaptability" name="adaptability" type="number" min="1" max="10" value={adaptability} onChange={handleInputChange} />
-        <LabelInputComponent lab="Punctuality" name="punctuality" type="number" min="1" max="10" value={punctuality} onChange={handleInputChange} />
-        <LabelInputComponent lab="Friendliness" name="friendliness" type="number" min="1" max="10" value={friendliness} onChange={handleInputChange} />
-        <LabelInputComponent lab="Creativity" name="creativity" type="number" min="1" max="10" value={creativity} onChange={handleInputChange} />
-        <LabelInputComponent lab="Reliability" name="reliability" type="number" min="1" max="10" value={reliability} onChange={handleInputChange} />
-        <LabelInputComponent lab="Initiative" name="initiative" type="number" min="1" max="10" value={initiative} onChange={handleInputChange} />
-          </div>
+        <LabelInputComponent lab={"MA score"} name="mascore" val={mascore} onChange={handleInputChange} />
+      </div>
 
         <button className="resetButton" onClick={handleReset}>Reset</button>
         <button className="createButton" type="submit">create</button>
