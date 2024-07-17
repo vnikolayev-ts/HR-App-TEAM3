@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const axios = require('axios');
+const morgan = require('morgan'); // Modul für HTTP-Logging
 
 const apiRouter = require('./routes/ApiRoute');
 const employeeRoute = require('./routes/employeeRoute');
@@ -14,6 +15,9 @@ const PORT = process.argv[2] || 3001;
 const IMAGE_PATH_PUBLIC = "/images/personal/";
 
 let SERVER_URL_PUBLIC = "";
+
+// Middleware für HTTP-Logging mit Morgan
+app.use(morgan('dev'));
 
 // Middleware für JSON-Parser
 app.use(bodyParser.json());
