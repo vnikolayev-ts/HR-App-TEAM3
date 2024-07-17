@@ -3,7 +3,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 const apiServerPort = 3001;
 //const apiBaseUrl = 'http://18.199.10.90'; // Beispiel-URL deines API-Servers
-const apiBaseUrl = 'http://127.0.0.1'; // Alternative Basis-URL (falls benötigt)
+
+const apiBaseUrl = 'http://78.94.156.45:3001'; // Beispiel-URL deines API-Servers Debian Server
+
+//const apiBaseUrl = 'http://127.0.0.1'; // Alternative Basis-URL (falls benötigt)
 const apiBackendUrl = `${apiBaseUrl}:${apiServerPort}`;
 
 
@@ -92,6 +95,7 @@ async function createData(endPoint, data, isDebugOn = true) {
 async function updateData(endPoint, id, data, isDebugOn = false) {
   const user = getUser();
   const token = user.apikey;
+  delete data.tenatId;
 
   if (isDebugOn) showAlertFromData(data, `update [${id}] ${endPoint}`);
 
@@ -263,7 +267,7 @@ export async function updateEmployee(id, data) {
 
   delete data.imagePath; 
   delete data.imagePath2; 
-  delete data.tenatId; 
+  
 
   return updateData("employee", id, data, false);
 }
