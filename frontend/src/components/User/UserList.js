@@ -5,7 +5,7 @@ import { getUsers } from '../../api/ClientApi';
 
 import Layout from "../Layout/Layout";
 import { Link, useNavigate } from "react-router-dom";
-
+import { getLogUser } from '../../api/ClientApi';
 
 
 
@@ -15,6 +15,7 @@ import { Link, useNavigate } from "react-router-dom";
 const UserList = () => {
   const [userData, setUserData] = useState(null);
   const [title, setTitle] = useState('User List Page');
+  const [loggedInUser, setLogUser] = useState(null);
 
   /* Back Button navigation zurück zum /dashboard */
   const navigate = useNavigate();
@@ -33,6 +34,8 @@ const UserList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const lUser = getLogUser();
+        setLogUser(lUser);
 
         const data = await getUsers(); // Aufruf der async Funktion getEmployees -API
         setUserData(data);
@@ -75,7 +78,15 @@ const UserList = () => {
               ) : (
                 <div className="user">User</div>
               )}
-              <div className="userActive">Active</div>
+
+
+              
+
+              {loggedInUser.userId === user.userId && 
+                <div className="userActive">Active</div>
+              
+              }
+              
                             
              <button className="viewButton">Details</button>     
 
