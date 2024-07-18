@@ -4,9 +4,9 @@ import { v4 as uuidv4 } from 'uuid';
 const apiServerPort = 3001;
 //const apiBaseUrl = 'http://18.199.10.90'; // Beispiel-URL deines API-Servers
 
-const apiBaseUrl = 'http://78.94.156.45:3001'; // Beispiel-URL deines API-Servers Debian Server
+//const apiBaseUrl = 'http://78.94.156.45:3001'; // Beispiel-URL deines API-Servers Debian Server
 
-//const apiBaseUrl = 'http://127.0.0.1'; // Alternative Basis-URL (falls benötigt)
+const apiBaseUrl = 'http://127.0.0.1'; // Alternative Basis-URL (falls benötigt)
 const apiBackendUrl = `${apiBaseUrl}:${apiServerPort}`;
 
 

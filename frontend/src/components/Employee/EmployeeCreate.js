@@ -133,7 +133,7 @@ const EmployeeCreate = () => {
         <LabelInputComponent lab="Address" name="address" value={address} onChange={handleInputChange} />
         <LabelInputComponent lab="Sick Days" name="sick_days" type="number"  min="1" onChange={handleInputChange} />
         <LabelInputComponent lab="Salary" name="salary" type="number"  min="1" onChange={handleInputChange} />
-        <LabelInputComponent lab={"MA score"} name="mascore" val={mascore} onChange={handleInputChange} />
+        <LabelInputComponent lab={"MA score"} name="mascore" type='number' min='1' max='100' onChange={handleInputChange} />
       </div>
 
         <button className="resetButton" onClick={handleReset}>Reset</button>

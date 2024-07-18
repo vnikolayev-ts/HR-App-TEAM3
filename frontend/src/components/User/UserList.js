@@ -61,7 +61,7 @@ const UserList = () => {
         <ul className="list user">
           {userData.map((user) => (
                <Link to={`/user/${user.userId}`} key={user.userId} className="listItemLink">
-            <li className="listItem">
+            <li className="listItem active" >
 
               <div className="name">{user.name}</div>
             
@@ -75,6 +75,7 @@ const UserList = () => {
               ) : (
                 <div className="user">User</div>
               )}
+              <div className="userActive">Active</div>
                             
              <button className="viewButton">Details</button>     
 
