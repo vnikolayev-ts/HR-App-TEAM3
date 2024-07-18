@@ -7,7 +7,9 @@ const router = express.Router();
 function generateRandomImageName(gender) {
     const genders = ['male', 'female'];
     if (!genders.includes(gender)) {
-        throw new Error('Ungültiges Geschlecht');
+      //  throw new Error('Ungültiges Geschlecht');
+
+        return `noimage.jpg`;
     }
  
     const randomNumber = Math.floor(Math.random() * 6); // Zufällige Zahl von 0 bis 5
