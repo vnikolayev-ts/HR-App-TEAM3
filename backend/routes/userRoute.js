@@ -1,6 +1,6 @@
 const express = require('express');
 const database = require('../db/database');
-const { authenticateUser } = require('../auth'); // Passe den Pfad zu auth.js an
+const { authenticateUser, getCryprtPasswort } = require('../auth'); // Passe den Pfad zu auth.js an
 
 
 const router = express.Router();
@@ -193,7 +193,9 @@ router.post('/', (req, res) => {
     }
    
     const newUser = req.body;
-    database.createUser(tenantId, newUser, (err) => {
+    const nUserCryptPass = getCryprtPasswort(newUser);
+
+    database.createUser(tenantId, nUserCryptPass, (err) => {
         if (err) {
             return res.status(500).send(err);
         }
@@ -211,7 +213,12 @@ router.put('/:id', (req, res) => {
     }
 
     const updateUser = req.body;
-    database.updateUserById(tenantId, userId, updateUser, (err) => {
+
+   
+    const nUserCryptPass = getCryprtPasswort(updateUser);
+
+
+    database.updateUserById(tenantId, userId, nUserCryptPass, (err) => {
         if (err) {
             return res.status(500).send(err);
         }

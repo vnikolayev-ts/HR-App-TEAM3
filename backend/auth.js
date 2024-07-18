@@ -56,6 +56,16 @@ const authenticateUser =  (username, password, userObj) => {
   }
 };
 
+const getCryprtPasswort =  ( userObj) => {
+
+ 
+  let retObj = userObj;
+  const md5HashPW = computeMd5Hash(userObj.password);
+  retObj.password = md5HashPW;
+
+  return retObj;
+}
+
 // Funktion zur Überprüfung von Benutzername und Passwort
 const authenticateByApiKey =  (apiKey, userObj) => {
 
@@ -82,6 +92,6 @@ const authenticateByApiKey =  (apiKey, userObj) => {
 
 
 module.exports = {
-  authenticateUser
+  authenticateUser, getCryprtPasswort
 };
   
