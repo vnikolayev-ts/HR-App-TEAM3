@@ -18,6 +18,7 @@
   },
   "scripts": {
     "start": "node ./node_modules/react-scripts/bin/react-scripts.js start",
+    "start2": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
