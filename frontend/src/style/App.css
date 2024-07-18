@@ -174,6 +174,13 @@ body {
   min-width: 920px;
 }
 
+.listItem .userActive{
+  color: #d90000;
+  font-weight: bold;
+
+}
+
+
 .listItem div{
  
   border-right: solid 2px;
