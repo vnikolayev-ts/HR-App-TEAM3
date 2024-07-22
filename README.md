@@ -64,52 +64,35 @@ Sie können unterschiedliche Listen verwalten, basierend auf Ihrer Rolle, die vo
 
 ## Screenshots
 
-Hier sind einige Screenshots unserer Anwendung:
-
-### Neues Logo
-<a href="./neues_logo.png" target="_blank">
-  <img src="./neues_logo.png" alt="Neues Logo" width="300" />
-</a>
-
-### Login-Seite
-<a href="./screenshots/login_page.png" target="_blank">
-  <img src="./screenshots/login_page.png" alt="Login Page" width="300" />
-</a>
-
-### Dashboard
-<a href="./screenshots/dashboard.png" target="_blank">
-  <img src="./screenshots/dashboard.png" alt="Dashboard" width="300" />
-</a>
-
-### Mitarbeiterliste
-<a href="./screenshots/employee_list.png" target="_blank">
-  <img src="./screenshots/employee_list.png" alt="Employee List" width="300" />
-</a>
-
-### Mitarbeiterdetails
-<a href="./screenshots/employee_details.png" target="_blank">
-  <img src="./screenshots/employee_details.png" alt="Employee Details" width="300" />
-</a>
-
-### Mitarbeiter bearbeiten
-<a href="./screenshots/employee_edit.png" target="_blank">
-  <img src="./screenshots/employee_edit.png" alt="Employee Edit" width="300" />
-</a>
-
-### Mitarbeiter erstellen
-<a href="./screenshots/employee_create.png" target="_blank">
-  <img src="./screenshots/employee_create.png" alt="Employee Create" width="300" />
-</a>
-
-### Aktiver Benutzer
-<a href="./screenshots/active-user.png" target="_blank">
-  <img src="./screenshots/active-user.png" alt="Active User" width="300" />
-</a>
-
-### Dunkelmodus
-<a href="./screenshots/darkmode.png" target="_blank">
-  <img src="./screenshots/darkmode.png" alt="Dark Mode" width="300" />
-</a>
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    <a href="./neues_logo.png" target="_blank">
+        <img src="./neues_logo.png" alt="Neues Logo" width="300" style="flex: 1;" />
+    </a>
+    <a href="./screenshots/login_page.png" target="_blank">
+        <img src="./screenshots/login_page.png" alt="Login Page" width="300" style="flex: 1;" />
+    </a>
+    <a href="./screenshots/dashboard.png" target="_blank">
+        <img src="./screenshots/dashboard.png" alt="Dashboard" width="300" style="flex: 1;" />
+    </a>
+    <a href="./screenshots/employee_list.png" target="_blank">
+        <img src="./screenshots/employee_list.png" alt="Employee List" width="300" style="flex: 1;" />
+    </a>
+    <a href="./screenshots/employee_details.png" target="_blank">
+        <img src="./screenshots/employee_details.png" alt="Employee Details" width="300" style="flex: 1;" />
+    </a>
+    <a href="./screenshots/employee_edit.png" target="_blank">
+        <img src="./screenshots/employee_edit.png" alt="Employee Edit" width="300" style="flex: 1;" />
+    </a>
+    <a href="./screenshots/employee_create.png" target="_blank">
+        <img src="./screenshots/employee_create.png" alt="Employee Create" width="300" style="flex: 1;" />
+    </a>
+    <a href="./screenshots/active-user.png" target="_blank">
+        <img src="./screenshots/active-user.png" alt="Active User" width="300" style="flex: 1;" />
+    </a>
+    <a href="./screenshots/darkmode.png" target="_blank">
+        <img src="./screenshots/darkmode.png" alt="Dark Mode" width="300" style="flex: 1;" />
+    </a>
+</div>
 
 
 
