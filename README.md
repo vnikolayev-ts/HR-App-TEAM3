@@ -17,8 +17,22 @@ Folgen Sie diesen Schritten, um HR APP TEAM3 zu installieren und lokal auszufüh
 
 ```bash
 # Repository klonen
-git clone [https://github.com/Benutzername/HR_APP_TEAM3.git](https://github.com/vnikolayev-ts/HR-App-TEAM3.git)
-cd HR_APP_TEAM3
+git clone https://github.com/vnikolayev-ts/HR-App-TEAM3.git
+```
+# Backened installieren & starten
+```bash
+cd HR_APP_TEAM3/backend
+
+# Abhängigkeiten installieren
+npm install
+
+# Anwendung starten
+npm start
+```
+
+# Frontende installieren & starten
+```bash
+cd HR_APP_TEAM3/backend
 
 # Abhängigkeiten installieren
 npm install
