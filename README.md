@@ -65,29 +65,32 @@ Sie können unterschiedliche Listen verwalten, basierend auf Ihrer Rolle, die vo
 ## Screenshots
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-       <a href="./screenshots/login_page.png" target="_blank">
-        <img src="./screenshots/login_page.png" alt="Login Page" width="300" style="flex: 1;" />
+       <a href="./readme/screenshots/login_page.png" target="_blank">
+        <img src="./readme/screenshots/login_page.png" alt="Login Page" width="300" style="flex: 1;" />
     </a>
-    <a href="./screenshots/dashboard.png" target="_blank">
-        <img src="./screenshots/dashboard.png" alt="Dashboard" width="300" style="flex: 1;" />
+    <a href="./readme/screenshots/dashboard.png" target="_blank">
+        <img src="./readme/screenshots/dashboard.png" alt="Dashboard" width="300" style="flex: 1;" />
     </a>
-    <a href="./screenshots/employee_list.png" target="_blank">
-        <img src="./screenshots/employee_list.png" alt="Employee List" width="300" style="flex: 1;" />
+    <a href="./readme/screenshots/employee_list.png" target="_blank">
+        <img src="./readme/screenshots/employee_list.png" alt="Employee List" width="300" style="flex: 1;" />
     </a>
-    <a href="./screenshots/employee_details.png" target="_blank">
-        <img src="./screenshots/employee_details.png" alt="Employee Details" width="300" style="flex: 1;" />
+    <a href="./readme/screenshots/employee_details.png" target="_blank">
+        <img src="./readme/screenshots/employee_details.png" alt="Employee Details" width="300" style="flex: 1;" />
     </a>
-    <a href="./screenshots/employee_edit.png" target="_blank">
-        <img src="./screenshots/employee_edit.png" alt="Employee Edit" width="300" style="flex: 1;" />
+    <a href="./readme/screenshots/user_list.png" target="_blank">
+        <img src="./readme/screenshots/user_list.png" alt="User List" width="300" style="flex: 1;" />
     </a>
-    <a href="./screenshots/employee_create.png" target="_blank">
-        <img src="./screenshots/employee_create.png" alt="Employee Create" width="300" style="flex: 1;" />
+    <a href="./readme/screenshots/tenant_list.png" target="_blank">
+        <img src="./readme/screenshots/tenant_list.png" alt="Tenant List" width="300" style="flex: 1;" />
     </a>
-    <a href="./screenshots/active-user.png" target="_blank">
-        <img src="./screenshots/active-user.png" alt="Active User" width="300" style="flex: 1;" />
+    <a href="./readme/screenshots/darkdash.png" target="_blank">
+        <img src="./readme/screenshots/darkdash.png" alt="Dark Dash" width="300" style="flex: 1;" />
     </a>
-    <a href="./screenshots/darkmode.png" target="_blank">
-        <img src="./screenshots/darkmode.png" alt="Dark Mode" width="300" style="flex: 1;" />
+    <a href="./readme/screenshots/darkmode.png" target="_blank">
+        <img src="./readme/screenshots/darkmode.png" alt="Dark Mode Employee List" width="300" style="flex: 1;" />
+    </a>
+    <a href="./readme/screenshots/darkuser.png" target="_blank">
+        <img src="./readme/screenshots/darkuser.png" alt="Dark User" width="300" style="flex: 1;" />
     </a>
 </div>
 
@@ -95,11 +98,11 @@ Sie können unterschiedliche Listen verwalten, basierend auf Ihrer Rolle, die vo
 
 ## Mitwirkende
 
-+ Viktor Nikolayev
-+ Peter Martin Berg
-+ Willy Ellwart
-+ Christian Sawatzky
-+ Marcel Welk
++ [Viktor Nikolayev](https://github.com/vnikolayev-ts) 
++ [Peter Martin Berg](https://github.com/petemount)
++ [Willy Ellwart](https://github.com/BrainsenOv3erkill)
++ [Christian Sawatzky](https://github.com/Chrisawatzky)
++ [Marcel Welk](https://github.com/celtechstarter)
 
 ## Lizenz
 
