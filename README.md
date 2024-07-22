@@ -23,5 +23,13 @@ npm install
 npm start
 
 
+## Mitwirken
+
+willy.ellwart@edu.techstarter.de
+christian.sawatzky@edu.techstarter.de
+viktor.nikolayev@edu.techstarter.de
+peter.berg@edu.techstarter.de
+marcel.welk@edu.techstarter.de
+
 
 
