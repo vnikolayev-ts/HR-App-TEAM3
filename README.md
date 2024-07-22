@@ -66,6 +66,10 @@ Sie können unterschiedliche Listen verwalten, basierend auf Ihrer Rolle, die vo
 ![Alt text](/screenshots/login_page.png?raw=true "Login Page")
 ![Alt text](/screenshots/dashboard.png?raw=true "Dashboard")
 
+<a href="/screenshots/login_page.png?raw=true" target="_blank">
+  <img src="/screenshots/login_page.png?raw=true" alt="Login Page" width="300" />
+</a>
+
 Hier können Sie sich unsere Screenshots im Karussell ansehen: [Screenshots](./screenshots.html)
 
 
