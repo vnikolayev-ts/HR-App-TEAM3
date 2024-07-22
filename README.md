@@ -37,3 +37,5 @@ Please make sure to update tests as appropriate.
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
+
+Dieses Projekt ist unter der MIT-Lizenz lizenziert – siehe die <a href="LICENSE.md"> LICENSE.md</a> Datei für Details.
