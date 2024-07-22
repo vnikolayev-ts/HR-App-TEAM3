@@ -63,7 +63,9 @@ Sie können unterschiedliche Listen verwalten, basierend auf Ihrer Rolle, die vo
 - **Superadmin-Rolle**: Superadmins haben Vollzugriff auf alle Daten und Funktionen der App. Sie können Benutzer- und Mitarbeiterlisten für alle Firmen/Tenants verwalten und Firmen/Tenants anlegen, bearbeiten oder löschen.
 
 ## Screenshots
-![Alt text](/screenshots/login_page.png?raw=true "Login APge")
+![Alt text](/screenshots/login_page.png?raw=true "Login Page")
+![Alt text](/screenshots/dashboard.png?raw=true "Dashboard")
+
 Hier können Sie sich unsere Screenshots im Karussell ansehen: [Screenshots](./screenshots.html)
 
 
