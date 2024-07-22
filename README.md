@@ -7,6 +7,7 @@ HR APP TEAM3 ist eine leistungsstarke Anwendung zur Verwaltung von Personalresso
 - [Installation](#installation)
 - [Verwendung](#verwendung)
 - [Features](#features)
+- [Screenshots](#screenshots)
 - [Mitwirken](#mitwirken)
 - [Lizenz](#lizenz)
 - [Danksagungen](#danksagungen)
@@ -27,12 +28,12 @@ cd HR_APP_TEAM3/backend
 npm install
 
 # Anwendung starten
-npm start
+node server.js
 ```
 
-# Frontende installieren & starten
+# Frontend installieren & starten
 ```bash
-cd HR_APP_TEAM3/backend
+cd HR_APP_TEAM3/frontend
 
 # Abhängigkeiten installieren
 npm install
@@ -40,6 +41,11 @@ npm install
 # Anwendung starten
 npm start
 ```
+
+## Screenshots
+
+Hier können Sie sich unsere Screenshots im Karussell ansehen: [Screenshots](./screenshots/carousel.html)
+
 
 ## Contributing
 
@@ -50,4 +56,4 @@ Please make sure to update tests as appropriate.
 
 ## License
 
-Dieses Projekt ist unter der MIT-Lizenz lizenziert – siehe die <a href="LICENSE.md"> LICENSE.md</a>  Datei für Details.
+Dieses Projekt ist unter der MIT-Lizenz lizenziert – siehe die <a href="LICENSE.md"> LICENSE.md</a>  Datei für Details. 
