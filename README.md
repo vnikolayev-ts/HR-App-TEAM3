@@ -5,7 +5,7 @@ HR APP TEAM3 ist eine leistungsstarke Anwendung zur Verwaltung von Personalresso
 ## Inhaltsverzeichnis
 
 - [Installation](#installation)
-- [Verwendung](#verwendung)
+- [Beschreibung](#beschreibung)
 - [Funktionen](#funktionen)
 - [Screenshots](#screenshots)
 - [Mitwirkende](#mitwirkende)
