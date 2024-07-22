@@ -66,31 +66,31 @@ Sie können unterschiedliche Listen verwalten, basierend auf Ihrer Rolle, die vo
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
        <a href="./readme/screenshots/login_page.png" target="_blank">
-        <img src="./readme/screenshots/login_page.png" alt="Login Page" width="300" style="flex: 1;" />
+        <img src="./readme/screenshots/login_page.png" alt="Login Page" width="200" style="flex: 1;" />
     </a>
     <a href="./readme/screenshots/dashboard.png" target="_blank">
-        <img src="./readme/screenshots/dashboard.png" alt="Dashboard" width="300" style="flex: 1;" />
+        <img src="./readme/screenshots/dashboard.png" alt="Dashboard" width="200" style="flex: 1;" />
     </a>
     <a href="./readme/screenshots/employee_list.png" target="_blank">
-        <img src="./readme/screenshots/employee_list.png" alt="Employee List" width="300" style="flex: 1;" />
+        <img src="./readme/screenshots/employee_list.png" alt="Employee List" width="200" style="flex: 1;" />
     </a>
     <a href="./readme/screenshots/employee_details.png" target="_blank">
-        <img src="./readme/screenshots/employee_details.png" alt="Employee Details" width="300" style="flex: 1;" />
+        <img src="./readme/screenshots/employee_details.png" alt="Employee Details" width="200" style="flex: 1;" />
     </a>
     <a href="./readme/screenshots/user_list.png" target="_blank">
-        <img src="./readme/screenshots/user_list.png" alt="User List" width="300" style="flex: 1;" />
+        <img src="./readme/screenshots/user_list.png" alt="User List" width="200" style="flex: 1;" />
     </a>
     <a href="./readme/screenshots/tenant_list.png" target="_blank">
-        <img src="./readme/screenshots/tenant_list.png" alt="Tenant List" width="300" style="flex: 1;" />
+        <img src="./readme/screenshots/tenant_list.png" alt="Tenant List" width="200" style="flex: 1;" />
     </a>
     <a href="./readme/screenshots/darkdash.png" target="_blank">
-        <img src="./readme/screenshots/darkdash.png" alt="Dark Dash" width="300" style="flex: 1;" />
+        <img src="./readme/screenshots/darkdash.png" alt="Dark Dash" width="200" style="flex: 1;" />
     </a>
     <a href="./readme/screenshots/darkmode.png" target="_blank">
-        <img src="./readme/screenshots/darkmode.png" alt="Dark Mode Employee List" width="300" style="flex: 1;" />
+        <img src="./readme/screenshots/darkmode.png" alt="Dark Mode Employee List" width="200" style="flex: 1;" />
     </a>
     <a href="./readme/screenshots/darkuser.png" target="_blank">
-        <img src="./readme/screenshots/darkuser.png" alt="Dark User" width="300" style="flex: 1;" />
+        <img src="./readme/screenshots/darkuser.png" alt="Dark User" width="200" style="flex: 1;" />
     </a>
 </div>
 
