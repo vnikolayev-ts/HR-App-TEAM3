@@ -1,5 +1,14 @@
-<h1 align="center">Hi 👋, I'm HR APP TEAM 3</h1>
+<h1 align="center">HAllo zusammen 👋, wir als HR APP - Team ....</h1>
 <h3 align="center">Unsere Applikation ist eine leistungsstarke Anwendung zur Verwaltung von Personalressourcen. Sie ermöglicht es Unternehmen, Mitarbeiterdaten effizient zu verwalten, Arbeitszeiten zu verfolgen und Leistungsberichte zu erstellen.</h3>
+
+<pre>
+- [Installation](#installation)
+- [Verwendung](#verwendung)
+- [Features](#features)
+- [Mitwirken](#mitwirken)
+- [Lizenz](#lizenz)
+- [Danksagungen](#danksagungen)
+</pre>
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
