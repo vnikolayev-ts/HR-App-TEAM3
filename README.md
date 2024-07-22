@@ -1,4 +1,5 @@
 <img src="./readme/logo.png" width="20%" alt="HR APP LOGO">
+
 # HR APP TEAM3
 
 HR APP TEAM3 ist eine leistungsstarke Anwendung zur Verwaltung von Personalressourcen. Sie ermöglicht es Unternehmen, Mitarbeiterdaten effizient zu verwalten, Arbeitszeiten zu verfolgen und Leistungsberichte zu erstellen.
