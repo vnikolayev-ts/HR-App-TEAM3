@@ -63,14 +63,54 @@ Sie können unterschiedliche Listen verwalten, basierend auf Ihrer Rolle, die vo
 - **Superadmin-Rolle**: Superadmins haben Vollzugriff auf alle Daten und Funktionen der App. Sie können Benutzer- und Mitarbeiterlisten für alle Firmen/Tenants verwalten und Firmen/Tenants anlegen, bearbeiten oder löschen.
 
 ## Screenshots
-![Alt text](/screenshots/login_page.png?raw=true "Login Page")
-![Alt text](/screenshots/dashboard.png?raw=true "Dashboard")
 
-<a href="/screenshots/login_page.png?raw=true" target="_blank">
-  <img src="/screenshots/login_page.png?raw=true" alt="Login Page" width="300" />
+Hier sind einige Screenshots unserer Anwendung:
+
+### Neues Logo
+<a href="./neues_logo.png" target="_blank">
+  <img src="./neues_logo.png" alt="Neues Logo" width="300" />
 </a>
 
-Hier können Sie sich unsere Screenshots im Karussell ansehen: [Screenshots](./screenshots.html)
+### Login-Seite
+<a href="./screenshots/login_page.png" target="_blank">
+  <img src="./screenshots/login_page.png" alt="Login Page" width="300" />
+</a>
+
+### Dashboard
+<a href="./screenshots/dashboard.png" target="_blank">
+  <img src="./screenshots/dashboard.png" alt="Dashboard" width="300" />
+</a>
+
+### Mitarbeiterliste
+<a href="./screenshots/employee_list.png" target="_blank">
+  <img src="./screenshots/employee_list.png" alt="Employee List" width="300" />
+</a>
+
+### Mitarbeiterdetails
+<a href="./screenshots/employee_details.png" target="_blank">
+  <img src="./screenshots/employee_details.png" alt="Employee Details" width="300" />
+</a>
+
+### Mitarbeiter bearbeiten
+<a href="./screenshots/employee_edit.png" target="_blank">
+  <img src="./screenshots/employee_edit.png" alt="Employee Edit" width="300" />
+</a>
+
+### Mitarbeiter erstellen
+<a href="./screenshots/employee_create.png" target="_blank">
+  <img src="./screenshots/employee_create.png" alt="Employee Create" width="300" />
+</a>
+
+### Aktiver Benutzer
+<a href="./screenshots/active-user.png" target="_blank">
+  <img src="./screenshots/active-user.png" alt="Active User" width="300" />
+</a>
+
+### Dunkelmodus
+<a href="./screenshots/darkmode.png" target="_blank">
+  <img src="./screenshots/darkmode.png" alt="Dark Mode" width="300" />
+</a>
+
 
 
 ## Mitwirkende
