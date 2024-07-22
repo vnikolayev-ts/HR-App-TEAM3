@@ -1,6 +1,6 @@
-# HR APP TEAM3
+# {{PROJECT_NAME}}
 
-Kurze Beschreibung des Projekts. Was macht es und warum ist es nützlich?
+{{PROJECT_NAME}} ist eine leistungsstarke Anwendung zur Verwaltung von Personalressourcen. Sie ermöglicht es Unternehmen, Mitarbeiterdaten effizient zu verwalten, Arbeitszeiten zu verfolgen und Leistungsberichte zu erstellen.
 
 ## Inhaltsverzeichnis
 
@@ -13,23 +13,15 @@ Kurze Beschreibung des Projekts. Was macht es und warum ist es nützlich?
 
 ## Installation
 
-Anweisungen zur Installation des Projekts. Geben Sie die erforderlichen Schritte an, die Benutzer ausführen müssen, um Ihr Projekt zum Laufen zu bringen.
+Folgen Sie diesen Schritten, um {{PROJECT_NAME}} zu installieren und lokal auszuführen:
 
 ```bash
-# Beispiel
-git clone https://github.com/Benutzername/Projektname.git
-cd Projektname
+# Repository klonen
+git clone https://github.com/{{USERNAME}}/{{REPO_NAME}}.git
+cd {{REPO_NAME}}
+
+# Abhängigkeiten installieren
 npm install
+
+# Anwendung starten
 npm start
-
-
-## Mitwirken
-
-willy.ellwart@edu.techstarter.de
-christian.sawatzky@edu.techstarter.de
-viktor.nikolayev@edu.techstarter.de
-peter.berg@edu.techstarter.de
-marcel.welk@edu.techstarter.de
-
-
-
