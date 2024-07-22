@@ -7,9 +7,8 @@ HR APP TEAM3 ist eine leistungsstarke Anwendung zur Verwaltung von Personalresso
 - [Installation](#installation)
 - [Verwendung](#verwendung)
 - [Funktionen](#funktionen)
-- [Features](#features)
 - [Screenshots](#screenshots)
-- [Mitwirken](#mitwirken)
+- [Mitwirkende](#mitwirkende)
 - [Lizenz](#lizenz)
 - [Danksagungen](#danksagungen)
 
@@ -43,35 +42,38 @@ npm install
 npm start
 ```
 
+## Beschreibung
+
+Die HR-App TEAM3 ist eine umfassende Lösung für das Management von Mitarbeiter- und Benutzerdaten. Sie bietet eine sichere Cloud-Speicherung Ihrer Daten, sodass Sie keinen Platz auf Ihrer Festplatte opfern müssen. Die App ermöglicht es Ihnen, zwischen einem „Light Mode“ und einem „Dark Mode“ zu wechseln, um eine angenehme Benutzererfahrung zu gewährleisten.
+
+Mit einem integrierten Dashboard erhalten Sie wichtige Statistiken und haben Zugriff auf eine API, die regelmäßig Witze erzählt. Die App unterstützt verschiedene API-Integrationen für erweiterte Funktionalitäten.
+
+Sie können unterschiedliche Listen verwalten, basierend auf Ihrer Rolle, die von „User“ über „Admin“ bis „Super-Admin“ reicht. Diese Listen umfassen Mitarbeiter-, User- und Tenant-Daten und bieten unterschiedliche Zugriffs- und Bearbeitungsrechte je nach Benutzerrolle.
+
+## Funktionen
+
+- **Dashboard**: Nach der Anmeldung haben Sie Zugang zu einem Dashboard, das je nach Rolle unterschiedliche Daten und Funktionen anzeigt.
+  
+- **User-Rolle**: Einfache Benutzer können nur ihre eigenen Daten einsehen und bearbeiten sowie die Daten ihrer Firma abrufen.
+
+- **Admin-Rolle**: Admins können die Benutzer- und Mitarbeiterlisten ihrer Firma einsehen, bearbeiten und verwalten. Sie haben auch Zugriff auf die Unternehmensdaten ihrer Firma.
+
+- **Superadmin-Rolle**: Superadmins haben Vollzugriff auf alle Daten und Funktionen der App. Sie können Benutzer- und Mitarbeiterlisten für alle Firmen/Tenants verwalten und Firmen/Tenants anlegen, bearbeiten oder löschen.
+
 ## Screenshots
 
 Hier können Sie sich unsere Screenshots im Karussell ansehen: [Screenshots](./readme/screenshots.html)
 
 
-## Funktionen
+## Mitwirkende
 
-#### Die HR-App bietet die folgenden Funktionen.
++ Viktor Nikolayev
++ Peter Martin Berg
++ Willy Ellwart
++ Christian Sawatzky
++ Marcel Welk
 
-Zunächst loggt man sich auf dem Dashboard ein.
-Hier kann man die Rolle eines Superadmin, Users mit Adminrechten oder eines einfachen Users haben.
-
-#### User-Rolle
-Meldet man sich als einfacher User an, hat man nur eine einfache Form der Navigationsbar und kann auf der Dashboardseite nur die Daten seiner Firma sehen, die Userdaten-Liste und Userdetails ansehen, aber nur seine eigenen Daten ändern. Außerdem kann er die Daten seiner Firma aufrufen und einsehen.
-
-#### Admin-User-Rolle
-Meldet sich ein User mit Adminrechten an, hat dieser eine Navigationsbar, über die er nur seine Firma/Tenant sehen kann und hat Zugriff auf die User, Employees (Angestellten) und seinen Tenant (Firma).
-Er kann die Userliste seiner Firma einsehen, einzelne User aufrufen, deren Daten ändern oder diese löschen und neue User anlegen.
-Er kann die Employee-/Angestellten-Liste seiner Firma aufrufen, einzelne Angestellte aufrufen, bei diesen Änderungen vornehmen und Employee-/Angestellten Sätze löschen. Weiterhin kann er neue Employee-/Angestelltensätze anlegen.
-Außerdem kann er die Daten seiner Firma aufrufen und einsehen.
-
-#### Superadmin-Rolle
-Meldet sich ein Superadmin an, findet dieser eine Navigationsbar vor, die ihm auf alles Vollzugriff erlaubt. 
-Dieser kann für jeden Tenant/Firma die User-Liste aufrufen, einzelne User aufrufen, deren Daten ändern oder diese löschen und neue User anlegen.
-Er kann die Employee- Angestellten-/Angestellten-Liste aufrufen, einzelne Angestellte/Employees aufrufen, deren Daten ändern oder diese löschen und neue Angestellte/Employees anlegen.
-Außerdem kann er die Firmen/Tenants-Liste sehen, als Einziger diese auch ändern und löschen und neue Firmen/Tenants anlegen. 
-
-
-## License
+## Lizenz
 
 Dieses Projekt ist unter der MIT-Lizenz lizenziert – siehe die <a href="LICENSE.md"> LICENSE.md</a>  Datei für Details. 
 
