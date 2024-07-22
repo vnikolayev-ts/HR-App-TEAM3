@@ -2,37 +2,6 @@
 
 # dependencies
 node_modules
-/.pnp
-.pnp.js
-
-# testing
-/coverage
-
-# production
-/build
-
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-package-lock.json
-package.json
-
-data/employees.json
-data/users.json
-data/tenants.json
-backend/data/tenants.json
-
-
-# dependencies
-node_modules
 /node_modules
 /.pnp
 .pnp.js
@@ -56,4 +25,3 @@ yarn-debug.log*
 yarn-error.log*
 
 package-lock.json
-
