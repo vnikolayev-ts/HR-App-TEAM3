@@ -65,10 +65,7 @@ Sie können unterschiedliche Listen verwalten, basierend auf Ihrer Rolle, die vo
 ## Screenshots
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-    <a href="./readme/logo.png" target="_blank">
-        <img src="./neues_logo.png" alt="Neues Logo" width="300" style="flex: 1;" />
-    </a>
-    <a href="./screenshots/login_page.png" target="_blank">
+       <a href="./screenshots/login_page.png" target="_blank">
         <img src="./screenshots/login_page.png" alt="Login Page" width="300" style="flex: 1;" />
     </a>
     <a href="./screenshots/dashboard.png" target="_blank">
