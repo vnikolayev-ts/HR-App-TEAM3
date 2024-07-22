@@ -25,3 +25,9 @@ npm install
 
 # Anwendung starten
 npm start
+
+## Verwendung
+
+sdsdsds
+
+sdsdsdsddsfdnhdhnj
