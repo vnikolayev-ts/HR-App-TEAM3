@@ -1,6 +1,6 @@
 # MIT License
 
-Copyright (c) [Jahr] [Ihr Name]
+Copyright (c) [2024] [HR APP TEAM 3, Viktor Nikolayev]
 
 Erlaubt wird, kostenlos, uneingeschränkt, für jedweden Zweck, einschließlich der Nutzung, Vervielfältigung, Änderung, Zusammenführung, Veröffentlichung, Verbreitung, Unterlizenzierung und/oder Verkauf von Kopien der Software, unter den folgenden Bedingungen:
 
