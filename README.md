@@ -62,7 +62,7 @@ Sie können unterschiedliche Listen verwalten, basierend auf Ihrer Rolle, die vo
 
 ## Screenshots
 
-Hier können Sie sich unsere Screenshots im Karussell ansehen: [Screenshots](./readme/screenshots.html)
+Hier können Sie sich unsere Screenshots im Karussell ansehen: [Screenshots](./screenshots.html)
 
 
 ## Mitwirkende
